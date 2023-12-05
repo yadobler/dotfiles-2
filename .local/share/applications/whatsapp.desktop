@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Whatsapp
-Exec=/bin/brave-browser-stable --ozone-platform=wayland --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com
+Exec=/usr/bin/brave --ozone-platform=wayland --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com
 Terminal=false
 Type=Application
 Icon=whatsapp
