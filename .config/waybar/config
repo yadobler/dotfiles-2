@@ -20,7 +20,6 @@
         "custom/weather",
         "idle_inhibitor", 
         "custom/kb",
-        "bluetooth",
         "pulseaudio", 
         "network", 
         "temperature", 
