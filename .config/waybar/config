@@ -1,0 +1,189 @@
+// vim:ft=json
+{
+    //General
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 1,
+
+    //position
+    "modules-left": [
+        "custom/launch_app",
+        "hyprland/workspaces", 
+        "hyprland/submap", 
+        "custom/media"
+    ],
+    "modules-center":[
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "custom/weather",
+        "idle_inhibitor", 
+        "custom/kb",
+        "bluetooth",
+        "pulseaudio", 
+        "network", 
+        "temperature", 
+        "backlight", 
+        "battery", 
+        "tray",
+        "clock", 
+        "custom/notification"
+    ],
+
+    //modules
+    "hyprland/workspaces": {
+        "format": "{name}: {icon}  [ {windows} ]",
+        "format-icons":{
+            "active": "",
+            "default": ""
+        },
+        "format-window-separator": " ",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            "brave": "󰖟",
+            "kitty": "",
+            "thunar": ""
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
+    },
+    "hyprland/submap": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "hyprland/window": {
+        "max-length": 100,
+        "separate-outputs": true,
+        "format": "{}",
+        "rewrite": {
+            "vim (.*)": " $1",
+            "(.*) - Brave": "󰖟 $1"
+        }
+    },
+    "bluetooth": {
+        "format": "{status} ",
+        "format-disabled": "off ",
+        "format-connected": "{num_connections} ",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "temperature": {
+        "thermal-zone": 8,
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "on-scroll-up": "light -A 2",
+        "on-scroll-down": "light -U 2",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "tooltip-format": "{capacity}% - {timeTo}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "network": {
+        "format-wifi": "{signalStrength}% {icon}",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈁",
+        "tooltip-format": "{essid} on {ifname} 󱂇",
+        "format-linked": "{ifname} (No IP) 󰪎",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󱆏",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10, 
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.py"
+    },
+    "custom/launch_app": {
+        "tooltip": false,
+        "format": "󰀻",
+        "on-click": "sleep 0.5; wofi --show drun",
+        "escape": true
+    },
+    "custom/kb": {
+        "tooltip": false,
+        "format": "󰌌",
+        "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
+        "on-click-right": "killall squeekboard",
+        "escape": true
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.5; swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true,
+        "max-length": 2
+    },
+    "custom/weather": {
+        "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
+        "return-type": "json",
+        "format": "<span style=\"italic\">{}</span>",
+        "tooltip": true,
+        "interval": 600
+    }
+}
+
