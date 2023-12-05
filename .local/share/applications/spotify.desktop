@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spotify
+Exec=/bin/spotify --ozone-platform=wayland --enable-features=WaylandWindowDecorations %U
+Terminal=false
+Type=Application
+Icon=spotify
+StartupWMClass=spotify-client
+Comment=Spotify
+MimeType=x-scheme-handler/spotify;
+Categories=Network;Audio;Music;

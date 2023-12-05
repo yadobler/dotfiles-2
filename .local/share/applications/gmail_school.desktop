@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Gmail (NUS)
+Exec=/bin/brave-browser-stable --ozone-platform=wayland --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://mail.google.com/mail/u/2
+Terminal=false
+Type=Application
+Icon=gmail
+StartupWMClass=crx_gmail_nus
+Comment=Gmail
+Categories=Network;Email;

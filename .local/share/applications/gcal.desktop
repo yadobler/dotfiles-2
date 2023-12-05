@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Google Calendar
+Exec=/bin/brave-browser-stable --ozone-platform=wayland --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://calendar.google.com/calendar/u/1/r
+Terminal=false
+Type=Application
+Icon=calendar
+StartupWMClass=crx_gcal
+Comment=Google Calendar
+Categories=Network;Calendar;
