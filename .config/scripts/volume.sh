@@ -15,26 +15,26 @@ esac
 
 if [[ $(wpctl get-volume @DEFAULT_SINK@ | awk '{print $3}') == '[MUTED]' ]]; then
     notify-send.sh \
-        -R $notification_id \
-        -i $VOLUME_ICON \
-        -a "volume_notification_script" \
-        -t 1000 \
         "Volume: MUTED" \
-        -h string:synchronous:volume-change
+        -R $notification_id \
+        -i notification-audio-volume-muted \
+        -t 1000 \
+        -h string:synchronous:volume-change \
+        -a "volume_notification_script"
 else
     # HACK: using zsh for FPA - if using sh, change these lines
     zmodload zsh/mathfunc
     VOLUME=$(( int(100 * float($(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}'))) ))
-    VOLUME_ICON="audio-volume-medium"
-    if [ $VOLUME -le 30 ]; then VOLUME_ICON="audio-volume-low"; fi
-    if [ $VOLUME -ge 75 ]; then VOLUME_ICON="audio-volume-high"; fi
-    if [ $VOLUME -le 1 ]; then VOLUME_ICON="audio-volume-muted"; fi
+    VOLUME_ICON="notification-audio-volume-medium"
+    if [ $VOLUME -le 30 ]; then VOLUME_ICON="notification-audio-volume-low"; fi
+    if [ $VOLUME -ge 75 ]; then VOLUME_ICON="notification-audio-volume-high"; fi
+    if [ $VOLUME -le 1 ]; then VOLUME_ICON="notification-audio-volume-muted"; fi
     notify-send.sh \
-        -R $notification_id \
-        -i $VOLUME_ICON \
-        -a "volume_notification_script" \
-        -t 1000 \
         "Volume: $VOLUME%"  \
+        -R $notification_id \
+        -t 1000 \
+        -i $VOLUME_ICON \
         -h int:value:$VOLUME \
-        -h string:synchronous:volume-change
+        -h string:synchronous:volume-change \
+        -a "volume_notification_script"
 fi

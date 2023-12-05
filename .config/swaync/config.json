@@ -33,7 +33,7 @@
             "state": "transient",
             "app-name": "volume_notification_script"
         },
-        "volume-change" :{
+        "spotify-notifications" :{
             "state": "transient",
             "app-name": "Spotify"
         }
