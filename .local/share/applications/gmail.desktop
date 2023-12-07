@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Gmail (Main)
-Exec=/usr/bin/brave --ozone-platform=wayland --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://mail.google.com/mail/u/1
+Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://mail.google.com/mail/u/1
 Terminal=false
 Type=Application
 Icon=gmail

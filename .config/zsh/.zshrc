@@ -45,6 +45,7 @@ export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin/:$PATH"
 export EDITOR=nvim
 export LESS="-R"
 export MANPAGER="less -R"
+export GLFW_IM_MODULE=ibus
 
 alias vim="nvim"
 alias svim="sudo -E nvim"
