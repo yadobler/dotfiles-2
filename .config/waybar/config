@@ -43,9 +43,13 @@
         "format-window-separator": " ",
         "window-rewrite-default": "",
         "window-rewrite": {
-            "brave": "󰖟",
             "kitty": "",
-            "pcmanfm": ""
+            "pcmanfm": "",
+            "brave-calendar.google.com__calendar_u_1_r-Default":"",
+            "brave-mail.google.com__mail_u_.-Default": "",
+            "brave-web.whatsapp.com__-Default": " ",
+            "org.telegram.desktop": " ",
+            "brave-browser": "󰖟"
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
