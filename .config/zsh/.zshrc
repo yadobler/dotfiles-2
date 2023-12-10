@@ -1,5 +1,5 @@
-# If running from tty1 start sway
-# [ "$(tty)" = "/dev/tty1" ] && exec /bin/Hyprland
+# If running from tty1 start hyprland
+[ "$(tty)" = "/dev/tty1" ] && exec /bin/Hyprland
 
 
 # The following lines were added by compinstall
