@@ -63,3 +63,8 @@ tooltip label {
     background: @color1;
     color: @foreground;
 }
+
+#workspaces button.special {
+    background: @color3;
+    color: @foreground;
+}

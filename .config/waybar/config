@@ -32,17 +32,20 @@
 
     //modules
     "hyprland/workspaces": {
-        "format": "{name}: {icon}  [ {windows} ]",
+        "show-special": true,
+        "format": "{name}: {icon}[ {windows} ]",
+        "sort-by": "id",
         "format-icons":{
-            "active": "",
-            "default": ""
+            "special": "",
+            "active": "   ",
+            "default": "   "
         },
         "format-window-separator": " ",
         "window-rewrite-default": "",
         "window-rewrite": {
             "brave": "󰖟",
             "kitty": "",
-            "thunar": ""
+            "pcmanfm": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
@@ -55,8 +58,8 @@
         "separate-outputs": true,
         "format": "{}",
         "rewrite": {
-            "vim (.*)": " $1",
-            "(.*) - Brave": "󰖟 $1"
+            "vim (.*)": "  $1",
+            "(.*) - Brave": "󰖟  $1"
         }
     },
     "bluetooth": {
