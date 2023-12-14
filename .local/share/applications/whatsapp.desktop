@@ -3,7 +3,8 @@ Name=Whatsapp
 Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com
 Terminal=false
 Type=Application
-Icon=whatsapp
+Icon=Whatsapp
 StartupWMClass=crx_whatsapp
 Comment=Whatsapp Web
 Categories=Chat;Network;InstantMessaging;
+X-Desktop-File-Install-Version=0.27
