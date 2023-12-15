@@ -47,6 +47,7 @@ export LESS="-R"
 export MANPAGER="less -R"
 export GLFW_IM_MODULE=ibus
 
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"
 alias svim="sudo -E nvim"
 alias batt="upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty"
