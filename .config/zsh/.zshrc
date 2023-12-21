@@ -46,6 +46,7 @@ export EDITOR=nvim
 export LESS="-R"
 export MANPAGER="less -R"
 export GLFW_IM_MODULE=ibus
+export RANGER_LOAD_DEFAULT_RC="FALSE"
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"

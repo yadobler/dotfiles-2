@@ -2,39 +2,25 @@
  * vim: ft=less
  */
 @import url('/home/yukna/.cache/wal/colors-waybar.css');
-
-@define-color bg_base alpha (@background, 0.7);
-
-/*
- * @define-color background    hsl(240 60% 02%);
- * @define-color color1        hsl(203 50% 22%);
- * @define-color color3        hsl(203 50% 25%);
- * @define-color color8        hsl(240 03% 26%);
- * @define-color color2        hsl(326 50% 27%);
- * @define-color color9        hsl(203 51% 29%);
- * @define-color color6        hsl(193 50% 30%);
- * @define-color color4        hsl(233 50% 32%);
- * @define-color color11       hsl(203 50% 34%);
- * @define-color color10       hsl(326 50% 37%);
- * @define-color color5        hsl(295 51% 37%);
- * @define-color color14       hsl(193 50% 40%);
- * @define-color color12       hsl(234 50% 44%);
- * @define-color color13       hsl(296 50% 50%);
- * @define-color color7        hsl(240 01% 51%);
- * @define-color foreground    hsl(240 02% 75%);
- */
+@define-color bg_base alpha (@background, 0.8);
 
 * {
     font-family: Fira Code Mono;
     font-size: 14px;
+    min-height: 0;
     border-radius: 10px;
     margin: 1px 5px;
 }
 
-window#waybar {
+window#waybar{
     color: @foreground;
     background: @bg_base;
     border-radius: 0px;
+}
+.waybar-bottom {
+    border-top: 1px solid @color14;
+}
+.waybar-top {
     border-bottom: 1px solid @color14;
 }
 
@@ -59,6 +45,11 @@ tooltip label {
     padding: 0px 0px;
 }
 
+#workspaces button:hover {
+    background: @color12;
+    color: @foreground;
+}
+
 #workspaces button.active {
     background: @color1;
     color: @foreground;
@@ -67,4 +58,64 @@ tooltip label {
 #workspaces button.special {
     background: @color3;
     color: @foreground;
+}
+
+#workspaces button.urgent {
+    background: @color10;
+    color: @foreground;
+}
+
+
+#battery,
+#backlight,
+#pulseaudio,
+#network,
+#temperature,
+#custom-kb,
+#idle_inhibitor,
+#custom-media,
+#custom-weather,
+#clock,
+#custom-launch_app,
+#hyprland-workspaces,
+#hyprland-submap,
+#hyprland-window,
+#tray,
+#custom-notification {
+    color: @foreground;
+    background: transparent;
+    padding: 0px 5px;
+}
+
+#battery.good {
+    color: @foreground;
+    background: @bg_base;
+}
+#battery.warning {
+    color: @color2;
+    background: @bg_base;
+}
+@keyframes blink {
+    to {
+        color: #AA2244;
+    }
+}
+#battery.critical:not(.charging) {
+    color: @foreground;
+    background: @bg_base;
+    animation-name: blink;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#temperature.critical {
+    color: @color2;
+    background: @bg_base;
+}
+
+#idle_inhibitor.actived {
+    color: @color1;
+    background: @bg_base;
 }

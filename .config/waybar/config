@@ -1,36 +1,162 @@
 // vim:ft=json
+[
+    {
+    //General
+    "layer": "top",
+    "position": "bottom",
+    "height": 40,
+    "spacing": 1,
+    "name": "waybar-bottom",
+
+    //position
+    "modules-left": [
+        "battery", 
+        "backlight", 
+        "pulseaudio", 
+        "network", 
+        "temperature", 
+        "custom/kb",
+        "idle_inhibitor"
+    ],
+    "modules-center":[
+        "custom/media"
+    ],
+    "modules-right": [
+        "custom/weather",
+        "clock"
+    ],
+    "custom/media": {
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10, 
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.py"
+    },
+    "custom/weather": {
+        "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "interval": 600
+    },
+    "clock": {
+        "tooltip-format": "<tt><big>{calendar}</big></tt>\n\nToday: {:%d %B %Y}",
+        "format": "{:%d %B %Y - %H:%M %p}"
+    },
+    "network": {
+        "format-wifi": "{signalStrength}% {icon}",
+        "format-ethernet": "{ipaddr}/{cidr} 󰈁",
+        "tooltip-format": "{essid} on {ifname} 󱂇",
+        "format-linked": "{ifname} (No IP) 󰪎",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-muted": "<span foreground='#AA2244'><b> </b></span> {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": "<span foreground='#AA2244'><b> {icon}  {format_source}</b></span>",
+        "format-source": " {volume}% ",
+        "format-source-muted": "<span foreground='#AA2244'><b></b></span>",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󱆏",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "<span foreground='#34AA44'><b></b></span>",
+            "deactivated": ""
+        }
+    },
+    "temperature": {
+        "thermal-zone": 8,
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "on-scroll-up": "light -A 2",
+        "on-scroll-down": "light -U 2",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "tooltip-format": "{capacity}% - {timeTo}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "bluetooth": {
+        "format": "{status} ",
+        "format-disabled": "off ",
+        "format-connected": "{num_connections} ",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager"
+    },
+    "custom/kb": {
+        "tooltip": false,
+        "format": "󰌌",
+        "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
+        "on-click-right": "killall squeekboard",
+        "escape": true
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 13,
+        "all-outputs": true,
+        "tooltip": false,
+        "on-click": "activate",
+        "on-click-right": "close"
+    }
+},
 {
     //General
     "layer": "top",
     "position": "top",
-    "height": 40,
+    "height": 30,
     "spacing": 1,
+    "name": "waybar-top",
 
     //position
     "modules-left": [
         "custom/launch_app",
         "hyprland/workspaces", 
-        "hyprland/submap", 
-        "custom/media"
+        "hyprland/submap"
     ],
     "modules-center":[
         "hyprland/window"
     ],
     "modules-right": [
-        "custom/weather",
-        "idle_inhibitor", 
-        "custom/kb",
-        "pulseaudio", 
-        "network", 
-        "temperature", 
-        "backlight", 
-        "battery", 
         "tray",
-        "clock", 
         "custom/notification"
     ],
 
     //modules
+    "custom/launch_app": {
+        "tooltip": false,
+        "format": "󰀻",
+        "on-click": "sleep 0.5; wofi --show drun",
+        "escape": true
+    },
     "hyprland/workspaces": {
         "show-special": true,
         "format": "{name}: {icon}[ {windows} ]",
@@ -66,103 +192,10 @@
             "(.*) - Brave": "󰖟  $1"
         }
     },
-    "bluetooth": {
-        "format": "{status} ",
-        "format-disabled": "off ",
-        "format-connected": "{num_connections} ",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueman-manager"
-    },
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
     "tray": {
         "icon-size": 14,
         "spacing": 10,
         "show-passive-items": true
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "temperature": {
-        "thermal-zone": 8,
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "{percent}% {icon}",
-        "on-scroll-up": "light -A 2",
-        "on-scroll-down": "light -U 2",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            "good": 90,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "tooltip-format": "{capacity}% - {timeTo}",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "network": {
-        "format-wifi": "{signalStrength}% {icon}",
-        "format-ethernet": "{ipaddr}/{cidr} 󰈁",
-        "tooltip-format": "{essid} on {ifname} 󱂇",
-        "format-linked": "{ifname} (No IP) 󰪎",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "󱆏",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "escape": true,
-        "return-type": "json",
-        "max-length": 40,
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl stop",
-        "smooth-scrolling-threshold": 10, 
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous",
-        "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.py"
-    },
-    "custom/launch_app": {
-        "tooltip": false,
-        "format": "󰀻",
-        "on-click": "sleep 0.5; wofi --show drun",
-        "escape": true
-    },
-    "custom/kb": {
-        "tooltip": false,
-        "format": "󰌌",
-        "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
-        "on-click-right": "killall squeekboard",
-        "escape": true
     },
     "custom/notification": {
         "tooltip": false,
@@ -184,13 +217,5 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true,
         "max-length": 2
-    },
-    "custom/weather": {
-        "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
-        "return-type": "json",
-        "format": "<span style=\"italic\">{}</span>",
-        "tooltip": true,
-        "interval": 600
     }
-}
-
+}]
