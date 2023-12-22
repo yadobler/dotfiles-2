@@ -15,7 +15,6 @@
         "pulseaudio", 
         "network", 
         "temperature", 
-        "custom/kb",
         "idle_inhibitor"
     ],
     "modules-center":[
@@ -23,7 +22,8 @@
     ],
     "modules-right": [
         "custom/weather",
-        "clock"
+        "clock",
+        "custom/kb",
     ],
     "custom/media": {
         "escape": true,
@@ -100,6 +100,7 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% {icon} ",
         "tooltip-format": "{capacity}% - {timeTo}",
         "format-icons": [" ", " ", " ", " ", " "]
     },
@@ -116,7 +117,6 @@
         "tooltip": false,
         "format": "󰌌",
         "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
-        "on-click-right": "killall squeekboard",
         "escape": true
     },
     "wlr/taskbar": {
@@ -159,7 +159,7 @@
     },
     "hyprland/workspaces": {
         "show-special": true,
-        "format": "{name}: {icon}[ {windows} ]",
+        "format": "{name}: {icon}[ {windows}  ]",
         "sort-by": "id",
         "format-icons":{
             "special": "",

@@ -86,12 +86,15 @@ tooltip label {
     background: transparent;
     padding: 0px 5px;
 }
-
-#battery.good {
+#battery.charging {
+    color: @color1;
+    background: @bg_base;
+}
+#battery.good:not(.charging) {
     color: @foreground;
     background: @bg_base;
 }
-#battery.warning {
+#battery.warning:not(.charging) {
     color: @color2;
     background: @bg_base;
 }

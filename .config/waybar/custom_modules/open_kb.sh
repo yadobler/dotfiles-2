@@ -1,5 +1,3 @@
 #! /usr/bin/sh
 
-# wvkb &
-# sleep 1
-# busctl call --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 SetVisible b true
+/bin/kill -SIGRTMIN+0 wvkbd-mobintl

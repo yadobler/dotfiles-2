@@ -29,6 +29,10 @@
             "state": "transient",
             "app-name": "brightness_notification_script"
         },
+        "animations-change" :{
+            "state": "transient",
+            "app-name": "Hyprctl Animations"
+        },
         "volume-change" :{
             "state": "transient",
             "app-name": "volume_notification_script"
@@ -79,11 +83,11 @@
                     },
                     {
                         "label": "󱂬   Toggle Float",
-                        "command": "swaymsg floating toggle"
+                        "command": "hyprctl dispatch togglefloating"
                     },
                     {
                         "label": "   Minimize Scratchpad",
-                        "command": "swaymsg move scratchpad"
+                        "command": "hyprctl dispatch movetoworkspacesilent $SCRATCHPAD_NAME"
                     }
                 ]
             },
