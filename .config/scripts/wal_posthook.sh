@@ -18,10 +18,14 @@ DIMENSION=$(python -c "
 print(f'{int(w)}x{int(h)}+{int(x)}+{int(y)}')")
 
 convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.jpg
-swww img -f Nearest -t none ~/Pictures/Wallpaper/cropped-image.jpg
+#swww img -f Nearest -t none ~/Pictures/Wallpaper/cropped-image.jpg
 walogram
 
 killall waybar
 waybar &
+disown
+
+killall wbg
+wbg ~/Pictures/Wallpaper/cropped-image.jpg &
 disown
 
