@@ -1,4 +1,3 @@
 #!/usr/bin/zsh
 
-killall wofi
-wofi --show drun -GiD key_expand=Tab --allow-images
+/bin/kill wofi || wofi --show drun -GiD key_expand=Tab --allow-images

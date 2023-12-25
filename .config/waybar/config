@@ -154,7 +154,7 @@
     "custom/launch_app": {
         "tooltip": false,
         "format": "󰀻",
-        "on-click": "sleep 0.5; wofi --show drun",
+        "on-click": "sleep 0.5; $HOME/.config/scripts/icon_launcher.sh",
         "escape": true
     },
     "hyprland/workspaces": {

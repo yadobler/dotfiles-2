@@ -79,15 +79,15 @@
                 "actions": [ 
                     {
                         "label": "󰖭   Kill Window",
-                        "command": "hyprctl kill"
+                        "command": "$HOME/.config/scripts/selective_kill.sh"
                     },
                     {
                         "label": "󱂬   Toggle Float",
                         "command": "hyprctl dispatch togglefloating"
                     },
                     {
-                        "label": "   Minimize Scratchpad",
-                        "command": "hyprctl dispatch movetoworkspacesilent $SCRATCHPAD_NAME"
+                        "label": "   Scratchpad",
+                        "command": "$HOME/.config/scripts/swap_scratchpad.sh"
                     }
                 ]
             },

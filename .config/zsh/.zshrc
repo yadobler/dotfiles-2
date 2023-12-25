@@ -65,6 +65,7 @@ alias htop="btm"
 alias grep="rg"
 alias find="fd"
 alias "jobs"="jobs -p"
+alias wal_update='wal --cols16 -o ~/.config/scripts/wal_posthook.sh -i'
 
 alias "cd.."="cd .."
 alias ":q"="exit"

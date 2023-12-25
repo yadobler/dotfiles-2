@@ -1,0 +1,15 @@
+show=drun
+width=80%
+height=80%
+normal_window=true
+prompt=Search...
+line_wrap=word
+no_actions=true
+halign=fill
+content_halign=start
+insensitive=true
+single_click=true
+allow_images=true
+image_size=64
+gtk_dark=true
+columns=5
