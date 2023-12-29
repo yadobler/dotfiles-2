@@ -1,0 +1,37 @@
+@import url('/home/yukna/.cache/wal/colors-waybar.css');
+@define-color bg_base alpha (@background, 0.9);
+
+window {
+    border: 2px solid @color14;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    background-color: @bg_base;
+}
+
+#outer-box {
+    margin: 10px;
+}
+
+#inner-box {
+    display: block;
+    width: 100%;
+}
+
+#text {
+    margin: 10px;
+    font-size: 20px;
+    display: block;
+}
+
+#img {
+    height: 100px;
+}
+
+#entry {
+    display: block;
+}
+
+#entry:selected {
+    background-color: @color5;
+}
