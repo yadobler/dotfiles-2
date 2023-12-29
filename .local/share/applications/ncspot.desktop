@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=ncspot
+Comment=Cross-platform ncurses Spotify client written in Rust
+Exec=kitty --class=ncspot zsh -c "[[ $(pgrep ncspot) ]] || ncspot"
+Icon=ncspot
+Terminal=false
+Categories=AudioVideo;Audio;Player;ConsoleOnly
+Keywords=spotify;music;player

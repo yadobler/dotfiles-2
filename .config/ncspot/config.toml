@@ -1,0 +1,7 @@
+use_nerdfont = true
+volnorm = true
+
+[credentials]
+username_cmd = "bw_unlock; bw get username $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw"
+password_cmd = "bw_unlock; bw get password $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw"
+

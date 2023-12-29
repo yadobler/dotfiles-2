@@ -47,7 +47,7 @@ export LESS="-R"
 export MANPAGER="less -R"
 export GLFW_IM_MODULE=ibus
 export RANGER_LOAD_DEFAULT_RC="FALSE"
-
+ 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"
 alias svim="sudo -E nvim"
@@ -66,6 +66,7 @@ alias grep="rg"
 alias find="fd"
 alias "jobs"="jobs -p"
 alias wal_update='wal --cols16 -o ~/.config/scripts/wal_posthook.sh -i'
+alias steam_update_apps="sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*"
 
 alias "cd.."="cd .."
 alias ":q"="exit"
@@ -77,3 +78,4 @@ alias "gcm"="git commit -m"
 alias "gpush"="git push"
 alias "gpull"="git pull"
 
+alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"

@@ -10,6 +10,7 @@ import signal
 import gi
 import json
 import os
+import re
 from typing import List
 
 logger = logging.getLogger(__name__)
@@ -66,7 +67,8 @@ class PlayerManager:
 
         output = {"text": text,
                   "class": "custom-" + player.props.player_name,
-                  "alt": player.props.player_name}
+                  "alt": player.props.player_name,
+                  "tooltip": f"Player: {player.props.player_name}"}
 
         sys.stdout.write(json.dumps(output) + "\n")
         sys.stdout.flush()
@@ -115,7 +117,7 @@ class PlayerManager:
         if player_name == "spotify" and "mpris:trackid" in metadata.keys() and ":ad:" in player.props.metadata["mpris:trackid"]:
             track_info = "Advertisement"
         elif artist is not None and title is not None:
-            track_info = f"{artist} - {title}"
+            track_info = f"<big>{re.escape(title)}</big> - {re.escape(artist)}"
         else:
             track_info = title
 

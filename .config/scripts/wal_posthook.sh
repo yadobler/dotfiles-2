@@ -21,6 +21,8 @@ convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.jpg
 #swww img -f Nearest -t none ~/Pictures/Wallpaper/cropped-image.jpg
 walogram
 
+swaync-client -rs
+
 killall waybar
 waybar &
 disown
