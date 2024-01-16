@@ -9,7 +9,7 @@ vim.g.loaded_newrwPlugin = 1
 
 -- Display
 vim.opt.termguicolors = true
-vim.opt.guifont = "FiraCode NFM:h13"
+vim.opt.guifont = "FiraCode NFP:h13"
 vim.opt.encoding = "utf-8"
 vim.opt.showmode = false
 vim.opt.laststatus = 2

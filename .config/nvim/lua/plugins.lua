@@ -229,7 +229,23 @@ return {
         end
     },
     -- devicons
-    { "nvim-tree/nvim-web-devicons", lazy = true },
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+        config = function ()
+            require'nvim-web-devicons'.setup {
+                override = {
+                    zsh = {
+                        icon = "",
+                        color = "#428850",
+                        cterm_color = "65",
+                        name = "Zsh"
+                    }
+                };
+                default = true;
+            }
+        end
+    },
 
     -- nvim-cmp icons
     { "onsails/lspkind.nvim", lazy = true },
@@ -349,6 +365,18 @@ return {
                     auto_enable = true,
                     lsp = true,
                 },
+                DEFAULT_OPTIONS = {
+                    RGB      = true;         -- #RGB hex codes
+                    RRGGBB   = true;         -- #RRGGBB hex codes
+                    names    = true;         -- "Name" codes like Blue
+                    RRGGBBAA = true;        -- #RRGGBBAA hex codes
+                    rgb_fn   = true;        -- CSS rgb() and rgba() functions
+                    hsl_fn   = true;        -- CSS hsl() and hsla() functions
+                    css      = true;        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                    css_fn   = true;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                    -- Available modes: foreground, background
+                    mode     = 'background'; -- Set the display mode.
+                }
             })
         end
     },
@@ -402,7 +430,8 @@ return {
     },
     -- TS-hyprland
     {
-        "luckasRanarison/tree-sitter-hypr",
+        "luckasRanarison/tree-sitter-hyprlang",
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
 
     -- luasnip
@@ -519,7 +548,6 @@ return {
     },
     -- nvim signatures
     { "ray-x/lsp_signature.nvim", lazy = true },
-    
 
     -- pqf
     {
