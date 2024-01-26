@@ -177,7 +177,7 @@
             "brave-web.whatsapp.com__-Default": "",
             "org.telegram.desktop": "",
             "brave-browser": "󰖟",
-            "ncspot": ""
+            "spt": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"

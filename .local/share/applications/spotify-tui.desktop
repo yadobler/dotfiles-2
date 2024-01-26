@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Spotify-tui
+Comment=A Spotify client for the terminal written in Rust
+Exec=kitty --class=spt zsh -c "[[ $(pgrep spt) ]] || spt"
+Icon=spt
+Terminal=false
+Categories=AudioVideo;Audio;Player;ConsoleOnly
+Keywords=spotify;music;player
