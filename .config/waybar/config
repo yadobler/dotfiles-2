@@ -177,6 +177,7 @@
             "brave-web.whatsapp.com__-Default": "",
             "org.telegram.desktop": "",
             "brave-browser": "󰖟",
+            "brave-open.spotify.com__-Default": "",
             "spt": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",

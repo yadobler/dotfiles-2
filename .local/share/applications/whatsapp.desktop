@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Whatsapp
-Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com
+Name=Spotify (Web)
+Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://open.spotify.com
 Terminal=false
 Type=Application
-Icon=Whatsapp
-StartupWMClass=crx_whatsapp
-Comment=Whatsapp Web
+Icon=Spotify
+StartupWMClass=crx_spotify
+Comment=Spotify Web
 Categories=Chat;Network;InstantMessaging;
 X-Desktop-File-Install-Version=0.27
