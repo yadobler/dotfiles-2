@@ -81,6 +81,13 @@ vim.opt.fillchars = {
 vim.g.mapleader = " "
 vim.g.localmapleader = " "
 
+-- restore cursor
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+  desc = 'return cursor to where it was last time closing the file',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
+
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
