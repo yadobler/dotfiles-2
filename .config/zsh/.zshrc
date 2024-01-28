@@ -115,7 +115,10 @@ export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin/:$PATH"
 export EDITOR=nvim
 export LESS="-R"
 export MANPAGER="less -R"
-export GLFW_IM_MODULE=ibus
+export GLFW_IM_MODULE="ibus"
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE="wayland"
+export QT_IM_MODULE="fcitx"
 export RANGER_LOAD_DEFAULT_RC="FALSE"
 # support colors in less
 export LESS_TERMCAP_mb=$'\E[01;31m'
