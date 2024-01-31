@@ -3,7 +3,7 @@ Name=todo (Microsoft)
 Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://to-do.live.com/tasks/today
 Terminal=false
 Type=Application
-Icon=todo
+Icon=to-do-app
 StartupWMClass=crx_gmail_1
 Comment=Microsoft to-do
 Categories=Network;todo;planner;
