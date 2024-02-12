@@ -58,7 +58,7 @@
                 "actions": [ 
                     {
                         "label": "⏾ Hibernate",
-                        "command": "systemctl hibernate; swaync-client -cp"
+                        "command": "systemctl hibernate"
                     },
                     {
                         "label": "   Reboot",
@@ -79,7 +79,7 @@
                 "actions": [ 
                     {
                         "label": "󰖭   Kill Window",
-                        "command": "$HOME/.config/scripts/selective_kill.sh"
+                        "command": "hyprctl kill"
                     },
                     {
                         "label": "󱂬   Toggle Float",
