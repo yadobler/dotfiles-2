@@ -111,7 +111,7 @@ alias print_battery_percentage="upower -i /org/freedesktop/UPower/devices/batter
 PS1="%B┌─%-50(l.[%b%F{cyan}%n%f%F{white}@%f%F{red}%m%f%B]─[%b%F{blue}%D%f%B]─[%B%F{magenta}$(print_battery_percentage)%%f%b]─.)[%b%F{yellow}%#%f%B]─[%b%F{green}%~%f%B]
 └─[%F{%(0?.green.red)}%?%f]%b "
 RPS1="%F{%(0?..red:(}%f"
-export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin/:/usr/bin:/bin:$PATH"
+export PATH="$HOME/.local/bin:/usr/local/bin:$HOME/.cargo/bin/:/usr/bin:/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 export EDITOR=nvim
 export LESS="-R"
 export MANPAGER="less -R"
