@@ -1,7 +1,25 @@
 use_nerdfont = true
 volnorm = true
 
-[credentials]
-username_cmd = "bw_unlock; bw get username $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw"
-password_cmd = "bw_unlock; bw get password $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw"
 
+[credentials]
+username_cmd = "bw get username $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw --session=$(bw unlock $(zenity --password) --raw)"
+password_cmd = "bw get password $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw --session=$(bw unlock $(zenity --password) --raw)"
+
+[theme]
+background = "#181818"
+primary = "#F1F1F1"
+secondary = "#DCDCDC"
+title = "#FFAF00"
+playing = "#D7875F"
+playing_selected = "#AFD700"
+playing_bg = "#181818"
+highlight = "#F1F1F1"
+highlight_bg = "#00AFAF"
+error = "#EEEEEE"
+error_bg = "#AF0000"
+statusbar = "#AFD700"
+statusbar_progress = "#FF5FAF"
+statusbar_bg = "#5F8787"
+cmdline = "#1C1C1C"
+cmdline_bg = "#5F8787"
