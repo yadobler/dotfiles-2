@@ -108,7 +108,9 @@ bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
 
 alias print_battery_percentage="upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk 'match(\$1,/percentage/){print \$2}'"
-PS1="%B┌─%-50(l.[%b%F{cyan}%n%f%F{white}@%f%F{red}%m%f%B]─[%b%F{blue}%D%f%B]─[%B%F{magenta}$(print_battery_percentage)%%f%b]─.)[%b%F{yellow}%#%f%B]─[%b%F{green}%~%f%B]
+PS1="
+%B┌─%-50(l.[%b%F{cyan}%n%f%F{white}@%f%F{red}%m%f%B]─[%b%F{blue}%D%f%B]─[%B%F{magenta}$(print_battery_percentage)%%f%b]─.)[%b%F{yellow}%#%f%B]
+├─[%b%F{green}%~%f%B]
 └─[%F{%(0?.green.red)}%?%f]%b "
 RPS1="%F{%(0?..red:(}%f"
 export GEM_HOME="$(gem env user_gemhome)"
