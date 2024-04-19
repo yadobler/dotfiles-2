@@ -1,10 +1,18 @@
 use_nerdfont = true
 volnorm = true
 
-
 [credentials]
 username_cmd = "bw get username $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw --session=$(bw unlock $(zenity --password) --raw)"
 password_cmd = "bw get password $(bw list items --search 'www.spotify.com' | jq -r '.[].id') --raw --session=$(bw unlock $(zenity --password) --raw)"
+
+[keybindings]
+"Shift+q" = "quit"
+"q" = "back"
+"Esc" = "back"
+"Space" = "focus queue"
+"Shift+1" = "focus search"
+"Shift+2" = "focus library"
+"," = "PlayNext"
 
 [theme]
 background = "#181818"
