@@ -149,7 +149,7 @@ alias htop="btm"
 alias grep="rg"
 alias find="fd"
 alias "jobs"="jobs -p"
-alias wal_update='wal --cols16 -o ~/.config/scripts/wal_posthook.sh -i'
+alias wal_update='wal --cols16 -p "main_theme" -o ~/.config/scripts/wal_posthook.sh -i'
 alias steam_update_apps="sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*"
 alias valgrind="~/.config/scripts/colorgrind"
 
