@@ -1,23 +1,18 @@
-_ = {
-    -- hop
-    {
+return {
+    {    -- hop
         "phaazon/hop.nvim",
         branch = "v2",
         config = function()
             require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
         end
     },
-
-    -- commenting
-    {
+    {    -- commenting
         "numToStr/Comment.nvim",
         config = function()
             require("Comment").setup()
         end
     },
-
-    -- whichkey
-    {
+    {    -- whichkey
         "folke/which-key.nvim",
         config = function()
             require("which-key").setup {
@@ -29,25 +24,22 @@ _ = {
             }
         end
     },
-
-    -- trouble
-    {
+    {    -- trouble
         "folke/trouble.nvim",
         dependencies = {"nvim-tree/nvim-web-devicons"},
         config = function()
             require("trouble").setup()
         end
     },
-
-
-    -- Plenary
-    { "nvim-lua/plenary.nvim", lazy = true },
-
-    -- telescope-symbols
-    { "nvim-telescope/telescope-symbols.nvim", lazy = true },
-
-    -- Telescope
-    {
+    {    -- Plenary
+        "nvim-lua/plenary.nvim",
+        lazy = true
+    },
+    {    -- telescope-symbols
+        "nvim-telescope/telescope-symbols.nvim",
+        lazy = true
+    },
+    {    -- Telescope
         "nvim-telescope/telescope.nvim",
         dependencies = {"nvim-lua/plenary.nvim"},
         config = function()
@@ -67,9 +59,7 @@ _ = {
             }
         end
     },
-
-    -- telescope-lazy
-    {
+    {    -- telescope-lazy
         "tsakirist/telescope-lazy.nvim",
         config = function()
             require("telescope").setup({
@@ -96,9 +86,7 @@ _ = {
             require("telescope").load_extension("lazy")
         end
     },
-
-    -- nvim-autopairs
-    {
+    {    -- nvim-autopairs
         "windwp/nvim-autopairs",
         config = function()
             require("nvim-autopairs").setup {
@@ -106,12 +94,11 @@ _ = {
             }
         end
     },
-
-    -- md-link follow 
-    { "jghauser/follow-md-links.nvim" },
-
-    -- zen + twilight
-    {
+    {    -- md-link follow 
+        "jghauser/follow-md-links.nvim",
+        lazy = true
+    },
+    {    -- zen + twilight
         "folke/zen-mode.nvim",
         lazy = true,
         dependencies = {"folke/twilight.nvim"},
@@ -119,10 +106,7 @@ _ = {
             require("twilight").setup()
         end
     },
-
-
-    -- persistance
-    {
+    {    -- persistance
         "folke/persistence.nvim",
         lazy = true,
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -130,43 +114,36 @@ _ = {
             require("persistence").setup()
         end
     },
-    -- marks
-    {
+    {    -- marks
         "chentoast/marks.nvim",
         config = function()
             require("marks").setup()
         end
     },
-
-    -- link visitor
-    { "xiyaowong/link-visitor.nvim", lazy = true },
-
-    -- mkdir
-    { "jghauser/mkdir.nvim", lazy = true },
-
-
-    -- jdtls
-    {"mfussenegger/nvim-jdtls", lazy = true},
-
-
-     -- barbar
-    {
+    {    -- link visitor
+        "xiyaowong/link-visitor.nvim",
+        lazy = true
+    },
+    {    -- mkdir
+        "jghauser/mkdir.nvim",
+        lazy = true
+    },
+    {    -- jdtls
+        "mfussenegger/nvim-jdtls",
+        lazy = true
+    },
+    {    -- barbar
         "romgrk/barbar.nvim",
         dependencies = "nvim-tree/nvim-web-devicons",
         init = function() vim.g.barbar_auto_setup = true end,
     },
-
-    -- feline
-    {
+    {    -- feline
         "famiu/feline.nvim",
         config = function ()
            require("feline").setup{}
         end
     },
-
-
-    -- barbecue
-    {
+    {    -- barbecue
         "utilyre/barbecue.nvim",
         name = "barbecue",
         version = "*",
@@ -178,20 +155,17 @@ _ = {
             exclude_filetypes = { "veil", "toggleterm" }
         },
     },
-
-    -- texmagic
-    {
+    {    -- texmagic
         "jakewvincent/texmagic.nvim",
         config = function()
             require("texmagic").setup()
         end
     },
-
-    -- nabla
-    { "jbyuki/nabla.nvim", lazy = true },
-
-    -- peek.nvim
-    {
+    {    -- nabla
+        "jbyuki/nabla.nvim",
+        lazy = true
+    },
+    {    -- peek.nvim
         "toppair/peek.nvim",
         build = "deno task --quiet build:fast",
         config = function ()
@@ -199,15 +173,12 @@ _ = {
             vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
         end
     },
-
-    --nvim-ufo
-    {
+    {    -- nvim-ufo
         "kevinhwang91/nvim-ufo",
         dependencies = {"kevinhwang91/promise-async"},
         lazy = true
     },
-
-    {
+    {    -- markdown-preview
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         init = function()
@@ -215,12 +186,7 @@ _ = {
         end,
         ft = { "markdown" }
     },
-
-}
-
-return {
-    -- impatient
-    {
+    {    -- impatient
         "lewis6991/impatient.nvim",
         lazy = false,
         priority = 1000,
@@ -228,8 +194,7 @@ return {
             require("impatient")
         end
     },
-    -- devicons
-    {
+    {    -- devicons
         "nvim-tree/nvim-web-devicons",
         lazy = true,
         config = function ()
@@ -246,19 +211,17 @@ return {
             }
         end
     },
-
-    -- nvim-cmp icons
-    { "onsails/lspkind.nvim", lazy = true },
-
-    -- vim-illuminate
-    {
+    {    -- nvim-cmp icons
+        "onsails/lspkind.nvim",
+        lazy = true
+    },
+    {    -- vim-illuminate
         "RRethy/vim-illuminate",
         config = function ()
             require("illuminate").configure()
         end
     },
-    -- nvim-tree
-    {
+    {    -- nvim-tree
         "nvim-tree/nvim-tree.lua",
         version = "*",
         dependencies = {
@@ -282,9 +245,7 @@ return {
             }
         end,
     },
-
-    -- project
-    {
+    {    -- project
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup {
@@ -306,8 +267,7 @@ return {
             -- require("telescope").load_extension("projects")
         end
     },
-    -- indent-blankline.nvim
-    {
+    {    -- indent-blankline.nvim
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         config = function()
@@ -356,8 +316,7 @@ return {
             hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end
     },
-    -- colorizer
-    {
+    {    -- colorizer
         "uga-rosa/ccc.nvim",
         config = function()
             require('ccc').setup({
@@ -380,8 +339,7 @@ return {
             })
         end
     },
-    -- image viewing
-    {
+    {    -- image viewing
         "3rd/image.nvim",
         config = function()
             require("image").setup({
@@ -415,48 +373,39 @@ return {
             })
         end,
     },
-
-    -- treesitter
-    {
+    {    -- treesitter
         "nvim-treesitter/nvim-treesitter",
         build = function()
             require("nvim-treesitter.install").update({ with_sync = true })
         end,
     },
-    -- kitty conf
-    {
+    {    -- kitty conf
         "fladson/vim-kitty",
         ft = {"kitty/kitty.conf"},
     },
-    -- TS-hyprland
-    {
+    {    -- TS-hyprland
         "luckasRanarison/tree-sitter-hyprlang",
         dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
-
-    -- luasnip
-    {
+    {    -- luasnip
         "L3MON4D3/LuaSnip",
         dependencies = {"rafamadriz/friendly-snippets"}
     },
-    -- lightbulb
-    {
+    {    -- lightbulb
         "kosayoda/nvim-lightbulb",
         dependencies = {"antoinemadec/FixCursorHold.nvim"},
         config = function()
             require("nvim-lightbulb").setup({autocmd = {enabled = true}})
         end
     },
-    -- Todo
-    {
+    {    -- Todo
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         config = function()
             require("todo-comments").setup()
         end
     },
-    -- Mason
-    {
+    {    -- Mason
         "williamboman/mason.nvim",
         build = ":MasonUpdate", -- :MasonUpdate updates registry contents
         config = function()
@@ -464,7 +413,8 @@ return {
                 PATH = "prepend",
             }
         end
-    }, {
+    },
+    {    -- Mason lspconfig
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup {
@@ -479,14 +429,16 @@ return {
             }
         end
     },
-    -- nvim-dap
-    { "mfussenegger/nvim-dap", lazy = true, },{
+    {    -- nvim-dap
+        "mfussenegger/nvim-dap",
+        lazy = true,
+    },
+    {    -- nvim-dap-ui
         "rcarriga/nvim-dap-ui",
         dependencies = {"mfussenegger/nvim-dap"},
         lazy = true,
     },
-    -- nvim-dap-mason
-    {
+    {    -- nvim-dap-mason
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = {"williamboman/mason.nvim", "mfussenegger/nvim-dap"},
         config = function()
@@ -497,8 +449,7 @@ return {
             })
         end
     },
-    -- null-ls-mason
-    {
+    {    -- null-ls-mason
         "jay-babu/mason-null-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
@@ -513,10 +464,11 @@ return {
             })
         end,
     },
-    -- nvim-lspconfig
-    { "neovim/nvim-lspconfig", lazy = true },
-    -- nvim-cmp
-    {
+    {    -- nvim-lspconfig
+        "neovim/nvim-lspconfig",
+        lazy = true
+    },
+    {    -- nvim-cmp
         "hrsh7th/nvim-cmp",
         lazy = true,
         dependencies = {
@@ -527,9 +479,11 @@ return {
             "saadparwaiz1/cmp_luasnip",
         }
     },
-    -- rust_analyzer
-    {"simrat39/rust-tools.nvim", lazy = true},
-    {
+    {    -- rust_analyzer
+        "simrat39/rust-tools.nvim",
+        lazy = true
+    },
+    {    -- crates.nvim
         "saecki/crates.nvim",
         version = "v0.3.0",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -537,8 +491,7 @@ return {
             require("crates").setup()
         end
     },
-    -- neodev lua completion
-    {
+    {    -- neodev lua completion
         "folke/neodev.nvim",
         config = function()
             require("neodev").setup({
@@ -546,11 +499,11 @@ return {
             })
         end
     },
-    -- nvim signatures
-    { "ray-x/lsp_signature.nvim", lazy = true },
-
-    -- pqf
-    {
+    {    -- nvim signatures
+        "ray-x/lsp_signature.nvim",
+        lazy = true
+    },
+    {    -- pqf
         "yorickpeterse/nvim-pqf",
         config = function()
             require("pqf").setup()
