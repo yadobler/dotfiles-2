@@ -4,7 +4,7 @@ Name=Default
 # Layout
 Default Layout=us
 # Default Input Method
-DefaultIM=kkc
+DefaultIM=jyutping
 
 [Groups/0/Items/0]
 # Name
@@ -14,25 +14,25 @@ Layout=
 
 [Groups/0/Items/1]
 # Name
-Name=pinyin
+Name=m17n_ta_phonetic
 # Layout
 Layout=
 
 [Groups/0/Items/2]
 # Name
-Name=m17n_ta_phonetic
+Name=unikey
 # Layout
 Layout=
 
 [Groups/0/Items/3]
 # Name
-Name=unikey
+Name=pinyin
 # Layout
 Layout=
 
 [Groups/0/Items/4]
 # Name
-Name=kkc
+Name=jyutping
 # Layout
 Layout=
 

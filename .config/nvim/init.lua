@@ -9,7 +9,7 @@ vim.g.loaded_newrwPlugin = 1
 
 -- Display
 vim.opt.termguicolors = true
-vim.opt.guifont = "FiraCode NFM:h13"
+vim.opt.guifont = "FiraCode NFP:h13"
 vim.opt.encoding = "utf-8"
 vim.opt.showmode = false
 vim.opt.laststatus = 2
@@ -54,6 +54,7 @@ vim.opt.wrap = false
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
+vim.opt.foldmethod = "manual"
 vim.opt.copyindent = true
 
 -- Search
@@ -80,6 +81,13 @@ vim.opt.fillchars = {
 -- leader keys
 vim.g.mapleader = " "
 vim.g.localmapleader = " "
+
+-- restore cursor
+vim.api.nvim_create_autocmd({'BufWinEnter'}, {
+  desc = 'return cursor to where it was last time closing the file',
+  pattern = '*',
+  command = 'silent! normal! g`"zv',
+})
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
