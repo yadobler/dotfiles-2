@@ -1,11 +1,20 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # load zgenom
 source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
+# export FZF_PATH="$ZDOTDIR/fzf"
 if ! zgenom saved; then
     echo "Creating zgenom save..."
     zgenom load zdharma-continuum/fast-syntax-highlighting
     zgenom load zsh-users/zsh-history-substring-search
-    zgenom load unixorn/fzf-zsh-plugin
+    # zgenom load unixorn/fzf-zsh-plugin
     zgenom load chrissicool/zsh-256color
     zgenom load zsh-users/zsh-completions src
     zgenom load zsh-users/zsh-autosuggestions
@@ -51,3 +60,6 @@ alias "gpull"="git pull"
 
 alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
