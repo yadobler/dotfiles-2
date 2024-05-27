@@ -1,5 +1,5 @@
 # load zgenom
-source "../zgenom/zgenom.zsh"
+source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
 if ! zgenom saved; then
     echo "Creating zgenom save..."
