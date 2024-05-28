@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # load zgenom
 source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
@@ -17,11 +10,21 @@ if ! zgenom saved; then
     zgenom load chrissicool/zsh-256color
     zgenom load zsh-users/zsh-completions src
     zgenom load zsh-users/zsh-autosuggestions
+    bindkey "$terminfo[kcuu1]" history-substring-search-up
+    bindkey "$terminfo[kcud1]" history-substring-search-down
+    bindkey -M emacs '^P' history-substring-search-up
+    bindkey -M emacs '^N' history-substring-search-down
     zgenom load romkatv/powerlevel10k powerlevel10k
     zgenom save
     zgenom compile "$ZDOTDIR/.zshrc"
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 bindkey -e
 bindkey '\e[A' history-search-backward
@@ -61,5 +64,8 @@ alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW
 alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
+    [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+else
+    [[ ! -f ~/.config/zsh/.p10k-portable.zsh ]] || source ~/.config/zsh/.p10k-portable.zsh
+fi
