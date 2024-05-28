@@ -1,19 +1,13 @@
 # load zgenom
 source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
-# export FZF_PATH="$ZDOTDIR/fzf"
 if ! zgenom saved; then
     echo "Creating zgenom save..."
-    zgenom load zdharma-continuum/fast-syntax-highlighting
-    zgenom load zsh-users/zsh-history-substring-search
-    # zgenom load unixorn/fzf-zsh-plugin
+    zgenom load z-shell/F-Sy-H
     zgenom load chrissicool/zsh-256color
-    zgenom load zsh-users/zsh-completions src
+    zgenom load marlonrichert/zsh-autocomplete
     zgenom load zsh-users/zsh-autosuggestions
-    bindkey "$terminfo[kcuu1]" history-substring-search-up
-    bindkey "$terminfo[kcud1]" history-substring-search-down
-    bindkey -M emacs '^P' history-substring-search-up
-    bindkey -M emacs '^N' history-substring-search-down
+    zgenom load zsh-users/zsh-completions
     zgenom load romkatv/powerlevel10k powerlevel10k
     zgenom save
     zgenom compile "$ZDOTDIR/.zshrc"
@@ -29,7 +23,27 @@ fi
 bindkey -e
 bindkey '\e[A' history-search-backward
 bindkey '\e[B' history-search-forward
+bindkey              '^I'         menu-complete
+bindkey "$terminfo[kcbt]" reverse-menu-complete
+bindkey "^ "  autosuggest-accept
 
+autoload -Uz compinit && compinit
+_comp_options+=(globdots)
+setopt completeinword
+setopt extended_glob
+setopt nobeep
+setopt longlistjobs
+setopt share_history
+zstyle ':completion:*' ignore-parents parent pwd .. directory
+zstyle ':completion:*' matcher-list '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:*:zcompile:*' ignored-patterns '(*~|*.zwc)'
+zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:man:*' menu yes select
+zstyle ':completion:*' special-dirs true
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"
