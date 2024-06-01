@@ -5,7 +5,6 @@ if ! zgenom saved; then
     echo "Creating zgenom save..."
     zgenom load z-shell/F-Sy-H
     zgenom load chrissicool/zsh-256color
-    zgenom load marlonrichert/zsh-autocomplete
     zgenom load zsh-users/zsh-autosuggestions
     zgenom load zsh-users/zsh-completions
     zgenom load romkatv/powerlevel10k powerlevel10k
