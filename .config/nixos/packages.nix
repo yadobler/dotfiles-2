@@ -20,6 +20,7 @@
 	environment.systemPackages = with pkgs; [
 		libnotify
 		lsd
+		gh
 		bat
 		git
 		file
