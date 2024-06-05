@@ -5,10 +5,16 @@
 	imports = [ 
 		./hardware-configuration.nix
 		./packages.nix
-		# ./module/bundle.nix
 	];
 
-	# Bootloader.
+	# Bootloader
+	swapDevices = [{device = "/dev/disk/by-partlabel/swap";}];
+    boot.resumeDevice = "/dev/disk/by-partlabel/swap";
+	boot.kernelParams = [
+	    "resume=PARTLABEL=swap"
+	    "quiet"
+	    "splash"
+    ];
 	boot.loader = {
 		efi.canTouchEfiVariables = true;
 		grub = {
@@ -75,11 +81,9 @@
 		isNormalUser = true;
 		description = "Yadobler";
 		home = "/home/yukna";
-		extraGroups = [ 
-			"networkmanager" 
-			"wheel" 
-			"video" 
-			"light"
+		extraGroups = [
+			"networkmanager"
+			"wheel"
 			"video"
 		];
 		shell = pkgs.zsh;

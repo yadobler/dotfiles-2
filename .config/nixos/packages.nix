@@ -4,9 +4,14 @@
 	
 	# programmes
 	programs = {
-		zsh.enable = true;
+		git.enable = true;
 		hyprland.enable = true;
 		hyprlock.enable = true;
+		light.enable = true;
+		neovim.enable = true;
+		waybar.enable = true;
+		xwayland.enable = true;
+		zsh.enable = true;
 	};
 	services = {
 		hypridle.enable = true;
@@ -18,35 +23,34 @@
 
 	# List packages installed in system profile.
 	environment.systemPackages = with pkgs; [
+		bat
+		brave
+		ffmpeg
+		file
+		foot
+		gcc
+		gh
+		grim
 		libnotify
 		lsd
-		gh
-		bat
-		git
-		file
-		tree
-		wget
-		unzip	
-		telegram-desktop
-		wofi
-		neofetch
-		light
-		ffmpeg
-		xwayland
-		pipewire
-		pulseaudio
-		pamixer
-		swappy
-		neovim 
-		brave
-		waybar
-		mako
-		wl-clipboard
-		grim
-		slurp
-		wbg
 		lxqt.lxqt-policykit
+		mako
+		neofetch
+		pamixer
+		pipewire
+		pstree
+		pulseaudio
+		slurp
 		stow
+		swappy
+		telegram-desktop
+		tree
+		unzip
+		wbg
+		wget
+		wl-clipboard
+		wofi
+		swayimg
 	];
 	
 	# Font
