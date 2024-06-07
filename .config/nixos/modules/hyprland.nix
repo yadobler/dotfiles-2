@@ -1,7 +1,7 @@
 { inputs, pkgs, programs, environment, services, hardware, ... }:
 {
     inputs = {
-        hyprland = { 
+        hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
             inputs.nixpkgs.follows = "nixpkgs";
         };
