@@ -59,11 +59,10 @@
 		wofi
 		lxqt.lxqt-policykit
 		iio-sensor-proxy
-		hyprdim
 		squeekboard
-		wleave
 		hyprcursor
 
+		flavours
 	];
 
 	# Font

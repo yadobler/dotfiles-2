@@ -23,7 +23,7 @@
 			efiSupport = true;
 			gfxmodeEfi = "3000x2000";
 			font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
-			fontSize = 36;
+			fontSize = 64;
 		};
 	};
 
@@ -91,6 +91,8 @@
 		packages = with pkgs; [];
 	};
 
+    # Experiemtnal features
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 	system.stateVersion = "24.05"; # Did you read the comment?
 }
