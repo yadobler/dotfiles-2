@@ -1,4 +1,4 @@
-#!/bin/zsh
+#! /usr/bin/env zsh
 source $HOME/.cache/wal/colors.sh
 rm -f ~/Pictures/Wallpaper/cropped-image.jpg
 

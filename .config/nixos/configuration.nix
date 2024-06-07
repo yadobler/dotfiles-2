@@ -21,7 +21,7 @@
 			enable = true;
 			device = "nodev";
 			efiSupport = true;
-			gfxmodeEfi = "600x400";
+			gfxmodeEfi = "3000x2000";
 			font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
 			fontSize = 36;
 		};

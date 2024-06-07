@@ -24,35 +24,48 @@
 	# List packages installed in system profile.
 	environment.systemPackages = with pkgs; [
 		bat
-		brave
-		ffmpeg
 		file
-		foot
-		gcc
-		gh
-		grim
-		libnotify
 		lsd
-		lxqt.lxqt-policykit
-		mako
+		fd
+		ripgrep
+
 		neofetch
-		pamixer
-		pipewire
 		pstree
-		pulseaudio
-		slurp
-		stow
-		swappy
-		telegram-desktop
 		tree
 		unzip
-		wbg
 		wget
+
+		gcc
+		gh
+		stow
+
+		brave
+		foot
+		telegram-desktop
+
+		ffmpeg
+		libnotify
+		pamixer
+		pipewire
+		pulseaudio
+
+		dunst
+		grim
+		slurp
+		swappy
+		swayimg
+		wbg
 		wl-clipboard
 		wofi
-		swayimg
+		lxqt.lxqt-policykit
+		iio-sensor-proxy
+		hyprdim
+		squeekboard
+		wleave
+		hyprcursor
+
 	];
-	
+
 	# Font
 	fonts.packages = with pkgs; [
 		noto-fonts

@@ -1,4 +1,4 @@
-#! /bin/zsh
+#! /usr/bin/env zsh
 
 ACTIVE_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.["id"]')
 ACTIVE_WINDOW=$(hyprctl clients -j | jq -r --arg ACTIVE_WORKSPACE $ACTIVE_WORKSPACE '.[] | select(.floating == true) | select(.workspace.id | tostring | contains($ACTIVE_WORKSPACE)) | .address')
