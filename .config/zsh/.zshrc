@@ -1,3 +1,4 @@
+[ "$TTY" == "/dev/tty1" ] && exec /usr/bin/env Hyprland
 # load zgenom
 source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
