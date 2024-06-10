@@ -50,6 +50,7 @@
             swayimg
             wbg
             wl-clipboard
+            cliphist
             wofi
             lxqt.lxqt-policykit
             iio-sensor-proxy

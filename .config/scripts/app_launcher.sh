@@ -1,3 +1,3 @@
 #! /usr/bin/env zsh
-
-/bin/kill wofi || wofi
+echo $XDG_DATA_DIRS
+pidof wofi && kill $(pidof wofi) || XDG_DATA_DIRS="$HOME/.local/share" wofi --show=drun --insensitive
