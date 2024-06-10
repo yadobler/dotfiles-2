@@ -2,11 +2,19 @@
 let
   plugin-paths = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      # inputs.hyprgrass.packages.${pkgs.system}.default
+      # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
   ];
   plugin-script = builtins.concatStringsSep "\n" (map (path: "hyprctl plugins load ${path}/lib/*.so") plugin-paths);
 in
 {
+    system.activationScripts.postInstall = ''
+        #!/usr/bin/env /bin/sh
+        set -o allexport
+        . /tmp/hyprland_env
+        set +o allexport
+        ${plugin-script}
+    '';
     programs = {
         hyprland = {
             enable = true;
@@ -49,24 +57,6 @@ in
         };
     };
 
-    systemd.user.services.hyprland-plugin-installer = {
-        description = "Hyprland Plugin Installer";
-        after = [ "graphical-session.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-            Type = "oneshot";
-            EnvironmentFile = "/tmp/hyprland_env";
-            ExecStart = "${pkgs.writeScriptBin "hyprland-plugin-installer.sh" ''
-                #!/usr/bin/env /bin/sh
-                ${plugin-script}
-                notify-send "script executed"
-                rm -f /etc/systemd/system/hyprland-plugin-installer.service
-                ''}/bin/hyprland-plugin-installer.sh";
-            ExecStopPost = ''
-              /bin/bash -c 'rm -f ~/.config/systemd/user/hyprland-plugin-installer.service'
-            '';
-        };
-      };
 
     hardware = {
         opengl =

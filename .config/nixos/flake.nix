@@ -1,7 +1,7 @@
 {
     description = "An example NixOS configuration";
     inputs = {
-        nixpkgs = { url = "github:NixOS/nixpkgs/nixos-24.05"; };
+        nixpkgs = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
             inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +13,10 @@
         Hyprspace = {
             url = "github:KZDKM/Hyprspace";
             inputs.hyprland.follows = "hyprland";
+        };
+        hyprgrass = {
+            url = "github:horriblename/hyprgrass";
+            inputs.hyprland.follows = "hyprland"; # IMPORTANT
         };
         iio-hyprland = { 
             url = "github:JeanSchoeller/iio-hyprland";

@@ -17,7 +17,7 @@
 
 # List packages installed in system profile.
     environment.systemPackages = with pkgs; [
-        bat
+            bat
             file
             lsd
             fd
@@ -29,6 +29,9 @@
             unzip
             wget
 
+            glm
+            meson
+            ninja
             gcc
             gh
             stow
