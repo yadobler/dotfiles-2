@@ -28,6 +28,7 @@
             tree
             unzip
             wget
+            jq
 
             glm
             meson
