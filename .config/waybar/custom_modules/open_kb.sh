@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /usr/bin/env zsh
 if [[ ! $(busctl get-property --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 Visible) ]] then
     squeekboard &
     disown

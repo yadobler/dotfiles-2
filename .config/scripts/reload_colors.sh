@@ -1,4 +1,4 @@
-#! /usr/bin/sh
+#! /usr/bin/env zsh
 
 source ~/.cache/wal/colors.sh
 swww img $wallpaper --resize=fit

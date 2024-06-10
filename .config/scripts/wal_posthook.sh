@@ -1,7 +1,6 @@
 #! /usr/bin/env zsh
-source $HOME/.cache/wal/colors.sh
+$wallpaper = $1
 rm -f ~/Pictures/Wallpaper/cropped-image.jpg
-
 HEIGHT=$(identify -ping -format "%h" "$wallpaper")
 WIDTH=$(identify -ping -format "%w" "$wallpaper")
 
@@ -18,16 +17,5 @@ DIMENSION=$(python -c "
 print(f'{int(w)}x{int(h)}+{int(x)}+{int(y)}')")
 
 convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.jpg
-#swww img -f Nearest -t none ~/Pictures/Wallpaper/cropped-image.jpg
-walogram
-
-swaync-client -rs
-
-killall waybar
-waybar &
-disown
-
-killall wbg
-wbg ~/Pictures/Wallpaper/cropped-image.jpg &
-disown
+flavours generate $wallpaper
 

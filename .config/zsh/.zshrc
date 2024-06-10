@@ -1,12 +1,10 @@
-[ "$TTY" == "/dev/tty1" ] && exec /usr/bin/env Hyprland
+[ "$TTY" = "/dev/tty1" ] && exec Hyprland
 # load zgenom
 source "$ZDOTDIR/zgenom/zgenom.zsh"
 zgenom autoupdate
 if ! zgenom saved; then
     echo "Creating zgenom save..."
-    zgenom load z-shell/F-Sy-H
     zgenom load chrissicool/zsh-256color
-    zgenom load zsh-users/zsh-autosuggestions
     zgenom load zsh-users/zsh-completions
     zgenom load romkatv/powerlevel10k powerlevel10k
     zgenom save
@@ -20,30 +18,45 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-bindkey -e
-bindkey '\e[A' history-search-backward
-bindkey '\e[B' history-search-forward
-bindkey              '^I'         menu-complete
-bindkey "$terminfo[kcbt]" reverse-menu-complete
-bindkey "^ "  autosuggest-accept
 
 autoload -Uz compinit && compinit
 _comp_options+=(globdots)
-setopt completeinword
+
+setopt menu_complete
+setopt auto_list
+setopt complete_in_word
 setopt extended_glob
 setopt nobeep
 setopt longlistjobs
 setopt share_history
-zstyle ':completion:*' ignore-parents parent pwd .. directory
-zstyle ':completion:*' matcher-list '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}'
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' squeeze-slashes true
-zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
-zstyle ':completion:*:*:zcompile:*' ignored-patterns '(*~|*.zwc)'
-zstyle ':completion:*:expand:*' tag-order all-expansions
-zstyle ':completion:*:history-words' remove-all-dups yes
-zstyle ':completion:*:man:*' menu yes select
-zstyle ':completion:*' special-dirs true
+bindkey -e
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+bindkey '^I'   expand-or-complete
+bindkey '^[[Z' reverse-menu-complete
+
+# Ztyle pattern
+# :completion:<function>:<completer>:<command>:<argument>:<tag>
+
+# Define completers
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' complete true
+zstyle ':completion:*' menu select
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' keep-prefix true
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"
