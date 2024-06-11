@@ -1,5 +1,25 @@
 { inputs, pkgs, programs, environment, services, hardware, ... }:
+let
+  plugin-paths = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      inputs.hyprgrass.packages.${pkgs.system}.default
+      #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+  ];
+  plugin-script = builtins.concatStringsSep "\n" (map (path: "hyprctl plugins load ${path}/lib/*.so") plugin-paths);
+  hyprland-plugin-script = pkgs.writeScriptBin "hyprland-plugin-script.sh" ''
+    #!/usr/bin/env /bin/sh
+    ${plugin-script}
+  '';
+  username = "yukna";
+in
 {
+    system.activationScripts.postInstall = ''
+        #!/usr/bin/env bash
+        cp ${hyprland-plugin-script}/bin/hyprland-plugin-script.sh /home/${username}/.config/scripts/hyprland-plugin-script.sh
+        chown ${username} /home/${username}/.config/scripts/hyprland-plugin-script.sh
+        chmod +x /home/${username}/.config/scripts/hyprland-plugin-script.sh
+    '';
+
     programs = {
         hyprland = {
             enable = true;
@@ -10,6 +30,7 @@
                 inherit (pkgs) mesa;
             };
         };
+
         hyprlock.enable = true;
         dconf.enable = true;
 
