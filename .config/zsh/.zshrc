@@ -6,18 +6,10 @@ if ! zgenom saved; then
     echo "Creating zgenom save..."
     zgenom load chrissicool/zsh-256color
     zgenom load zsh-users/zsh-completions
-    zgenom load romkatv/powerlevel10k powerlevel10k
     zgenom save
     zgenom compile "$ZDOTDIR/.zshrc"
 fi
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
+eval "$(oh-my-posh init zsh)"
 
 autoload -Uz compinit && compinit
 _comp_options+=(globdots)
@@ -88,11 +80,4 @@ alias "gpush"="git push"
 alias "gpull"="git pull"
 
 alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
-alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-if zmodload zsh/terminfo && (( terminfo[colors] >= 256 )); then
-    [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-else
-    [[ ! -f ~/.config/zsh/.p10k-portable.zsh ]] || source ~/.config/zsh/.p10k-portable.zsh
-fi
+#alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"

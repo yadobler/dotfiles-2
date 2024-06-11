@@ -22,6 +22,7 @@
             lsd
             fd
             ripgrep
+            oh-my-posh
 
             neofetch
             pstree
