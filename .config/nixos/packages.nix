@@ -37,6 +37,7 @@
             gcc
             gh
             stow
+            glib
 
             brave
             foot
