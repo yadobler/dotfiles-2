@@ -1,1 +1,3 @@
- 
+# Commands go through bash
+shell = "bash -c '{}'"
+

@@ -12,6 +12,7 @@ parser_config.hypr = {
 -- register filetype to parser:
 -- vim.treesitter.language.register('<PARSER>', '<FILETYPE>')
 
+require('nvim-treesitter.install').prefer_git = true
 require('nvim-treesitter.configs').setup {
     ignore_install = {},
     modules = {},
@@ -27,6 +28,7 @@ require('nvim-treesitter.configs').setup {
         "python",
         "markdown",
         "toml",
+        "latex"
     },
 
     -- highlighting

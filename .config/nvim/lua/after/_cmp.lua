@@ -1,7 +1,7 @@
 local cmp = require('cmp')
 local luasnip = require("luasnip")
 local lspkind = require('lspkind')
-require("luasnip.loaders.from_vscode").lazy_load()
+luasnip.config.setup {}
 
 local has_words_before = function()
     unpack = unpack or table.unpack
@@ -30,6 +30,7 @@ cmp.setup {
             })
         }),
     },
+    completion = { completeopt = 'menu,menuone,noinsert' },
     duplicates = {
         nvim_lsp = 1,
         luasnip = 1,

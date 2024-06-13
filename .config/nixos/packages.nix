@@ -38,6 +38,10 @@
             gh
             stow
             glib
+            tree-sitter
+            nodejs
+            go
+            zig
 
             brave
             foot
