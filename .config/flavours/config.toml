@@ -1,3 +1,8 @@
 # Commands go through bash
 shell = "bash -c '{}'"
 
+# This one uses waybar 'default' subtemplate, so it can be ommited
+[[items]]
+file = "~/.config/waybar/colors.css"
+template = "waybar"
+rewrite = true
