@@ -31,6 +31,7 @@
             unzip
             wget
             jq
+            bc
 
             glm
             meson
