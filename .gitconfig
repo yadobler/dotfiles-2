@@ -1,0 +1,7 @@
+[user]
+	name = Yadobler
+	email = 49450747+yadobler@users.noreply.github.com
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !gh auth git-credential

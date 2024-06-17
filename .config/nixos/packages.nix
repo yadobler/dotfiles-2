@@ -68,7 +68,7 @@
             iio-sensor-proxy
             squeekboard
 
-            pywal
+            wallust
             ];
 
 # Font
