@@ -23,6 +23,7 @@
             fd
             ripgrep
             oh-my-posh
+            bottom
 
             neofetch
             pstree
@@ -47,6 +48,7 @@
             foot
             telegram-desktop
 
+            imagemagick
             ffmpeg
             libnotify
             pamixer
@@ -66,7 +68,7 @@
             iio-sensor-proxy
             squeekboard
 
-            flavours
+            pywal
             ];
 
 # Font
