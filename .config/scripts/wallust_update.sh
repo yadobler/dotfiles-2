@@ -1,6 +1,6 @@
 #! /usr/bin/env zsh
 wallpaper=$1
-rm -f ~/Pictures/Wallpaper/cropped-image.jpg
+rm -f ~/Pictures/Wallpaper/cropped-image.png
 HEIGHT=$(identify -ping -format "%h" "$wallpaper")
 WIDTH=$(identify -ping -format "%w" "$wallpaper")
 
@@ -31,7 +31,9 @@ fi
 
 DIMENSION=$(bc <<< "scale=0; $w")x$(bc <<< "scale=0; $h")+$(bc <<< "scale=0; $x")+$(bc <<< "scale=0; $y")
 
-convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.jpg
+convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.png
 kill $(pidof wbg)
 wbg ~/Pictures/Wallpaper/cropped-image.jpg &
 wallust run ~/Pictures/Wallpaper/cropped-image.jpg $2
+kill $(pidof waybar); waybar &
+

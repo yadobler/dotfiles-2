@@ -79,8 +79,9 @@ saturation = 35
 alpha = 100
 
 [templates]
-hyprland = { template = 'hyprland', target = '~/.config/hypr/colors.conf' }
-#zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
+hyprland = { template = 'templates/hyprland', target = '~/.config/hypr/colors.conf' }
+waybar = { template = 'templates/colors-waybar.css', target = '~/.config/waybar/colors-waybar.css', new_engine = true }
+zathura = { template = 'templates/zathura', target = '~/.config/zathura/zathura-color' }
 #dunst = { template = 'dunstconfig', target = '~/.config/dunst/dunstrc', new_engine = true }
 
 
