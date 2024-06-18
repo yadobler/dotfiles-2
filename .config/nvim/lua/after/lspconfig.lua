@@ -73,7 +73,13 @@ require("mason-lspconfig").setup_handlers {
             },
         }
     end,
-
+    ["nil_ls"] = function()
+        lspconfig.nil_ls.setup {
+            on_attach = on_attach_global,
+            capabilities = capabilities,
+            cmd = { vim.fn.stdpath("data") .. '/mason/bin/nil' },
+        }
+    end,
     ["wgsl_analyzer"] = function()
         lspconfig.wgsl_analyzer.setup {
             on_attach = on_attach_global,

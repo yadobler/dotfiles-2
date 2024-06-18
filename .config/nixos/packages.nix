@@ -44,10 +44,13 @@
             nodejs
             go
             zig
+            cargo
+            nil # nix lsp
 
             brave
             foot
             telegram-desktop
+            zathura
 
             imagemagick
             ffmpeg
