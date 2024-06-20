@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 wallpaper=$1
-rm -f ~/Pictures/Wallpaper/cropped-image.png
+wallpaper_cropped=~/Pictures/Wallpaper/cropped-image.png
+rm -f $wallpaper_cropped
 HEIGHT=$(identify -ping -format "%h" "$wallpaper")
 WIDTH=$(identify -ping -format "%w" "$wallpaper")
 
@@ -31,10 +32,10 @@ fi
 
 DIMENSION=$(bc <<< "scale=0; $w")x$(bc <<< "scale=0; $h")+$(bc <<< "scale=0; $x")+$(bc <<< "scale=0; $y")
 
-convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.png
+convert $wallpaper -crop $DIMENSION $wallpaper_cropped
 kill $(pidof wbg)
-wbg ~/Pictures/Wallpaper/cropped-image.png &
-wallust run ~/Pictures/Wallpaper/cropped-image.png $2
+wbg $wallpaper_cropped &
+wallust run $wallpaper_cropped $( [ -n "$2" ] && echo "-p $2" )
 # TODO: make dunstrc into 2 step merge between settings and colors
 kill $(pidof waybar); waybar &
 kill $(pidof dunst)
