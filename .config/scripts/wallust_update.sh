@@ -35,5 +35,6 @@ convert $wallpaper -crop $DIMENSION ~/Pictures/Wallpaper/cropped-image.png
 kill $(pidof wbg)
 wbg ~/Pictures/Wallpaper/cropped-image.png &
 wallust run ~/Pictures/Wallpaper/cropped-image.png $2
+# TODO: make dunstrc into 2 step merge between settings and colors
 kill $(pidof waybar); waybar &
-
+kill $(pidof dunst)

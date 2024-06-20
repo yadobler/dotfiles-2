@@ -82,7 +82,7 @@ alpha = 100
 hyprland = { template = 'templates/hyprland.conf', target = '~/.config/hypr/colors.conf' }
 waybar = { template = 'templates/colors-waybar.css', target = '~/.config/waybar/colors-waybar.css', new_engine = true }
 zathura = { template = 'templates/zathura', target = '~/.config/zathura/zathura-color', new_engine = true }
-dunst = { template = 'template/dunst', target = '~/.config/dunst/dunst-color', new_engine = true }
+dunst = { template = 'template/dunstrc', target = '~/.config/dunst/dunstrc', new_engine = true }
 kitty = { template = 'template/kitty.conf', target = '~/.config/kitty/current-theme.conf' }
 wofi = { template = 'template/colors-waybar.css', target = '~/.config/wofi/colors.css' }
 
