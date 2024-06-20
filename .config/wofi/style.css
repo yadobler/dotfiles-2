@@ -1,5 +1,5 @@
 
-@import url('/home/yukna/.cache/wal/colors-waybar.css');
+@import url('colors.css');
 @define-color bg_base alpha (@background, 0.9);
 
 window {
