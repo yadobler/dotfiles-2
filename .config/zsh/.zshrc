@@ -25,13 +25,14 @@ setopt append_history
 setopt share_history
 setopt nobeep
 setopt longlistjobs
+setopt notify
 
 bindkey -e
 
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
-bindkey '^I'   expand-or-complete
-bindkey '^[[Z' reverse-menu-complete
+#bindkey "^[[A" history-beginning-search-backward
+#bindkey "^[[B" history-beginning-search-forward
+#bindkey '^I'   expand-or-complete
+#bindkey '^[[Z' reverse-menu-complete
 
 # Ztyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>

@@ -50,7 +50,7 @@
             nil # nix lsp
 
             brave
-            foot
+            kitty
             telegram-desktop
             zathura
 
