@@ -1,6 +1,7 @@
-{ pkgs, input, ... }: {
+{ pkgs, ... }: {
     imports = [
         ./modules/hyprland.nix
+        ./modules/thunar.nix
     ];
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -13,6 +14,7 @@
         waybar.enable = true;
         xwayland.enable = true;
         zsh.enable = true;
+        nm-applet.enable = true;
     };
 
 # List packages installed in system profile.

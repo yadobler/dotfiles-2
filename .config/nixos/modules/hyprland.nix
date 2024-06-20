@@ -1,4 +1,4 @@
-{ inputs, pkgs, programs, environment, services, hardware, ... }:
+{ inputs, pkgs, ... }:
 let
   plugin-paths = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
@@ -44,6 +44,7 @@ in
             WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
             NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
             XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.local/share:$XDG_DATA_DIRS";
+            GTK_THEME="Adwaita:dark";
         };
         systemPackages = with pkgs; [
             inputs.iio-hyprland.packages.${pkgs.system}.default
@@ -58,7 +59,7 @@ in
             enable = true;
             packages = with pkgs; [
                 gcr
-                    dconf
+                dconf
             ];
         };
     };

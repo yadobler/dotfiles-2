@@ -9,6 +9,8 @@ if ! zgenom saved; then
     zgenom save
     zgenom compile "$ZDOTDIR/.zshrc"
 fi
+
+# load omp
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/oh-my-posh-config.json)"
 
 autoload -Uz compinit && compinit
@@ -26,33 +28,33 @@ setopt longlistjobs
 
 bindkey -e
 
-# bindkey "^[[A" history-beginning-search-backward
-# bindkey "^[[B" history-beginning-search-forward
-# bindkey '^I'   expand-or-complete
-# bindkey '^[[Z' reverse-menu-complete
-# 
-# # Ztyle pattern
-# # :completion:<function>:<completer>:<command>:<argument>:<tag>
-# 
-# # Define completers
-# zstyle ':completion:*' completer _extensions _complete _approximate
-# zstyle ':completion:*' use-cache on
-# zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-# zstyle ':completion:*' complete true
-# zstyle ':completion:*' menu select
-# zstyle ':completion:*' complete-options true
-# zstyle ':completion:*' file-sort modification
-# zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-# zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
-# zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
-# zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
-# zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
-# zstyle ':completion:*' group-name ''
-# zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
-# zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# zstyle ':completion:*' keep-prefix true
-# zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+bindkey '^I'   expand-or-complete
+bindkey '^[[Z' reverse-menu-complete
+
+# Ztyle pattern
+# :completion:<function>:<completer>:<command>:<argument>:<tag>
+
+# Define completers
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+zstyle ':completion:*' complete true
+zstyle ':completion:*' menu select
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' keep-prefix true
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 alias vim="nvim"
@@ -69,7 +71,6 @@ alias htop="btm"
 alias grep="rg"
 alias find="fd"
 alias "jobs"="jobs -p"
-# alias wal_update='wal --cols16 -p "main_theme" -o ~/.config/scripts/wal_posthook.sh -i'
 alias wal_update='~/.config/scripts/wallust_update.sh'
 alias steam_update_apps="sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*"
 alias valgrind="~/.config/scripts/colorgrind"
