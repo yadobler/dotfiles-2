@@ -1,5 +1,5 @@
 
-@import url('colors.css');
+@import url('.config/wofi/colors.css');
 @define-color bg_base alpha (@background, 0.9);
 
 window {

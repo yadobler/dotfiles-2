@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
     imports = [ 
         ./hardware-configuration.nix
+        # ./detect-hp-spectre-x360.nix
         ./packages.nix
     ];
 
@@ -87,7 +88,6 @@
                 "video"
         ];
         shell = pkgs.zsh;
-        packages = with pkgs; [];
     };
 
     # Experiemtnal features
