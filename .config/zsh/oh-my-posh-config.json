@@ -6,8 +6,8 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#575656",
-          "foreground": "#D6DEEB",
+          "background": "darkGray",
+          "foreground": "white",
           "leading_diamond": "\ue0b2",
           "properties": {
             "alpine": "\uf300",
@@ -31,16 +31,16 @@
           "type": "os"
         },
         {
-          "background": "#00C7FC",
-          "foreground": "#011627",
+          "background": "cyan",
+          "foreground": "black",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " \uf489 {{ .Name }} ",
           "type": "shell"
         },
         {
-          "background": "#EF541C",
-          "foreground": "#D6DEEB",
+          "background": "lightRed",
+          "foreground": "white",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " \uf09c admin ",
@@ -50,8 +50,8 @@
           "type": "cmake",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#E8EAEE",
-          "background": "#1E9748",
+          "foreground": "white",
+          "background": "green",
           "template": " \ue61e \ue61d cmake {{ .Full }} "
         },
         {
@@ -61,35 +61,35 @@
           "properties": {
             "display_mode": "context"
           },
-          "foreground": "#011627",
-          "background": "#FFDE57",
+          "foreground": "black",
+          "background": "yellow",
           "template": " \ue73c {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} "
         },
         {
           "type": "go",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#7FD5EA",
+          "foreground": "white",
+          "background": "lightBlue",
           "template": " \u202d\ue626 {{ .Full }} "
         },
         {
           "type": "rust",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#193549",
-          "background": "#99908A",
+          "foreground": "darkGray",
+          "background": "lightRed",
           "template": " \ue7a8 {{ .Full }} "
         },
         {
-          "background": "#1BD4CD",
+          "background": "cyan",
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#16B1AC{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#16B1AC{{ end }}",
-            "{{ if gt .Ahead 0 }}#B787D7{{ end }}",
-            "{{ if gt .Behind 0 }}#B787D7{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}cyan{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}cyan{{ end }}",
+            "{{ if gt .Ahead 0 }}magenta{{ end }}",
+            "{{ if gt .Behind 0 }}magenta{{ end }}"
           ],
-          "foreground": "#011627",
+          "foreground": "black",
           "powerline_symbol": "\ue0b0",
           "properties": {
             "branch_icon": "\ue725 ",
@@ -99,7 +99,7 @@
             "fetch_worktree_count": true
           },
           "style": "powerline",
-          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<#CAEBE1> \uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}<lightGreen> \uf046 {{ .Staging.String }}</>{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
           "type": "git"
         }
       ],
@@ -109,13 +109,13 @@
       "alignment": "right",
       "segments": [
         {
-          "background": "#03DED3",
+          "background": "cyan",
           "background_templates": [
-            "{{ if gt .Code 0 }}#E44141{{ end }}"
+            "{{ if gt .Code 0 }}red{{ end }}"
           ],
-          "foreground": "#414141",
+          "foreground": "darkGray",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#D6DEEB{{ end }}"
+            "{{ if gt .Code 0 }}white{{ end }}"
           ],
           "leading_diamond": "\ue0b6",
           "properties": {
@@ -126,8 +126,8 @@
           "type": "status"
         },
         {
-          "background": "#575656",
-          "foreground": "#D6DEEB",
+          "background": "darkGray",
+          "foreground": "white",
           "properties": {
             "style": "roundrock",
             "threshold": 0
@@ -145,23 +145,23 @@
       "newline": true,
       "segments": [
         {
-          "foreground": "#D6DEEB",
+          "foreground": "white",
           "style": "plain",
           "template": "\u256d\u2500",
           "type": "text"
         },
         {
-          "foreground": "#F2D3B6",
+          "foreground": "lightYellow",
           "properties": {
-            "time_format": "<#D6DEEB>\ue641 15:04:05</> <#79DFE1>|</> \uf073 2 Jan, Monday"
+            "time_format": "<white>\ue641 15:04:05</> <lightCyan>|</> \uf073 2 Jan, Monday"
           },
           "style": "plain",
-          "template": " {{ .CurrentDate | date .Format }} <#79DFE1>|</>",
+          "template": " {{ .CurrentDate | date .Format }} <lightCyan>|</>",
           "type": "time"
         },
         {
-          "foreground": "#B6D6F2",
-          "leading_diamond": "<#00C7FC> \uf07b </><#B6D6F2> in </>",
+          "foreground": "lightBlue",
+          "leading_diamond": "<blue> \uf07b </><lightBlue> in </>",
           "properties": {
             "folder_icon": " \uf07c ",
             "folder_separator_icon": " \uf061 ",
@@ -181,13 +181,13 @@
       "newline": true,
       "segments": [
         {
-          "foreground": "#D6DEEB",
+          "foreground": "white",
           "style": "plain",
           "template": "\u2570\u2500",
           "type": "text"
         },
         {
-          "foreground": "#D6DEEB",
+          "foreground": "white",
           "properties": {
             "always_enabled": true
           },
@@ -202,12 +202,12 @@
   "osc99": false,
   "transient_prompt": {
     "background": "transparent",
-    "foreground": "#FEF5ED",
+    "foreground": "white",
     "template": "\ue285 "
   },
   "secondary_prompt": {
     "background": "transparent",
-    "foreground": "#D6DEEB",
+    "foreground": "white",
     "template": "\u2570\u2500\u276f "
   },
   "version": 2
