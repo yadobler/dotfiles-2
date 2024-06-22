@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 wallpaper=$1
-wallpaper_cropped=~/Pictures/Wallpaper/cropped-image.png
+wallpaper_cropped=~/Pictures/Wallpaper/cropped-image.jpg
 rm -f $wallpaper_cropped
 HEIGHT=$(identify -ping -format "%h" "$wallpaper")
 WIDTH=$(identify -ping -format "%w" "$wallpaper")

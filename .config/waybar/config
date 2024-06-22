@@ -170,7 +170,7 @@
         "format-window-separator": " ",
         "window-rewrite-default": "",
         "window-rewrite": {
-            "kitty": "",
+            "foot": "",
             "thunar": "",
             "brave-calendar.google.com__calendar_u_1_r-Default":"",
             "brave-mail.google.com__mail_u_.-Default": "",
