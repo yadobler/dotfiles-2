@@ -1,3 +1,3 @@
 #! /usr/bin/env zsh
-
-/bin/kill wofi || wofi --show drun -GiD key_expand=Tab --allow-images
+export XDG_DATA_HOME="/home/yukna/.local/share"
+pidof wofi && kill $(pidof wofi) || wofi --show drun -GiD key_expand=Tab --allow-images

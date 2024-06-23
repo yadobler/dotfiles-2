@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=todo (Microsoft)
-Exec=/usr/bin/brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://to-do.live.com/tasks/today
+Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://to-do.live.com/tasks/today
 Terminal=false
 Type=Application
 Icon=to-do-app

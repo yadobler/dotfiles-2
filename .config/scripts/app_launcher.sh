@@ -1,3 +1,3 @@
 #! /usr/bin/env zsh
-echo $XDG_DATA_DIRS
-pidof wofi && kill $(pidof wofi) || XDG_DATA_DIRS="$HOME/.local/share" wofi --show=drun --insensitive
+export XDG_DATA_HOME="/home/yukna/.local/share"
+pidof wofi && kill $(pidof wofi) || wofi --show drun --insensitive
