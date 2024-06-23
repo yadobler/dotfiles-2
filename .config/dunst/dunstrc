@@ -301,21 +301,21 @@
     mouse_right_click = close_current
 
     # Defines color of the frame around the notification window.
-    frame_color = "#C59C87"
+    frame_color = "#6859AF"
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#080501"
-    foreground = "#F7D9C8"
-    frame_color = "#6E4035"
+    background = "#020103"
+    foreground = "#A9A8AA"
+    frame_color = "#322753"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#080501"
-    foreground = "#F7D9C8"
+    background = "#020103"
+    foreground = "#A9A8AA"
     timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
