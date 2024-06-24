@@ -89,6 +89,7 @@
         ];
         shell = pkgs.zsh;
     };
+    services.getty.autologinUser = "yukna";
 
     # Experiemtnal features
     nix.settings = {
