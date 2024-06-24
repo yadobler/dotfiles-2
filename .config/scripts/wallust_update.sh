@@ -36,6 +36,7 @@ convert $wallpaper -crop $DIMENSION $wallpaper_cropped
 kill $(pidof wbg)
 wbg $wallpaper_cropped &
 wallust run $wallpaper_cropped $( [ -n "$2" ] && echo "-p $2" )
-# TODO: make dunstrc into 2 step merge between settings and colors
 kill $(pidof waybar); waybar &
+rm ~/.config/dunst/dunstrc
+cat ~/.config/dunst/dunstrc-part1 ~/.config/dunst/dunstrc-part2 ~/.config/dunst/dunstrc-part3 > ~/.config/dunst/dunstrc
 kill $(pidof dunst)
