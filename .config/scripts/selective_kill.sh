@@ -5,3 +5,4 @@ if [[ "$(hyprctl activewindow -j | jq -r ".class")" =~ "^(ncspot|Steam|brave-kee
 else
     hyprctl dispatch killactive ""
 fi
+
