@@ -2,8 +2,8 @@
 
 {
     imports = [ 
-        ./hardware-configuration.nix
         # ./detect-hp-spectre-x360.nix
+        ./hardware-configuration.nix
         ./packages.nix
     ];
 
@@ -42,6 +42,11 @@
     hardware.bluetooth = {
         enable = true;
         powerOnBoot = true;
+        settings.General = {
+            Enable = "Source,Sink,Media,Socket";
+            EnableLE = "true";
+            EnableGatt = "true";
+        };
     };
     services.blueman.enable = true;
 
@@ -49,9 +54,15 @@
     security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
         pulse.enable = true;
+        wireplumber.extraConfig = {
+            "monitor.bluez.properties" = {
+                "bluez5.enable-sbc-xq" = true;
+                "bluez5.enable-msbc" = true;
+                "bluez5.enable-hw-volume" = true;
+                "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+            };
+        };
     };
 
     # Set your time zone.
@@ -84,8 +95,9 @@
         home = "/home/yukna";
         extraGroups = [
             "networkmanager"
-                "wheel"
-                "video"
+            "wheel"
+            "video"
+            "bluetooth"
         ];
         shell = pkgs.zsh;
     };
@@ -97,5 +109,6 @@
         substituters = ["https://hyprland.cachix.org"];
         trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
+    system.autoUpgrade.enable = true;
     system.stateVersion = "24.05"; # Did you read the comment?
 }

@@ -8,7 +8,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = (0, 500)
+    width = (300, 500)
 
     # The height of a single notification, excluding the frame.
     height = 300

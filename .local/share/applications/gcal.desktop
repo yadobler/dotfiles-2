@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Google Calendar
-Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://calendar.google.com/calendar/u/1/r
+Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-calendar.google.com__calendar_u_1_r-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://calendar.google.com/calendar/u/1/r"'
 Terminal=false
 Type=Application
 Icon=calendar

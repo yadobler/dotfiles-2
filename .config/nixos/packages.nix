@@ -60,6 +60,7 @@
             pamixer
             pipewire
             pulseaudio
+            pavucontrol
 
             dunst
             grim
@@ -75,6 +76,8 @@
             squeekboard
 
             wallust
+            gnome.adwaita-icon-theme
+            morewaita-icon-theme
             ];
 
 # Font

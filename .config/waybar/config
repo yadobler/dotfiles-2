@@ -65,13 +65,13 @@
         "format-source": " {volume}% ",
         "format-source-muted": "<span foreground='#AA2244'><b></b></span>",
         "format-icons": {
-            "headphone": "",
-            "hands-free": "󱆏",
-            "headset": "󰋎",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "hands-free": "󱆏 ",
+            "headset": "󰋎 ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": [" ", " ", " "]
         },
         "on-click": "pavucontrol"
     },

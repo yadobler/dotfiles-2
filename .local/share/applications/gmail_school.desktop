@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Gmail (NUS)
-Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://mail.google.com/mail/u/2
+Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-mail.google.com__mail_u_2-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://mail.google.com/mail/u/2"'
 Terminal=false
 Type=Application
 Icon=gmail
