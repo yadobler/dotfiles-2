@@ -9,21 +9,24 @@
 
     # Bootloader
     swapDevices = [{device = "/dev/disk/by-partlabel/swap";}];
-    boot.resumeDevice = "/dev/disk/by-partlabel/swap";
-    boot.kernelParams = [
-        "resume=PARTLABEL=swap"
-            "quiet"
-            "splash"
-    ];
-    boot.loader = {
-        efi.canTouchEfiVariables = true;
-        grub = {
-            enable = true;
-            device = "nodev";
-            efiSupport = true;
-            gfxmodeEfi = "3000x2000";
-            font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
-            fontSize = 64;
+    boot = {
+        resumeDevice = "/dev/disk/by-partlabel/swap";
+        kernelParams = [
+            "resume=PARTLABEL=swap"
+                "quiet"
+                "splash"
+        ];
+        loader = {
+            efi.canTouchEfiVariables = true;
+            grub = {
+                enable = true;
+                device = "nodev";
+                efiSupport = true;
+                gfxmodeEfi = "3000x2000";
+                font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
+                fontSize = 64;
+                configurationLimit = 10;
+            };
         };
     };
 
@@ -35,8 +38,10 @@
 
 
     # Networking
-    networking.hostName = "vellinator"; # Define your hostname.
-    networking.networkmanager.enable = true;
+    networking = {
+        hostName = "vellinator"; # Define your hostname.
+        networkmanager.enable = true;
+    };
 
     # Bluetooth
     hardware.bluetooth = {
@@ -104,10 +109,18 @@
     services.getty.autologinUser = "yukna";
 
     # Experiemtnal features
-    nix.settings = {
-        experimental-features = [ "nix-command" "flakes" ];
-        substituters = ["https://hyprland.cachix.org"];
-        trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    nix = {
+        settings = {
+            experimental-features = [ "nix-command" "flakes" ];
+            substituters = ["https://hyprland.cachix.org"];
+            trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+            auto-optimise-store = true;
+        };
+        gc = {
+            automatic = true;
+            dates = "monthly";
+            options = "--delete-older-than 4w";
+        };
     };
     system.autoUpgrade.enable = true;
     system.stateVersion = "24.05"; # Did you read the comment?

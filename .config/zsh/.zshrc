@@ -29,11 +29,6 @@ setopt notify
 
 bindkey -e
 
-#bindkey "^[[A" history-beginning-search-backward
-#bindkey "^[[B" history-beginning-search-forward
-#bindkey '^I'   expand-or-complete
-#bindkey '^[[Z' reverse-menu-complete
-
 # Ztyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
 
@@ -89,3 +84,8 @@ alias "gpull"="git pull"
 
 alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 #alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"
+
+#bindkey "^[[A" history-beginning-search-backward
+#bindkey "^[[B" history-beginning-search-forward
+bindkey '^I'   expand-or-complete-prefix
+bindkey '^[[Z' reverse-menu-complete
