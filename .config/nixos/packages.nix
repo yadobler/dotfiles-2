@@ -76,8 +76,9 @@
             squeekboard
 
             wallust
-            gnome.adwaita-icon-theme
-            morewaita-icon-theme
+            sweet-folders
+            candy-icons
+            gnome.gnome-tweaks
             ];
 
 # Font

@@ -36,7 +36,6 @@
         fsType = "ext4";
     };
 
-
     # Networking
     networking = {
         hostName = "vellinator"; # Define your hostname.
