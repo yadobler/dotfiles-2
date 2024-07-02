@@ -1,10 +1,15 @@
-{ pkgs, ... }:
-
+{ lib, config, pkgs, ... }:
 {
     imports = [ 
         # ./detect-hp-spectre-x360.nix
         ./hardware-configuration.nix
         ./packages.nix
+    ];
+
+    system.activationScripts.postInstall = lib.concatStringsSep "\n" [
+        ''#!/usr/bin/env bash''
+        config.terminal.postInstallScript
+        config.hyprland.postInstallScript
     ];
 
     # Bootloader
@@ -13,8 +18,8 @@
         resumeDevice = "/dev/disk/by-partlabel/swap";
         kernelParams = [
             "resume=PARTLABEL=swap"
-                "quiet"
-                "splash"
+            "quiet"
+            "splash"
         ];
         loader = {
             efi.canTouchEfiVariables = true;

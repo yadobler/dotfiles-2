@@ -1,9 +1,10 @@
 { pkgs, ... }: {
     imports = [
         ./modules/hyprland.nix
-        #./modules/thunar.nix
         ./modules/nemo.nix
         ./modules/gnome_polkit.nix
+        ./modules/terminal.nix
+        #./modules/thunar.nix
     ];
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -52,7 +53,6 @@
             nil # nix lsp
 
             brave
-            foot
             telegram-desktop
             zathura
             swayimg
