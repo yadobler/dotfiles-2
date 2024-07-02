@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
     imports = [
         ./modules/hyprland.nix
         ./modules/nemo.nix
@@ -57,7 +58,7 @@
             zathura
             swayimg
             clapper
-            spotify
+            unstable.spotify
 
             imagemagick
             ffmpeg

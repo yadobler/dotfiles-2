@@ -1,8 +1,11 @@
 {
     description = "An example NixOS configuration";
     inputs = {
-        nixpkgs = { 
+        unstable = {
             url = "github:NixOS/nixpkgs/nixos-unstable"; 
+        };
+        nixpkgs-unstable = {
+            url = "github:NixOS/nixpkgs/nixos-24.05";
         };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
@@ -25,13 +28,24 @@
         };
     };
 
-    outputs = { self, nixpkgs, ... } @ inputs: {
-        nixosConfigurations.vellinator = inputs.nixpkgs.lib.nixosSystem {
+    outputs = { self, nixpkgs, nixpkgs-unstable, ...} @inputs:
+        let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
-            modules = [
-                ./configuration.nix
-            ];
+            overlay-unstable = final: prev: {
+                unstable = import inputs.nixpkgs-unstable {
+                    inherit system;
+                    config.allowUnfree = true;
+                };
+            };
+        in {
+            nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
+                inherit system;
+                inherit specialArgs;
+                modules = [
+                    ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
+                        ./configuration.nix
+                ];
         };
     };
 }
