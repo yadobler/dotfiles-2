@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Spotify
-Exec=#bash -c '$HOME/.config/scripts/launch_one_instance.sh spotify-client "spotify --enable-features=WaylandWindowDecorations --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U"'
-Terminal=false
 Type=Application
-Icon=spotify
-StartupWMClass=spotify-client
-Comment=Spotify
+Name=Spotify
+GenericName=Music Player
+Icon=spotify-client
+Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh spotify-client "spotify --enable-features=WaylandWindowDecorations --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U"'
+Terminal=false
 MimeType=x-scheme-handler/spotify;
-Categories=Network;Audio;Music;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify
