@@ -3,6 +3,7 @@
         ./modules/hyprland.nix
         #./modules/thunar.nix
         ./modules/nemo.nix
+        ./modules/gnome_polkit.nix
     ];
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -73,7 +74,6 @@
             wl-clipboard
             cliphist
             wofi
-            lxqt.lxqt-policykit
             iio-sensor-proxy
             squeekboard
 
