@@ -6,11 +6,29 @@
         ./packages.nix
     ];
 
+    # To add additional postInstallScripts:
+    # (1) add this to the submodule:
+    #
+    #     options.<MODULE>.postInstallScript = lib.mkOption {
+    #       type = lib.types.lines;
+    #       default = "";
+    #       description = "Post-install script for module 1";
+    #     };
+    #     config = {
+    #       <MODULE>.postInstallScript = ''
+    #          < INSERT Post-install COMMANDS HERE >
+    #         '';
+    #      < REST OF CONFIG GOES HERE >
+    #     };
+    #
+    # (2) Update below to add config.<MODULE>.postInstallScript
+    #
     system.activationScripts.postInstall = lib.concatStringsSep "\n" [
         ''#!/usr/bin/env bash''
         config.terminal.postInstallScript
         config.hyprland.postInstallScript
     ];
+
 
     # Bootloader
     swapDevices = [{device = "/dev/disk/by-partlabel/swap";}];
