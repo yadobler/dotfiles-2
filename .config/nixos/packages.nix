@@ -1,7 +1,8 @@
 { pkgs, ... }: {
     imports = [
         ./modules/hyprland.nix
-        ./modules/thunar.nix
+        #./modules/thunar.nix
+        ./modules/nemo.nix
     ];
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -53,6 +54,8 @@
             foot
             telegram-desktop
             zathura
+            swayimg
+            clapper
 
             imagemagick
             ffmpeg
@@ -66,7 +69,6 @@
             grim
             slurp
             swappy
-            swayimg
             wbg
             wl-clipboard
             cliphist
