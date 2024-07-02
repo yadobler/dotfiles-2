@@ -148,7 +148,8 @@
     ],
     "modules-right": [
         "tray",
-        "custom/notification"
+        "custom/notification",
+        "custom/powermenu"
     ],
 
     //modules
@@ -180,7 +181,8 @@
             "org.telegram.desktop": "",
             "brave-browser": "󰖟",
             "brave-open.spotify.com__-Default": "",
-            "spt": ""
+            "spt": "",
+            "Spotify": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1"
@@ -222,5 +224,11 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true,
         "max-length": 2
+    },
+    "custom/powermenu": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "sleep 0.5; $HOME/.config/scripts/powermenu_launcher.sh",
+        "escape": true
     }
 }]

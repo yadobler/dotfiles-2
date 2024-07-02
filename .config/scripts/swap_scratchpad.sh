@@ -9,4 +9,6 @@ HIDDEN_WINDOW=$(hyprctl clients -j | jq -r '.[] | select(.workspace.id < 0) | se
     hyprctl dispatch movetoworkspacesilent special:$SCRATCHPAD_NAME,address:$ACTIVE_WINDOW ||
     hyprctl --batch "\
         dispatch movetoworkspacesilent $ACTIVE_WORKSPACE,address:$HIDDEN_WINDOW;\
-        dispatch focuswindow address:$HIDDEN_WINDOW"
+        dispatch focuswindow address:$HIDDEN_WINDOW;\
+        dispatch centerwindow"
+

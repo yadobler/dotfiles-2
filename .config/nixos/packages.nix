@@ -57,6 +57,7 @@
             zathura
             swayimg
             clapper
+            spotify
 
             imagemagick
             ffmpeg

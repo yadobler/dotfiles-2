@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Spotify (Web)
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-open.spotify.com__-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://open.spotify.com"'
+Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-open.spotify.com__-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --disable-extensions --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://open.spotify.com"'
 Terminal=false
 Type=Application
 Icon=Spotify
