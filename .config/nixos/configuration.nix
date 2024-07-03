@@ -130,6 +130,21 @@
     };
     services.getty.autologinUser = "yukna";
 
+    # hibernation flashing fix?
+
+    systemd = {
+        user.services."resume@" = {
+            description = "User resume actions";
+            after = [ "hibernate.target" ];
+            wantedBy = [ "suspend.target" ];
+            serviceConfig = {
+                Type = "simple";
+                ExecStartPost="/usr/bin/env sleep 1";
+                User="%I";
+            };
+        };
+    };
+
     # Experiemtnal features
     nix = {
         settings = {

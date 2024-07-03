@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 let
   terminal = pkgs.foot;
-  binary_name = "footclient";
+  binary_name = "foot";
 in
 {
   options.terminal.postInstallScript = lib.mkOption {
