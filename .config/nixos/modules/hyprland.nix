@@ -44,17 +44,16 @@ in
         environment = { 
             sessionVariables = {
                 NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
-                    MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
-                    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-                    WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
-                    NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
-                    XDG_DATA_DIRS = "$HOME/.nix-profile/share:$HOME/.local/share:$XDG_DATA_DIRS";
+                MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
+                WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
+                WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+                NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
                 GTK_THEME="Adwaita:dark";
             };
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default
-                    iio-sensor-proxy
-# hyprcursor
+                iio-sensor-proxy
+                # hyprcursor
             ];
         };
 

@@ -71,6 +71,9 @@ alias wal_update='~/.config/scripts/wallust_update.sh'
 alias steam_update_apps="sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*"
 alias valgrind="~/.config/scripts/colorgrind"
 alias footserver="foot --server &; disown"
+python-shell() {
+    nix develop ~/Dotfiles/.config/nixos#python"$1" -c $SHELL
+}
 
 alias "cd.."="cd .."
 alias ":q"="exit"

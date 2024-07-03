@@ -96,17 +96,42 @@
     time.timeZone = "Asia/Singapore";
 
     # Select internationalisation properties.
-    i18n.defaultLocale = "en_SG.UTF-8";
-    i18n.extraLocaleSettings = {
-        LC_ADDRESS = "en_SG.UTF-8";
-        LC_IDENTIFICATION = "en_SG.UTF-8";
-        LC_MEASUREMENT = "en_SG.UTF-8";
-        LC_MONETARY = "en_SG.UTF-8";
-        LC_NAME = "en_SG.UTF-8";
-        LC_NUMERIC = "en_SG.UTF-8";
-        LC_PAPER = "en_SG.UTF-8";
-        LC_TELEPHONE = "en_SG.UTF-8";
-        LC_TIME = "en_SG.UTF-8";
+    i18n = {
+        defaultLocale = "en_SG.UTF-8";
+        inputMethod = {
+            # enabled = "fcitx5";
+            # fcitx5 = {
+            #     addons = with pkgs; [
+            #         fcitx5-m17n
+            #         fcitx5-with-addons
+            #         libsForQt5.fcitx5-unikey
+            #         libsForQt5.fcitx5-chinese-addons
+            #         fcitx5-material-color
+            #     ];
+            #     waylandFrontend = true;
+            # };
+            enabled = "ibus";
+            ibus = {
+                engines = with pkgs.ibus-engines; [
+                    libpinyin
+                    table-chinese
+                    uniemoji
+                    m17n
+                    bamboo
+                ];
+            };
+        };
+        extraLocaleSettings = {
+            LC_ADDRESS = "en_SG.UTF-8";
+            LC_IDENTIFICATION = "en_SG.UTF-8";
+            LC_MEASUREMENT = "en_SG.UTF-8";
+            LC_MONETARY = "en_SG.UTF-8";
+            LC_NAME = "en_SG.UTF-8";
+            LC_NUMERIC = "en_SG.UTF-8";
+            LC_PAPER = "en_SG.UTF-8";
+            LC_TELEPHONE = "en_SG.UTF-8";
+            LC_TIME = "en_SG.UTF-8";
+        };
     };
 
     # Configure keymap in X11

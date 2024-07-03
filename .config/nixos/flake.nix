@@ -38,6 +38,7 @@
                     config.allowUnfree = true;
                 };
             };
+            pkgs = import inputs.nixpkgs { inherit system; };
         in {
             nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -46,7 +47,14 @@
                     ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
                         ./configuration.nix
                 ];
+            };
+            devShells.x86_64-linux.python39 = pkgs.mkShell {
+                nativeBuildInputs = with pkgs;
+                let
+                    devpython = pkgs.python39.withPackages
+                    (packages: with packages; [ virtualenv pip setuptools wheel ]);
+                in [ devpython ];
+            };
         };
-    };
 }
 
