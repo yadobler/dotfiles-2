@@ -95,29 +95,19 @@
     # Set your time zone.
     time.timeZone = "Asia/Singapore";
 
-    # Select internationalisation properties.
     i18n = {
         defaultLocale = "en_SG.UTF-8";
         inputMethod = {
-            # enabled = "fcitx5";
-            # fcitx5 = {
-            #     addons = with pkgs; [
-            #         fcitx5-m17n
-            #         fcitx5-with-addons
-            #         libsForQt5.fcitx5-unikey
-            #         libsForQt5.fcitx5-chinese-addons
-            #         fcitx5-material-color
-            #     ];
-            #     waylandFrontend = true;
-            # };
-            enabled = "ibus";
-            ibus = {
-                engines = with pkgs.ibus-engines; [
-                    libpinyin
-                    table-chinese
-                    uniemoji
-                    m17n
-                    bamboo
+            enabled = "fcitx5";
+            fcitx5 = {
+                addons = with pkgs; [
+                    fcitx5-with-addons
+                    fcitx5-gtk
+                    fcitx5-m17n
+                    fcitx5-bamboo
+                    fcitx5-table-extra
+                    fcitx5-material-color
+                    #libsForQt5.fcitx5-chinese-addons
                 ];
             };
         };

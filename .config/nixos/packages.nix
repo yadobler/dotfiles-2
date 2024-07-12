@@ -80,8 +80,9 @@
             squeekboard
 
             wallust
-            sweet-folders
-            candy-icons
+            gnome.adwaita-icon-theme
+            adwaita-qt
+            morewaita-icon-theme
             gnome.gnome-tweaks
             ];
 

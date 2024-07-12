@@ -20,7 +20,7 @@ in
     };
     config = {
         hyprland.postInstallScript = ''
-            cp ${hyprland-plugin-script}/bin/hyprland-plugin-script.sh /home/${username}/.config/scripts/hyprland-plugin-script.sh
+            cp -f ${hyprland-plugin-script}/bin/hyprland-plugin-script.sh /home/${username}/.config/scripts/hyprland-plugin-script.sh
             chown ${username} /home/${username}/.config/scripts/hyprland-plugin-script.sh
             chmod +x /home/${username}/.config/scripts/hyprland-plugin-script.sh
             '';
@@ -36,7 +36,6 @@ in
                 };
             };
 
-            hyprlock.enable = true;
             dconf.enable = true;
 
         };
@@ -53,6 +52,7 @@ in
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default
                 iio-sensor-proxy
+                unstable.hyprlock
                 # hyprcursor
             ];
         };
