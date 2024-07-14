@@ -202,7 +202,7 @@
   "osc99": false,
   "transient_prompt": {
     "background": "transparent",
-    "foreground": "white",
+    "foreground": "green",
     "template": "\ue285 "
   },
   "secondary_prompt": {

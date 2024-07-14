@@ -35,7 +35,7 @@
         "on-scroll-up": "playerctl next",
         "on-scroll-down": "playerctl previous",
         "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.sh",
-        "tooltip": true
+        "tooltip": true,
     },
     "custom/weather": {
         "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
