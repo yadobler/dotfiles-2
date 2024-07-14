@@ -78,6 +78,7 @@
             wofi
             iio-sensor-proxy
             squeekboard
+            playerctl
 
             wallust
             gnome.adwaita-icon-theme
