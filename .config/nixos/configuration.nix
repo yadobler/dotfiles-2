@@ -143,7 +143,7 @@
         ];
         shell = pkgs.zsh;
     };
-    services.getty.autologinUser = "yukna";
+    # services.getty.autologinUser = "yukna";
 
     # hibernation flashing fix?
 
