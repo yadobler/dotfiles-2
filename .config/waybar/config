@@ -10,6 +10,7 @@
 
     //position
     "modules-left": [
+        "custom/sp",
         "battery", 
         "backlight", 
         "pulseaudio", 
@@ -118,6 +119,12 @@
         "tooltip": false,
         "format": "󰌌",
         "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
+        "escape": true
+    },
+    "custom/sp": {
+        "tooltip": false,
+        "format": "",
+        "on-click": "$HOME/.config/scripts/swap_scratchpad.sh",
         "escape": true
     },
     "wlr/taskbar": {

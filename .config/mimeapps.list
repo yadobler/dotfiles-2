@@ -197,3 +197,4 @@ x-scheme-handler/rtp=com.github.rafostar.Clapper.desktop;
 x-scheme-handler/rtsp=com.github.rafostar.Clapper.desktop;
 x-scheme-handler/spotify=spotify.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop;
+x-scheme-handler/webcal=brave-browser.desktop
