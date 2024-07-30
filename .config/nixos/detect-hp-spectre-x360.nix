@@ -1,5 +1,27 @@
 { config, lib, pkgs, ... }:
 
+#let
+#detectHpSpectre = pkgs.runCommand "detect-hp-spectre" {
+#  buildInputs = [ pkgs.dmidecode ];
+#} ''
+#  productName=$(dmidecode -s system-product-name)
+#  if [[ "$productName" == *"HP Spectre x360"* ]]; then
+#  echo "detected=1" > $out
+#  else
+#  echo "detected=0" > $out
+#  fi 
+#  '';
+#  in
+#{
+#  hardware.ipu6 = if hpSpectreDetected.detected == "1" then {
+#    enable = true;
+#    platform = "ipu6ep";
+#  } else {
+#    enable = false;
+#    platform = null;
+#  };
+#}
+
 # let
 #   ivsc-firmware = with pkgs;
 #     stdenv.mkDerivation rec {
@@ -24,14 +46,14 @@
 #     };
 # in
 {
-  environment.systemPackages = with pkgs; [
-    v4l-utils
-    gst_all_1.gstreamer
-    gst_all_1.gst-plugins-base
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.icamerasrc-ipu6ep
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   v4l-utils
+  #   gst_all_1.gstreamer
+  #   gst_all_1.gst-plugins-base
+  #   gst_all_1.gst-plugins-good
+  #   gst_all_1.gst-plugins-bad
+  #   gst_all_1.icamerasrc-ipu6ep
+  # ];
 
   hardware.ipu6 = {
     enable = true;
@@ -68,39 +90,12 @@
     ACTION=="add", RUN+="${pkgs.coreutils}/bin/mv -f $env{DEVNAME} /dev/not-for-user/"
     # Since we skip these rules for the mipi, we do not need to link it back to /dev
     # ACTION=="add", ATTR{name}!="Intel MIPI Camera", RUN+="${pkgs.coreutils}/bin/ln -fs $name /dev/not-for-user/$env{ID_SERIAL}"
-
     ACTION=="remove", RUN+="${pkgs.coreutils}/bin/rm -f /dev/not-for-user/$name"
     ACTION=="remove", RUN+="${pkgs.coreutils}/bin/rm -f /dev/not-for-user/$env{ID_SERIAL}"
-
     LABEL="hide_cam_end"
   '';
 
   # environment.etc.camera.source = "${ipu6-camera-hal}/share/defaults/etc/camera";
-
 }
 
 
-# TODO: add detection capability
-#let
-## Function to detect if the system is an HP Spectre x360
-#detectHpSpectre = pkgs.runCommand "detect-hp-spectre" { buildInputs = [ pkgs.dmidecode ]; } ''
-#productName=$(dmidecode -s system-product-name)
-#  if [[ $productName == *"HP Spectre x360"* ]]; then
-#  echo "detected=1" > $out
-#  else
-#  echo "detected=0" > $out
-#  fi
-#  '';
-#
-## Import the result of the detection
-#  hpSpectreDetected = import detectHpSpectre;
-#  in
-#{
-#  hardware.ipu6 = if hpSpectreDetected.detected == "1" then {
-#    enable = true;
-#    platform = "ipu6ep";
-#  } else {
-#    enable = false;
-#    platform = null;
-#  };
-#}
