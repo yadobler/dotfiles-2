@@ -2,10 +2,10 @@
 {
     imports = [
         ./modules/hyprland.nix
-        ./modules/nemo.nix
         ./modules/gnome_polkit.nix
         ./modules/terminal.nix
-        #./modules/thunar.nix
+        ./modules/thunar.nix
+        #./modules/nemo.nix
     ];
 # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -52,6 +52,7 @@
             zig
             cargo
             nil # nix lsp
+            poetry
 
             brave
             telegram-desktop

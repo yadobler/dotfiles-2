@@ -1,4 +1,16 @@
-{ config, lib, pkgs, ... }:
+{ inputs, pkgs, ... }:
+let
+  ipu6 = inputs.ipu6-fix.packages.${pkgs.system};
+in
+{
+    environment.systemPackages = with ipu6; [
+        icamerasrc
+            ipu6-camera-bins
+            ipu6-camera-hal
+            ipu6-drivers
+            ivsc-driver
+            ivsc-firmware
+    ];
 
 #let
 #detectHpSpectre = pkgs.runCommand "detect-hp-spectre" {
@@ -22,47 +34,15 @@
 #  };
 #}
 
-# let
-#   ivsc-firmware = with pkgs;
-#     stdenv.mkDerivation rec {
-#       pname = "ivsc-firmware";
-#       version = "main";
+# {
+#   hardware.ipu6 = {
+#     enable = true;
+#     platform = "ipu6ep";
+#   };
 # 
-#       src = pkgs.fetchFromGitHub {
-#         owner = "intel";
-#         repo = "ivsc-firmware";
-#         rev = "10c214fea5560060d387fbd2fb8a1af329cb6232";
-#         sha256 = "sha256-kEoA0yeGXuuB+jlMIhNm+SBljH+Ru7zt3PzGb+EPBPw=";
-# 
-#       };
-# 
-#       installPhase = ''
-#         mkdir -p $out/lib/firmware/vsc/soc_a1_prod
-# 
-#         cp firmware/ivsc_pkg_ovti01a0_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_ovti01a0_0_a1_prod.bin
-#         cp firmware/ivsc_skucfg_ovti01a0_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_ovti01a0_0_1_a1_prod.bin
-#         cp firmware/ivsc_fw.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_fw_a1_prod.bin
-#       '';
-#     };
-# in
-{
-  # environment.systemPackages = with pkgs; [
-  #   v4l-utils
-  #   gst_all_1.gstreamer
-  #   gst_all_1.gst-plugins-base
-  #   gst_all_1.gst-plugins-good
-  #   gst_all_1.gst-plugins-bad
-  #   gst_all_1.icamerasrc-ipu6ep
-  # ];
-
-  hardware.ipu6 = {
-    enable = true;
-    platform = "ipu6ep";
-  };
-
-  hardware.firmware = with pkgs; [
-    ivsc-firmware
-  ];
+#   hardware.firmware = with pkgs; [
+#     ivsc-firmware
+#   ];
 
   services.v4l2-relayd.instances = {
     ipu6 = {
@@ -75,13 +55,6 @@
     };
   };
 
-  # These rules must be understood like a script executed sequentially for
-  # all devices. Instead of creating conditions, they use the old fashion
-  # goto mechanism to skip some rules tu apply using goto and label
-  # The first parts of each line is like a conditiong and the second part
-  # describes what to run in that case.
-  # To see the properties of a device, just run something like
-  # udevadm info -q all -a /dev/video9
   services.udev.extraRules = ''
     SUBSYSTEM!="video4linux", GOTO="hide_cam_end"
     #ATTR{name}=="Intel MIPI Camera", GOTO="hide_cam_end"
