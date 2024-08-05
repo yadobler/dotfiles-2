@@ -86,6 +86,7 @@
             adwaita-qt
             morewaita-icon-theme
             gnome.gnome-tweaks
+            banana-cursor
             ];
 
 # Font
