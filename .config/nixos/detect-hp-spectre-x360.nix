@@ -1,48 +1,16 @@
-{ inputs, pkgs, ... }:
-let
-  ipu6 = inputs.ipu6-fix.packages.${pkgs.system};
-in
+{ pkgs, ... }:
 {
-    environment.systemPackages = with ipu6; [
-        icamerasrc
-            ipu6-camera-bins
-            ipu6-camera-hal
-            ipu6-drivers
-            ivsc-driver
-            ivsc-firmware
-    ];
+  environment.systemPackages = with pkgs; [
+    unstable.ipu6ep-camera-hal-unstable
+    unstable.icamerasrc-ipu6ep-unstable
+    unstable.ivsc-firmware-unstable
+    v4l-utils
+  ];
 
-#let
-#detectHpSpectre = pkgs.runCommand "detect-hp-spectre" {
-#  buildInputs = [ pkgs.dmidecode ];
-#} ''
-#  productName=$(dmidecode -s system-product-name)
-#  if [[ "$productName" == *"HP Spectre x360"* ]]; then
-#  echo "detected=1" > $out
-#  else
-#  echo "detected=0" > $out
-#  fi 
-#  '';
-#  in
-#{
-#  hardware.ipu6 = if hpSpectreDetected.detected == "1" then {
-#    enable = true;
-#    platform = "ipu6ep";
-#  } else {
-#    enable = false;
-#    platform = null;
-#  };
-#}
-
-# {
-#   hardware.ipu6 = {
-#     enable = true;
-#     platform = "ipu6ep";
-#   };
-# 
-#   hardware.firmware = with pkgs; [
-#     ivsc-firmware
-#   ];
+  hardware.ipu6 = {
+    enable = true;
+    platform = "ipu6ep";
+  };
 
   services.v4l2-relayd.instances = {
     ipu6 = {
@@ -66,9 +34,7 @@ in
     ACTION=="remove", RUN+="${pkgs.coreutils}/bin/rm -f /dev/not-for-user/$name"
     ACTION=="remove", RUN+="${pkgs.coreutils}/bin/rm -f /dev/not-for-user/$env{ID_SERIAL}"
     LABEL="hide_cam_end"
-  '';
-
-  # environment.etc.camera.source = "${ipu6-camera-hal}/share/defaults/etc/camera";
+    '';
 }
 
 

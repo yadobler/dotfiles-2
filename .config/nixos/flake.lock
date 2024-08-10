@@ -53,21 +53,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -282,23 +267,6 @@
         "type": "github"
       }
     },
-    "icamerasrc-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664346769,
-        "narHash": "sha256-6kYU0KqhgJnFGANwlCwUYpk5KWgcXVLFQwp8vZIa0fQ=",
-        "owner": "intel",
-        "repo": "icamerasrc",
-        "rev": "3b7cdb93071360aacebb4e808ee71bb47cf90b30",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "ref": "icamerasrc_slim_api",
-        "repo": "icamerasrc",
-        "type": "github"
-      }
-    },
     "iio-hyprland": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -315,111 +283,6 @@
       "original": {
         "owner": "JeanSchoeller",
         "repo": "iio-hyprland",
-        "type": "github"
-      }
-    },
-    "ipu6-camera-bins-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666343574,
-        "narHash": "sha256-Vl+l43Ed2f7lL/iXG59wdrfyTrTohaYlL79+zDw805E=",
-        "owner": "intel",
-        "repo": "ipu6-camera-bins",
-        "rev": "9874603336d97fd4d12a271485645aaabc7c1be3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "repo": "ipu6-camera-bins",
-        "type": "github"
-      }
-    },
-    "ipu6-camera-hal-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1665453886,
-        "narHash": "sha256-o62ce5a1gqVMccOnfw9lto32sXutZtiV2BFUNATyiww=",
-        "owner": "intel",
-        "repo": "ipu6-camera-hal",
-        "rev": "8bad42ce759a0bef504f03a7d1dd91510290cfeb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "repo": "ipu6-camera-hal",
-        "type": "github"
-      }
-    },
-    "ipu6-drivers-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666859387,
-        "narHash": "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=",
-        "owner": "intel",
-        "repo": "ipu6-drivers",
-        "rev": "10e247e046086970a9427988d5a454676515e43b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "repo": "ipu6-drivers",
-        "type": "github"
-      }
-    },
-    "ipu6-fix": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "icamerasrc-src": "icamerasrc-src",
-        "ipu6-camera-bins-src": "ipu6-camera-bins-src",
-        "ipu6-camera-hal-src": "ipu6-camera-hal-src",
-        "ipu6-drivers-src": "ipu6-drivers-src",
-        "ivsc-driver-src": "ivsc-driver-src",
-        "ivsc-firmware-src": "ivsc-firmware-src",
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1667720622,
-        "narHash": "sha256-qs2Z07E3xcJaZuu/agWUK8PYFoj/rezC25I8pGQG7/o=",
-        "owner": "Mitame",
-        "repo": "ipu6-nix",
-        "rev": "8c04fa3c6267e1f8ebad5b270c8968a25f6c2c8e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mitame",
-        "repo": "ipu6-nix",
-        "type": "github"
-      }
-    },
-    "ivsc-driver-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1663316675,
-        "narHash": "sha256-STg2yLxavS3nb95ioljGFi6I4skSsQ1JQfrmq+d+CKg=",
-        "owner": "intel",
-        "repo": "ivsc-driver",
-        "rev": "99a53bd7160452bbbcc26bcb662cad33c13b36d1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "repo": "ivsc-driver",
-        "type": "github"
-      }
-    },
-    "ivsc-firmware-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1667355668,
-        "narHash": "sha256-GuD1oTnDEs0HslJjXx26DkVQIe0eS+js4UoaTDa77ME=",
-        "owner": "intel",
-        "repo": "ivsc-firmware",
-        "rev": "29c5eff4cdaf83e90ef2dcd2035a9cdff6343430",
-        "type": "github"
-      },
-      "original": {
-        "owner": "intel",
-        "repo": "ivsc-firmware",
         "type": "github"
       }
     },
@@ -457,20 +320,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1667639549,
-        "narHash": "sha256-frqZKSG/933Ctwl9voSZnXDwo8CqddXcjQhnCzwNqaM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "cae3751e9f74eea29c573d6c2f14523f41c2821a",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 0,
         "narHash": "sha256-GTO3C88+5DX171F/gVS3Qga/hOs/eRMxPFpiHq2t+D8=",
         "path": "/nix/store/rljkm6h18fjvavm6l17jiil8glphc44f-source",
@@ -488,8 +337,7 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "iio-hyprland": "iio-hyprland",
-        "ipu6-fix": "ipu6-fix",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "unstable": "unstable"
       }

@@ -26,9 +26,6 @@
         iio-hyprland = { 
             url = "github:JeanSchoeller/iio-hyprland";
         };
-        ipu6-fix = {
-            url = "github:Mitame/ipu6-nix";
-        };
     };
 
     outputs = { self, nixpkgs, nixpkgs-unstable, ...} @inputs:

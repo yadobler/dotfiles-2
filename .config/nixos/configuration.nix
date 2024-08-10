@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
 {
     imports = [ 
-        #./detect-hp-spectre-x360.nix
+        ./detect-hp-spectre-x360.nix
         ./hardware-configuration.nix
         ./packages.nix
     ];
