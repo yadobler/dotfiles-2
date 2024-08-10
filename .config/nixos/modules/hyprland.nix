@@ -53,7 +53,7 @@ in
                 inputs.iio-hyprland.packages.${pkgs.system}.default
                 iio-sensor-proxy
                 unstable.hyprlock
-                # hyprcursor
+                hyprcursor
             ];
         };
 
