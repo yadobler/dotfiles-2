@@ -1,7 +1,6 @@
 { lib, config, pkgs, ... }:
 {
     imports = [ 
-        ./detect-hp-spectre-x360.nix
         ./hardware-configuration.nix
         ./packages.nix
     ];
@@ -62,8 +61,11 @@
     # Networking
     networking = {
         hostName = "vellinator"; # Define your hostname.
-        networkmanager.enable = true;
+        networkmanager = {
+            enable = true;
+        };
     };
+    programs.nm-applet.enable = true;
 
     # Bluetooth
     hardware.bluetooth = {

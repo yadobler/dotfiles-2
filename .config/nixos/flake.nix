@@ -45,6 +45,7 @@
                 modules = [
                     ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
                         ./configuration.nix
+                        ./detect-hp-spectre-x360.nix
                 ];
             };
         };

@@ -1,126 +1,180 @@
 { pkgs, lib, ... }:
 let
-  webcamName="Intel MIPI Camera";
-  ivsc-firmware = with pkgs;
-    stdenv.mkDerivation {
-      pname = "ivsc-firmware";
-      version = "main";
-
-      src = pkgs.fetchFromGitHub {
-        owner = "intel";
-        repo = "ivsc-firmware";
-        rev = "10c214fea5560060d387fbd2fb8a1af329cb6232";
-        sha256 = "sha256-kEoA0yeGXuuB+jlMIhNm+SBljH+Ru7zt3PzGb+EPBPw=";
-
-      };
-
-      installPhase = ''
-        mkdir -p $out/lib/firmware/vsc/soc_a1_prod
-
-        cp firmware/ivsc_pkg_hi556_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_hi556_0_a1_prod.bin
-        cp firmware/ivsc_skucfg_hi556_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_hi556_0_1_a1_prod.bin
-        cp firmware/ivsc_fw.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_fw_a1_prod.bin
-      '';
+  ipuVersion = "ipu6ep";
+  ipu6-drivers = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
+      owner = "intel";
+      repo = "ipu6-drivers";
+      rev = "10e247e046086970a9427988d5a454676515e43b";
     };
-    ipu6ep-camera-hal = with pkgs;
-      stdenv.mkDerivation {
-        pname = "ipu6ep-camera-hal";
-        version = "main";
+  };
+  ipu6-camera-bins = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-Vl+l43Ed2f7lL/iXG59wdrfyTrTohaYlL79+zDw805E=";
+      owner = "intel";
+      repo = "ipu6-camera-bins";
+      rev = "9874603336d97fd4d12a271485645aaabc7c1be3";
+    };
+    installPhase = ''
+      mkdir $out
+      mv ./${ipuVersion}/include $out/include
+      mv ./${ipuVersion}/lib $out/lib
+      '';
+  };
+  ipu6ep-camera-hal = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-o62ce5a1gqVMccOnfw9lto32sXutZtiV2BFUNATyiww=";
+      owner = "intel";
+      repo = "ipu6-camera-hal";
+      rev = "8bad42ce759a0bef504f03a7d1dd91510290cfeb";
+    };
+    NIX_CFLAGS_COMPILE = "-I${ipu6-camera-bins}/include/ia_camera -I${ipu6-camera-bins}/include/ia_cipf -I${ipu6-camera-bins}/include/ia_cipf_css -I${ipu6-camera-bins}/include/ia_imaging -I${ipu6-camera-bins}/include/ia_tools";
 
-        src = fetchFromGitHub {
-          owner = "intel";
-          repo = "ipu6-camera-hal";
-          rev = "8863bda8b15bef415f112700d0fb04e00a48dbee";
-          sha256 = "sha256-hIdo2b8UXXfnWIGMc4MtSb9puhRdnmk+hHs3Ah9UJs8=";
-        };
+    nativeBuildInputs = [
+      ipu6-camera-bins
+      pkgs.pkg-config
+    ];
 
-        nativeBuildInputs = [
-          cmake
-          pkg-config
-        ];
+    buildInputs = with pkgs; [
+      expat
+        automake
+        cmake
+        libtool
+        gst_all_1.gstreamer
+        gst_all_1.gst-plugins-base
+    ];
 
-        PKG_CONFIG_PATH = "${lib.makeLibraryPath [ ipu6-camera-bins ]}/ipu_adl/pkgconfig";
+    propagatedBuildInputs = [
+      ipu6-camera-bins
+    ];
 
-        cmakeFlags = [
-          "-DIPU_VER=ipu6ep"
-          "-DUSE_PG_LITE_PIPE=ON"
-        ];
+    patchPhase = ''
+      # Remove slash from the end of prefix to avoid double slashes
+      substituteInPlace cmake/libcamhal.pc.cmakein \
+      --replace \''${prefix}/@CMAKE_INSTALL_LIBDIR@ @CMAKE_INSTALL_FULL_LIBDIR@ \
+      --replace \''${prefix}/@CMAKE_INSTALL_INCLUDEDIR@ @CMAKE_INSTALL_FULL_INCLUDEDIR@
+      '';
 
-        NIX_CFLAGS_COMPILE = [
-          "-Wno-error"
-        ];
+    preConfigurePhase = ''
+      sed -i "s/hi556-uf-1/hi556-uf-1,hi556-uf-3/g" config/linux/ipu6ep/libcamhal_profile.xml
+    '';
+    cmakeFlags = [
+      "-DCMAKE_BUILD_TYPE=Release"
+        "-DIPU_VER=${ipuVersion}"
+        "-DENABLE_VIRTUAL_IPU_PIPE=OFF"
+        "-DUSE_PG_LITE_PIPE=ON"
+        "-DUSE_STATIC_GRAPH=OFF"
+    ];
+  };
+  icamerasrc = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-6kYU0KqhgJnFGANwlCwUYpk5KWgcXVLFQwp8vZIa0fQ=";
+      owner = "intel";
+      repo = "icamerasrc";
+      rev = "3b7cdb93071360aacebb4e808ee71bb47cf90b30";
+    };
+    # Fix missing def
+    CHROME_SLIM_CAMHAL = "ON";
+    STRIP_VIRTUAL_CHANNEL_CAMHAL = "ON";
 
-        enableParallelBuilding = true;
+    # I think their autoconf settings assume the plugs will be in the same directory as the main gstreamer headers
+    # which isn't true in Nix. I don't know autotools enough to patch it, so I'm just gonna hack this onto the end.
+    CPPFLAGS = "-I${pkgs.gst_all_1.gst-plugins-base.dev}/include/gstreamer-1.0";
 
-        buildInputs = [
-          expat
-          ipu6-camera-bins
-          libtool
-          gst_all_1.gstreamer
-          gst_all_1.gst-plugins-base
-        ];
+    nativeBuildInputs = with pkgs; [
+      autoreconfHook
+      pkg-config
+      gst_all_1.gst-plugins-base.dev
+    ];
 
-        preConfigurePhase = ''
-          sed -i "s/hi556-uf-1/hi556-uf-1,hi556-uf-3/g" config/linux/ipu6ep/libcamhal_profile.xml
-        '';
+    buildInputs = with pkgs; [
+      libdrm
+    ];
 
-        postPatch = ''
-          substituteInPlace src/platformdata/PlatformData.h \
-          --replace '/usr/share/' "${placeholder "out"}/share/"
-          '';
+    propagatedBuildInputs = [
+      ipu6ep-camera-hal
+    ];
+  };
+  kernelSrc = "${pkgs.kernel.dev}/lib/modules/${pkgs.kernel.modDirVersion}/build";
+  ivsc-driver = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
+      owner = "intel";
+      repo = "ipu6-drivers";
+      rev = "10e247e046086970a9427988d5a454676515e43b";
+    };
 
-        postFixup = ''
-          for lib in $out/lib/*.so; do
-          patchelf --add-rpath "${lib.makeLibraryPath [ ipu6-camera-bins ]}/ipu_adl" $lib
-          done
-        '';
+    passthru.moduleName = "ipu6";
 
-        };
+    nativeBuildInputs = pkgs.kernel.moduleBuildDependencies;
+
+    buildFlags = [
+      "KERNEL_SRC=${kernelSrc}"
+      "KERNELRELEASE=${pkgs.kernel.modDirVersion}"
+    ];
+
+    patchPhase = ''
+      cp -r ${ivsc-driver}/{backport-include,drivers,include} .
+      # For some reason, this copies with 555 instead of 755
+      chmod -R 755 backport-include drivers include 
+      '';
+
+    installPhase = ''
+      make -C ${kernelSrc} \
+      M=$(pwd) \
+      INSTALL_MOD_PATH=$out \
+      modules_install
+      cp -r include $out/
+      '';
+  };
+  ivsc-firmware = pkgs.stdenv.mkDerivation {
+    src = pkgs.fetchFromGitHub {
+      sha256 = "sha256-GuD1oTnDEs0HslJjXx26DkVQIe0eS+js4UoaTDa77ME=";
+      owner = "intel";
+      repo = "ivsc-firmware";
+      rev = "29c5eff4cdaf83e90ef2dcd2035a9cdff6343430";
+    };
+    installPhase = ''
+      mkdir -p $out/lib/firmware/vsc/soc_a1_prod
+
+      cp firmware/ivsc_pkg_hi556_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_ovti01a0_0_a1_prod.bin
+      cp firmware/ivsc_skucfg_hi556_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_ovti01a0_0_1_a1_prod.bin
+      cp firmware/ivsc_fw.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_fw_a1_prod.bin
+      '';
+  };
 in
 {
   environment.systemPackages = [
+    ipu6-drivers
+    ipu6-camera-bins
     ipu6ep-camera-hal
-    pkgs.gst_all_1.gstreamer
-    pkgs.gst_all_1.gst-plugins-base
-    pkgs.gst_all_1.icamerasrc-ipu6ep
-    pkgs.v4l-utils
+    icamerasrc
+    ivsc-driver
+  #pkgs.gst_all_1.icamerasrc-ipu6ep
+  #pkgs.gst_all_1.gstreamer
+  #pkgs.gst_all_1.gst-plugins-base
+  #pkgs.v4l-utils
   ];
-  hardware.firmware = [
+  hardware.firmware = [ 
     ivsc-firmware
   ];
-  hardware.ipu6 = {
-    enable = true;
-    platform = "ipu6ep";
-  };
- systemd.services.v4l2-relayd = {
-    environment = {
-      GST_PLUGIN_SYSTEM_PATH_1_0 = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [icamerasrc-ipu6ep gstreamer gst-plugins-base gst-plugins-good]);
-      LD_LIBRARY_PATH = "${pkgs.ipu6-camera-bin}/lib";
-    };
-    script = ''
-      export GST_DEBUG=2
-      export DEVICE=$(grep -l -m1 -E "^${webcamName}$" /sys/devices/virtual/video4linux/*/name | cut -d/ -f6);
-      exec ${pkgs.v4l2-relayd}/bin/v4l2-relayd \
-        --debug \
-        -i "icamerasrc" \
-        -o "appsrc name=appsrc caps=video/x-raw,format=NV12,width=1280,height=720,framerate=30/1 ! videoconvert ! video/x-raw,format=YUY2 ! v4l2sink name=v4l2sink device=/dev/$DEVICE"
-    '';
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      User = "root";
-      Group = "root";
+
+  #hardware.ipu6 = {
+  #  enable = true;
+  #  platform = "ipu6ep";
+  #};
+  services.v4l2-relayd.instances = {
+    ipu6 = {
+      enable = true;
+      cardLabel = "Intel MIPI Camera";
+      input = {
+        format = "NV12";
+        pipeline = "icamerasrc";
+      };
+    output.format = "YUY2";
     };
   };
- #  services.v4l2-relayd.instances = {
- #    ipu6 = {
- #      enable = true;
- #      cardLabel = "Intel MIPI Camera";
- #      input = {
- #        format = "NV12";
- #        pipeline = "icamerasrc";
- #      };
- #    };
- #  };
 
   services.udev.extraRules = ''
     SUBSYSTEM!="video4linux", GOTO="hide_cam_end"
@@ -135,5 +189,3 @@ in
     LABEL="hide_cam_end"
     '';
 }
-
-

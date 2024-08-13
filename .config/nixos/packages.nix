@@ -57,6 +57,7 @@
             brave
             telegram-desktop
             zathura
+            xournalpp
             swayimg
             clapper
             unstable.spotify
