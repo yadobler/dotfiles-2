@@ -1,14 +1,41 @@
 { pkgs, lib, ... }:
 let
   ipuVersion = "ipu6ep";
-  ipu6-drivers = pkgs.stdenv.mkDerivation {
-    src = pkgs.fetchFromGitHub {
-      sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
-      owner = "intel";
-      repo = "ipu6-drivers";
-      rev = "10e247e046086970a9427988d5a454676515e43b";
-    };
-  };
+  #kernelSrc = "${pkgs.kernel.dev}/lib/modules/${pkgs.kernel.modDirVersion}/build";
+  #ivsc-driver = pkgs.stdenv.mkDerivation {
+  #  src = pkgs.fetchFromGitHub {
+  #    sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
+  #    owner = "intel";
+  #    repo = "ipu6-drivers";
+  #    rev = "10e247e046086970a9427988d5a454676515e43b";
+  #  };
+  #  passthru.moduleName = "ipu6";
+  #  nativeBuildInputs = pkgs.kernel.moduleBuildDependencies;
+  #  buildFlags = [
+  #    "KERNEL_SRC=${kernelSrc}"
+  #    "KERNELRELEASE=${pkgs.kernel.modDirVersion}"
+  #  ];
+  #  patchPhase = ''
+  #    cp -r ${ivsc-driver}/{backport-include,drivers,include} .
+  #    # For some reason, this copies with 555 instead of 755
+  #    chmod -R 755 backport-include drivers include 
+  #    '';
+  #  installPhase = ''
+  #    make -C ${kernelSrc} \
+  #    M=$(pwd) \
+  #    INSTALL_MOD_PATH=$out \
+  #    modules_install
+  #    cp -r include $out/
+  #    '';
+  #};
+  #ipu6-drivers = pkgs.stdenv.mkDerivation {
+  #  src = pkgs.fetchFromGitHub {
+  #    sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
+  #    owner = "intel";
+  #    repo = "ipu6-drivers";
+  #    rev = "10e247e046086970a9427988d5a454676515e43b";
+  #  };
+  #};
   ipu6-camera-bins = pkgs.stdenv.mkDerivation {
     src = pkgs.fetchFromGitHub {
       sha256 = "sha256-Vl+l43Ed2f7lL/iXG59wdrfyTrTohaYlL79+zDw805E=";
@@ -96,38 +123,6 @@ let
       ipu6ep-camera-hal
     ];
   };
-  kernelSrc = "${pkgs.kernel.dev}/lib/modules/${pkgs.kernel.modDirVersion}/build";
-  ivsc-driver = pkgs.stdenv.mkDerivation {
-    src = pkgs.fetchFromGitHub {
-      sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
-      owner = "intel";
-      repo = "ipu6-drivers";
-      rev = "10e247e046086970a9427988d5a454676515e43b";
-    };
-
-    passthru.moduleName = "ipu6";
-
-    nativeBuildInputs = pkgs.kernel.moduleBuildDependencies;
-
-    buildFlags = [
-      "KERNEL_SRC=${kernelSrc}"
-      "KERNELRELEASE=${pkgs.kernel.modDirVersion}"
-    ];
-
-    patchPhase = ''
-      cp -r ${ivsc-driver}/{backport-include,drivers,include} .
-      # For some reason, this copies with 555 instead of 755
-      chmod -R 755 backport-include drivers include 
-      '';
-
-    installPhase = ''
-      make -C ${kernelSrc} \
-      M=$(pwd) \
-      INSTALL_MOD_PATH=$out \
-      modules_install
-      cp -r include $out/
-      '';
-  };
   ivsc-firmware = pkgs.stdenv.mkDerivation {
     src = pkgs.fetchFromGitHub {
       sha256 = "sha256-GuD1oTnDEs0HslJjXx26DkVQIe0eS+js4UoaTDa77ME=";
@@ -138,32 +133,32 @@ let
     installPhase = ''
       mkdir -p $out/lib/firmware/vsc/soc_a1_prod
 
-      cp firmware/ivsc_pkg_hi556_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_ovti01a0_0_a1_prod.bin
-      cp firmware/ivsc_skucfg_hi556_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_ovti01a0_0_1_a1_prod.bin
+      cp firmware/ivsc_pkg_hi556_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_hi556_0_a1_prod.bin
+      cp firmware/ivsc_skucfg_hi556_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_hi556_0_1_a1_prod.bin
       cp firmware/ivsc_fw.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_fw_a1_prod.bin
       '';
   };
 in
 {
   environment.systemPackages = [
-    ipu6-drivers
+    #ipu6-drivers
+    #ivsc-driver
     ipu6-camera-bins
     ipu6ep-camera-hal
     icamerasrc
-    ivsc-driver
-  #pkgs.gst_all_1.icamerasrc-ipu6ep
-  #pkgs.gst_all_1.gstreamer
-  #pkgs.gst_all_1.gst-plugins-base
-  #pkgs.v4l-utils
+    #pkgs.gst_all_1.icamerasrc-ipu6ep
+    pkgs.gst_all_1.gstreamer
+    pkgs.gst_all_1.gst-plugins-base
+    pkgs.v4l-utils
   ];
   hardware.firmware = [ 
     ivsc-firmware
   ];
+  hardware.ipu6 = {
+    enable = true;
+    platform = "ipu6ep";
+  };
 
-  #hardware.ipu6 = {
-  #  enable = true;
-  #  platform = "ipu6ep";
-  #};
   services.v4l2-relayd.instances = {
     ipu6 = {
       enable = true;
