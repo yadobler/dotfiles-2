@@ -195,3 +195,8 @@ x-scheme-handler/rtsp=com.github.rafostar.Clapper.desktop;
 x-scheme-handler/spotify=spotify.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/webcal=brave-browser.desktop
+
+[Added Associations]
+image/jpeg=swayimg.desktop;
+application/pdf=com.github.xournalpp.xournalpp.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
+image/png=swayimg.desktop;

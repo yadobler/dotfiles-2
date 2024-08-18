@@ -15,9 +15,9 @@
         git.enable = true;
         light.enable = true;
         neovim.enable = true;
+        zsh.enable = true;
         waybar.enable = true;
         xwayland.enable = true;
-        zsh.enable = true;
         nm-applet.enable = true;
     };
 

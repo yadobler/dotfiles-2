@@ -89,3 +89,10 @@ alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW
 #bindkey "^[[B" history-beginning-search-forward
 bindkey '^I'   expand-or-complete-prefix
 bindkey '^[[Z' reverse-menu-complete
+
+# Allow exec to run zsh init commands
+if [[ $1 == eval ]]
+then
+    "$@"
+set --
+fi

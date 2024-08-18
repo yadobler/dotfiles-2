@@ -4,7 +4,7 @@
         unstable = {
             url = "github:NixOS/nixpkgs/nixos-unstable"; 
         };
-        nixpkgs-unstable = {
+        nixpkgs-stable = {
             url = "github:NixOS/nixpkgs/nixos-24.05";
         };
         hyprland = {
@@ -28,12 +28,12 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixpkgs-unstable, ...} @inputs:
+    outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
         let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             overlay-unstable = final: prev: {
-                unstable = import inputs.nixpkgs-unstable {
+                unstable = import inputs.nixpkgs-stable {
                     inherit system;
                     config.allowUnfree = true;
                 };

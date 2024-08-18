@@ -1,42 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   ipuVersion = "ipu6ep";
-  #kernelSrc = "${pkgs.kernel.dev}/lib/modules/${pkgs.kernel.modDirVersion}/build";
-  #ivsc-driver = pkgs.stdenv.mkDerivation {
-  #  src = pkgs.fetchFromGitHub {
-  #    sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
-  #    owner = "intel";
-  #    repo = "ipu6-drivers";
-  #    rev = "10e247e046086970a9427988d5a454676515e43b";
-  #  };
-  #  passthru.moduleName = "ipu6";
-  #  nativeBuildInputs = pkgs.kernel.moduleBuildDependencies;
-  #  buildFlags = [
-  #    "KERNEL_SRC=${kernelSrc}"
-  #    "KERNELRELEASE=${pkgs.kernel.modDirVersion}"
-  #  ];
-  #  patchPhase = ''
-  #    cp -r ${ivsc-driver}/{backport-include,drivers,include} .
-  #    # For some reason, this copies with 555 instead of 755
-  #    chmod -R 755 backport-include drivers include 
-  #    '';
-  #  installPhase = ''
-  #    make -C ${kernelSrc} \
-  #    M=$(pwd) \
-  #    INSTALL_MOD_PATH=$out \
-  #    modules_install
-  #    cp -r include $out/
-  #    '';
-  #};
-  #ipu6-drivers = pkgs.stdenv.mkDerivation {
-  #  src = pkgs.fetchFromGitHub {
-  #    sha256 = "sha256-y3oxKdcAZXSe5tjhTOX018LsDEf5kh3bkClK8TwtdOQ=";
-  #    owner = "intel";
-  #    repo = "ipu6-drivers";
-  #    rev = "10e247e046086970a9427988d5a454676515e43b";
-  #  };
-  #};
   ipu6-camera-bins = pkgs.stdenv.mkDerivation {
+    name = "ipu6-camera-bins";
     src = pkgs.fetchFromGitHub {
       sha256 = "sha256-Vl+l43Ed2f7lL/iXG59wdrfyTrTohaYlL79+zDw805E=";
       owner = "intel";
@@ -50,6 +16,7 @@ let
       '';
   };
   ipu6ep-camera-hal = pkgs.stdenv.mkDerivation {
+    name = "ipu6ep-camera-hal";
     src = pkgs.fetchFromGitHub {
       sha256 = "sha256-o62ce5a1gqVMccOnfw9lto32sXutZtiV2BFUNATyiww=";
       owner = "intel";
@@ -94,59 +61,34 @@ let
         "-DUSE_STATIC_GRAPH=OFF"
     ];
   };
-  icamerasrc = pkgs.stdenv.mkDerivation {
-    src = pkgs.fetchFromGitHub {
-      sha256 = "sha256-6kYU0KqhgJnFGANwlCwUYpk5KWgcXVLFQwp8vZIa0fQ=";
-      owner = "intel";
-      repo = "icamerasrc";
-      rev = "3b7cdb93071360aacebb4e808ee71bb47cf90b30";
-    };
-    # Fix missing def
-    CHROME_SLIM_CAMHAL = "ON";
-    STRIP_VIRTUAL_CHANNEL_CAMHAL = "ON";
-
-    # I think their autoconf settings assume the plugs will be in the same directory as the main gstreamer headers
-    # which isn't true in Nix. I don't know autotools enough to patch it, so I'm just gonna hack this onto the end.
-    CPPFLAGS = "-I${pkgs.gst_all_1.gst-plugins-base.dev}/include/gstreamer-1.0";
-
-    nativeBuildInputs = with pkgs; [
-      autoreconfHook
-      pkg-config
-      gst_all_1.gst-plugins-base.dev
-    ];
-
-    buildInputs = with pkgs; [
-      libdrm
-    ];
-
-    propagatedBuildInputs = [
-      ipu6ep-camera-hal
-    ];
-  };
   ivsc-firmware = pkgs.stdenv.mkDerivation {
+    name = "ivsc-firmware";
     src = pkgs.fetchFromGitHub {
       sha256 = "sha256-GuD1oTnDEs0HslJjXx26DkVQIe0eS+js4UoaTDa77ME=";
       owner = "intel";
       repo = "ivsc-firmware";
       rev = "29c5eff4cdaf83e90ef2dcd2035a9cdff6343430";
     };
+    dontBuild = true;
+
     installPhase = ''
+      runHook preInstall
       mkdir -p $out/lib/firmware/vsc/soc_a1_prod
 
       cp firmware/ivsc_pkg_hi556_0.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_pkg_hi556_0_a1_prod.bin
       cp firmware/ivsc_skucfg_hi556_0_1.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_skucfg_hi556_0_1_a1_prod.bin
       cp firmware/ivsc_fw.bin $out/lib/firmware/vsc/soc_a1_prod/ivsc_fw_a1_prod.bin
+      runHook postInstall
       '';
   };
 in
 {
   environment.systemPackages = [
-    #ipu6-drivers
-    #ivsc-driver
     ipu6-camera-bins
-    ipu6ep-camera-hal
-    icamerasrc
-    #pkgs.gst_all_1.icamerasrc-ipu6ep
+    pkgs.ipu6-camera-bins
+    pkgs.linuxKernel.packages.linux_6_6.ipu6-drivers
+    pkgs.linuxKernel.packages.linux_6_6.ivsc-driver
+    pkgs.gst_all_1.icamerasrc-ipu6ep
     pkgs.gst_all_1.gstreamer
     pkgs.gst_all_1.gst-plugins-base
     pkgs.v4l-utils

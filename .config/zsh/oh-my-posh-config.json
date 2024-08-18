@@ -47,6 +47,14 @@
           "type": "root"
         },
         {
+          "type": "text",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "black",
+          "background": "white",
+          "template": " {{ if .Env.NIX_SHELL_TITLE }}{{ .Env.NIX_SHELL_TITLE }}{{end}} "
+        },
+        {
           "type": "cmake",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
