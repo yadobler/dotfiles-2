@@ -37,7 +37,7 @@
     };
 
     outputs = { self, nixpkgs, nixpkgs-stable, nix-ld, ...} @inputs:
-        let
+       let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             overlay-unstable = final: prev: {
@@ -54,8 +54,6 @@
                     ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
                         ./configuration.nix
                         ./detect-hp-spectre-x360.nix
-                        nix-ld.nixosModules.nix-ld
-                        { programs.nix-ld.dev.enable = true; }
                 ];
             };
         };

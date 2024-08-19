@@ -1,9 +1,8 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, ... }:
+let 
+    nixvim = inputs.nixvim.nixosModules.nixvim;
+in
 {
-    #programs.neovim = {
-    #    enable = true;
-    #};
-    environment.systemPackages = [
-        inputs.nixvim.packages.${system}.default
-    ];
+    imports = [ nixvim ];
+
 }
