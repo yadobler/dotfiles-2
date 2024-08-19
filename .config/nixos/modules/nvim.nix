@@ -1,9 +1,9 @@
-{ pkgs, inputs ... }:
+{ pkgs, inputs, system, ... }:
 {
-    programs.neovim = {
-        enable = true;
-    }
+    #programs.neovim = {
+    #    enable = true;
+    #};
     environment.systemPackages = [
-        inputs.nixvim-config.packages.${system}.default
+        inputs.nixvim.packages.${system}.default
     ];
 }
