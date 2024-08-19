@@ -48,8 +48,6 @@ in
                 WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
                 NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
                 GTK_THEME="Adwaita:dark";
-                # NIX_ENV="1";
-                # NIX_LD="$(nix eval --extra-experimental-features nix-command --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents \"\${pkgs.stdenv.cc}/nix-support/dynamic-linker\"; in NIX_LD')";
             };
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default

@@ -7,6 +7,10 @@
         nixpkgs-stable = {
             url = "github:NixOS/nixpkgs/nixos-24.05";
         };
+        nix-ld = {
+            url = "github:Mic92/nix-ld";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
             inputs.nixpkgs.follows = "nixpkgs";
@@ -26,9 +30,13 @@
         iio-hyprland = { 
             url = "github:JeanSchoeller/iio-hyprland";
         };
+        nixvim = {
+            url = "github:nix-community/nixvim";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
-    outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+    outputs = { self, nixpkgs, nixpkgs-stable, nix-ld, ...} @inputs:
         let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
@@ -46,6 +54,8 @@
                     ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-unstable ]; })
                         ./configuration.nix
                         ./detect-hp-spectre-x360.nix
+                        nix-ld.nixosModules.nix-ld
+                        { programs.nix-ld.dev.enable = true; }
                 ];
             };
         };

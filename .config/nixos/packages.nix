@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
     imports = [
         ./modules/hyprland.nix
         ./modules/gnome_polkit.nix
         ./modules/terminal.nix
         ./modules/thunar.nix
+        ./modules/nvim.nix
         #./modules/nemo.nix
     ];
 # Allow unfree packages
@@ -14,7 +15,6 @@
     programs = {
         git.enable = true;
         light.enable = true;
-        neovim.enable = true;
         zsh.enable = true;
         waybar.enable = true;
         xwayland.enable = true;
