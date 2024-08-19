@@ -1,11 +1,12 @@
 {
     description = "An example NixOS configuration";
     inputs = {
-        unstable = {
+        nixpkgs-unstable = {
+            #url = "github:NixOS/nixpkgs/nixos-24.05";
             url = "github:NixOS/nixpkgs/nixos-unstable"; 
         };
-        nixpkgs-stable = {
-            url = "github:NixOS/nixpkgs/nixos-24.05";
+        nixpkgs = {
+            url = "github:NixOS/nixpkgs/nixos-unstable"; 
         };
         nix-ld = {
             url = "github:Mic92/nix-ld";
@@ -32,16 +33,16 @@
         };
         nixvim = {
             url = "github:nix-community/nixvim";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
         };
     };
 
-    outputs = { self, nixpkgs, nixpkgs-stable, nix-ld, ...} @inputs:
-       let
+    outputs = { self, nixpkgs, nixpkgs-unstable, nix-ld, ...} @inputs:
+        let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
             overlay-unstable = final: prev: {
-                unstable = import inputs.nixpkgs-stable {
+                unstable = import inputs.nixpkgs-unstable {
                     inherit system;
                     config.allowUnfree = true;
                 };

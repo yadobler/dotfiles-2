@@ -83,10 +83,10 @@
             playerctl
 
             wallust
-            gnome.adwaita-icon-theme
+            adwaita-icon-theme
             adwaita-qt
             morewaita-icon-theme
-            gnome.gnome-tweaks
+            gnome-tweaks
             banana-cursor
             ];
 

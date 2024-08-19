@@ -70,11 +70,9 @@ in
 
 
         hardware = {
-            opengl =
+            graphics =
             {
                 enable = true;
-                driSupport = true;
-                driSupport32Bit = true;
                 package = pkgs.mesa.drivers;
                 package32 = pkgs.pkgsi686Linux.mesa.drivers;
             };

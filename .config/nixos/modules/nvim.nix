@@ -1,8 +1,9 @@
 { pkgs, inputs, ... }:
-let 
-    nixvim = inputs.nixvim.nixosModules.nixvim;
-in
 {
-    imports = [ nixvim ];
-
+    imports = [inputs.nixvim.nixosModules.nixvim];
+    programs.nixvim = {
+        enable = true;
+        colorschemes.gruvbox.enable = true;
+        plugins.lightline.enable = true;
+    };
 }
