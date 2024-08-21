@@ -1,35 +1,20 @@
 { pkgs, inputs, ... }:
+let 
+    jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
+    jarTestFiles = builtins.filter (file: builtins.match "com.microsoft.java.test.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarTestDir));
+    javaTestPath = if (jarTestFiles != []) then "${jarTestDir}/${builtins.head jarTestFiles}" else throw "No matching JAR file found!";
+    jarDebugDir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-test/server";
+    jarDebugFiles = builtins.filter (file: builtins.match "com.microsoft.java.debug.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarDebugDir));
+    javaDebugPath = if (jarDebugFiles != []) then "${jarDebugDir}/${builtins.head jarDebugFiles}" else throw "No matching JAR file found!";
+in
+in
 {
 	imports = [inputs.nixvim.nixosModules.nixvim];
 	programs.nixvim = {
 		enable = true;
 		#colorschemes.habemax.enable = true;
-		colorschemes.oxocarbon.enable = true;
-		plugins = {
-			lualine.enable = true;
-			gitsigns.enable = true;
-			comment.enable = true;
-			hop.enable = true;
-			which-key = {
-			    enable = true;
-			    settings.spec = [
-                    {__unkeyed-1 = "<leader>c"; "desc" =  "[C]ode";}
-                    {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ocument";}
-                    {__unkeyed-1 = "<leader>r"; "desc" =  "[R]ename";}
-                    {__unkeyed-1 = "<leader>s"; "desc" =  "[S]earch";}
-                    {__unkeyed-1 = "<leader>w"; "desc" =  "[W]orkspace";}
-                    {__unkeyed-1 = "<leader>t"; "desc" =  "[T]oggle";}
-                    {__unkeyed-1 = "<leader>h"; "desc" =  "Git [H]unk";}
-			    ];
-            };
-            telescope.enable = true;
-            rust-tools.enable = true;
-            #nvim-jdtls.enable = true;
-            markdown-preview.enable = true;
-            indent-blankline.enable = true;
-		};
+		colorschemes.tokyonight.enable = true;
 		extraPlugins = with pkgs.vimPlugins; [
-            oxocarbon-nvim
             nvim-web-devicons
             ccc-nvim 
             crates-nvim
@@ -49,8 +34,499 @@
         #       };
         #       })
 		# ];
+		plugins = {
+			lualine.enable = true;
+			gitsigns = {
+			    enable = true;
+                opts = {
+                    signs = {
+                        add = { text = '+' };
+                        change = { text = '~' };
+                        delete = { text = '_' };
+                        topdelete = { text = '‾' };
+                        changedelete = { text = '~' };
+                    };
+                };
+            };
+			comment.enable = true;
+			hop.enable = true;
+			impatient.enable = true;
+			vim-illuminate.enable = true;
+			persistence.enable = true;
+			nvim-pqf.enable = true;
+			todo-comments.enable = true;
+			which-key = {
+			    enable = true;
+			    settings.spec = [
+                    {__unkeyed-1 = "<leader>c"; "desc" =  "[C]ode";}
+                    {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ocument";}
+                    {__unkeyed-1 = "<leader>r"; "desc" =  "[R]ename";}
+                    {__unkeyed-1 = "<leader>s"; "desc" =  "[S]earch";}
+                    {__unkeyed-1 = "<leader>w"; "desc" =  "[W]orkspace";}
+                    {__unkeyed-1 = "<leader>t"; "desc" =  "[T]oggle";}
+                    {__unkeyed-1 = "<leader>h"; "desc" =  "Git [H]unk";}
+			    ];
+            };
+            telescope.enable = true;
+            markdown-preview = {
+                enable = true;
+                settings.theme = "dark";
+            };
+            indent-blankline = {
+                enable = true;
+                settings = {
+                    indent = {
+                        char = "│";
+                        tab_char = "";
+                        highlight = [
+                            "RainbowRed"
+                                "RainbowYellow"
+                                "RainbowBlue"
+                                "RainbowOrange"
+                                "RainbowGreen"
+                                "RainbowViolet"
+                                "RainbowCyan"
+                        ];
+                    };
+                    whitespace = {
+                        highlight = [
+                            "RainbowRed"
+                            "RainbowYellow"
+                            "RainbowBlue"
+                            "RainbowOrange"
+                            "RainbowGreen"
+                            "RainbowViolet"
+                            "RainbowCyan"
+                        ];
+                    };
+                    scope = {
+                        enabled = true;
+                        show_exact_scope = true;
+                    };
+                    exclude = {
+                        buftypes = ["terminal" "nofile"];
+                        filetypes = [
+                            "help"
+                            "alpha"
+                            "dashboard"
+                            "neo-tree"
+                            "Trouble"
+                            "trouble"
+                            "lazy"
+                            "mason"
+                            "notify"
+                            "toggleterm"
+                            "lazyterm"
+                        ];
+                    };
+                };
+            };
+            vim-sleuth.enable = true;
+            texmagic.enable = true;
+            nvim-lightbulb = true;
+            neo-tree = {
+                enable = true;
+                enableDiagnostics = true;
+                enableGitStatus = true;
+                enableModifiedMarkers = true;
+                enableRefreshOnWrite = true;
+                closeIfLastWindow = true;
+                popupBorderStyle = "single"; # Type: null or one of “NC”, “double”, “none”, “rounded”, “shadow”, “single”, “solid” or raw lua code
+                buffers = {
+                    bindToCwd = false;
+                    followCurrentFile.enabled = true;
+                };
+                window = {
+                    width = 40;
+                    height = 15;
+                    autoExpandWidth = false;
+                    mappings = {
+                        "<space>" = "none";
+                    };
+                };
+            };
+            cmp-nvim-lsp.enalbe = true;
+            cmp-buffer.enalbe = true;
+            cmp-path.enalbe = true;
+            cmp-cmdline.enalbe = true;
+            cmp_luasnip.enalbe = true;
+            luasnip = {
+                enable = true;
+                settings = {
+                    enable_autosnippets = true;
+                    store_selection_keys = "<Tab>";
+                };
+                fromVscode = [
+                {
+                    lazyLoad = true;
+                    paths = "${pkgs.vimPlugins.friendly-snippets}";
+                }
+                ];
+            };
+            lspkind = {
+                enable = true;
+                extraOptions = {
+                    mode = "symbol";
+                    maxwidth = 50;
+                    ellipsis_char = "...";
+                    menu = {
+                        buffer = "[Buffer]";
+                        nvim_lsp = "[LSP]";
+                        luasnip = "[LuaSnip]";
+                        nvim_lua = "[Lua]";
+                        latex_symbols = "[Latex]";
+                    };
+                };
+            }
+            cmp = {
+                enable = true;
+                settings = {
+                    snippet.expand.__raw = ''
+                        function(args)
+                            require('luasnip').lsp_expand(args.body)
+                        end
+                    '';
+                    completion.completeopt = "menu,menuone,noinsert";
+                    duplicates = {
+                        nvim_lsp = 1;
+                        luasnip = 1;
+                        cmp_tabnine = 1;
+                        buffer = 1;
+                        path = 1;
+                    };
+                    sources = [
+                        { name = "nvim_lsp"; priority = 1000 ,
+                        { name = "luasnip"; priority = 750 }
+                        { name = "buffer"; priority = 500 }
+                        { name = "path"; priority = 250 }
+                    ];
+                    window = {
+                        completion.border = "bordered";
+                        documentation.border = "bordered";
+                    }
+                    performance = {
+                        debounce = 60;
+                        fetching_timeout = 200;
+                        max_view_entries = 30;
+                    };
+                    mapping.__raw = ''
+                        local cmp = require('cmp')
+                        local luasnip = require("luasnip")
+                        local has_words_before = function()
+                        unpack = unpack or table.unpack
+                        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil                                                                                         
+                        end
+                        cmp.mapping.preset.insert({
+                                ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+                                ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+                                ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                                ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                                ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                                ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                                ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+                                ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+                                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+                                ['<C-e>'] = cmp.mapping.abort(),
+                                ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                                ["<Tab>"] = cmp.mapping(function(fallback)
+                                        if cmp.visible() then
+                                        cmp.select_next_item()
+                                        elseif luasnip.expand_or_jumpable() then
+                                        luasnip.expand_or_jump()
+                                        elseif has_words_before() then
+                                        cmp.complete()
+                                        else
+                                        fallback()
+                                        end
+                                        end, { "i", "s" }),
+                        })
+                    '';
+                };
+            };
+            project-nvim = {
+                enable = true;
+                enableTelescope = true;
+                patterns = [
+                    "Cargo.toml"
+                    "*.iml"
+                    "*.pdf"
+                    ".git"
+                    "_darcs"
+                    ".hg"
+                    ".bzr"
+                    ".svn"
+                    "Makefile"
+                    "package.json"
+                    "config"
+                    "config.*"
+                ];
+
+            };
+          dap = {
+              enable = true;
+              signs = {
+                  dapBreakpoint = {
+                      text = "●";
+                      texthl = "DapBreakpoint";
+                  };
+                  dapBreakpointCondition = {
+                      text = "●";
+                      texthl = "DapBreakpointCondition";
+                  };
+                  dapLogPoint = {
+                      text = "◆";
+                      texthl = "DapLogPoint";
+                  };
+              };
+              extensions = {
+                  dap-python = {
+                      enable = true;
+                  };
+                  dap-ui = {
+                      enable = true;
+                      floating.mappings = {
+                          close = ["<ESC>" "q"];
+                      };
+                  };
+                  dap-virtual-text = {
+                      enable = true;
+                  };
+              };
+              configurations = {
+                  java = [
+                  {
+                      type = "java";
+                      request = "launch";
+                      name = "Debug (Attach) - Remote";
+                      hostName = "127.0.0.1";
+                      port = 5005;
+                  }
+                  ];
+              };
+          };              
+            telescope = {
+                enable = true;
+                extensions = {
+                    fzf-native.enable = true;
+                    ui-select.enable = true;
+                    undo.enable = true;
+                }; 
+                settings = {
+                    defaults = {
+                        layout_config = {
+                            preview_cutoff = 50,
+                        },
+                        mappings = {
+                            i = {
+                                "<C-u>" = false;
+                                "<esc>".__raw = "require('telescope.actions').close";
+                            };
+                        };
+                    };
+                };
+            };	
+            trouble = {
+                enable = true;
+                settings.auto_close = true;
+            };
+            
+            conform-nvim = {
+                enable = true;
+                notifyOnError = true;
+                formattersByFt = {
+                    html = [["prettierd" "prettier"]];
+                    css = [["prettierd" "prettier"]];
+                    javascript = [["prettierd" "prettier"]];
+                    javascriptreact = [["prettierd" "prettier"]];
+                    typescript = [["prettierd" "prettier"]];
+                    typescriptreact = [["prettierd" "prettier"]];
+                    java = ["google-java-format"];
+                    python = ["black"];
+                    lua = ["stylua"];
+                    nix = ["alejandra"];
+                    markdown = [["prettierd" "prettier"]];
+                    rust = ["rustfmt"];
+                };
+            };
+           
+            none-ls = {
+                enable = false;
+                settings = {
+                    enableLspFormat = false;
+                    updateInInsert = false;
+                    onAttach = ''
+                        function(client, bufnr)
+                            require("lsp_signature").on_attach({
+                                bind = true, -- This is mandatory, otherwise border config won't get registered.
+                                    handler_opts = {
+                                        border = "single",
+                                    },
+                            }, bufnr)
+                            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+                            if client.supports_method "textDocument/formatting" then
+                                vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+                                vim.api.nvim_create_autocmd("BufWritePre", {
+                                group = augroup,
+                                buffer = bufnr,
+                                callback = function()
+                                    vim.lsp.buf.format { bufnr = bufnr }
+                                end,
+                                })
+                            end
+                        end
+                        '';
+                };
+                sources = {
+                    code_actions = {
+                        gitsigns.enable = true;
+                    };
+                    diagnostics = {
+                        checkstyle = {
+                            enable = true;
+                        };
+                        statix = {
+                            enable = true;
+                        };
+                    };
+                    formatting = {
+                        alejandra = {
+                            enable = true;
+                        };
+                        prettier = {
+                            enable = true;
+                            settings = ''
+                            {
+                                extra_args = { "--no-semi", "--single-quote" },
+                            }
+                            '';
+                        };
+                        google_java_format = {
+                            enable = true;
+                        };
+                        stylua = {
+                            enable = true;
+                        };
+                        black = {
+                            enable = true;
+                            settings = ''
+                            {
+                                extra_args = { "--fast" },
+                            }
+                            '';
+                        };
+                    };
+                };
+            };
+            lint = {
+                enable = true;
+                lintersByFt = {
+                    nix = ["statix"];
+                    lua = ["selene"];
+                    python = ["flake8"];
+                    javascript = ["eslint_d"];
+                    javascriptreact = ["eslint_d"];
+                    typescript = ["eslint_d"];
+                    typescriptreact = ["eslint_d"];
+                    json = ["jsonlint"];
+                    java = ["checkstyle"];
+                };
+            };
+
+            rust-tools.enable = true;
+            nvim-jdtls = {
+                enable = true;
+                cmd = [
+                    "${pkgs.jdt-language-server}/bin/jdtls"
+                ];
+                data = "~/.cache/jdtls/workspace";
+                settings = {
+                    java = {
+                        signatureHelp = true;
+                        completion = true;
+                    };
+                };
+                initOptions = {
+                    bundles = [
+                        "${javaTestPath}"
+                        "${javaDebugPath}"
+                    ];
+                };
+            };
+		};
+            treesitter = {
+                enable = true;
+                settings = {
+                    auto_install = true;
+                    sync_install = true;
+                    indent.enable = true;
+                    highlight = {
+                        enable = true;
+                        additional_vim_regex_highlighting = false;
+                        disable.__raw = ''
+                            function(lang, buf)
+                                local max_filesize = 100 * 1024 -- 100 KB
+                                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                                if ok and stats and stats.size > max_filesize then
+                                    return true
+                                end
+                            end,
+                        '';
+                    }
+                };
+                folding = true;
+                nixvimInjections = true;
+            };
+
 		extraConfigLua = ''
-		    
+            -- hypr.conf
+            local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+            parser_config.hypr = {
+                install_info = {
+                    url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+                    files = { "src/parser.c" },
+                    branch = "master",
+                },
+                filetype = "hypr",
+            }
+
+            -- indent highlights
+            local hooks = require "ibl.hooks"
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#FF0071" })
+                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#FFFB00" })
+                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#FFB151" })
+                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4CDB68" })
+                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#FF80FF" })
+                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+            end)
+
+            -- locale
+            vim.o.spelllang:append "cjk" -- disable spellchecking for asian characters (VIM algorithm does not support it)
+            vim.o.shortmess:append "c" -- don't show redundant messages from ins-completion-menu
+            vim.o.shortmess:append "I" -- don't show the default intro message
+            vim.o.whichwrap:append "<,>,[,],h,l";
+
+            require('telescope').setup{
+                pickers = {
+                    colorscheme = {
+                        enable_preview = true
+                    }
+                }
+            }
+            require'nvim-web-devicons'.setup {
+                override = {
+                    zsh = {
+                        icon = "",
+                        color = "#428850",
+                        cterm_color = "65",
+                        name = "Zsh"
+                    }
+                };
+                default = true;
+            }
+
             require('ccc').setup({
                 highlighter = {
                     auto_enable = true,
@@ -74,13 +550,387 @@
 		'';
 
 		keymaps = [
+		{ 
+		    buffer = "event.buf";
+			key = "gd";
+			action.__raw = "require('telescope.builtin').lsp_definitions";
+			desc = "LSP: [G]oto [D]efinition";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "gr";
+			action.__raw = "require('telescope.builtin').lsp_references";
+			desc = "LSP: [G]oto [R]eferences";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "gI";
+			action.__raw = "require('telescope.builtin').lsp_implementations";
+			desc = "LSP: [G]oto [I]mplementation";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "<leader>D";
+			action.__raw = "require('telescope.builtin').lsp_type_definitions";
+			desc = "LSP: Type [D]efinition";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "<leader>ds";
+			action.__raw = "require('telescope.builtin').lsp_document_symbols";
+			desc = "LSP: [D]ocument [S]ymbols";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "<leader>ws";
+			action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+			desc = "LSP: [W]orkspace [S]ymbols";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "<leader>rn";
+			action.__raw = "vim.lsp.buf.rename";
+			desc = "LSP: [R]e[n]ame";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "<leader>ca";
+			action.__raw = "vim.lsp.buf.code_action";
+			desc = "LSP: [C]ode [A]ction";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "K";
+			action.__raw = "vim.lsp.buf.hover";
+			desc = "LSP: Hover Documentation";
+			mode = "n";
+		}
+		{ 
+		    buffer = "event.buf";
+			key = "gD";
+			action.__raw = "vim.lsp.buf.declaration";
+			desc = "LSP: [G]oto [D]eclaration";
+			mode = "n";
+        }
+		{
+            mode = "n";
+            key = "<leader>uf";
+            action = ":FormatToggle<CR>";
+            options = {
+                desc = "Toggle Format";
+                silent = true;
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>cf";
+            action = "<cmd>lua require('conform').format()<cr>";
+            options = {
+                silent = true;
+                desc = "Format Buffer";
+            };
+        }
+
+        {
+            mode = "v";
+            key = "<leader>cF";
+            action = "<cmd>lua require('conform').format()<cr>";
+            options = {
+                silent = true;
+                desc = "Format Lines";
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>x";
+            action = "+diagnostics/quickfix";
+        }
+        {
+            mode = "n";
+            key = "<leader>xx";
+            action = "<cmd>TroubleToggle<cr>";
+            options = {
+                silent = true;
+                desc = "Document Diagnostics (Trouble)";
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>xX";
+            action = "<cmd>TroubleToggle workspace_diagnostics<cr>";
+            options = {
+                silent = true;
+                desc = "Workspace Diagnostics (Trouble)";
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>xt";
+            action = "<cmd>TroubleToggle todo<cr>";
+            options = {
+                silent = true;
+                desc = "Todo (Trouble)";
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>xQ";
+            action = "<cmd>TodoQuickFix<cr>";
+            options = {
+                silent = true;
+                desc = "Quickfix List (Trouble)";
+            };
+        }
+        {
+            mode = "n";
+            key = "<leader>dB";
+            action = "
+                <cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>
+                ";
+            options = {
+                silent = true;
+                desc = "Breakpoint Condition";
+            };
+        }
+        {
+          mode = "n";
+          key = "<leader>db";
+          action = ":DapToggleBreakpoint<cr>";
+          options = {
+            silent = true;
+            desc = "Toggle Breakpoint";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dc";
+          action = ":DapContinue<cr>";
+          options = {
+            silent = true;
+            desc = "Continue";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>da";
+          action = "<cmd>lua require('dap').continue({ before = get_args })<cr>";
+          options = {
+            silent = true;
+            desc = "Run with Args";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dC";
+          action = "<cmd>lua require('dap').run_to_cursor()<cr>";
+          options = {
+            silent = true;
+            desc = "Run to cursor";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dg";
+          action = "<cmd>lua require('dap').goto_()<cr>";
+          options = {
+            silent = true;
+            desc = "Go to line (no execute)";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>di";
+          action = ":DapStepInto<cr>";
+          options = {
+            silent = true;
+            desc = "Step into";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dj";
+          action = "
+            <cmd>lua require('dap').down()<cr>
+          ";
+          options = {
+            silent = true;
+            desc = "Down";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dk";
+          action = "<cmd>lua require('dap').up()<cr>";
+          options = {
+            silent = true;
+            desc = "Up";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dl";
+          action = "<cmd>lua require('dap').run_last()<cr>";
+          options = {
+            silent = true;
+            desc = "Run Last";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>do";
+          action = ":DapStepOut<cr>";
+          options = {
+            silent = true;
+            desc = "Step Out";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dO";
+          action = ":DapStepOver<cr>";
+          options = {
+            silent = true;
+            desc = "Step Over";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dp";
+          action = "<cmd>lua require('dap').pause()<cr>";
+          options = {
+            silent = true;
+            desc = "Pause";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dr";
+          action = ":DapToggleRepl<cr>";
+          options = {
+            silent = true;
+            desc = "Toggle REPL";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>ds";
+          action = "<cmd>lua require('dap').session()<cr>";
+          options = {
+            silent = true;
+            desc = "Session";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dt";
+          action = ":DapTerminate<cr>";
+          options = {
+            silent = true;
+            desc = "Terminate";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>du";
+          action = "<cmd>lua require('dapui').toggle()<cr>";
+          options = {
+            silent = true;
+            desc = "Dap UI";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>dw";
+          action = "<cmd>lua require('dap.ui.widgets').hover()<cr>";
+          options = {
+            silent = true;
+            desc = "Widgets";
+          };
+        }
+        {
+          mode = ["n" "v"];
+          key = "<leader>de";
+          action = "<cmd>lua require('dapui').eval()<cr>";
+          options = {
+            silent = true;
+            desc = "Eval";
+          };
+        }
 			{
 				mode = "n";
 				key = "<Esc>";
 				action = "<cmd>nohlsearch<CR>";
 			}
+            {
+                mode = "n";
+                key = "<leader>cp";
+                action = "<cmd>MarkdownPreview<cr>";
+                options = {
+                    desc = "Markdown Preview";
+                };
+            }
+            { mode = "n"; key = "<leader>sh";       action.__raw = "require('telescope.builtin').help_tags"; desc = "[S]earch [H]elp";
+            { mode = "n"; key = "<leader>sk";       action.__raw = "require('telescope.builtin').keymaps"; desc = "[S]earch [K]eymaps";
+            { mode = "n"; key = "<leader>sf";       action.__raw = "require('telescope.builtin').find_files"; desc = "[S]earch [F]iles";
+            { mode = "n"; key = "<leader>ss";       action.__raw = "require('telescope.builtin').builtin"; desc = "[S]earch [S]elect Telescope";
+            { mode = "n"; key = "<leader>sw";       action.__raw = "require('telescope.builtin').grep_string"; desc = "[S]earch current [W]ord";
+            { mode = "n"; key = "<leader>sg";       action.__raw = "require('telescope.builtin').live_grep"; desc = "[S]earch by [G]rep";
+            { mode = "n"; key = "<leader>sd";       action.__raw = "require('telescope.builtin').diagnostics"; desc = "[S]earch [D]iagnostics";
+            { mode = "n"; key = "<leader>sr";       action.__raw = "require('telescope.builtin').resume"; desc = "[S]earch [R]esume";
+            { mode = "n"; key = "<leader>s.";       action.__raw = "require('telescope.builtin').oldfiles"; desc = "[S]earch Recent Files ('.' for repeat)";
+            { mode = "n"; key = "<leader><leader>"; action.__raw = "require('telescope.builtin').buffers"; desc = "[ ] Find existing buffers";
+            { 
+                mode = "n"; key = "<leader>/"; action.__raw = ''
+                function()
+                require(telescope.builtin).current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+                    winblend = 10,
+                    previewer = false,
+                })
+                end 
+                    '';
+                desc = "[/] Fuzzily search in current buffer";
+            }
+
+            { 
+                mode = "n"; key = "<leader>s/"; action.__raw = ''
+                function()
+                require(telescope.builtin).live_grep {
+                    grep_open_files = true,
+                    prompt_title = 'Live Grep in Open Files',
+                }
+                end 
+                '';
+                desc = "[S]earch [/] in Open Files";
+            }
+            { 
+                mode = "n"; key = "<leader>sn"; action.__raw = ''
+                    function()
+                    require(telescope.builtin).find_files { cwd = vim.fn.stdpath 'config' }
+                end
+                '';
+                desc = "[S]earch [N]eovim files";
 		];
 
+
+        globals.rainbow_delimiters.__raw = ''
+            {highlight = {
+                "RainbowRed",
+                "RainbowYellow",
+                "RainbowBlue",
+                "RainbowOrange",
+                "RainbowGreen",
+                "RainbowViolet",
+                "RainbowCyan",
+            }}
+        '';
 		globals.autochdir = false;
 		globals.loaded_netrw = 1;
 		globals.loaded_newrwPlugin = 1;
@@ -94,12 +944,6 @@
 		opts.laststatus = 2;
 		opts.background = "dark";
 		opts.backspace = "indent,eol,start";
-
-		# locale
-		#opts.spelllang:append "cjk"; # disable spellchecking for asian characters (VIM algorithm does not support it)
-		#opts.shortmess:append "c"; # don't show redundant messages from ins-completion-menu
-		#opts.shortmess:append "I"; # don't show the default intro message
-		#opts.whichwrap:append "<,>,[,],h,l";
 
 		# Timeouts
 		opts.timeoutlen = 500;
@@ -160,6 +1004,33 @@
 			foldsep = "│";
 			foldclose = "▸";
 		};
+        kind_icons = {
+            Text = "󰊄";
+            Method = "";
+            Function = "󰡱";
+            Constructor = "";
+            Field = "";
+            Variable = "󱀍";
+            Class = "";
+            Interface = "";
+            Module = "󰕳";
+            Property = "";
+            Unit = "";
+            Value = "";
+            Enum = "";
+            Keyword = "";
+            Snippet = "";
+            Color = "";
+            File = "";
+            Reference = "";
+            Folder = "";
+            EnumMember = "";
+            Constant = "";
+            Struct = "";
+            Event = "";
+            Operator = "";
+            TypeParameter = "";
+        };
 
 		# leader keys
 		globals.mapleader = " ";

@@ -42,7 +42,8 @@ cmp.setup {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = 
+    cmp.mapping.preset.insert({
         ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
         ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
