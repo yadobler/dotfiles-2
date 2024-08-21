@@ -1,73 +1,82 @@
 { pkgs, inputs, ... }:
 let 
-    jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
-    jarTestFiles = builtins.filter (file: builtins.match "com.microsoft.java.test.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarTestDir));
-    javaTestPath = if (jarTestFiles != []) then "${jarTestDir}/${builtins.head jarTestFiles}" else throw "No matching JAR file found!";
-    jarDebugDir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-test/server";
-    jarDebugFiles = builtins.filter (file: builtins.match "com.microsoft.java.debug.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarDebugDir));
-    javaDebugPath = if (jarDebugFiles != []) then "${jarDebugDir}/${builtins.head jarDebugFiles}" else throw "No matching JAR file found!";
-in
+jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
+jarTestFiles = builtins.filter (file: builtins.match "com.microsoft.java.test.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarTestDir));
+javaTestPath = if (jarTestFiles != []) then "${jarTestDir}/${builtins.head jarTestFiles}" else throw "No matching JAR file found!";
+
+jarDebugDir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
+jarDebugFiles = builtins.filter (file: builtins.match "com.microsoft.java.debug.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarDebugDir));
+javaDebugPath = if (jarDebugFiles != []) then "${jarDebugDir}/${builtins.head jarDebugFiles}" else throw "No matching JAR file found!";
 in
 {
-	imports = [inputs.nixvim.nixosModules.nixvim];
-	programs.nixvim = {
-		enable = true;
-		#colorschemes.habemax.enable = true;
-		colorschemes.tokyonight.enable = true;
-		extraPlugins = with pkgs.vimPlugins; [
+    imports = [inputs.nixvim.nixosModules.nixvim];
+    programs.nixvim = {
+        enable = true;
+#       colorschemes.habemax.enable = true;
+        colorschemes.tokyonight.enable = true;
+        highlight = {
+            "RainbowRed" = { fg = "#FF0071" ;};
+            "RainbowYellow" = { fg = "#FFFB00" ;};
+            "RainbowBlue" = { fg = "#61AFEF" ;};
+            "RainbowOrange" = { fg = "#FFB151" ;};
+            "RainbowGreen" = { fg = "#4CDB68" ;};
+            "RainbowViolet" = { fg = "#FF80FF" ;};
+            "RainbowCyan" = { fg = "#56B6C2" ;};
+        };
+        extraPlugins = with pkgs.vimPlugins; [
             nvim-web-devicons
-            ccc-nvim 
-            crates-nvim
-            neodev-nvim
-			#mini-icons-nvim
-            #tree-sitter-hyprlang
-		]; 
-		# ++[
-        #      (pkgs.vimUtils.buildVimPlugin {
-        #       pname = "tree-sitter-hyprlang";
-        #       version = "0.0.1";
-        #       src = pkgs.fetchFromGitHub {
-        #       owner = "luckasRanarison";
-        #       repo = "tree-sitter-hyprlang";
-        #       rev = "";
-        #       hash = "sha256-w6yn8aNcJMLRbzaRuj3gj4x2J/20wUROLM6j39wpZek=";
-        #       };
-        #       })
-		# ];
-		plugins = {
-			lualine.enable = true;
-			gitsigns = {
-			    enable = true;
-                opts = {
+                ccc-nvim 
+                crates-nvim
+                neodev-nvim
+                impatient-nvim
+                nvim-pqf
+                vim-illuminate
+                vim-sleuth
+#               mini-icons-nvim
+#               tree-sitter-hyprlang
+        ]; 
+#       ++[
+#            (pkgs.vimUtils.buildVimPlugin {
+#             pname = "tree-sitter-hyprlang";
+#             version = "0.0.1";
+#             src = pkgs.fetchFromGitHub {
+#             owner = "luckasRanarison";
+#             repo = "tree-sitter-hyprlang";
+#             rev = "";
+#             hash = "sha256-w6yn8aNcJMLRbzaRuj3gj4x2J/20wUROLM6j39wpZek=";
+#             };
+#             })
+#       ];
+        plugins = {
+            lualine.enable = true;
+            gitsigns = {
+                enable = true;
+                settings = {
                     signs = {
-                        add = { text = '+' };
-                        change = { text = '~' };
-                        delete = { text = '_' };
-                        topdelete = { text = '‾' };
-                        changedelete = { text = '~' };
+                        add = { text = "+"; };
+                        change = { text = "~"; };
+                        delete = { text = "_"; };
+                        topdelete = { text = "‾"; };
+                        changedelete = { text = "~"; };
                     };
                 };
             };
-			comment.enable = true;
-			hop.enable = true;
-			impatient.enable = true;
-			vim-illuminate.enable = true;
-			persistence.enable = true;
-			nvim-pqf.enable = true;
-			todo-comments.enable = true;
-			which-key = {
-			    enable = true;
-			    settings.spec = [
-                    {__unkeyed-1 = "<leader>c"; "desc" =  "[C]ode";}
-                    {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ocument";}
-                    {__unkeyed-1 = "<leader>r"; "desc" =  "[R]ename";}
-                    {__unkeyed-1 = "<leader>s"; "desc" =  "[S]earch";}
-                    {__unkeyed-1 = "<leader>w"; "desc" =  "[W]orkspace";}
-                    {__unkeyed-1 = "<leader>t"; "desc" =  "[T]oggle";}
-                    {__unkeyed-1 = "<leader>h"; "desc" =  "Git [H]unk";}
-			    ];
+            comment.enable = true;
+            hop.enable = true;
+            persistence.enable = true;
+            todo-comments.enable = true;
+            which-key = {
+                enable = true;
+                settings.spec = [
+                {__unkeyed-1 = "<leader>c"; "desc" =  "[C]ode";}
+                {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ocument";}
+                {__unkeyed-1 = "<leader>r"; "desc" =  "[R]ename";}
+                {__unkeyed-1 = "<leader>s"; "desc" =  "[S]earch";}
+                {__unkeyed-1 = "<leader>w"; "desc" =  "[W]orkspace";}
+                {__unkeyed-1 = "<leader>t"; "desc" =  "[T]oggle";}
+                {__unkeyed-1 = "<leader>h"; "desc" =  "Git [H]unk";}
+                ];
             };
-            telescope.enable = true;
             markdown-preview = {
                 enable = true;
                 settings.theme = "dark";
@@ -91,39 +100,23 @@ in
                     whitespace = {
                         highlight = [
                             "RainbowRed"
-                            "RainbowYellow"
-                            "RainbowBlue"
-                            "RainbowOrange"
-                            "RainbowGreen"
-                            "RainbowViolet"
-                            "RainbowCyan"
+                                "RainbowYellow"
+                                "RainbowBlue"
+                                "RainbowOrange"
+                                "RainbowGreen"
+                                "RainbowViolet"
+                                "RainbowCyan"
                         ];
                     };
                     scope = {
                         enabled = true;
                         show_exact_scope = true;
                     };
-                    exclude = {
-                        buftypes = ["terminal" "nofile"];
-                        filetypes = [
-                            "help"
-                            "alpha"
-                            "dashboard"
-                            "neo-tree"
-                            "Trouble"
-                            "trouble"
-                            "lazy"
-                            "mason"
-                            "notify"
-                            "toggleterm"
-                            "lazyterm"
-                        ];
-                    };
                 };
+                
             };
-            vim-sleuth.enable = true;
-            texmagic.enable = true;
-            nvim-lightbulb = true;
+#           texmagic.enable = true;
+            nvim-lightbulb.enable = true;
             neo-tree = {
                 enable = true;
                 enableDiagnostics = true;
@@ -132,10 +125,10 @@ in
                 enableRefreshOnWrite = true;
                 closeIfLastWindow = true;
                 popupBorderStyle = "single"; # Type: null or one of “NC”, “double”, “none”, “rounded”, “shadow”, “single”, “solid” or raw lua code
-                buffers = {
-                    bindToCwd = false;
-                    followCurrentFile.enabled = true;
-                };
+                    buffers = {
+                        bindToCwd = false;
+                        followCurrentFile.enabled = true;
+                    };
                 window = {
                     width = 40;
                     height = 15;
@@ -145,11 +138,11 @@ in
                     };
                 };
             };
-            cmp-nvim-lsp.enalbe = true;
-            cmp-buffer.enalbe = true;
-            cmp-path.enalbe = true;
-            cmp-cmdline.enalbe = true;
-            cmp_luasnip.enalbe = true;
+            cmp-nvim-lsp.enable = true;
+            cmp-buffer.enable = true;
+            cmp-path.enable = true;
+            cmp-cmdline.enable = true;
+            cmp_luasnip.enable = true;
             luasnip = {
                 enable = true;
                 settings = {
@@ -177,7 +170,7 @@ in
                         latex_symbols = "[Latex]";
                     };
                 };
-            }
+            };
             cmp = {
                 enable = true;
                 settings = {
@@ -185,7 +178,7 @@ in
                         function(args)
                             require('luasnip').lsp_expand(args.body)
                         end
-                    '';
+                        '';
                     completion.completeopt = "menu,menuone,noinsert";
                     duplicates = {
                         nvim_lsp = 1;
@@ -195,52 +188,53 @@ in
                         path = 1;
                     };
                     sources = [
-                        { name = "nvim_lsp"; priority = 1000 ,
-                        { name = "luasnip"; priority = 750 }
-                        { name = "buffer"; priority = 500 }
-                        { name = "path"; priority = 250 }
+                    { name = "nvim_lsp"; priority = 1000;}
+                    { name = "luasnip"; priority = 750;}
+                    { name = "buffer"; priority = 500;}
+                    { name = "path"; priority = 250;}
                     ];
                     window = {
-                        completion.border = "bordered";
-                        documentation.border = "bordered";
-                    }
+                        completion.border = "single";
+                        documentation.border = "single";
+                    };
                     performance = {
                         debounce = 60;
                         fetching_timeout = 200;
                         max_view_entries = 30;
                     };
                     mapping.__raw = ''
-                        local cmp = require('cmp')
-                        local luasnip = require("luasnip")
-                        local has_words_before = function()
-                        unpack = unpack or table.unpack
-                        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil                                                                                         
-                        end
-                        cmp.mapping.preset.insert({
-                                ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-                                ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-                                ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-                                ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-                                ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-                                ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-                                ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-                                ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-                                ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-                                ['<C-e>'] = cmp.mapping.abort(),
-                                ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                                ["<Tab>"] = cmp.mapping(function(fallback)
-                                        if cmp.visible() then
-                                        cmp.select_next_item()
-                                        elseif luasnip.expand_or_jumpable() then
-                                        luasnip.expand_or_jump()
-                                        elseif has_words_before() then
-                                        cmp.complete()
-                                        else
-                                        fallback()
-                                        end
-                                        end, { "i", "s" }),
-                        })
+                           cmp.mapping.preset.insert({
+                                   ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+                                   ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+                                   ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                                   ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                                   ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+                                   ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+                                   ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+                                   ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+                                   ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+                                   ['<C-e>'] = cmp.mapping.abort(),
+                                   ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                                   ["<Tab>"] = cmp.mapping(
+                                   function(fallback)
+                                       local cmp = require('cmp')
+                                       local luasnip = require("luasnip")
+                                       local has_words_before = function()
+                                           unpack = unpack or table.unpack
+                                           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+                                           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil                                                                                         
+                                       end
+                                       if cmp.visible() then
+                                           cmp.select_next_item()
+                                       elseif luasnip.expand_or_jumpable() then
+                                           luasnip.expand_or_jump()
+                                       elseif has_words_before() then
+                                           cmp.complete()
+                                       else
+                                           fallback()
+                                   end
+                                   end, { "i", "s" }),
+                           })
                     '';
                 };
             };
@@ -249,62 +243,62 @@ in
                 enableTelescope = true;
                 patterns = [
                     "Cargo.toml"
-                    "*.iml"
-                    "*.pdf"
-                    ".git"
-                    "_darcs"
-                    ".hg"
-                    ".bzr"
-                    ".svn"
-                    "Makefile"
-                    "package.json"
-                    "config"
-                    "config.*"
+                        "*.iml"
+                        "*.pdf"
+                        ".git"
+                        "_darcs"
+                        ".hg"
+                        ".bzr"
+                        ".svn"
+                        "Makefile"
+                        "package.json"
+                        "config"
+                        "config.*"
                 ];
 
             };
-          dap = {
-              enable = true;
-              signs = {
-                  dapBreakpoint = {
-                      text = "●";
-                      texthl = "DapBreakpoint";
-                  };
-                  dapBreakpointCondition = {
-                      text = "●";
-                      texthl = "DapBreakpointCondition";
-                  };
-                  dapLogPoint = {
-                      text = "◆";
-                      texthl = "DapLogPoint";
-                  };
-              };
-              extensions = {
-                  dap-python = {
-                      enable = true;
-                  };
-                  dap-ui = {
-                      enable = true;
-                      floating.mappings = {
-                          close = ["<ESC>" "q"];
-                      };
-                  };
-                  dap-virtual-text = {
-                      enable = true;
-                  };
-              };
-              configurations = {
-                  java = [
-                  {
-                      type = "java";
-                      request = "launch";
-                      name = "Debug (Attach) - Remote";
-                      hostName = "127.0.0.1";
-                      port = 5005;
-                  }
-                  ];
-              };
-          };              
+            dap = {
+                enable = true;
+                signs = {
+                    dapBreakpoint = {
+                        text = "●";
+                        texthl = "DapBreakpoint";
+                    };
+                    dapBreakpointCondition = {
+                        text = "●";
+                        texthl = "DapBreakpointCondition";
+                    };
+                    dapLogPoint = {
+                        text = "◆";
+                        texthl = "DapLogPoint";
+                    };
+                };
+                extensions = {
+                    dap-python = {
+                        enable = true;
+                    };
+                    dap-ui = {
+                        enable = true;
+                        floating.mappings = {
+                            close = ["<ESC>" "q"];
+                        };
+                    };
+                    dap-virtual-text = {
+                        enable = true;
+                    };
+                };
+                configurations = {
+                    java = [
+                    {
+                        type = "java";
+                        request = "launch";
+                        name = "Debug (Attach) - Remote";
+                        hostName = "127.0.0.1";
+                        port = 5005;
+                    }
+                    ];
+                };
+            };
             telescope = {
                 enable = true;
                 extensions = {
@@ -315,8 +309,8 @@ in
                 settings = {
                     defaults = {
                         layout_config = {
-                            preview_cutoff = 50,
-                        },
+                            preview_cutoff = 50;
+                        };
                         mappings = {
                             i = {
                                 "<C-u>" = false;
@@ -330,7 +324,6 @@ in
                 enable = true;
                 settings.auto_close = true;
             };
-            
             conform-nvim = {
                 enable = true;
                 notifyOnError = true;
@@ -349,7 +342,6 @@ in
                     rust = ["rustfmt"];
                 };
             };
-           
             none-ls = {
                 enable = false;
                 settings = {
@@ -357,23 +349,23 @@ in
                     updateInInsert = false;
                     onAttach = ''
                         function(client, bufnr)
-                            require("lsp_signature").on_attach({
+                        require("lsp_signature").on_attach({
                                 bind = true, -- This is mandatory, otherwise border config won't get registered.
-                                    handler_opts = {
-                                        border = "single",
-                                    },
-                            }, bufnr)
-                            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-                            if client.supports_method "textDocument/formatting" then
-                                vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-                                vim.api.nvim_create_autocmd("BufWritePre", {
-                                group = augroup,
-                                buffer = bufnr,
-                                callback = function()
-                                    vim.lsp.buf.format { bufnr = bufnr }
-                                end,
-                                })
+                                handler_opts = {
+                                border = "single",
+                                },
+                                }, bufnr)
+                    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+                        if client.supports_method "textDocument/formatting" then
+                            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                            group = augroup,
+                            buffer = bufnr,
+                            callback = function()
+                            vim.lsp.buf.format { bufnr = bufnr }
                             end
+                            })
+                    end
                         end
                         '';
                 };
@@ -418,6 +410,29 @@ in
                     };
                 };
             };
+            treesitter = {
+                enable = true;
+                settings = {
+                    auto_install = true;
+                    sync_install = true;
+                    indent.enable = true;
+                    highlight = {
+                        enable = true;
+                        additional_vim_regex_highlighting = false;
+                        disable.__raw = ''
+                            function(lang, buf)
+                            local max_filesize = 100 * 1024 -- 100 KB
+                            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                            if ok and stats and stats.size > max_filesize then
+                                return true
+                                    end
+                                    end
+                                    '';
+                    };
+                };
+                folding = true;
+                nixvimInjections = true;
+            };
             lint = {
                 enable = true;
                 lintersByFt = {
@@ -432,7 +447,6 @@ in
                     java = ["checkstyle"];
                 };
             };
-
             rust-tools.enable = true;
             nvim-jdtls = {
                 enable = true;
@@ -449,36 +463,30 @@ in
                 initOptions = {
                     bundles = [
                         "${javaTestPath}"
-                        "${javaDebugPath}"
+                            "${javaDebugPath}"
                     ];
                 };
             };
-		};
-            treesitter = {
-                enable = true;
-                settings = {
-                    auto_install = true;
-                    sync_install = true;
-                    indent.enable = true;
-                    highlight = {
-                        enable = true;
-                        additional_vim_regex_highlighting = false;
-                        disable.__raw = ''
-                            function(lang, buf)
-                                local max_filesize = 100 * 1024 -- 100 KB
-                                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                                if ok and stats and stats.size > max_filesize then
-                                    return true
-                                end
-                            end,
-                        '';
-                    }
-                };
-                folding = true;
-                nixvimInjections = true;
-            };
+        };
+        extraConfigLua = ''
 
-		extraConfigLua = ''
+            -- locale
+            vim.o.spelllang = vim.o.spelllang .. ",cjk" -- disable spellchecking for asian characters (VIM algorithm does not support it)
+            vim.o.shortmess = vim.o.shortmess .. "c" -- don't show redundant messages from ins-completion-menu
+            vim.o.shortmess = vim.o.shortmess .. "I" -- don't show the default intro message
+            vim.o.whichwrap = vim.o.whichwrap .. ",<,>,[,],h,l"
+            
+            require('ibl.hooks').register(require('ibl.hooks').type.HIGHLIGHT_SETUP,
+                        function()
+                        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#FF0071" })
+                        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#FFFB00" })
+                        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+                        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#FFB151" })
+                        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4CDB68" })
+                        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#FF80FF" })
+                        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+                        end
+            )
             -- hypr.conf
             local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
             parser_config.hypr = {
@@ -490,137 +498,119 @@ in
                 filetype = "hypr",
             }
 
-            -- indent highlights
-            local hooks = require "ibl.hooks"
-            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#FF0071" })
-                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#FFFB00" })
-                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#FFB151" })
-                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4CDB68" })
-                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#FF80FF" })
-                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-            end)
-
-            -- locale
-            vim.o.spelllang:append "cjk" -- disable spellchecking for asian characters (VIM algorithm does not support it)
-            vim.o.shortmess:append "c" -- don't show redundant messages from ins-completion-menu
-            vim.o.shortmess:append "I" -- don't show the default intro message
-            vim.o.whichwrap:append "<,>,[,],h,l";
-
-            require('telescope').setup{
-                pickers = {
-                    colorscheme = {
-                        enable_preview = true
-                    }
+        require('telescope').setup{
+            pickers = {
+                colorscheme = {
+                    enable_preview = true
                 }
             }
-            require'nvim-web-devicons'.setup {
-                override = {
-                    zsh = {
-                        icon = "",
-                        color = "#428850",
-                        cterm_color = "65",
-                        name = "Zsh"
-                    }
-                };
-                default = true;
-            }
+        }
+        require'nvim-web-devicons'.setup {
+            override = {
+                zsh = {
+                    icon = "",
+                    color = "#428850",
+                    cterm_color = "65",
+                    name = "Zsh"
+                }
+            };
+            default = true;
+        }
 
-            require('ccc').setup({
+        require('ccc').setup({
                 highlighter = {
-                    auto_enable = true,
-                    lsp = true,
+                auto_enable = true,
+                lsp = true,
                 },
                 DEFAULT_OPTIONS = {
-                    RGB      = true;         -- #RGB hex codes
-                    RRGGBB   = true;         -- #RRGGBB hex codes
-                    names    = true;         -- "Name" codes like Blue
-                    RRGGBBAA = true;        -- #RRGGBBAA hex codes
-                    rgb_fn   = true;        -- CSS rgb() and rgba() functions
-                    hsl_fn   = true;        -- CSS hsl() and hsla() functions
-                    css      = true;        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-                    css_fn   = true;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
-                    -- Available modes: foreground, background
-                    mode     = 'background'; -- Set the display mode.
+                RGB      = true;         -- #RGB hex codes
+                RRGGBB   = true;         -- #RRGGBB hex codes
+                names    = true;         -- "Name" codes like Blue
+                RRGGBBAA = true;        -- #RRGGBBAA hex codes
+                rgb_fn   = true;        -- CSS rgb() and rgba() functions
+                hsl_fn   = true;        -- CSS hsl() and hsla() functions
+                css      = true;        -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                css_fn   = true;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                -- Available modes: foreground, background
+                mode     = 'background'; -- Set the display mode.
                 }
-            })
+                })
 
 
-		'';
+        '';
 
-		keymaps = [
-		{ 
-		    buffer = "event.buf";
-			key = "gd";
-			action.__raw = "require('telescope.builtin').lsp_definitions";
-			desc = "LSP: [G]oto [D]efinition";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "gr";
-			action.__raw = "require('telescope.builtin').lsp_references";
-			desc = "LSP: [G]oto [R]eferences";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "gI";
-			action.__raw = "require('telescope.builtin').lsp_implementations";
-			desc = "LSP: [G]oto [I]mplementation";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "<leader>D";
-			action.__raw = "require('telescope.builtin').lsp_type_definitions";
-			desc = "LSP: Type [D]efinition";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "<leader>ds";
-			action.__raw = "require('telescope.builtin').lsp_document_symbols";
-			desc = "LSP: [D]ocument [S]ymbols";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "<leader>ws";
-			action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
-			desc = "LSP: [W]orkspace [S]ymbols";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "<leader>rn";
-			action.__raw = "vim.lsp.buf.rename";
-			desc = "LSP: [R]e[n]ame";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "<leader>ca";
-			action.__raw = "vim.lsp.buf.code_action";
-			desc = "LSP: [C]ode [A]ction";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "K";
-			action.__raw = "vim.lsp.buf.hover";
-			desc = "LSP: Hover Documentation";
-			mode = "n";
-		}
-		{ 
-		    buffer = "event.buf";
-			key = "gD";
-			action.__raw = "vim.lsp.buf.declaration";
-			desc = "LSP: [G]oto [D]eclaration";
-			mode = "n";
+        keymaps = [
+        { 
+            
+            key = "gd";
+            action.__raw = "require('telescope.builtin').lsp_definitions";
+            options.desc = "LSP: [G]oto [D]efinition";
+            mode = "n";
         }
-		{
+        { 
+            
+            key = "gr";
+            action.__raw = "require('telescope.builtin').lsp_references";
+            options.desc = "LSP: [G]oto [R]eferences";
+            mode = "n";
+        }
+        { 
+            
+            key = "gI";
+            action.__raw = "require('telescope.builtin').lsp_implementations";
+            options.desc = "LSP: [G]oto [I]mplementation";
+            mode = "n";
+        }
+        { 
+            
+            key = "<leader>D";
+            action.__raw = "require('telescope.builtin').lsp_type_definitions";
+            options.desc = "LSP: Type [D]efinition";
+            mode = "n";
+        }
+        { 
+            
+            key = "<leader>ds";
+            action.__raw = "require('telescope.builtin').lsp_document_symbols";
+            options.desc = "LSP: [D]ocument [S]ymbols";
+            mode = "n";
+        }
+        { 
+            
+            key = "<leader>ws";
+            action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+            options.desc = "LSP: [W]orkspace [S]ymbols";
+            mode = "n";
+        }
+        { 
+            
+            key = "<leader>rn";
+            action.__raw = "vim.lsp.buf.rename";
+            options.desc = "LSP: [R]e[n]ame";
+            mode = "n";
+        }
+        { 
+            
+            key = "<leader>ca";
+            action.__raw = "vim.lsp.buf.code_action";
+            options.desc = "LSP: [C]ode [A]ction";
+            mode = "n";
+        }
+        { 
+            
+            key = "K";
+            action.__raw = "vim.lsp.buf.hover";
+            options.desc = "LSP: Hover Documentation";
+            mode = "n";
+        }
+        { 
+            
+            key = "gD";
+            action.__raw = "vim.lsp.buf.declaration";
+            options.desc = "LSP: [G]oto [D]eclaration";
+            mode = "n";
+        }
+        {
             mode = "n";
             key = "<leader>uf";
             action = ":FormatToggle<CR>";
@@ -701,354 +691,326 @@ in
             };
         }
         {
-          mode = "n";
-          key = "<leader>db";
-          action = ":DapToggleBreakpoint<cr>";
-          options = {
-            silent = true;
-            desc = "Toggle Breakpoint";
-          };
+            mode = "n";
+            key = "<leader>db";
+            action = ":DapToggleBreakpoint<cr>";
+            options = {
+                silent = true;
+                desc = "Toggle Breakpoint";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dc";
-          action = ":DapContinue<cr>";
-          options = {
-            silent = true;
-            desc = "Continue";
-          };
+            mode = "n";
+            key = "<leader>dc";
+            action = ":DapContinue<cr>";
+            options = {
+                silent = true;
+                desc = "Continue";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>da";
-          action = "<cmd>lua require('dap').continue({ before = get_args })<cr>";
-          options = {
-            silent = true;
-            desc = "Run with Args";
-          };
+            mode = "n";
+            key = "<leader>da";
+            action = "<cmd>lua require('dap').continue({ before = get_args })<cr>";
+            options = {
+                silent = true;
+                desc = "Run with Args";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dC";
-          action = "<cmd>lua require('dap').run_to_cursor()<cr>";
-          options = {
-            silent = true;
-            desc = "Run to cursor";
-          };
+            mode = "n";
+            key = "<leader>dC";
+            action = "<cmd>lua require('dap').run_to_cursor()<cr>";
+            options = {
+                silent = true;
+                desc = "Run to cursor";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dg";
-          action = "<cmd>lua require('dap').goto_()<cr>";
-          options = {
-            silent = true;
-            desc = "Go to line (no execute)";
-          };
+            mode = "n";
+            key = "<leader>dg";
+            action = "<cmd>lua require('dap').goto_()<cr>";
+            options = {
+                silent = true;
+                desc = "Go to line (no execute)";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>di";
-          action = ":DapStepInto<cr>";
-          options = {
-            silent = true;
-            desc = "Step into";
-          };
+            mode = "n";
+            key = "<leader>di";
+            action = ":DapStepInto<cr>";
+            options = {
+                silent = true;
+                desc = "Step into";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dj";
-          action = "
-            <cmd>lua require('dap').down()<cr>
-          ";
-          options = {
-            silent = true;
-            desc = "Down";
-          };
+            mode = "n";
+            key = "<leader>dj";
+            action = "
+                <cmd>lua require('dap').down()<cr>
+                ";
+            options = {
+                silent = true;
+                desc = "Down";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dk";
-          action = "<cmd>lua require('dap').up()<cr>";
-          options = {
-            silent = true;
-            desc = "Up";
-          };
+            mode = "n";
+            key = "<leader>dk";
+            action = "<cmd>lua require('dap').up()<cr>";
+            options = {
+                silent = true;
+                desc = "Up";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dl";
-          action = "<cmd>lua require('dap').run_last()<cr>";
-          options = {
-            silent = true;
-            desc = "Run Last";
-          };
+            mode = "n";
+            key = "<leader>dl";
+            action = "<cmd>lua require('dap').run_last()<cr>";
+            options = {
+                silent = true;
+                desc = "Run Last";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>do";
-          action = ":DapStepOut<cr>";
-          options = {
-            silent = true;
-            desc = "Step Out";
-          };
+            mode = "n";
+            key = "<leader>do";
+            action = ":DapStepOut<cr>";
+            options = {
+                silent = true;
+                desc = "Step Out";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dO";
-          action = ":DapStepOver<cr>";
-          options = {
-            silent = true;
-            desc = "Step Over";
-          };
+            mode = "n";
+            key = "<leader>dO";
+            action = ":DapStepOver<cr>";
+            options = {
+                silent = true;
+                desc = "Step Over";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dp";
-          action = "<cmd>lua require('dap').pause()<cr>";
-          options = {
-            silent = true;
-            desc = "Pause";
-          };
+            mode = "n";
+            key = "<leader>dp";
+            action = "<cmd>lua require('dap').pause()<cr>";
+            options = {
+                silent = true;
+                desc = "Pause";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dr";
-          action = ":DapToggleRepl<cr>";
-          options = {
-            silent = true;
-            desc = "Toggle REPL";
-          };
+            mode = "n";
+            key = "<leader>dr";
+            action = ":DapToggleRepl<cr>";
+            options = {
+                silent = true;
+                desc = "Toggle REPL";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>ds";
-          action = "<cmd>lua require('dap').session()<cr>";
-          options = {
-            silent = true;
-            desc = "Session";
-          };
+            mode = "n";
+            key = "<leader>ds";
+            action = "<cmd>lua require('dap').session()<cr>";
+            options = {
+                silent = true;
+                desc = "Session";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dt";
-          action = ":DapTerminate<cr>";
-          options = {
-            silent = true;
-            desc = "Terminate";
-          };
+            mode = "n";
+            key = "<leader>dt";
+            action = ":DapTerminate<cr>";
+            options = {
+                silent = true;
+                desc = "Terminate";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>du";
-          action = "<cmd>lua require('dapui').toggle()<cr>";
-          options = {
-            silent = true;
-            desc = "Dap UI";
-          };
+            mode = "n";
+            key = "<leader>du";
+            action = "<cmd>lua require('dapui').toggle()<cr>";
+            options = {
+                silent = true;
+                desc = "Dap UI";
+            };
         }
         {
-          mode = "n";
-          key = "<leader>dw";
-          action = "<cmd>lua require('dap.ui.widgets').hover()<cr>";
-          options = {
-            silent = true;
-            desc = "Widgets";
-          };
+            mode = "n";
+            key = "<leader>dw";
+            action = "<cmd>lua require('dap.ui.widgets').hover()<cr>";
+            options = {
+                silent = true;
+                desc = "Widgets";
+            };
         }
         {
-          mode = ["n" "v"];
-          key = "<leader>de";
-          action = "<cmd>lua require('dapui').eval()<cr>";
-          options = {
-            silent = true;
-            desc = "Eval";
-          };
+            mode = ["n" "v"];
+            key = "<leader>de";
+            action = "<cmd>lua require('dapui').eval()<cr>";
+            options = {
+                silent = true;
+                desc = "Eval";
+            };
         }
-			{
-				mode = "n";
-				key = "<Esc>";
-				action = "<cmd>nohlsearch<CR>";
-			}
-            {
-                mode = "n";
-                key = "<leader>cp";
-                action = "<cmd>MarkdownPreview<cr>";
-                options = {
-                    desc = "Markdown Preview";
-                };
-            }
-            { mode = "n"; key = "<leader>sh";       action.__raw = "require('telescope.builtin').help_tags"; desc = "[S]earch [H]elp";
-            { mode = "n"; key = "<leader>sk";       action.__raw = "require('telescope.builtin').keymaps"; desc = "[S]earch [K]eymaps";
-            { mode = "n"; key = "<leader>sf";       action.__raw = "require('telescope.builtin').find_files"; desc = "[S]earch [F]iles";
-            { mode = "n"; key = "<leader>ss";       action.__raw = "require('telescope.builtin').builtin"; desc = "[S]earch [S]elect Telescope";
-            { mode = "n"; key = "<leader>sw";       action.__raw = "require('telescope.builtin').grep_string"; desc = "[S]earch current [W]ord";
-            { mode = "n"; key = "<leader>sg";       action.__raw = "require('telescope.builtin').live_grep"; desc = "[S]earch by [G]rep";
-            { mode = "n"; key = "<leader>sd";       action.__raw = "require('telescope.builtin').diagnostics"; desc = "[S]earch [D]iagnostics";
-            { mode = "n"; key = "<leader>sr";       action.__raw = "require('telescope.builtin').resume"; desc = "[S]earch [R]esume";
-            { mode = "n"; key = "<leader>s.";       action.__raw = "require('telescope.builtin').oldfiles"; desc = "[S]earch Recent Files ('.' for repeat)";
-            { mode = "n"; key = "<leader><leader>"; action.__raw = "require('telescope.builtin').buffers"; desc = "[ ] Find existing buffers";
-            { 
-                mode = "n"; key = "<leader>/"; action.__raw = ''
+        {
+            mode = "n";
+            key = "<Esc>";
+            action = "<cmd>nohlsearch<CR>";
+        }
+        {
+            mode = "n";
+            key = "<leader>cp";
+            action = "<cmd>MarkdownPreview<cr>";
+            options = {
+                desc = "Markdown Preview";
+            };
+        }
+        { mode = "n"; key = "<leader>sh";       action.__raw = "require('telescope.builtin').help_tags"; options.desc = "[S]earch [H]elp";}
+        { mode = "n"; key = "<leader>sk";       action.__raw = "require('telescope.builtin').keymaps"; options.desc = "[S]earch [K]eymaps";}
+        { mode = "n"; key = "<leader>sf";       action.__raw = "require('telescope.builtin').find_files"; options.desc = "[S]earch [F]iles";}
+        { mode = "n"; key = "<leader>ss";       action.__raw = "require('telescope.builtin').builtin"; options.desc = "[S]earch [S]elect Telescope";}
+        { mode = "n"; key = "<leader>sw";       action.__raw = "require('telescope.builtin').grep_string"; options.desc = "[S]earch current [W]ord";}
+        { mode = "n"; key = "<leader>sg";       action.__raw = "require('telescope.builtin').live_grep"; options.desc = "[S]earch by [G]rep";}
+        { mode = "n"; key = "<leader>sd";       action.__raw = "require('telescope.builtin').diagnostics"; options.desc = "[S]earch [D]iagnostics";}
+        { mode = "n"; key = "<leader>sr";       action.__raw = "require('telescope.builtin').resume"; options.desc = "[S]earch [R]esume";}
+        { mode = "n"; key = "<leader>s.";       action.__raw = "require('telescope.builtin').oldfiles"; options.desc = "[S]earch Recent Files ('.' for repeat)";}
+        { mode = "n"; key = "<leader><leader>"; action.__raw = "require('telescope.builtin').buffers"; options.desc = "[ ] Find existing buffers";}
+        { 
+            mode = "n"; key = "<leader>/"; action.__raw = ''
                 function()
                 require(telescope.builtin).current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-                    winblend = 10,
-                    previewer = false,
-                })
-                end 
-                    '';
-                desc = "[/] Fuzzily search in current buffer";
-            }
+                        winblend = 10,
+                        previewer = false,
+                        })
+            end 
+                '';
+            options.desc = "[/] Fuzzily search in current buffer";
+        }
 
-            { 
-                mode = "n"; key = "<leader>s/"; action.__raw = ''
+        { 
+            mode = "n"; key = "<leader>s/"; action.__raw = ''
                 function()
                 require(telescope.builtin).live_grep {
                     grep_open_files = true,
-                    prompt_title = 'Live Grep in Open Files',
+                                    prompt_title = 'Live Grep in Open Files',
                 }
-                end 
+            end 
                 '';
-                desc = "[S]earch [/] in Open Files";
-            }
-            { 
-                mode = "n"; key = "<leader>sn"; action.__raw = ''
-                    function()
-                    require(telescope.builtin).find_files { cwd = vim.fn.stdpath 'config' }
-                end
+            options.desc = "[S]earch [/] in Open Files";
+        }
+        { 
+            mode = "n"; key = "<leader>sn"; action.__raw = ''
+                function()
+                require(telescope.builtin).find_files { cwd = vim.fn.stdpath 'config' }
+            end
                 '';
-                desc = "[S]earch [N]eovim files";
-		];
-
+            options.desc = "[S]earch [N]eovim files";
+        }
+        ];
 
         globals.rainbow_delimiters.__raw = ''
-            {highlight = {
-                "RainbowRed",
-                "RainbowYellow",
-                "RainbowBlue",
-                "RainbowOrange",
-                "RainbowGreen",
-                "RainbowViolet",
-                "RainbowCyan",
-            }}
+                    {highlight = {
+                         "RainbowRed",
+                         "RainbowYellow",
+                         "RainbowBlue",
+                         "RainbowOrange",
+                         "RainbowGreen",
+                         "RainbowViolet",
+                         "RainbowCyan",
+                     }}
         '';
-		globals.autochdir = false;
-		globals.loaded_netrw = 1;
-		globals.loaded_newrwPlugin = 1;
+        globals.autochdir = false;
+        globals.loaded_netrw = 1;
+        globals.loaded_newrwPlugin = 1;
 
-		# Display
-		globals.have_nerd_font = true;
-		opts.termguicolors = true;
-		opts.guifont = "FiraCode NFP:h13";
-		opts.encoding = "utf-8";
-		opts.showmode = false;
-		opts.laststatus = 2;
-		opts.background = "dark";
-		opts.backspace = "indent,eol,start";
+# Display
+        globals.have_nerd_font = true;
+        opts.termguicolors = true;
+        opts.guifont = "FiraCode NFP:h13";
+        opts.encoding = "utf-8";
+        opts.showmode = false;
+        opts.laststatus = 2;
+        opts.background = "dark";
+        opts.backspace = "indent,eol,start";
 
-		# Timeouts
-		opts.timeoutlen = 500;
-		opts.ttimeout = true;
-		opts.ttimeoutlen = 5;
-		opts.updatetime = 250;
+# Timeouts
+        opts.timeoutlen = 500;
+        opts.ttimeout = true;
+        opts.ttimeoutlen = 5;
+        opts.updatetime = 250;
 
-		# Visual Updating
-		opts.signcolumn = "yes";
-		opts.scrolloff = 5;
-		opts.showmatch = true;
-		opts.errorbells = false;
+# Visual Updating
+        opts.signcolumn = "yes";
+        opts.scrolloff = 5;
+        opts.showmatch = true;
+        opts.errorbells = false;
 
-		# Mouse
-		opts.mouse = "nv";
-		opts.mousefocus = true;
+# Mouse
+        opts.mouse = "nv";
+        opts.mousefocus = true;
 
-		# Numbering
-		opts.number = true;
-		opts.relativenumber = true;
-		opts.ruler = false;
+# Numbering
+        opts.number = true;
+        opts.relativenumber = true;
+        opts.ruler = false;
 
-		# Autoformatting
-		opts.autoindent = true;
-		opts.expandtab = true;
-		opts.shiftwidth = 4;
-		opts.tabstop = 4;
-		opts.softtabstop = 4;
-		opts.smartindent = true;
-		opts.wrap = false;
-		opts.foldenable = true;
-		opts.foldlevel = 99;
-		opts.foldlevelstart = 99;
-		opts.foldmethod = "manual";
-		opts.copyindent = true;
+# Autoformatting
+        opts.autoindent = true;
+        opts.expandtab = true;
+        opts.shiftwidth = 4;
+        opts.tabstop = 4;
+        opts.softtabstop = 4;
+        opts.smartindent = true;
+        opts.wrap = false;
+        opts.foldenable = true;
+        opts.foldlevel = 99;
+        opts.foldlevelstart = 99;
+        opts.foldmethod = "manual";
+        opts.copyindent = true;
 
-		# Search
-		opts.ignorecase = true;
-		opts.smartcase = true;
-		opts.hlsearch = true;
+# Search
+        opts.ignorecase = true;
+        opts.smartcase = true;
+        opts.hlsearch = true;
 
-		# Metadata
-		opts.history = 100;
-		opts.undofile = true;
+# Metadata
+        opts.history = 100;
+        opts.undofile = true;
 
-		# Preview substitutions live, as you type!
-		opts.inccommand = "split";
+# Preview substitutions live, as you type!
+        opts.inccommand = "split";
 
-		# Fillchars
-		opts.fillchars = {
-			vert = "│";
-			fold = "⠀";
-			eob = " ";
-			# suppress ~ at EndOfBuffer
-			diff = "░"; # alternatives = ⣿ ░ ─ ╱
-			msgsep = "‾";
-			foldopen = "▾";
-			foldsep = "│";
-			foldclose = "▸";
-		};
-        kind_icons = {
-            Text = "󰊄";
-            Method = "";
-            Function = "󰡱";
-            Constructor = "";
-            Field = "";
-            Variable = "󱀍";
-            Class = "";
-            Interface = "";
-            Module = "󰕳";
-            Property = "";
-            Unit = "";
-            Value = "";
-            Enum = "";
-            Keyword = "";
-            Snippet = "";
-            Color = "";
-            File = "";
-            Reference = "";
-            Folder = "";
-            EnumMember = "";
-            Constant = "";
-            Struct = "";
-            Event = "";
-            Operator = "";
-            TypeParameter = "";
+# Fillchars
+        opts.fillchars = {
+            vert = "│";
+            fold = "⠀";
+            eob = " ";
+# suppress ~ at EndOfBuffer
+            diff = "░"; # alternatives = ⣿ ░ ─ ╱
+                msgsep = "‾";
+            foldopen = "▾";
+            foldsep = "│";
+            foldclose = "▸";
         };
+# leader keys
+        globals.mapleader = " ";
+        globals.localmapleader = " ";
 
-		# leader keys
-		globals.mapleader = " ";
-		globals.localmapleader = " ";
-
-		autoCmd = [
-		{
-			# restore cursor
-			command = "silent! normal! g`\"zv";
-			desc = "return cursor to where it was last time closing the file";
-			pattern = ["*"];
-			event = ["BufWinEnter"];
-		}
-		{
-			command = "normal! <Cmd>noh<cr>";
-			event = ["InsertEnter"];
-			pattern = ["*"];
-		}
-		];
-	};
+        autoCmd = [
+        {
+#       restore cursor
+            command = "silent! normal! g`\"zv";
+            desc = "return cursor to where it was last time closing the file";
+            pattern = ["*"];
+            event = ["BufWinEnter"];
+        }
+        {
+            command = "normal! <Cmd>noh<cr>";
+            event = ["InsertEnter"];
+            pattern = ["*"];
+        }
+        ];
+    };
 }
