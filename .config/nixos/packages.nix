@@ -51,6 +51,7 @@
             go
             zig
             cargo
+            rustc
             nil # nix lsp
             poetry
 

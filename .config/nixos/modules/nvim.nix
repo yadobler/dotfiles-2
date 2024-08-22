@@ -328,6 +328,7 @@ in
                 enable = true;
                 notifyOnError = true;
                 formattersByFt = {
+                    c = ["astyle"];
                     html = [["prettierd" "prettier"]];
                     css = [["prettierd" "prettier"]];
                     javascript = [["prettierd" "prettier"]];
@@ -342,71 +343,42 @@ in
                     rust = ["rustfmt"];
                 };
             };
-            none-ls = {
-                enable = false;
-                settings = {
-                    enableLspFormat = false;
-                    updateInInsert = false;
-                    onAttach = ''
-                        function(client, bufnr)
-                        require("lsp_signature").on_attach({
-                                bind = true, -- This is mandatory, otherwise border config won't get registered.
-                                handler_opts = {
-                                border = "single",
-                                },
-                                }, bufnr)
-                    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-                        if client.supports_method "textDocument/formatting" then
-                            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
-                            buffer = bufnr,
-                            callback = function()
-                            vim.lsp.buf.format { bufnr = bufnr }
-                            end
-                            })
-                    end
-                        end
-                        '';
-                };
-                sources = {
-                    code_actions = {
-                        gitsigns.enable = true;
+            lsp = {
+                enable = true;
+    #                onAttach = ''
+    #                        function(client, bufnr)
+    #                            require("lsp_signature").on_attach({
+    #                                bind = true, -- This is mandatory, otherwise border config won't get registered.
+    #                                handler_opts = {
+    #                                    border = "single",
+    #                                },
+    #                            }, bufnr)
+    #                            vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    #                            if client.supports_method "textDocument/formatting" then
+    #                                vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+    #                                vim.api.nvim_create_autocmd("BufWritePre", {
+    #                                    group = augroup,
+    #                                    buffer = bufnr,
+    #                                    callback = function()
+    #                                        vim.lsp.buf.format { bufnr = bufnr }
+    #                                    end
+    #                                })
+    #                            end
+    #                        end
+    #                        '';
+                servers = {
+                    clangd = {
+                        enable = true;
                     };
-                    diagnostics = {
-                        checkstyle = {
-                            enable = true;
-                        };
-                        statix = {
-                            enable = true;
-                        };
-                    };
-                    formatting = {
-                        alejandra = {
-                            enable = true;
-                        };
-                        prettier = {
-                            enable = true;
-                            settings = ''
-                            {
-                                extra_args = { "--no-semi", "--single-quote" },
-                            }
-                            '';
-                        };
-                        google_java_format = {
-                            enable = true;
-                        };
-                        stylua = {
-                            enable = true;
-                        };
-                        black = {
-                            enable = true;
-                            settings = ''
-                            {
-                                extra_args = { "--fast" },
-                            }
-                            '';
-                        };
+                    gleam.enable = true;
+                    jdtls.enable = true;
+                    lua-ls.enable = true;
+                    nil-ls.enable = true;
+                    pylsp.enable = true;
+                    rust-analyzer = {
+                        enable = true;
+                        installCargo = false;
+                        installRustc = false;
                     };
                 };
             };
@@ -448,6 +420,7 @@ in
                 };
             };
             rust-tools.enable = true;
+            clangd-extensions.enable = true;
             nvim-jdtls = {
                 enable = true;
                 cmd = [
@@ -540,8 +513,7 @@ in
         '';
 
         keymaps = [
-        { 
-            
+        {  
             key = "gd";
             action.__raw = "require('telescope.builtin').lsp_definitions";
             options.desc = "LSP: [G]oto [D]efinition";
