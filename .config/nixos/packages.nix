@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
     imports = [
         ./modules/hyprland.nix
@@ -62,6 +62,7 @@
             swayimg
             clapper
             unstable.spotify
+            teams-for-linux
 
             imagemagick
             ffmpeg
@@ -89,6 +90,10 @@
             morewaita-icon-theme
             gnome-tweaks
             banana-cursor
+
+            jetbrains.idea-community
+            arduino
+            
             ];
 
 # Font

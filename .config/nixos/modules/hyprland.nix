@@ -48,6 +48,11 @@ in
                 WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
                 NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
                 GTK_THEME="Adwaita:dark";
+                _JAVA_AWT_WM_NONEREPARENTING="1";
+                GTK_IM_MODULE="fcitx";
+                QT_IM_MODULE="fcitx";
+                SDL_IM_MODULE="fcitx";
+                XMODIFIERS="@im=fcitx";
             };
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default

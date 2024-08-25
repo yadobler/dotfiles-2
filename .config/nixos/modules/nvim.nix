@@ -7,6 +7,11 @@ javaTestPath = if (jarTestFiles != []) then "${jarTestDir}/${builtins.head jarTe
 jarDebugDir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
 jarDebugFiles = builtins.filter (file: builtins.match "com.microsoft.java.debug.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarDebugDir));
 javaDebugPath = if (jarDebugFiles != []) then "${jarDebugDir}/${builtins.head jarDebugFiles}" else throw "No matching JAR file found!";
+
+lldbDebugPath = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+jdtlsPath = "${pkgs.jdt-language-server}/bin/jdtls";
+javaExecutablePath = "${pkgs.openjdk17}/bin/java";
+
 in
 {
     imports = [inputs.nixvim.nixosModules.nixvim];
@@ -25,15 +30,24 @@ in
         };
         extraPlugins = with pkgs.vimPlugins; [
             nvim-web-devicons
-                ccc-nvim 
-                crates-nvim
-                neodev-nvim
-                impatient-nvim
-                nvim-pqf
-                vim-illuminate
-                vim-sleuth
-#               mini-icons-nvim
-#               tree-sitter-hyprlang
+            ccc-nvim 
+            crates-nvim
+            neodev-nvim
+            impatient-nvim
+            nvim-pqf
+            vim-illuminate
+            vim-sleuth
+        ] ++ [
+            pkgs.alejandra
+            pkgs.astyle
+            pkgs.black
+            pkgs.google-java-format
+            pkgs.prettierd
+            pkgs.rustfmt
+            pkgs.stylua
+            pkgs.lldb_19
+            pkgs.python3
+            pkgs.python312Packages.six
         ]; 
 #       ++[
 #            (pkgs.vimUtils.buildVimPlugin {
@@ -69,7 +83,7 @@ in
                 enable = true;
                 settings.spec = [
                 {__unkeyed-1 = "<leader>c"; "desc" =  "[C]ode";}
-                {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ocument";}
+                {__unkeyed-1 = "<leader>d"; "desc" =  "[D]ebug";}
                 {__unkeyed-1 = "<leader>r"; "desc" =  "[R]ename";}
                 {__unkeyed-1 = "<leader>s"; "desc" =  "[S]earch";}
                 {__unkeyed-1 = "<leader>w"; "desc" =  "[W]orkspace";}
@@ -273,6 +287,15 @@ in
                         texthl = "DapLogPoint";
                     };
                 };
+                adapters.servers = {
+                    codelldb = {
+                        port = "\${port}";
+                        executable = {
+                            command = "${lldbDebugPath}";
+                            args = ["--port" "\${port}"];
+                        };
+                    }; 
+                };
                 extensions = {
                     dap-python = {
                         enable = true;
@@ -288,14 +311,29 @@ in
                     };
                 };
                 configurations = {
+                    c = [
+                        {
+                            name = "Launch file";
+                            type = "codelldb";
+                            request = "launch";
+                            program.__raw = ''
+                                function()
+                                    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                                end
+                            '';
+                            cwd = "\${workspaceFolder}";
+                            stopOnEntry = false;
+                        }
+                    ];
+                    
                     java = [
-                    {
-                        type = "java";
-                        request = "launch";
-                        name = "Debug (Attach) - Remote";
-                        hostName = "127.0.0.1";
-                        port = 5005;
-                    }
+                        {
+                            type = "java";
+                            request = "launch";
+                            name = "Debug (Attach) - Remote";
+                            hostName = "127.0.0.1";
+                            port = 5005;
+                        }
                     ];
                 };
             };
@@ -371,15 +409,10 @@ in
                         enable = true;
                     };
                     gleam.enable = true;
-                    jdtls.enable = true;
+                    jdt-language-server.enable = true;
                     lua-ls.enable = true;
                     nil-ls.enable = true;
                     pylsp.enable = true;
-                    rust-analyzer = {
-                        enable = true;
-                        installCargo = false;
-                        installRustc = false;
-                    };
                 };
             };
             treesitter = {
@@ -393,13 +426,13 @@ in
                         additional_vim_regex_highlighting = false;
                         disable.__raw = ''
                             function(lang, buf)
-                            local max_filesize = 100 * 1024 -- 100 KB
-                            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-                            if ok and stats and stats.size > max_filesize then
-                                return true
-                                    end
-                                    end
-                                    '';
+                                local max_filesize = 100 * 1024 -- 100 KB
+                                local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                                if ok and stats and stats.size > max_filesize then
+                                    return true
+                                end
+                            end
+                            '';
                     };
                 };
                 folding = true;
@@ -408,23 +441,22 @@ in
             lint = {
                 enable = true;
                 lintersByFt = {
-                    nix = ["statix"];
-                    lua = ["selene"];
-                    python = ["flake8"];
-                    javascript = ["eslint_d"];
-                    javascriptreact = ["eslint_d"];
-                    typescript = ["eslint_d"];
-                    typescriptreact = ["eslint_d"];
-                    json = ["jsonlint"];
+                    c = ["clangtidy"];
                     java = ["checkstyle"];
+                    json = ["jsonlint"];
+                    lua = ["selene"];
+                    markdown = ["markdownlint"];
+                    nix = ["nix"];
+                    python = ["flake8" "pylint"];
                 };
             };
-            rust-tools.enable = true;
             clangd-extensions.enable = true;
+            rustaceanvim.enable = true;
             nvim-jdtls = {
                 enable = true;
                 cmd = [
-                    "${pkgs.jdt-language-server}/bin/jdtls"
+                    "${jdtlsPath}" 
+                    "--java-executable" "${javaExecutablePath}"
                 ];
                 data = "~/.cache/jdtls/workspace";
                 settings = {
@@ -436,7 +468,7 @@ in
                 initOptions = {
                     bundles = [
                         "${javaTestPath}"
-                            "${javaDebugPath}"
+                        "${javaDebugPath}"
                     ];
                 };
             };
@@ -535,14 +567,14 @@ in
         }
         { 
             
-            key = "<leader>D";
+            key = "<leader>cd";
             action.__raw = "require('telescope.builtin').lsp_type_definitions";
             options.desc = "LSP: Type [D]efinition";
             mode = "n";
         }
         { 
             
-            key = "<leader>ds";
+            key = "<leader>cs";
             action.__raw = "require('telescope.builtin').lsp_document_symbols";
             options.desc = "LSP: [D]ocument [S]ymbols";
             mode = "n";
@@ -584,15 +616,6 @@ in
         }
         {
             mode = "n";
-            key = "<leader>uf";
-            action = ":FormatToggle<CR>";
-            options = {
-                desc = "Toggle Format";
-                silent = true;
-            };
-        }
-        {
-            mode = "n";
             key = "<leader>cf";
             action = "<cmd>lua require('conform').format()<cr>";
             options = {
@@ -600,7 +623,6 @@ in
                 desc = "Format Buffer";
             };
         }
-
         {
             mode = "v";
             key = "<leader>cF";
@@ -618,7 +640,7 @@ in
         {
             mode = "n";
             key = "<leader>xx";
-            action = "<cmd>TroubleToggle<cr>";
+            action = "<cmd>Trouble diagnostics<cr>";
             options = {
                 silent = true;
                 desc = "Document Diagnostics (Trouble)";
@@ -627,7 +649,7 @@ in
         {
             mode = "n";
             key = "<leader>xX";
-            action = "<cmd>TroubleToggle workspace_diagnostics<cr>";
+            action = "<cmd>Trouble workspace_diagnostics<cr>";
             options = {
                 silent = true;
                 desc = "Workspace Diagnostics (Trouble)";
@@ -636,7 +658,7 @@ in
         {
             mode = "n";
             key = "<leader>xt";
-            action = "<cmd>TroubleToggle todo<cr>";
+            action = "<cmd>Trouble todo<cr>";
             options = {
                 silent = true;
                 desc = "Todo (Trouble)";
