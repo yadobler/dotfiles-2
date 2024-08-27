@@ -95,7 +95,9 @@
 #[script-test]
 #    summary = "*script*"
 #    script = dunst_test.sh
-
+[ignore]
+    summary = "Wayland Diagnose"
+    skip_display = true
 #[ignore]
 #    # This notification will not be displayed
 #    summary = "foobar"

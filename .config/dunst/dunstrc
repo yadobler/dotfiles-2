@@ -432,6 +432,9 @@
 #    # This notification will not be displayed
 #    summary = "foobar"
 #    skip_display = true
+[ignore]
+    summary = "Wayland Diagnose"
+    skip_display = true
 
 #[history-ignore]
 #    # This notification will not be saved in history
