@@ -5,7 +5,7 @@ GenericName=Web Browser
 StartupNotify=true
 StartupWMClass=brave-browser
 TryExec=brave
-Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime %U
+Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland %U
 Terminal=false
 Icon=brave-desktop
 Type=Application

@@ -144,6 +144,7 @@
             "wheel"
             "video"
             "bluetooth"
+            "dialout"
         ];
         shell = pkgs.zsh;
     };

@@ -62,7 +62,6 @@
             swayimg
             clapper
             unstable.spotify
-            teams-for-linux
 
             imagemagick
             ffmpeg
