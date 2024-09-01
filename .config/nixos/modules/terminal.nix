@@ -51,23 +51,28 @@ in
             "grep" = "rg";
             "find" = "fd";
             "jobs" = "jobs -p";
+
             "wal_update" = "~/.config/scripts/wallust_update.sh";
             "steam_update_apps" = "sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
             "valgrind" = "~/.config/scripts/colorgrind";
             "footserver" = "foot --server &; disown";
             "cd.." = "cd ..";
             ":q" = "exit";
+
             "gaf" = "git add -f";
             "gau" = "git add -u";
-            "gsm" = "git submodule";
-            "gs" = "git status";
             "gcm" = "git commit -m";
-            "gpush" = "git push";
-            "gpull" = "git pull";
             "gm" = "git merge";
             "gm-noff" = "git merge --no-ff";
-            "gswitch" = "git switch";
+            "gp" = "git push";
+            "gpo" = "git push -u origin";
             "gptags" = "git push --tags";
+            "gpull" = "git pull";
+            "gs" = "git status";
+            "gl" = "git log";
+            "gswitch" = "git switch";
+            "gswitchc" = "git switch -c";
+            "gsm" = "git submodule";
             "gtag" = "git tag";
         };
       };
