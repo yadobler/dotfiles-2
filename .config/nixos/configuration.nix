@@ -146,7 +146,6 @@
             "bluetooth"
             "dialout"
         ];
-        shell = pkgs.zsh;
     };
     # services.getty.autologinUser = "yukna";
 

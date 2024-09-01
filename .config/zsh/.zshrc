@@ -1,33 +1,18 @@
 [ "$TTY" = "/dev/tty1" ] && exec Hyprland
 # load zgenom
-source "$ZDOTDIR/zgenom/zgenom.zsh"
-zgenom autoupdate
-if ! zgenom saved; then
-    echo "Creating zgenom save..."
-    zgenom load chrissicool/zsh-256color
-    zgenom load zsh-users/zsh-completions
-    zgenom save
-    zgenom compile "$ZDOTDIR/.zshrc"
-fi
+# source "$ZDOTDIR/zgenom/zgenom.zsh"
+# zgenom autoupdate
+# if ! zgenom saved; then
+#     echo "Creating zgenom save..."
+#     zgenom load chrissicool/zsh-256color
+#     zgenom load zsh-users/zsh-completions
+#     zgenom save
+#     zgenom compile "$ZDOTDIR/.zshrc"
+# fi
+# 
 
 # load omp
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/oh-my-posh-config.json)"
-
-autoload -Uz compinit && compinit
-_comp_options+=(globdots)
-
-setopt auto_list
-setopt complete_in_word
-setopt menu_complete
-setopt extended_glob
-setopt glob
-setopt append_history
-setopt share_history
-setopt nobeep
-setopt longlistjobs
-setopt notify
-
-bindkey -e
 
 # Ztyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
@@ -52,41 +37,12 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
+autoload -Uz compinit && compinit
+_comp_options+=(globdots)
+
+bindkey -e
+
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-alias vim="nvim"
-alias svim="sudo -E nvim"
-alias batt="upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty"
-alias ip="ip -color=auto"
-alias ls="lsd --group-directories-first"
-alias la="ls -lA"
-alias ll="la -hN"
-alias cat="bat"
-alias du="dust"
-alias ps="procs"
-alias htop="btm"
-alias grep="rg"
-alias find="fd"
-alias "jobs"="jobs -p"
-alias wal_update='~/.config/scripts/wallust_update.sh'
-alias steam_update_apps="sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*"
-alias valgrind="~/.config/scripts/colorgrind"
-alias footserver="foot --server &; disown"
-
-alias "cd.."="cd .."
-alias ":q"="exit"
-
-alias "gaf"="git add -f"
-alias "gau"="git add -u"
-alias "gsm"="git submodule"
-alias "gs"="git status"
-alias "gcm"="git commit -m"
-alias "gpush"="git push"
-alias "gpull"="git pull"
-alias "gm"="git merge"
-alias "gm-noff"="git merge --no-ff"
-alias "gswitch"="git switch"
-alias "gptags"="git push --tags"
-alias "gtag"="git tag"
 
 alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 #alias "activate_conda"="source /opt/miniconda3/etc/profile.d/conda.sh && echo Conda Activated!"

@@ -15,7 +15,6 @@
     programs = {
         git.enable = true;
         light.enable = true;
-        zsh.enable = true;
         waybar.enable = true;
         xwayland.enable = true;
         nm-applet.enable = true;
