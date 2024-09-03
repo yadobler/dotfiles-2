@@ -18,6 +18,7 @@
         waybar.enable = true;
         xwayland.enable = true;
         nm-applet.enable = true;
+        file-roller.enable = true;
     };
 
 # List packages installed in system profile.
