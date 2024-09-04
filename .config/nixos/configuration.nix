@@ -100,7 +100,7 @@
     i18n = {
         defaultLocale = "en_SG.UTF-8";
         inputMethod = {
-            enable = true;
+            enable = false;
             type = "fcitx5";
             fcitx5 = {
                 waylandFrontend = false;
@@ -111,7 +111,7 @@
                     fcitx5-bamboo
                     fcitx5-table-extra
                     fcitx5-material-color
-                    #libsForQt5.fcitx5-chinese-addons
+                    libsForQt5.fcitx5-chinese-addons
                 ];
             };
         };
