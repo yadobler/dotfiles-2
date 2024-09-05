@@ -28,6 +28,27 @@
         config.hyprland.postInstallScript
     ];
 
+    # Power mpowerManagement
+    services.logind.lidSwitch = "lock";
+    services.tlp = {
+        enable = true;
+        settings = {
+            CPU_SCALING_GOVERNOR_ON_AC = "performance";
+            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+            CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+            CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+            CPU_MIN_PERF_ON_AC = 0;
+            CPU_MAX_PERF_ON_AC = 100;
+            CPU_MIN_PERF_ON_BAT = 0;
+            CPU_MAX_PERF_ON_BAT = 80;
+
+            #Optional helps save long term battery health
+            START_CHARGE_THRESH_BAT0 = 90;
+            STOP_CHARGE_THRESH_BAT0 = 99; 
+        };
+    };
 
     # Bootloader
     swapDevices = [{device = "/dev/disk/by-partlabel/swap";}];
@@ -35,8 +56,9 @@
         resumeDevice = "/dev/disk/by-partlabel/swap";
         kernelParams = [
             "resume=PARTLABEL=swap"
-            "quiet"
+            "mem_sleep_default=deep"
             "splash"
+            "quiet"
         ];
         loader = {
             efi.canTouchEfiVariables = true;

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=todo (Microsoft)
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-to-do.live.com__tasks_today-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://to-do.live.com/tasks/today"'
+Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-ticktick_com_webapp_-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://ticktick.com/webapp/"'
 Terminal=false
 Type=Application
 Icon=to-do-app
 StartupWMClass=crx_gmail_1
-Comment=Microsoft to-do
+Comment=TickTick to-do
 Categories=Network;todo;planner;
