@@ -195,6 +195,9 @@ x-scheme-handler/rtsp=com.github.rafostar.Clapper.desktop;
 x-scheme-handler/spotify=spotify.desktop;
 x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/webcal=brave-browser.desktop
+application/x-Idea-idea_module=jetbrains-idea-ce.desktop
+application/x-Idea-idea_project=jetbrains-idea-ce.desktop
+application/x-Idea-idea_workspace=jetbrains-idea-ce.desktop
 
 [Added Associations]
 image/jpeg=swayimg.desktop;
