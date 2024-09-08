@@ -92,6 +92,8 @@
 
             jetbrains.idea-community
             arduino
+            scenebuilder
+            obsidian
             
             ];
 

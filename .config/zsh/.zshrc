@@ -1,3 +1,4 @@
+#[ "$TTY" = "/dev/tty1" ] && exec sh -c "AQ_TRACE=1 HYPRLAND_TRACE=1 Hyprland"
 [ "$TTY" = "/dev/tty1" ] && exec Hyprland
 # load zgenom
 # source "$ZDOTDIR/zgenom/zgenom.zsh"
