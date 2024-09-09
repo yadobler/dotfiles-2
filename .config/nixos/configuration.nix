@@ -122,7 +122,7 @@
     i18n = {
         defaultLocale = "en_SG.UTF-8";
         inputMethod = {
-            enable = false;
+            enable = true;
             type = "fcitx5";
             fcitx5 = {
                 waylandFrontend = false;
