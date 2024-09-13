@@ -27,3 +27,5 @@ if [ ! -f "$TRACK_FILE" ]; then
 else
     echo "Track already exists at $TRACK_FILE."
 fi
+
+# Lyrics color : decimal -> HEX ARGB
