@@ -176,8 +176,9 @@
             "default": ":    "
         },
         "format-window-separator": " ",
-        "window-rewrite-default": "",
+        "window-rewrite-default": "",
         "window-rewrite": {
+            "^[ ]*$": "",
             "foot": "",
             "thunar": "",
             "brave-calendar.google.com__calendar_u_1_r-Default":"",
@@ -189,6 +190,7 @@
             "brave-browser": "󰖟",
             "brave-open.spotify.com__-Default": "",
             "spt": "",
+            "Spotify Premium": "",
             "Spotify": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",

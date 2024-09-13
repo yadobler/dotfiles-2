@@ -62,6 +62,7 @@ in
             "gaf" = "git add -f";
             "gau" = "git add -u";
             "gcm" = "git commit -m";
+            "gc" = "git commit -m";
             "gm" = "git merge";
             "gm-noff" = "git merge --no-ff";
             "gp" = "git push";

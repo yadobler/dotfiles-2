@@ -198,8 +198,10 @@ x-scheme-handler/webcal=brave-browser.desktop
 application/x-Idea-idea_module=jetbrains-idea-ce.desktop
 application/x-Idea-idea_project=jetbrains-idea-ce.desktop
 application/x-Idea-idea_workspace=jetbrains-idea-ce.desktop
+application/java-archive=userapp-java -jar-KD0QT2.desktop
 
 [Added Associations]
 image/jpeg=swayimg.desktop;
 application/pdf=com.github.xournalpp.xournalpp.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
 image/png=swayimg.desktop;
+application/java-archive=userapp-java -jar-KD0QT2.desktop;
