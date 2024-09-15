@@ -216,19 +216,19 @@
     },
     "custom/notification": {
         "tooltip": false,
-        "format": "{icon}",
+        "format": "{icon} ",
         "format-icons": {
-            "notification-false": "<span foreground='red'><sup></sup></span> ",
-            "none-false": "  ",
-            "notification-true": "<span foreground='red'><sup></sup></span> ",
-            "none-true": "  ",
+            "notification-false": "<span foreground='red'><sup></sup></span>",
+            "none-false": "",
+            "notification-true": "<span foreground='red'><sup></sup></span>",
+            "none-true": "",
         },
         "return-type": "json",
         "interval": 1,
         "exec": "$HOME/.config/scripts/notification_check.sh",
         "on-click": "sleep 0.5; dunstctl set-paused toggle",
         "escape": true,
-        "max-length": 2
+        "max-length": 5
     },
     "custom/powermenu": {
         "tooltip": false,
