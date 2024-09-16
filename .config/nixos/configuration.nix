@@ -156,6 +156,23 @@
         variant = "";
     };
 
+    # touchpad
+    services.libinput = {
+        enable = true;
+        touchpad = {
+            tappingDragLock = true;
+            tappingButtonMap = "lrm";
+            tapping = "true";
+            scrollMethod = "twofinger";
+            naturalScrolling = false;
+            middleEmulation = true;
+            leftHanded = false;
+            horizontalScrolling = true;
+            disableWhileTyping = true;
+            accelProfile = "flat";
+        };
+    };
+
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.yukna = {
         isNormalUser = true;
