@@ -37,6 +37,7 @@ kill $(pidof wbg)
 wbg $wallpaper_cropped &
 #wallust run $wallpaper_cropped $( [ -n "$2" ] && echo "-p $2" )
 wallust cs .config/wallust/tokyonight_modified.json
+sed -i "s#/home/yukna/Dotfiles/.config/wallust/tokyonight_modified.json#$wallpaper_cropped#" ~/.config/hypr/colors.conf
 kill $(pidof waybar); waybar &
 rm ~/.config/dunst/dunstrc
 cat ~/.config/dunst/dunstrc-part1 ~/.config/dunst/dunstrc-part2 ~/.config/dunst/dunstrc-part3 > ~/.config/dunst/dunstrc
