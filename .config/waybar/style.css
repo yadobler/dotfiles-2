@@ -89,7 +89,7 @@ tooltip label {
     padding: 0px 5px;
 }
 #battery.charging {
-    color: @color1;
+    color: @color2;
     background: transparent;
 }
 #battery.good:not(.charging) {
@@ -97,7 +97,7 @@ tooltip label {
     background: transparent;
 }
 #battery.warning:not(.charging) {
-    color: @color2;
+    color: @color1;
     background: transparent;
 }
 @keyframes blink {
