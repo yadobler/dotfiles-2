@@ -35,7 +35,8 @@ DIMENSION=$(bc <<< "scale=0; $w")x$(bc <<< "scale=0; $h")+$(bc <<< "scale=0; $x"
 convert $wallpaper -crop $DIMENSION $wallpaper_cropped
 kill $(pidof wbg)
 wbg $wallpaper_cropped &
-wallust run $wallpaper_cropped $( [ -n "$2" ] && echo "-p $2" )
+#wallust run $wallpaper_cropped $( [ -n "$2" ] && echo "-p $2" )
+wallust cs .config/wallust/tokyonight_modified.json
 kill $(pidof waybar); waybar &
 rm ~/.config/dunst/dunstrc
 cat ~/.config/dunst/dunstrc-part1 ~/.config/dunst/dunstrc-part2 ~/.config/dunst/dunstrc-part3 > ~/.config/dunst/dunstrc

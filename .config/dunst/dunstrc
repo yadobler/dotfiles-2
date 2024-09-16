@@ -195,7 +195,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita,
+    icon_theme = Adwaita
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -301,21 +301,21 @@
     mouse_right_click = close_current
 # vim: ft=cfg
     # Defines color of the frame around the notification window.
-    frame_color = "#C383B8"
+    frame_color = "#7DCFFF"
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#0D0807"
-    foreground = "#E0E1DE"
-    frame_color = "#478394"
+    background = "#080C1C"
+    foreground = "#CCD6FF"
+    frame_color = "#FF007C"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#0D0807"
-    foreground = "#E0E1DE"
+    background = "#080C1C"
+    foreground = "#CCD6FF"
     timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
@@ -427,14 +427,13 @@
 #[script-test]
 #    summary = "*script*"
 #    script = dunst_test.sh
-
+[ignore]
+    summary = "Wayland Diagnose"
+    skip_display = true
 #[ignore]
 #    # This notification will not be displayed
 #    summary = "foobar"
 #    skip_display = true
-[ignore]
-    summary = "Wayland Diagnose"
-    skip_display = true
 
 #[history-ignore]
 #    # This notification will not be saved in history

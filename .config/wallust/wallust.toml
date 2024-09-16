@@ -79,13 +79,13 @@ saturation = 35
 alpha = 100
 
 [templates]
-hyprland = { template = 'templates/hyprland.conf', target = '~/.config/hypr/colors.conf', new_engine = true }
-waybar = { template = 'templates/colors-waybar.css', target = '~/.config/waybar/colors-waybar.css', new_engine = true }
-zathura = { template = 'templates/zathura', target = '~/.config/zathura/zathura-color', new_engine = true }
-dunst = { template = 'templates/dunstrc', target = '~/.config/dunst/dunstrc-part2', new_engine = true }
-foot = { template = 'templates/foot.ini', target = '~/.config/foot/colors.ini', new_engine = true}
-wofi = { template = 'templates/colors-waybar.css', target = '~/.config/wofi/colors.css', new_engine = true }
-# kitty = { template = 'templates/kitty.conf', target = '~/.config/kitty/current-theme.conf', new_engine = true}
+hyprland = { template = 'hyprland.conf', target = '~/.config/hypr/colors.conf', new_engine = true }
+waybar = { template = 'colors-waybar.css', target = '~/.config/waybar/colors-waybar.css', new_engine = true }
+zathura = { template = 'zathura', target = '~/.config/zathura/zathura-color', new_engine = true }
+dunst = { template = 'dunstrc', target = '~/.config/dunst/dunstrc-part2', new_engine = true }
+foot = { template = 'foot.ini', target = '~/.config/foot/colors.ini', new_engine = true}
+wofi = { template = 'colors-waybar.css', target = '~/.config/wofi/colors.css', new_engine = true }
+# kitty = { template = 'kitty.conf', target = '~/.config/kitty/current-theme.conf', new_engine = true}
 
 
 # REMINDER Variables and methods that can be used with templating:
