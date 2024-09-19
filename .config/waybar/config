@@ -191,7 +191,7 @@
             "brave-browser": "󰖟",
             "brave-open.spotify.com__-Default": "",
             "spt": "",
-            "Spotify Premium": "",
+            "^Spotify Premium$": "",
             "Spotify": ""
         },
         "on-scroll-up": "hyprctl dispatch workspace e+1",
