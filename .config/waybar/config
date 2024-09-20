@@ -46,7 +46,17 @@
         "interval": 600
     },
     "clock": {
-        "tooltip-format": "<tt><big>{calendar}</big></tt>\n\nToday: {:%d %B %Y}",
+        "tooltip-format": "<tt><big>{calendar}\n\nToday: {:%d %B %Y}</big></tt>",
+            "calendar": {
+                "mode-mon-col"  : 3,
+                "weeks-pos"     : "right",
+                "format": {
+                    "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                    "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+            },
         "format": "{:%d %B %Y - %H:%M %p}"
     },
     "network": {
