@@ -46,7 +46,7 @@ in
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default
                 iio-sensor-proxy
-                unstable.hyprlock
+                hyprlock
                 hyprcursor
             ];
         };

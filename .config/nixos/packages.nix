@@ -6,6 +6,7 @@
         ./modules/terminal.nix
         ./modules/thunar.nix
         ./modules/nvim.nix
+        ./modules/obs.nix
         #./modules/nemo.nix
     ];
 # Allow unfree packages
@@ -61,7 +62,7 @@
             xournalpp
             swayimg
             clapper
-            unstable.spotify
+            spotify
 
             imagemagick
             ffmpeg
