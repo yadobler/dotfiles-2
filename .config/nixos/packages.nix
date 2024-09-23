@@ -75,6 +75,7 @@
             dunst
             grim
             slurp
+            wf-recorder
             swappy
             wbg
             wl-clipboard

@@ -66,7 +66,7 @@ in
             "gm" = "git merge";
             "gm-noff" = "git merge --no-ff";
             "gp" = "git push";
-            "gpo" = "git push -u origin";
+            "gpo" = "git push -u origin $(git branch --show-current)";
             "gptags" = "git push --tags";
             "gpull" = "git pull";
             "gs" = "git status";
