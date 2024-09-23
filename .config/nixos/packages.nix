@@ -6,7 +6,6 @@
         ./modules/terminal.nix
         ./modules/thunar.nix
         ./modules/nvim.nix
-        ./modules/brave.nix
         #./modules/obs.nix
         #./modules/nemo.nix
     ];
@@ -57,6 +56,7 @@
             nil # nix lsp
             poetry
  
+            brave
             telegram-desktop
             zathura
             xournalpp

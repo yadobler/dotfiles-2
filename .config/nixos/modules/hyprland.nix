@@ -72,16 +72,18 @@ in
             };
         };
 
-        # xdg = {
-        #     portal = {
-        #         enable = true;
-        #         extraPortals = with pkgs; [
-        #             xdg-desktop-portal-gtk
-        #         ];
-        #         configPackages = [
-        #             pkgs.xdg-desktop-portal-gtk
-        #         ];
-        #     };
-        # };
+        xdg = {
+            portal = {
+                enable = true;
+                extraPortals = with pkgs; [
+                    xdg-desktop-portal-gtk
+                ];
+                configPackages = [
+                    # pkgs.xdg-desktop-portal-gtk
+                    # pkgs.xdg-desktop-portal-wlr
+                    pkgs.xdg-desktop-portal-hyprland
+                ];
+            };
+        };
     };
 }
