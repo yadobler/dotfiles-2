@@ -72,14 +72,13 @@ in
             };
         };
 
-        xdg = {
-            portal = {
-                enable = true;
-                wlr.enable = true;
-                configPackages = with pkgs; [
-                    xdg-desktop-portal-hyprland
-                ];
-            };
+        xdg.portal = {
+            enable = true;
+            wlr.enable = true;
+            configPackages = with pkgs; [
+                xdg-desktop-portal-hyprland
+                xdg-desktop-portal-gtk
+            ];
         };
     };
 }

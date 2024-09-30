@@ -84,6 +84,7 @@
             iio-sensor-proxy
             squeekboard
             playerctl
+            glow
 
             wallust
             adwaita-icon-theme
