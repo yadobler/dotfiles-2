@@ -130,7 +130,6 @@
                     fcitx5-with-addons
                     fcitx5-gtk
                     fcitx5-m17n
-                    fcitx5-bamboo
                     fcitx5-table-extra
                     fcitx5-material-color
                     libsForQt5.fcitx5-chinese-addons
