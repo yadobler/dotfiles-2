@@ -97,8 +97,16 @@
             arduino
             scenebuilder
             obsidian
+
             
-            ];
+
+        #(cutter.withPlugins (pkgs: with cutterPlugins; [
+        #       rz-ghidra 
+        #       sigdb 
+        #       jsdec
+        #   ]))
+        #   
+    ];
 
 # Font
     fonts = {

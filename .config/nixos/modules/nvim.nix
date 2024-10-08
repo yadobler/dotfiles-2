@@ -582,6 +582,16 @@ in
 
         keymaps = [
         {  
+            key = "j";
+            action = "gj";
+            mode = "n";
+        }
+        {  
+            key = "k";
+            action = "gk";
+            mode = "n";
+        }
+        {  
             key = "gd";
             action.__raw = "require('telescope.builtin').lsp_definitions";
             options.desc = "LSP: [G]oto [D]efinition";
