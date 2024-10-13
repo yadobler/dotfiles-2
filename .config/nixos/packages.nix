@@ -98,6 +98,7 @@
             scenebuilder
             obsidian
 
+            ida-patch.ida-free
             
 
         #(cutter.withPlugins (pkgs: with cutterPlugins; [
