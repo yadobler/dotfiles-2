@@ -97,16 +97,14 @@
             arduino
             scenebuilder
             obsidian
-
-            ida-patch.ida-free
+            gdb
+            p7zip
+            binwalk
+            pandoc
+            texliveFull
+            binwalk
             
-
-        #(cutter.withPlugins (pkgs: with cutterPlugins; [
-        #       rz-ghidra 
-        #       sigdb 
-        #       jsdec
-        #   ]))
-        #   
+            
     ];
 
 # Font

@@ -7,9 +7,6 @@
         nixpkgs = {
             url = "github:NixOS/nixpkgs/nixos-unstable"; 
         };
-        ida-patch = {
-            url = "github:yadobler/nixpkgs/patch-1"; 
-        };
         hyprland = {
             url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
             inputs.nixpkgs.follows = "nixpkgs";
@@ -39,14 +36,9 @@
         let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
+
             overlay-stable = final: prev: {
                 stable = import inputs.nixpkgs-stable {
-                    inherit system;
-                    config.allowUnfree = true;
-                };
-            };
-            overlay-ida-override = final: prev: {
-                stable = import inputs.ida-patch {
                     inherit system;
                     config.allowUnfree = true;
                 };
@@ -56,7 +48,7 @@
                 inherit system;
                 inherit specialArgs;
                 modules = [
-                    ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable overlay-ida-override ]; })
+                    ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
                         ./configuration.nix
                     # ./detect-hp-spectre-x360.nix
                 ];
