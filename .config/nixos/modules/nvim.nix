@@ -1,3 +1,48 @@
+#unpacking channels...
+#building the system configuration...
+#trace: evaluation warning: The option `plugins.lsp.servers.nil-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.nil_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.lua-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.lua_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.jdt-language-server' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.jdtls'.
+#trace: evaluation warning: Nixvim: `plugins.web-devicons` was enabled automatically because the following plugins are enabled.
+#This behaviour is deprecated. Please explicitly define `plugins.web-devicons.enable` or alternatively
+#enable `plugins.mini.enable` with `plugins.mini.modules.icons` and `plugins.mini.mockDevIcons`.
+#plugins.telescope
+#plugins.neo-tree
+#plugins.trouble
+#
+#trace: evaluation warning: The option `plugins.lsp.servers.nil-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.nil_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.lua-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.lua_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.jdt-language-server' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.jdtls'.
+#trace: evaluation warning: Nixvim: `plugins.web-devicons` was enabled automatically because the following plugins are enabled.
+#This behaviour is deprecated. Please explicitly define `plugins.web-devicons.enable` or alternatively
+#enable `plugins.mini.enable` with `plugins.mini.modules.icons` and `plugins.mini.mockDevIcons`.
+#plugins.telescope
+#plugins.neo-tree
+#p[sudo] password for yukna: 
+#unpacking channels...
+#building the system configuration...
+#trace: evaluation warning: The option `plugins.lsp.servers.nil-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.nil_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.lua-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.lua_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.jdt-language-server' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.jdtls'.
+#trace: evaluation warning: Nixvim: `plugins.web-devicons` was enabled automatically because the following plugins are enabled.
+#This behaviour is deprecated. Please explicitly define `plugins.web-devicons.enable` or alternatively
+#enable `plugins.mini.enable` with `plugins.mini.modules.icons` and `plugins.mini.mockDevIcons`.
+#plugins.telescope
+#plugins.neo-tree
+#plugins.trouble
+#
+#trace: evaluation warning: The option `plugins.lsp.servers.nil-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.nil_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.lua-ls' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.lua_ls'.
+#trace: evaluation warning: The option `plugins.lsp.servers.jdt-language-server' defined in `/nix/store/j8nj4qyjshgc1077zanfb9f0c3aak8sc-source/.config/nixos/modules/nvim.nix' has been renamed to `plugins.lsp.servers.jdtls'.
+#trace: evaluation warning: Nixvim: `plugins.web-devicons` was enabled automatically because the following plugins are enabled.
+#This behaviour is deprecated. Please explicitly define `plugins.web-devicons.enable` or alternatively
+#enable `plugins.mini.enable` with `plugins.mini.modules.icons` and `plugins.mini.mockDevIcons`.
+#plugins.telescope
+#plugins.neo-tree
+#plugins.troublelugins.trouble
+
+
+
 { pkgs, inputs, ... }:
 let 
 jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
