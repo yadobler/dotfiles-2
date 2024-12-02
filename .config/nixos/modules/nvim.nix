@@ -95,17 +95,19 @@ in
 #       ];
         plugins = {
             lualine.enable = true;
-            nvim-web-devicons = {
+            web-devicons = {
                 enable = true;
-                override = {
-                    zsh = {
-                        icon = "";
-                        color = "#428850";
-                        cterm_color = "65";
-                        name = "Zsh";
+                settings = {
+                    override = {
+                        zsh = {
+                            icon = "";
+                            color = "#428850";
+                            cterm_color = "65";
+                            name = "Zsh";
+                        };
                     };
+                    default = true;
                 };
-                default = true;
             };
 
             gitsigns = {
