@@ -55,7 +55,10 @@
             rustc
             nil # nix lsp
             poetry
-            gleam
+
+        # gleam
+        # erlang
+        # rebar3
  
             brave
             telegram-desktop
