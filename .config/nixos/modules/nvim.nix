@@ -15,10 +15,15 @@ javaExecutablePath = "${pkgs.openjdk17}/bin/java";
 in
 {
     imports = [inputs.nixvim.nixosModules.nixvim];
+    
+    environment.systemPackages = [
+        inputs.goneovim
+    ];
     programs.nixvim = {
         enable = true;
+
         colorschemes.tokyonight = {
-            enable = true;
+            enable = false;
             settings = {
                 style = "night";
                 lualine_bold = true;

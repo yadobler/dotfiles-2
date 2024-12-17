@@ -6,6 +6,7 @@
         ./modules/terminal.nix
         ./modules/thunar.nix
         ./modules/nvim.nix
+        ./modules/vscode.nix
         #./modules/obs.nix
         #./modules/nemo.nix
     ];

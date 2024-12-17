@@ -30,6 +30,9 @@
             url = "github:nix-community/nixvim";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        goneovim = {
+            url = "github:ners/goneovim-nix";
+        };
     };
 
     outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
