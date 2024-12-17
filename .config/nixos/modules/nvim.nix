@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, system, ... }:
 let 
 jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
 jarTestFiles = builtins.filter (file: builtins.match "com.microsoft.java.test.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarTestDir));
@@ -17,11 +17,11 @@ in
     imports = [inputs.nixvim.nixosModules.nixvim];
     
     environment.systemPackages = [
-        inputs.goneovim
+        inputs.goneovim-nix.packages.${system}.default
     ];
     programs.nixvim = {
         enable = true;
-
+        colorschemes.gruvbox-baby.enable = true;
         colorschemes.tokyonight = {
             enable = false;
             settings = {
@@ -74,6 +74,7 @@ in
             nvim-pqf
             vim-illuminate
             vim-sleuth
+            gruvbox-baby
         ] ++ [
             pkgs.alejandra
             pkgs.astyle
@@ -99,7 +100,11 @@ in
 #             })
 #       ];
         plugins = {
-            lualine.enable = true;
+            lualine = {
+                enable = true;
+                theme = "gruvbox-baby";
+            };
+
             web-devicons = {
                 enable = true;
                 settings = {

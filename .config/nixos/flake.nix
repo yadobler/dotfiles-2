@@ -51,7 +51,7 @@
                 inherit system;
                 inherit specialArgs;
                 modules = [
-                    ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+                    ({ config, pkgs, system, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
                         ./configuration.nix
                     # ./detect-hp-spectre-x360.nix
                 ];
