@@ -14,14 +14,13 @@ javaExecutablePath = "${pkgs.openjdk17}/bin/java";
 
 in
 {
-    imports = [inputs.nixvim.nixosModules.nixvim];
-    
-    environment.systemPackages = [
-        inputs.goneovim-nix.packages.${system}.default
+    imports = [
+        inputs.nixvim.nixosModules.nixvim
+        inputs.goneovim
     ];
+    
     programs.nixvim = {
         enable = true;
-        colorschemes.gruvbox-baby.enable = true;
         colorschemes.tokyonight = {
             enable = false;
             settings = {
@@ -102,7 +101,7 @@ in
         plugins = {
             lualine = {
                 enable = true;
-                theme = "gruvbox-baby";
+                settings.options.theme = "gruvbox-baby";
             };
 
             web-devicons = {
