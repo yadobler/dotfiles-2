@@ -5,6 +5,8 @@
         ./theme.nix
         ./ccc.nix
         ./ts.nix
+        ./completion.nix
+        ./debugging.nix 
     ];
 
     programs.nixvim = {

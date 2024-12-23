@@ -12,6 +12,8 @@
             # Allow search terms to stay in the middle
             { mode = "n"; key = "N"; action = "Nzzzv"; }
             { mode = "n"; key = "n"; action = "nzzzv"; } 
+
+            { mode = "n"; key = "gn"; action = "<cmd>tabnew<CR>"; options.desc = "Opens a new tab";}
         ];
     }; 
 }
