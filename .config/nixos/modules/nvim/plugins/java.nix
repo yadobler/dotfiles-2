@@ -17,6 +17,27 @@ in
     programs.nixvim = {
         extraPlugins = with pkgs; [
             google-java-format
-        ]; 
+        ];
+
+        plugins.nvim-jtls = {
+            enable = true;
+            cmd = [
+                "${jdtlsPath}" 
+                    "--java-executable" "${javaExecutablePath}"
+            ];
+            data = "~/.cache/jdtls/workspace";
+            settings = {
+                java = {
+                    signatureHelp = true;
+                    completion = true;
+                };
+            };
+            initOptions = {
+                bundles = [
+                    "${javaTestPath}"
+                        "${javaDebugPath}"
+                ];
+            };
+        };
     };
 }
