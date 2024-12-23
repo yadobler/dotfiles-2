@@ -5,7 +5,7 @@
         ./modules/gnome_polkit.nix
         ./modules/terminal.nix
         ./modules/thunar.nix
-        ./modules/nvim.nix
+        ./modules/nvim/nvim.nix
         ./modules/vscode.nix
         #./modules/obs.nix
         #./modules/nemo.nix
