@@ -18,24 +18,36 @@ in
             google-java-format
         ];
 
-        plugins.nvim-jtls = {
-            enable = true;
-            cmd = [
-                "${jdtlsPath}" 
-                    "--java-executable" "${javaExecutablePath}"
+        plugins = {
+            lsp.servers.jdtls.enable = true;
+            dap.configurations.java = [
+                {
+                    type = "java";
+                    request = "launch";
+                    name = "Debug (Attach) - Remote";
+                    hostName = "127.0.0.1";
+                    port = 5005;
+                }
             ];
-            data = "~/.cache/jdtls/workspace";
-            settings = {
-                java = {
-                    signatureHelp = true;
-                    completion = true;
-                };
-            };
-            initOptions = {
-                bundles = [
-                    "${javaTestPath}"
-                        "${javaDebugPath}"
+            nvim-jtls = {
+                enable = true;
+                cmd = [
+                    "${jdtlsPath}" 
+                    "--java-executable" "${javaExecutablePath}"
                 ];
+                data = "~/.cache/jdtls/workspace";
+                settings = {
+                    java = {
+                        signatureHelp = true;
+                        completion = true;
+                    };
+                };
+                initOptions = {
+                    bundles = [
+                        "${javaTestPath}"
+                        "${javaDebugPath}"
+                    ];
+                };
             };
         };
     };

@@ -8,6 +8,7 @@
         ./completion.nix
         ./debugging.nix 
         ./whichkey.nix
+        ./lsp.nix
     ];
 
     programs.nixvim = {

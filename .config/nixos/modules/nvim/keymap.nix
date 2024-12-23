@@ -17,8 +17,8 @@
             { mode = "n"; key = "gn"; action = "<cmd>tabnew<CR>"; options.desc = "Opens a new tab";}
             
             # buffer
-            { mode = "n"; key = "gj"; action = "<cmd>bn<CR>"; options.desc = "Previous buffer";}
-            { mode = "n"; key = "gk"; action = "<cmd>bp<CR>"; options.desc = "Next buffer";}
+            { mode = "n"; key = "<leader>j"; action = "<cmd>bn<CR>"; options.desc = "Previous buffer";}
+            { mode = "n"; key = "<leader>k"; action = "<cmd>bp<CR>"; options.desc = "Next buffer";}
         ];
     }; 
 }
