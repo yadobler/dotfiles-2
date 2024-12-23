@@ -14,5 +14,9 @@ javaExecutablePath = "${pkgs.openjdk17}/bin/java";
 
 in
 {
-
+    programs.nixvim = {
+        extraPlugins = with pkgs; [
+            google-java-format
+        ]; 
+    };
 }

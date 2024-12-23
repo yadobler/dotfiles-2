@@ -1,36 +1,11 @@
 { pkgs, ... }:
 {
     programs.nixvim = {
-
-        plugins = {
-        };
-
         extraPlugins = with pkgs.vimPlugins; [
-            vim-astro
-            gruvbox-baby
             ccc
-        ] ++ [
-            pkgs.google-java-format
-            pkgs.ripgrep
-            pkgs.lazygit
-            pkgs.fzf
-            pkgs.fd
         ]; 
 
         extraConfigLua = ''
-            vim.cmd [[colorscheme gruvbox-baby]]
-
-            -- hypr.conf
-            local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-            parser_config.hypr = {
-                install_info = {
-                    url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-                    files = { "src/parser.c" },
-                    branch = "master",
-                },
-                filetype = "hypr",
-            }
-
             require('ccc').setup({
                 highlighter = {
                     auto_enable = true,
