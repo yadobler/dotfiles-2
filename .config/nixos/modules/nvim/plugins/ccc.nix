@@ -2,7 +2,7 @@
 {
     programs.nixvim = {
         extraPlugins = with pkgs.vimPlugins; [
-            ccc
+            ccc-nvim
         ]; 
 
         extraConfigLua = ''
