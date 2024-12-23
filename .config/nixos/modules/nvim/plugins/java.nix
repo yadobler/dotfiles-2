@@ -8,7 +8,6 @@ jarDebugDir = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/
 jarDebugFiles = builtins.filter (file: builtins.match "com.microsoft.java.debug.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarDebugDir));
 javaDebugPath = if (jarDebugFiles != []) then "${jarDebugDir}/${builtins.head jarDebugFiles}" else throw "No matching JAR file found!";
 
-lldbDebugPath = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
 jdtlsPath = "${pkgs.jdt-language-server}/bin/jdtls";
 javaExecutablePath = "${pkgs.openjdk17}/bin/java";
 

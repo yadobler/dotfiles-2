@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+lldbDebugPath = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+in
 {
     programs.nixvim = {
         plugins = {
