@@ -7,6 +7,7 @@
         ./ts.nix
         ./completion.nix
         ./debugging.nix 
+        ./whickkey.nix
     ];
 
     programs.nixvim = {
