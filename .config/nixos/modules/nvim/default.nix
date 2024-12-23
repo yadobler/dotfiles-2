@@ -2,8 +2,8 @@
 {
     imports = [
         inputs.nixvim.nixosModules.nixvim
+        ./plugins
         ./autocmd.nix
-        ./plugins.nix
         ./keymap.nix 
     ];
 

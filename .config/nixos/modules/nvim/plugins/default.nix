@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
     imports = [
-        # ./plugins/java.nix
-        ./plugins/theme.nix
-        ./plugins/ccc.nix
-        ./plugins/ts.nix
+        # ./java.nix
+        ./theme.nix
+        ./ccc.nix
+        ./ts.nix
     ];
 
     programs.nixvim = {
