@@ -1,6 +1,6 @@
 { ... }:
 let
-    icons = import ../../lib/icons.nix;
+  icons = import ../../lib/icons.nix;
 in
 {
   plugins.lualine = {

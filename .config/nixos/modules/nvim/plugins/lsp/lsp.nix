@@ -4,7 +4,7 @@
 
     lsp = {
       enable = true;
-      servers.typos_lsp.enable = true;
+      servers.typos_lsp.enable = false;
       keymaps.lspBuf = {
         "<c-k>" = "signature_help";
         "gi" = "implementation";
