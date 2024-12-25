@@ -1,4 +1,6 @@
 {
-  plugins.image.enable = true;
-  clipboard-image.enable = true;
+  plugins = {
+    image.enable = true;
+    clipboard-image.enable = true;
+  };
 }

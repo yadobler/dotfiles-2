@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  flake = "/home/spector/nixos-config";
+  flake = "~/.config/nixos";
 in
 {
   plugins = {
