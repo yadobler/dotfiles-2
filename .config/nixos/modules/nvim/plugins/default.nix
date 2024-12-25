@@ -9,6 +9,7 @@
         ./debugging.nix 
         ./whichkey.nix
         ./lsp.nix
+        ./fidget.nix
     ];
 
     programs.nixvim = {
