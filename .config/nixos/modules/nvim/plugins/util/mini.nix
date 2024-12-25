@@ -19,6 +19,7 @@
         indentscope = {
           symbol = "│";
           draw.delay = 0;
+
         };
       };
     };

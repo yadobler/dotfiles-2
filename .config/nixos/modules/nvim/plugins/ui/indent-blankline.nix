@@ -6,10 +6,22 @@
         indent = {
           char = "│"; # "│" or "▎"
           tab_char = "│";
+          highlight = [
+            "RainbowRed"
+            "RainbowYellow"
+            "RainbowBlue"
+            "RainbowOrange"
+            "RainbowGreen"
+            "RainbowViolet"
+            "RainbowCyan"
+          ];
         };
         scope.enabled = false;
         exclude = {
-          buftypes = [ "terminal" "nofile" ];
+          buftypes = [
+            "terminal"
+            "nofile"
+          ];
           filetypes = [
             "help"
             "alpha"
