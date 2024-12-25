@@ -10,6 +10,8 @@
         ./whichkey.nix
         ./lsp.nix
         ./fidget.nix
+        ./conform.nix
+        ./lspsaga.nix
     ];
 
     programs.nixvim = {
