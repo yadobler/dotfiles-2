@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
-    programs.nixvim = {
         extraPlugins = with pkgs.vimPlugins; [
             ccc-nvim
-        ]; 
+        ];
 
         extraConfigLua = ''
             require('ccc').setup({
@@ -24,5 +23,4 @@
                 }
             })
         '';
-    };
 }

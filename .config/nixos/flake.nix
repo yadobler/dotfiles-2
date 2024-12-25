@@ -5,10 +5,10 @@
             url = "github:NixOS/nixpkgs/nixos-24.05";
         };
         nixpkgs = {
-            url = "github:NixOS/nixpkgs/nixos-unstable"; 
+            url = "github:NixOS/nixpkgs/nixos-unstable";
         };
         hyprland = {
-            url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; 
+            url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         hyprland-plugins = {
@@ -23,7 +23,7 @@
             url = "github:horriblename/hyprgrass";
             inputs.hyprland.follows = "hyprland"; # IMPORTANT
         };
-        iio-hyprland = { 
+        iio-hyprland = {
             url = "github:JeanSchoeller/iio-hyprland";
         };
         nixvim = {
@@ -35,11 +35,10 @@
         };
     };
 
-    outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+    outputs = { self, nixpkgs, nixpkgs-stable, nixvim, ...} @inputs:
         let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
-
             overlay-stable = final: prev: {
                 stable = import inputs.nixpkgs-stable {
                     inherit system;
@@ -47,15 +46,16 @@
                 };
             };
         in {
+
             nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
                 inherit system;
                 inherit specialArgs;
                 modules = [
-                    ({ config, pkgs, system, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+                    inputs.nixvim.nixosModules.nixvim
+                    ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
                         ./configuration.nix
                     # ./detect-hp-spectre-x360.nix
                 ];
             };
         };
 }
-

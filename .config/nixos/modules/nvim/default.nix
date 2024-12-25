@@ -1,18 +1,16 @@
-{ inputs, system, ... }:
+{ inputs, ... }:
 {
-    imports = [
-        inputs.nixvim.nixosModules.nixvim
-        ./plugins
-        ./autocmd.nix
-        ./keymap.nix
-    ];
-
     environment.systemPackages = [
         # inputs.goneovim.defaultPackage.${system} # "x86_64-linux"
     ];
 
     programs.nixvim = {
         enable = true;
+        imports = [
+            ./plugins
+            ./autocmd.nix
+            ./keymap.nix
+        ];
         extraConfigLua = ''
             -- locale
             vim.o.spelllang = vim.o.spelllang .. ",cjk" -- disable spellchecking for asian characters (VIM algorithm does not support it)

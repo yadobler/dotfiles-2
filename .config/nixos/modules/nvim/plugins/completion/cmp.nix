@@ -1,4 +1,7 @@
-{ lib, helpers, ... }:
+{ lib, ... }:
+let
+  helpers = lib.nixvim;
+in
 {
   plugins = {
     cmp = {

@@ -22,7 +22,6 @@
         end
       ''
   );
-
   plugins = {
     snacks = {
       enable = true;

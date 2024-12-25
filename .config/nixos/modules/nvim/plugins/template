@@ -1,0 +1,11 @@
+{ pkgs, ... }:
+{
+    plugins = {
+    };
+
+    extraPlugins = with pkgs.vimPlugins; [
+    ];
+
+    extraConfigLua = ''
+    '';
+}

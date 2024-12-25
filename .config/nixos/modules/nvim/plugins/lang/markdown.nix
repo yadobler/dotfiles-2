@@ -1,8 +1,20 @@
-{ pkgs, helpers, ... }:
+{ lib, pkgs, ... }:
+let
+  helpers = lib.nixvim;
+in
 {
-  extraPackages = with pkgs; [
-    marksman
-  ];
+    extraPackages = with pkgs; [
+        marksman
+        (vimUtils.buildVimPlugin {
+            name = "mdx.nvim";
+            src = pkgs.fetchFromGitHub {
+                owner = "davidmh";
+                repo = "mdx.nvim";
+                rev = "ae83959";
+                hash = "sha256-z835i8QkQFe185sgSLtUaaTsMs2Px9x6KTObTRAOFz0=";
+            };
+        })
+    ];
 
   plugins = {
     clipboard-image = {

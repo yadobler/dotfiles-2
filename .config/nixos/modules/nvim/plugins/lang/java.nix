@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
 jarTestDir = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
 jarTestFiles = builtins.filter (file: builtins.match "com.microsoft.java.test.plugin-.*\\.jar" file != null) (builtins.attrNames (builtins.readDir jarTestDir));
 javaTestPath = if (jarTestFiles != []) then "${jarTestDir}/${builtins.head jarTestFiles}" else throw "No matching JAR file found!";
@@ -13,7 +13,6 @@ javaExecutablePath = "${pkgs.openjdk17}/bin/java";
 
 in
 {
-    programs.nixvim = {
         extraPlugins = with pkgs; [
             google-java-format
         ];
@@ -32,7 +31,7 @@ in
             nvim-jtls = {
                 enable = true;
                 cmd = [
-                    "${jdtlsPath}" 
+                    "${jdtlsPath}"
                     "--java-executable" "${javaExecutablePath}"
                 ];
                 data = "~/.cache/jdtls/workspace";
@@ -50,5 +49,4 @@ in
                 };
             };
         };
-    };
 }

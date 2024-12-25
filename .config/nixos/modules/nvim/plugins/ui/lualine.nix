@@ -1,4 +1,7 @@
-{ icons, ... }:
+{ ... }:
+let
+    icons = import ../../lib/icons.nix;
+in
 {
   plugins.lualine = {
     enable = true;
@@ -62,7 +65,7 @@
 
           local bufname = vim.fn.bufname(vim.fn.bufnr())
           local sep = package.config:sub(1, 1)
-          
+
           local root = (opts.relative == "root") and vim.fn.getcwd() or vim.fn.fnamemodify(bufname, ":h")
           local cwd = vim.fn.getcwd()
 
