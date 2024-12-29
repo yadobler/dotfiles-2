@@ -26,16 +26,9 @@
         iio-hyprland = {
             url = "github:JeanSchoeller/iio-hyprland";
         };
-        nixvim = {
-            url = "github:nix-community/nixvim";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        goneovim = {
-            url = "github:ners/goneovim-nix";
-        };
     };
 
-    outputs = { self, nixpkgs, nixpkgs-stable, nixvim, ...} @inputs:
+    outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
         let
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
@@ -46,12 +39,10 @@
                 };
             };
         in {
-
             nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
                 inherit system;
                 inherit specialArgs;
                 modules = [
-                    inputs.nixvim.nixosModules.nixvim
                     ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
                         ./configuration.nix
                     # ./detect-hp-spectre-x360.nix

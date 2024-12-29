@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   environment.systemPackages = [
-    inputs.goneovim # .defaultPackage.${system} # "x86_64-linux"
+    inputs.nixvim.nixosModules.nixvim
   ];
 
   programs.nixvim = {
