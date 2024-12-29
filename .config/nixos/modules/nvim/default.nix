@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   environment.systemPackages = [
-    # inputs.goneovim.defaultPackage.${system} # "x86_64-linux"
+    inputs.goneovim # .defaultPackage.${system} # "x86_64-linux"
   ];
 
   programs.nixvim = {
@@ -58,9 +58,9 @@
         }
       '';
 
+      # loaded_netrw = 1;
+      # loaded_newrwPlugin = 1;
       autochdir = false;
-      loaded_netrw = 1;
-      loaded_newrwPlugin = 1;
       have_nerd_font = true;
 
       # leader keys
