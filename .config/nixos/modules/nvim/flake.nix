@@ -23,8 +23,7 @@
             nixvim' = nixvim.legacyPackages.${system};
             nixvimModule = {
                 inherit pkgs;
-                module = import ./config; # import the module directly
-                # You can use `extraSpecialArgs` to pass additional arguments to your module files
+                module = import ./config.nix; 
                 extraSpecialArgs = {
                     # inherit (inputs) foo;
                 };
@@ -36,7 +35,6 @@
                 # Run `nix flake check .` to verify that your config is not broken
                 default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
             };
-
             packages = {
                 # Lets you run `nix run .` to start nixvim
                 default = nvim;

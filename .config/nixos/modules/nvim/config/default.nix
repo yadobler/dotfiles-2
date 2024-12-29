@@ -1,11 +1,4 @@
-{ inputs, ... }:
 {
-  environment.systemPackages = [
-    inputs.nixvim.nixosModules.nixvim
-  ];
-
-  programs.nixvim = {
-    enable = true;
     imports = [
       ./plugins
       ./autocmd.nix
@@ -137,5 +130,4 @@
         foldclose = "▸";
       };
     };
-  };
 }
