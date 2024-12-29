@@ -235,7 +235,8 @@
     };
   };
 
-  system.autoUpgrade = {
-    enable = false;
+  system = {
+    autoUpgrade.enable = false;
+    stateVersion = "24.05"; # Did you read the comment?
   };
 }
