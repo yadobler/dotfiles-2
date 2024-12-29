@@ -2,7 +2,7 @@
   imports = [
     #./completion
     #./debug
-    #./editor
+    ./editor
     #./git
     #./lang
     #./lsp
