@@ -4,3 +4,6 @@
 [submodule ".config/zsh/zgenom"]
 	path = .config/zsh/zgenom
 	url = https://github.com/jandamm/zgenom.git
+[submodule ".config/nixos/modules/nixvim-config"]
+	path = .config/nixos/modules/nixvim-config
+	url = https://github.com/yadobler/nixvim-config.git
