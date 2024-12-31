@@ -664,14 +664,17 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-CA1XgTXzfXi2ng00EEJdYqUaN5fmBRgnjusR3d6dM5U=",
-        "path": "/nix/store/zhbrsjg04b637zifmqnydgaffbz5blkz-source/.config/nixos/modules/nvim",
-        "type": "path"
+        "lastModified": 1735517141,
+        "narHash": "sha256-/vp2ZrWdlmeP8QwQyJqX2X4cHfwRjXp65ksu+g5uFzE=",
+        "owner": "yadobler",
+        "repo": "nixvim-config",
+        "rev": "5de6b2be66b6998d6e2600d5994d4718c35813b3",
+        "type": "github"
       },
       "original": {
-        "path": "/nix/store/zhbrsjg04b637zifmqnydgaffbz5blkz-source/.config/nixos/modules/nvim",
-        "type": "path"
+        "owner": "yadobler",
+        "repo": "nixvim-config",
+        "type": "github"
       }
     },
     "nixvim_2": {

@@ -120,14 +120,14 @@
             noto-fonts-cjk-sans
             noto-fonts-cjk-serif
             noto-fonts-color-emoji
-            nerd-fonts.jetbrains-mono
+            jetbrains-mono
 
             # Legacy for <= 24.05
-            #(nerdfonts.override { 
-            #    fonts = [ 
-            #        "FiraCode" 
-            #    ]; 
-            #})
+            (nerdfonts.override { 
+                fonts = [ 
+                    "JetBrainsMono" 
+                ]; 
+            })
         ];
         fontconfig = {
             defaultFonts = {

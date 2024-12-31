@@ -29,7 +29,7 @@
 
         # Local
         nixvim = {
-            url = "./modules/nixvim-config";
+            url = "github:yadobler/nixvim-config";
         };
     };
 
