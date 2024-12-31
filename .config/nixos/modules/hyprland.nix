@@ -25,6 +25,13 @@ in
             chmod +x /home/${username}/.config/scripts/hyprland-plugin-script.sh
             '';
 
+      # hyprland cache
+        nix.settings = {
+            substituters = [ "https://hyprland.cachix.org" ];
+            trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+            auto-optimise-store = true;
+        };
+
         programs = {
             hyprland = {
                 enable = true;
@@ -35,14 +42,12 @@ in
                     inherit (pkgs) mesa;
                 };
             };
-
             dconf.enable = true;
 
         };
 
         environment = { 
-            sessionVariables = {
-            };
+            sessionVariables = {};
             systemPackages = with pkgs; [
                 inputs.iio-hyprland.packages.${pkgs.system}.default
                 iio-sensor-proxy

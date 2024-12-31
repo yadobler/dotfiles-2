@@ -118,21 +118,22 @@
         packages = with pkgs; [
             noto-fonts
             noto-fonts-cjk-sans
-            noto-fonts-emoji
-            fira-code
-            fira-math
-            fira-code-symbols
-            (nerdfonts.override { 
-                fonts = [ 
-                    "FiraCode" 
-                ]; 
-            })
+            noto-fonts-cjk-serif
+            noto-fonts-color-emoji
+            nerd-fonts.jetbrains-mono
+
+            # Legacy for <= 24.05
+            #(nerdfonts.override { 
+            #    fonts = [ 
+            #        "FiraCode" 
+            #    ]; 
+            #})
         ];
         fontconfig = {
             defaultFonts = {
                 serif = [ "Noto Serif" ];
                 sansSerif = [ "Noto Sans" ];
-                monospace = [ "FiraCode Nerd Font Mono" ];
+                monospace = [ "JetBrains Nerd Font Mono" ];
                 emoji = [ "Noto Color Emoji" ];
 
             };

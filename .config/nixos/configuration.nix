@@ -208,32 +208,35 @@
   # hibernation flashing fix?
 
   systemd = {
-    user.services."resume@" = {
-      description = "User resume actions";
-      after = [ "hibernate.target" ];
-      wantedBy = [ "suspend.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStartPost = "/usr/bin/env sleep 1";
-        User = "%I";
-      };
-    };
-
     # faster boot
     services.NetworkManager-wait-online.enable = false;
+  
+  #   user.services."resume@" = {
+  #     description = "User resume actions";
+  #     after = [ "hibernate.target" ];
+  #     wantedBy = [ "suspend.target" ];
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStartPost = "/usr/bin/env sleep 1";
+  #       User = "%I";
+  #     };
+  #   };
   };
 
-  # Experiemtnal features
   nix = {
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
+
+      # hyprland cache
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
       auto-optimise-store = true;
     };
+
+    # auto delete old boot images
     gc = {
       automatic = true;
       dates = "monthly";
@@ -243,6 +246,6 @@
 
   system = {
     autoUpgrade.enable = false;
-    stateVersion = "24.05"; # Did you read the comment?
+    stateVersion = "24.05"; # very first version used in this system
   };
 }
