@@ -2,6 +2,8 @@
   lib,
   config,
   pkgs,
+  inputs,
+  system,
   ...
 }:
 {
@@ -9,6 +11,9 @@
     ./hardware-configuration.nix
     ./packages.nix
   ];
+
+  # import standalone drv
+  environment.systemPackages = [ inputs.nixvim.packages.${system}.default ];
 
   # To add additional postInstallScripts:
   # (1) add this to the submodule:
@@ -33,6 +38,7 @@
     config.hyprland.postInstallScript
   ];
 
+  # limit journald log size
   services.journald.extraConfig = "SystemMaxUse=1G";
 
   # Power mpowerManagement

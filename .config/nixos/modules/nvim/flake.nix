@@ -23,7 +23,7 @@
             nixvim' = nixvim.legacyPackages.${system};
             nixvimModule = {
                 inherit pkgs;
-                module = import ./config.nix; 
+                module = import ./config; 
                 extraSpecialArgs = {
                     # inherit (inputs) foo;
                 };
@@ -36,9 +36,10 @@
                 default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
             };
             packages = {
-                # Lets you run `nix run .` to start nixvim
+                # Lets you run `nix run .` to install nixvim
                 default = nvim;
             };
         };
     };
-}
+    
+} 

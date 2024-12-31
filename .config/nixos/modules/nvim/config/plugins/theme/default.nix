@@ -1,8 +1,7 @@
 { pkgs, ... }:
 {
   colorschemes = {
-    oxocarbon = {
-      enable = true;
-    };
+    oxocarbon.enable = true;
+    gruvbox.enable = false;
   };
 }
