@@ -29,7 +29,7 @@
 
         # Local
         nixvim = {
-            url = "./modules/nvim";
+            url = "./modules/nixvim-config";
         };
     };
 
