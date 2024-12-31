@@ -4,3 +4,4 @@
 .config/zsh/.zshrc.zwc
 .config/zsh/.zsh_history
 .config/Thunar/accels.scm
+.config/nixos/modules/nixvim-config
