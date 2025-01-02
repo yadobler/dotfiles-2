@@ -178,12 +178,12 @@
     },
     "hyprland/workspaces": {
         "show-special": true,
-        "format": "{name} {icon}[ {windows}  ]",
+        "format": "{name}{icon}[{windows}]",
         "sort-by": "id",
         "format-icons":{
             "special": "",
-            "active": ":    ",
-            "default": ":    "
+            "active": ":",
+            "default": ":"
         },
         "format-window-separator": " ",
         "window-rewrite-default": "",
