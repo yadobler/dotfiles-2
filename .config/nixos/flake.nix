@@ -30,6 +30,7 @@
         # Local
         nixvim = {
             url = "github:yadobler/nixvim-config";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 

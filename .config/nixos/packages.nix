@@ -123,12 +123,12 @@
             jetbrains-mono
 
             # Legacy for <= 24.05
-            (nerdfonts.override { 
-                fonts = [ 
-                    "JetBrainsMono" 
-                ]; 
-            })
-        ];
+            #(nerdfonts.override { 
+            #    fonts = [ 
+            #        "JetBrainsMono" 
+            #    ]; 
+            #})
+        ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
         fontconfig = {
             defaultFonts = {
                 serif = [ "Noto Serif" ];
