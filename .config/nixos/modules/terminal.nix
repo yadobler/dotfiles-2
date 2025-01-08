@@ -5,12 +5,6 @@ let
   shell = pkgs.zsh;
 in
 {
-  options.terminal.postInstallScript = lib.mkOption {
-    type = lib.types.lines;
-    default = "";
-    description = "Post-install set gnome-terminal to ${binary_name} for gnome-based apps";
-  };
-
   config = {
     programs = {
       zsh = {
@@ -85,11 +79,9 @@ in
 
     ];
 
-    terminal.postInstallScript = ''
+    system.activationScripts.postInstall = ''
       rm -rf /usr/bin/gnome-terminal
       ln -s ${terminal}/bin/${binary_name} /usr/bin/gnome-terminal
       '';
-
-
   };
 }

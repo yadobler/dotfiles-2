@@ -1,41 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
+{ lib, config, pkgs, inputs, system, username, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
-  ];
-
-  # import standalone drv
-  environment.systemPackages = [ inputs.nixvim.packages.${system}.default ];
-
-  # To add additional postInstallScripts:
-  # (1) add this to the submodule:
-  #
-  #     options.<MODULE>.postInstallScript = lib.mkOption {
-  #       type = lib.types.lines;
-  #       default = "";
-  #       description = "Post-install script for module 1";
-  #     };
-  #     config = {
-  #       <MODULE>.postInstallScript = ''
-  #          < INSERT Post-install COMMANDS HERE >
-  #         '';
-  #      < REST OF CONFIG GOES HERE >
-  #     };
-  #
-  # (2) Update below to add config.<MODULE>.postInstallScript
-  #
-  system.activationScripts.postInstall = lib.concatStringsSep "\n" [
-    ''#!/usr/bin/env bash''
-    config.terminal.postInstallScript
-    config.hyprland.postInstallScript
   ];
 
   # limit journald log size
@@ -191,10 +158,10 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yukna = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Yadobler";
-    home = "/home/yukna";
+    home = "/home/${username}";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -203,24 +170,24 @@
       "dialout"
     ];
   };
-  # services.getty.autologinUser = "yukna";
+  # services.getty.autologinUser = ${username};
 
   # hibernation flashing fix?
 
   systemd = {
     # faster boot
     services.NetworkManager-wait-online.enable = false;
-  
-  #   user.services."resume@" = {
-  #     description = "User resume actions";
-  #     after = [ "hibernate.target" ];
-  #     wantedBy = [ "suspend.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStartPost = "/usr/bin/env sleep 1";
-  #       User = "%I";
-  #     };
-  #   };
+
+    #   user.services."resume@" = {
+    #     description = "User resume actions";
+    #     after = [ "hibernate.target" ];
+    #     wantedBy = [ "suspend.target" ];
+    #     serviceConfig = {
+    #       Type = "simple";
+    #       ExecStartPost = "/usr/bin/env sleep 1";
+    #       User = "%I";
+    #     };
+    #   };
   };
 
   nix = {

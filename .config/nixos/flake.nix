@@ -30,14 +30,14 @@
         # Local
         nixvim = {
             url = "github:yadobler/nixvim-config";
-            inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
     outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
         let
             system = "x86_64-linux";
-            specialArgs = { inherit inputs; inherit system; };
+            username = "yukna";
+            specialArgs = { inherit inputs; inherit system; inherit username; };
             overlay-stable = final: prev: {
                 stable = import inputs.nixpkgs-stable {
                     inherit system;

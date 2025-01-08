@@ -5,8 +5,8 @@
         ./modules/gnome_polkit.nix
         ./modules/terminal.nix
         ./modules/thunar.nix
-        #./modules/nvim
         ./modules/vscode.nix
+        #./modules/nvim
         #./modules/obs.nix
         #./modules/nemo.nix
     ];
@@ -82,7 +82,6 @@
             slurp
             wf-recorder
             swappy
-            wbg
             wl-clipboard
             cliphist
             wofi
@@ -98,7 +97,7 @@
             gnome-tweaks
             banana-cursor
 
-            jetbrains.idea-community
+    # jetbrains.idea-community
             arduino
             scenebuilder
             obsidian
