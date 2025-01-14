@@ -1,4 +1,5 @@
 #! /usr/bin/env zsh
+
 VOLUME=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}')
 notification_id="/tmp/VOLUME_NOTIFICATION_ID"
 [[ ! -a $notification_id ]] && echo 1 > $notification_id
