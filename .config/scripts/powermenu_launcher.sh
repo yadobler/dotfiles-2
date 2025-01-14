@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 show_powermenu() {
-    choice=$(printf "󰤄 Hibernate\n⏼ Shutdown\n Reboot" | wofi --style ~/.config/wofi/style.css --dmenu -i --height 200 -O default)
+    choice=$(printf "󰤄 Hibernate\n⏼ Shutdown\n Reboot\n Lock" | wofi --style ~/.config/wofi/style.css --dmenu -i --height 250 -O default)
     case ${choice:2} in
         Hibernate)
             hyprlock &
@@ -14,6 +14,10 @@ show_powermenu() {
             ;;
         Reboot)
             systemctl reboot
+            ;;
+        Lock)
+            hyprlock &
+            disown
             ;;
         *)
             ;;
