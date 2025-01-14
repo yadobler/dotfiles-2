@@ -301,21 +301,21 @@
     mouse_right_click = close_current
 # vim: ft=cfg
     # Defines color of the frame around the notification window.
-    frame_color = "#7DCFFF"
+    frame_color = "#5EF1FF"
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#080C1C"
-    foreground = "#CCD6FF"
-    frame_color = "#FF007C"
+    background = "#16181A"
+    foreground = "#FFFFFF"
+    frame_color = "#FF6E5E"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#080C1C"
-    foreground = "#CCD6FF"
+    background = "#16181A"
+    foreground = "#FFFFFF"
     timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
