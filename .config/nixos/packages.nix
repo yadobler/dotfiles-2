@@ -6,9 +6,11 @@
     ./modules/terminal.nix
     ./modules/thunar.nix
     ./modules/vscode.nix
+
     #./modules/nvim
     #./modules/obs.nix
     #./modules/nemo.nix
+
   ];
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -17,23 +19,22 @@
   programs = {
     git.enable = true;
     light.enable = true;
-    waybar.enable = true;
-    xwayland.enable = true;
-    nm-applet.enable = true;
     file-roller.enable = true;
+    bat = {
+      enable = true;
+      settings = {
+        theme = "cyberdream";
+      };
+    };
   };
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-    bat
     file
     lsd
     fd
     ripgrep
-    oh-my-posh
     bottom
-    neovide
-
     neofetch
     pstree
     tree
@@ -42,6 +43,7 @@
     jq
     bc
 
+    wallust
     glm
     meson
     ninja
@@ -51,13 +53,25 @@
     glib
     tree-sitter
     nodejs
-    go
-    zig
     cargo
     rustc
-    nil # nix lsp
     poetry
+    gdb
+    
+    imagemagick
+    ffmpeg
+    libnotify
+    binwalk
+    pandoc
+    texliveFull
+    binwalk
+    p7zip
+    pamixer
+    pavucontrol
+    glow
 
+    # go
+    # zig
     # gleam
     # erlang
     # rebar3
@@ -69,46 +83,12 @@
     swayimg
     clapper
     spotify
-
-    imagemagick
-    ffmpeg
-    libnotify
-    pamixer
-    pipewire
-    pulseaudio
-    pavucontrol
-
-    dunst
-    grim
-    slurp
-    wf-recorder
-    swappy
-    wl-clipboard
-    cliphist
-    wofi
-    iio-sensor-proxy
-    squeekboard
-    playerctl
-    glow
-
-    wallust
-    adwaita-icon-theme
-    adwaita-qt
-    morewaita-icon-theme
-    gnome-tweaks
-    banana-cursor
-
-    # jetbrains.idea-community
+    neovide
     arduino
     scenebuilder
     obsidian
-    gdb
-    p7zip
-    binwalk
-    pandoc
-    texliveFull
-    binwalk
 
+    # jetbrains.idea-community
 
   ];
 
@@ -121,13 +101,6 @@
       noto-fonts-cjk-serif
       noto-fonts-color-emoji
       jetbrains-mono
-
-      # Legacy for <= 24.05
-      #(nerdfonts.override { 
-      #    fonts = [ 
-      #        "JetBrainsMono" 
-      #    ]; 
-      #})
     ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
     fontconfig = {
       defaultFonts = {
@@ -135,7 +108,6 @@
         sansSerif = [ "Noto Sans" ];
         monospace = [ "JetBrains Nerd Font Mono" ];
         emoji = [ "Noto Color Emoji" ];
-
       };
     };
   };
