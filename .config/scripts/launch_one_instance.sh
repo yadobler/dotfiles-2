@@ -1,3 +1,4 @@
+#!/usr/bin/env /bin/sh
 ADDRESS=$(hyprctl clients -j | jq -r ".[] | select(.class==\"$1\") | .address")
 ACTIVE_WORKSPACE=$(hyprctl activeworkspace -j | jq -r '.["id"]')
 echo "$ADDRESS" "$ACTIVE_WORKSPACE"

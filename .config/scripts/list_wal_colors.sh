@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 ls -1 /usr/lib/python3.11/site-packages/pywal/colorschemes/dark \
     | while IFS= read -r file
 do

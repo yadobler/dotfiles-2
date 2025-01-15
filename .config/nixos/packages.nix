@@ -39,42 +39,23 @@
     pstree
     tree
     unzip
+    p7zip
     wget
     jq
     bc
+    binwalk
 
     wallust
-    glm
-    meson
-    ninja
-    gcc
     gh
     stow
-    glib
-    tree-sitter
-    nodejs
-    cargo
-    rustc
-    poetry
-    gdb
     
     imagemagick
     ffmpeg
     libnotify
-    binwalk
+    libsixel
     pandoc
     texliveFull
-    binwalk
-    p7zip
-    pamixer
-    pavucontrol
     glow
-
-    # go
-    # zig
-    # gleam
-    # erlang
-    # rebar3
 
     brave
     telegram-desktop

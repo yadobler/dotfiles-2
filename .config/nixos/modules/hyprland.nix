@@ -1,70 +1,84 @@
-{ inputs, pkgs, username, ... }:
+{ username, pkgs, lib, ... }:
 let
-  plugin-paths = [
-    inputs.hyprgrass.packages.${pkgs.system}.default
+  pluginScript = "/home/${username}/.config/scripts/hyprland-plugin-script_2.sh";
+  pluginList = [
+      # hyprlandPlugins.hyprfocus
+      pkgs.hyprlandPlugins.hyprgrass
+      pkgs.hyprlandPlugins.hyprspace
   ];
 in
-  {
-  config = {
-    # hyprland cache
-    nix.settings = {
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      auto-optimise-store = true;
-    };
-
-    programs = {
-      hyprland = {
-        enable = true;
-        package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-        xwayland.enable = true;
-        portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland.override
-          {
-            inherit (pkgs) mesa;
-          };
-      };
-      dconf.enable = true;
-
-    };
-
-    environment = { 
-      sessionVariables = {};
-      systemPackages = with pkgs; [
-        inputs.iio-hyprland.packages.${pkgs.system}.default
-        iio-sensor-proxy
-        hyprlock
-        hyprcursor
-      ];
-    };
-
-    services = {
-      hypridle.enable = true;
-      dbus = {
-        enable = true;
-        packages = with pkgs; [
-          gcr
-          dconf
-        ];
-      };
-    };
-
-
-    hardware = {
-      graphics =
-        {
-          enable = true;
-          package = pkgs.mesa.drivers;
-          package32 = pkgs.pkgsi686Linux.mesa.drivers;
-        };
-    };
-
-    xdg.portal = {
+{
+  programs = {
+    hyprland = {
       enable = true;
-      wlr.enable = true;
-      configPackages = with pkgs; [
-        xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gtk
+      xwayland.enable = true;
+    };
+
+    dconf.enable = true;
+    iio-hyprland.enable = true;
+    waybar.enable = true;
+    xwayland.enable = true;
+  };
+
+  environment = { 
+    systemPackages = with pkgs; [
+      hyprlock
+      hyprcursor
+      banana-cursor
+      swaybg
+      
+      pamixer
+      pavucontrol
+      dunst
+      grim
+      slurp
+      wf-recorder
+      swappy
+      wl-clipboard
+      cliphist
+      wofi
+      squeekboard
+      playerctl
+
+      adwaita-icon-theme
+      adwaita-qt
+      morewaita-icon-theme
+      gnome-tweaks
+    ];
+  };
+
+  services = {
+    hypridle.enable = true;
+    dbus = {
+      enable = true;
+      packages = with pkgs; [
+        gcr
+        dconf
       ];
     };
   };
+
+
+  hardware.graphics = {
+    enable = true;
+    package = pkgs.mesa.drivers;
+    package32 = pkgs.pkgsi686Linux.mesa.drivers;
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    configPackages = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
+
+  system.activationScripts.postInstallHyprland = lib.foldr (plugin: script: script + ''echo "hyprctl plugins load ${plugin}/lib/*.so" >> ${pluginScript}
+  '') ''
+    rm ${pluginScript}
+    echo "#!/usr/bin/env /bin/sh" > ${pluginScript}
+    chmod +x ${pluginScript}
+    '' pluginList;
+
 }

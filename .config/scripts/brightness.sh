@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 case $1 in 
     up)
         light -A $2

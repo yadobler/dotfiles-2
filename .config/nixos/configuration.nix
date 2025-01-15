@@ -49,6 +49,7 @@
         gfxmodeEfi = "3000x2000";
         font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
         fontSize = 64;
+        timeoutStyle = "hidden";
         configurationLimit = 10;
       };
     };
@@ -86,24 +87,31 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
-    wireplumber.extraConfig = {
-      "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [
-          "hsp_hs"
-          "hsp_ag"
-          "hfp_hf"
-          "hfp_ag"
-        ];
-      };
+    wireplumber = {
+      enable = true;
+      extraConfig = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [
+            "hsp_hs"
+            "hsp_ag"
+            "hfp_hf"
+            "hfp_ag"
+          ];
+        };
+      }; 
     };
   };
+
+  # Orientation Sensor
+  hardware.sensor.iio.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
 
+  # i18n and keyboard
   i18n = {
     defaultLocale = "en_SG.UTF-8";
     inputMethod = {
@@ -190,17 +198,13 @@
     #   };
   };
 
+  # hyprland cache
   nix = {
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-
-      # hyprland cache
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      auto-optimise-store = true;
     };
 
     # auto delete old boot images

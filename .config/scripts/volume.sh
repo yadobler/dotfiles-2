@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 
 VOLUME=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}')
 notification_id="/tmp/VOLUME_NOTIFICATION_ID"

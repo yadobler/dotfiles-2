@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 
 show_powermenu() {
     choice=$(printf "󰤄 Hibernate\n⏼ Shutdown\n Reboot\n Lock" | wofi --style ~/.config/wofi/style.css --dmenu -i --height 250 -O default)
