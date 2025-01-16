@@ -49,7 +49,7 @@
         gfxmodeEfi = "3000x2000";
         font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
         fontSize = 64;
-        timeoutStyle = "hidden";
+        timeoutStyle = "menu";
         configurationLimit = 10;
       };
     };
