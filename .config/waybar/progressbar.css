@@ -1,0 +1,713 @@
+/* PROGRESSBAR */
+
+#custom-media {
+    padding: 2px 10px;
+    margin: 5px;
+    border: 1px solid @color14;
+}
+
+@define-color progressbar_color alpha (@color3, 0.7);
+#custom-media.0 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 0%,
+		transparent 0.1%
+	);
+}
+#custom-media.1 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 1%,
+		transparent 1.1%
+	);
+}
+#custom-media.2 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 2%,
+		transparent 2.1%
+	);
+}
+#custom-media.3 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 3%,
+		transparent 3.1%
+	);
+}
+#custom-media.4 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 4%,
+		transparent 4.1%
+	);
+}
+#custom-media.5 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 5%,
+		transparent 5.1%
+	);
+}
+#custom-media.6 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 6%,
+		transparent 6.1%
+	);
+}
+#custom-media.7 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 7%,
+		transparent 7.1%
+	);
+}
+#custom-media.8 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 8%,
+		transparent 8.1%
+	);
+}
+#custom-media.9 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 9%,
+		transparent 9.1%
+	);
+}
+#custom-media.10 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 10%,
+		transparent 10.1%
+	);
+}
+#custom-media.11 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 11%,
+		transparent 11.1%
+	);
+}
+#custom-media.12 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 12%,
+		transparent 12.1%
+	);
+}
+#custom-media.13 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 13%,
+		transparent 13.1%
+	);
+}
+#custom-media.14 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 14%,
+		transparent 14.1%
+	);
+}
+#custom-media.15 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 15%,
+		transparent 15.1%
+	);
+}
+#custom-media.16 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 16%,
+		transparent 16.1%
+	);
+}
+#custom-media.17 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 17%,
+		transparent 17.1%
+	);
+}
+#custom-media.18 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 18%,
+		transparent 18.1%
+	);
+}
+#custom-media.19 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 19%,
+		transparent 19.1%
+	);
+}
+#custom-media.20 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 20%,
+		transparent 20.1%
+	);
+}
+#custom-media.21 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 21%,
+		transparent 21.1%
+	);
+}
+#custom-media.22 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 22%,
+		transparent 22.1%
+	);
+}
+#custom-media.23 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 23%,
+		transparent 23.1%
+	);
+}
+#custom-media.24 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 24%,
+		transparent 24.1%
+	);
+}
+#custom-media.25 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 25%,
+		transparent 25.1%
+	);
+}
+#custom-media.26 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 26%,
+		transparent 26.1%
+	);
+}
+#custom-media.27 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 27%,
+		transparent 27.1%
+	);
+}
+#custom-media.28 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 28%,
+		transparent 28.1%
+	);
+}
+#custom-media.29 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 29%,
+		transparent 29.1%
+	);
+}
+#custom-media.30 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 30%,
+		transparent 30.1%
+	);
+}
+#custom-media.31 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 31%,
+		transparent 31.1%
+	);
+}
+#custom-media.32 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 32%,
+		transparent 32.1%
+	);
+}
+#custom-media.33 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 33%,
+		transparent 33.1%
+	);
+}
+#custom-media.34 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 34%,
+		transparent 34.1%
+	);
+}
+#custom-media.35 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 35%,
+		transparent 35.1%
+	);
+}
+#custom-media.36 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 36%,
+		transparent 36.1%
+	);
+}
+#custom-media.37 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 37%,
+		transparent 37.1%
+	);
+}
+#custom-media.38 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 38%,
+		transparent 38.1%
+	);
+}
+#custom-media.39 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 39%,
+		transparent 39.1%
+	);
+}
+#custom-media.40 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 40%,
+		transparent 40.1%
+	);
+}
+#custom-media.41 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 41%,
+		transparent 41.1%
+	);
+}
+#custom-media.42 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 42%,
+		transparent 42.1%
+	);
+}
+#custom-media.43 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 43%,
+		transparent 43.1%
+	);
+}
+#custom-media.44 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 44%,
+		transparent 44.1%
+	);
+}
+#custom-media.45 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 45%,
+		transparent 45.1%
+	);
+}
+#custom-media.46 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 46%,
+		transparent 46.1%
+	);
+}
+#custom-media.47 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 47%,
+		transparent 47.1%
+	);
+}
+#custom-media.48 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 48%,
+		transparent 48.1%
+	);
+}
+#custom-media.49 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 49%,
+		transparent 49.1%
+	);
+}
+#custom-media.50 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 50%,
+		transparent 50.1%
+	);
+}
+#custom-media.51 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 51%,
+		transparent 51.1%
+	);
+}
+#custom-media.52 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 52%,
+		transparent 52.1%
+	);
+}
+#custom-media.53 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 53%,
+		transparent 53.1%
+	);
+}
+#custom-media.54 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 54%,
+		transparent 54.1%
+	);
+}
+#custom-media.55 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 55%,
+		transparent 55.1%
+	);
+}
+#custom-media.56 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 56%,
+		transparent 56.1%
+	);
+}
+#custom-media.57 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 57%,
+		transparent 57.1%
+	);
+}
+#custom-media.58 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 58%,
+		transparent 58.1%
+	);
+}
+#custom-media.59 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 59%,
+		transparent 59.1%
+	);
+}
+#custom-media.60 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 60%,
+		transparent 60.1%
+	);
+}
+#custom-media.61 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 61%,
+		transparent 61.1%
+	);
+}
+#custom-media.62 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 62%,
+		transparent 62.1%
+	);
+}
+#custom-media.63 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 63%,
+		transparent 63.1%
+	);
+}
+#custom-media.64 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 64%,
+		transparent 64.1%
+	);
+}
+#custom-media.65 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 65%,
+		transparent 65.1%
+	);
+}
+#custom-media.66 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 66%,
+		transparent 66.1%
+	);
+}
+#custom-media.67 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 67%,
+		transparent 67.1%
+	);
+}
+#custom-media.68 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 68%,
+		transparent 68.1%
+	);
+}
+#custom-media.69 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 69%,
+		transparent 69.1%
+	);
+}
+#custom-media.70 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 70%,
+		transparent 70.1%
+	);
+}
+#custom-media.71 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 71%,
+		transparent 71.1%
+	);
+}
+#custom-media.72 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 72%,
+		transparent 72.1%
+	);
+}
+#custom-media.73 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 73%,
+		transparent 73.1%
+	);
+}
+#custom-media.74 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 74%,
+		transparent 74.1%
+	);
+}
+#custom-media.75 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 75%,
+		transparent 75.1%
+	);
+}
+#custom-media.76 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 76%,
+		transparent 76.1%
+	);
+}
+#custom-media.77 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 77%,
+		transparent 77.1%
+	);
+}
+#custom-media.78 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 78%,
+		transparent 78.1%
+	);
+}
+#custom-media.79 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 79%,
+		transparent 79.1%
+	);
+}
+#custom-media.80 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 80%,
+		transparent 80.1%
+	);
+}
+#custom-media.81 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 81%,
+		transparent 81.1%
+	);
+}
+#custom-media.82 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 82%,
+		transparent 82.1%
+	);
+}
+#custom-media.83 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 83%,
+		transparent 83.1%
+	);
+}
+#custom-media.84 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 84%,
+		transparent 84.1%
+	);
+}
+#custom-media.85 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 85%,
+		transparent 85.1%
+	);
+}
+#custom-media.86 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 86%,
+		transparent 86.1%
+	);
+}
+#custom-media.87 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 87%,
+		transparent 87.1%
+	);
+}
+#custom-media.88 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 88%,
+		transparent 88.1%
+	);
+}
+#custom-media.89 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 89%,
+		transparent 89.1%
+	);
+}
+#custom-media.90 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 90%,
+		transparent 90.1%
+	);
+}
+#custom-media.91 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 91%,
+		transparent 91.1%
+	);
+}
+#custom-media.92 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 92%,
+		transparent 92.1%
+	);
+}
+#custom-media.93 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 93%,
+		transparent 93.1%
+	);
+}
+#custom-media.94 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 94%,
+		transparent 94.1%
+	);
+}
+#custom-media.95 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 95%,
+		transparent 95.1%
+	);
+}
+#custom-media.96 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 96%,
+		transparent 96.1%
+	);
+}
+#custom-media.97 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 97%,
+		transparent 97.1%
+	);
+}
+#custom-media.98 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 98%,
+		transparent 98.1%
+	);
+}
+#custom-media.99 {
+	background-image: linear-gradient(
+		to right,
+		@progressbar_color 99%,
+		transparent 99.1%
+	);
+}
+#custom-media.100 {
+	background:transparent;
+	border: none;
+}
