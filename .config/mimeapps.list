@@ -129,6 +129,7 @@ image/x-portable-pixmap=swayimg.desktop;
 image/x-targa=swayimg.desktop;
 image/x-tga=swayimg.desktop;
 text/english=nvim.desktop;
+text/nix=nvim.desktop;
 text/html=brave-browser.desktop;
 text/plain=nvim.desktop;
 text/x-c=nvim.desktop;
