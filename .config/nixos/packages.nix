@@ -33,6 +33,7 @@
     file
     lsd
     fd
+    fzf
     ripgrep
     bottom
     neofetch
