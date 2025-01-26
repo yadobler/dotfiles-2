@@ -223,7 +223,7 @@
         "custom/kill": {
             "tooltip": false,
             "format": "󰅗",
-            "on-click": "sleep 0.5; hyprctl dispatch submap kill; hyprctl kill; hyprctl dispatch submap reset",
+            "on-click": "sleep 0.5; hyprctl dispatch killactive",
             "escape": true
         },
         "tray": {
