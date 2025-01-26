@@ -1,2 +1,6 @@
 #!/usr/bin/env /bin/sh
-grim -g "$(hyprctl activewindow | jq -j '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')" - | tee ~/Pictures/Screenshots/$(date +'%Y%m%d-%H%M%S')-original.png | swappy -f -
+hyprctl clients -j \
+    | jq -r ".[] | select(.workspace.id == $(hyprctl activeworkspace -j | jq -r ".id")) | .at,.size" \
+    | jq -s "add | _nwise(4)" \
+    | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"' \
+    | slurp -r
