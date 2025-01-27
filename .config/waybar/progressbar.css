@@ -4,6 +4,7 @@
     padding: 2px 10px;
     margin: 5px;
     border: 1px solid @color14;
+    border-radius: 5;
 }
 
 @define-color progressbar_color alpha (@color3, 0.7);
