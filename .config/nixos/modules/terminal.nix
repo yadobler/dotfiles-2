@@ -41,7 +41,7 @@ in
         "svim"              = "sudo -E nvim";
         "batt"              = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
         "ip"                = "ip -color   = auto";
-        "ls"                = "lsd --group-directories-first";
+        "ls"                = "lsd --group-directories-first -N";
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
