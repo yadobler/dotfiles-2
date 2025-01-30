@@ -45,7 +45,8 @@ in
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
-        "du"                = "dust";
+        "du"                = "dust -r";
+        "df"                = "duf";
         "ps"                = "procs";
         "htop"              = "btm";
         "grep"              = "rg";

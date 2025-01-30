@@ -33,6 +33,8 @@
     file
     lsd
     fd
+    dust
+    duf
     fzf
     ripgrep
     bottom
