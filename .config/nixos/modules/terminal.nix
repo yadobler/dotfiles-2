@@ -51,6 +51,7 @@ in
         "htop"              = "btm";
         "grep"              = "rg";
         "find"              = "fd";
+        "imgcat"            = "img2sixel";
 
         "wal_update"        = "~/.config/scripts/wallust_update.sh";
         "steam_update_apps" = "sed 's/Exec = steam /Exec = gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
