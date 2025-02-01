@@ -39,11 +39,6 @@ in
       wofi
       squeekboard
       playerctl
-
-      adwaita-icon-theme
-      adwaita-qt
-      morewaita-icon-theme
-      gnome-tweaks
     ];
   };
 

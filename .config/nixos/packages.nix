@@ -4,14 +4,16 @@
     ./modules/hyprland.nix
     ./modules/gnome_polkit.nix
     ./modules/terminal.nix
-    ./modules/thunar.nix
     ./modules/vscode.nix
+    ./modules/nautilus.nix
 
     #./modules/nvim
     #./modules/obs.nix
     #./modules/nemo.nix
+    #./modules/thunar.nix
 
   ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -30,24 +32,6 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-    file
-    lsd
-    fd
-    dust
-    duf
-    fzf
-    ripgrep
-    bottom
-    neofetch
-    pstree
-    tree
-    unzip
-    p7zip
-    wget
-    jq
-    bc
-    binwalk
-
     wallust
     gh
     stow
@@ -71,6 +55,11 @@
     arduino
     scenebuilder
     obsidian
+    
+    adwaita-icon-theme
+    adwaita-qt
+    morewaita-icon-theme
+    gnome-tweaks
 
     # jetbrains.idea-community
 

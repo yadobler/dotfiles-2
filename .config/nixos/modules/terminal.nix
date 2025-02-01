@@ -12,6 +12,25 @@ in
     fishPlugins.sponge
     fishPlugins.fzf
     any-nix-shell
+
+
+    file
+    lsd
+    fd
+    dust
+    duf
+    fzf
+    ripgrep
+    bottom
+    neofetch
+    pstree
+    tree
+    unzip
+    p7zip
+    wget
+    jq
+    bc
+    binwalk
   ];
   programs = {
     foot = {
