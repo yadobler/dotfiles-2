@@ -1,13 +1,14 @@
 { username, pkgs, lib, ... }:
 let
   pluginScript = "/home/${username}/.config/scripts/hyprland-plugin-script_2.sh";
-  pluginList = [
-      # hyprlandPlugins.hyprfocus
-      pkgs.hyprlandPlugins.hyprgrass
-      pkgs.hyprlandPlugins.hyprspace
+  pluginList = with pkgs; [
+    # hyprlandPlugins.hyprfocus
+    hyprlandPlugins.hyprgrass
+    hyprlandPlugins.hyprspace
+    hyprlandPlugins.hyprexpo
   ];
 in
-{
+  {
   programs = {
     hyprland = {
       enable = true;
@@ -24,9 +25,10 @@ in
     systemPackages = with pkgs; [
       hyprlock
       hyprcursor
+      hyprpicker
       banana-cursor
       swaybg
-      
+
       pamixer
       pavucontrol
       dunst
@@ -69,7 +71,7 @@ in
     ];
   };
 
-  system.activationScripts.postInstallHyprland = lib.foldr (plugin: script: script + ''echo "hyprctl plugins load ${plugin}/lib/*.so" >> ${pluginScript}
+  system.userActivationScripts.postInstallHyprland = lib.foldr (plugin: script: script + ''echo "hyprctl plugins load ${plugin}/lib/*.so" >> ${pluginScript}
   '') ''
     rm ${pluginScript}
     echo "#!/usr/bin/env /bin/sh" > ${pluginScript}

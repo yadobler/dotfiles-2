@@ -1,7 +1,7 @@
 { lib, pkgs, username, ... }:
 let
-  terminal = "/run/current-system/sw/bin/foot";
   shell = "/var/run/current-system/sw/bin/fish";
+  terminal = "/run/current-system/sw/bin/foot";
   # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
   {
@@ -12,7 +12,6 @@ in
     fishPlugins.sponge
     fishPlugins.fzf
     any-nix-shell
-
 
     file
     lsd
@@ -35,23 +34,66 @@ in
   programs = {
     foot = {
       enable = true;
-    };
+      settings = {
+        main = {
+          font = "JetBrainsMono Nerd Font Mono:size=12";
+        };
 
+        url = {
+          launch = "open ${"url"}";
+        };
+
+        colors = {
+          # alpha=1 | 0
+          background="16181A";
+          foreground="FFFFFF";
+
+          ## Normal/regular colors (color palette 0-7)
+          regular0="16181A";  # black
+          regular1="FF6E5E";  # red
+          regular2="5EFF6C";  # green
+          regular3="F1FF5E";  # yellow
+          regular4="5EA1FF";  # blue
+          regular5="BD5EFF";  # magenta
+          regular6="5EF1FF";  # cyan
+          regular7="FFFFFF";  # white
+
+          ## Bright colors (color palette 8-15)
+          bright0="3C4048";  # bright black
+          bright1="FF6E5E";  # bright red
+          bright2="5EFF6C";  # bright green
+          bright3="F1FF5E";  # bright yellow
+          bright4="5EA1FF";  # bright blue
+          bright5="BD5EFF";  # bright magenta
+          bright6="5EF1FF";  # bright cyan
+          bright7="FFFFFF";  # bright white
+
+
+          ## Misc colors
+          selection-foreground="16181A";
+          selection-background="FFFFFF";
+          urls="00a8ba";  
+        };
+      };
+    };
+    
+    direnv.enable = true;
 
     fish = {
       enable = true;
-
 
       loginShellInit = ''
             if test (tty) = /dev/tty1
               exec Hyprland
             end
       '';
+
       shellInit = ''
             any-nix-shell fish --info-right | source
             fish_vi_key_bindings
             tide configure --auto --style=Rainbow --prompt_colors='16 colors' --show_time='24-hour format' --rainbow_prompt_separators=Slanted --powerline_prompt_heads=Slanted --powerline_prompt_tails=Flat --powerline_prompt_style='Two lines, character and frame' --prompt_connection=Solid --powerline_right_prompt_frame=No --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Many icons' --transient=Yes
       '';
+
       interactiveShellInit = ''
       '';
 
@@ -113,7 +155,7 @@ in
   users.users.${username}.shell = shell;
   users.defaultUserShell = shell;
 
-  system.activationScripts.postInstallTerminal = ''
+  system.userActivationScripts.postInstallTerminal = ''
       rm -rf /usr/bin/gnome-terminal
       ln -s ${terminal} /usr/bin/gnome-terminal
       '';
