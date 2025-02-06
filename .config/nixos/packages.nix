@@ -1,17 +1,17 @@
 { pkgs, ... }:
 {
   imports = [
-    ./modules/hyprland.nix
-    ./modules/gnome_polkit.nix
-    ./modules/terminal.nix
-    ./modules/vscode.nix
-    ./modules/nautilus.nix
-
+    #./modules/hyprland.nix
+    #./modules/gnome_polkit.nix
     #./modules/nvim
     #./modules/obs.nix
     #./modules/nemo.nix
     #./modules/thunar.nix
 
+    ./modules/nautilus.nix
+    ./modules/gnome.nix
+    ./modules/terminal.nix
+    ./modules/vscode.nix
   ];
 
   # Allow unfree packages
@@ -21,7 +21,6 @@
   programs = {
     git.enable = true;
     light.enable = true;
-    file-roller.enable = true;
     bat = {
       enable = true;
       settings = {
@@ -46,21 +45,21 @@
 
     brave
     telegram-desktop
-    zathura
     xournalpp
     swayimg
-    clapper
     spotify
     neovide
     arduino
     scenebuilder
     obsidian
+    vlc
+    # zathura
+    # clapper
     
-    adwaita-icon-theme
-    adwaita-qt
-    morewaita-icon-theme
-    gnome-tweaks
-
+    # adwaita-icon-theme
+    # adwaita-qt
+    # morewaita-icon-theme
+    # gnome-tweaks
     # jetbrains.idea-community
 
   ];

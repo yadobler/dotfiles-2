@@ -153,8 +153,8 @@ in
   users.users.${username}.shell = shell;
   users.defaultUserShell = shell;
 
-  system.userActivationScripts.postInstallTerminal = ''
-      rm -rf /usr/bin/gnome-terminal
-      ln -s ${terminal} /usr/bin/gnome-terminal
-      '';
+  # system.userActivationScripts.postInstallTerminal = ''
+  #     rm -rf /usr/bin/gnome-terminal
+  #     ln -s ${terminal} /usr/bin/gnome-terminal
+  #     '';
 }
