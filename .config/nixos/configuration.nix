@@ -154,7 +154,7 @@
     touchpad = {
       tappingDragLock = true;
       tappingButtonMap = "lrm";
-      tapping = "true";
+      tapping = true;
       scrollMethod = "twofinger";
       naturalScrolling = false;
       middleEmulation = true;

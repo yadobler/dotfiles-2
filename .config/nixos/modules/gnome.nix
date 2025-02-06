@@ -14,6 +14,9 @@
       core-utilities.enable = true;
       core-os-services.enable = true;
     };
+
+    power-profiles-daemon.enable = false;
+
   };
 
   programs = {
@@ -49,7 +52,7 @@
       gnome-weather
       gtk3.out
       loupe
-      nixos-background-info
+      # nixos-background-info
       seahorse
       snapshot
       xdg-user-dirs
