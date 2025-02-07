@@ -11,7 +11,7 @@
     };
     
     gnome = {
-      core-utilities.enable = true;
+      core-utilities.enable = false;
       core-os-services.enable = true;
     };
 
@@ -49,6 +49,7 @@
       gnome-menus
       gnome-shell-extensions
       gnome-system-monitor
+      gnome-tweaks
       gnome-weather
       gtk3.out
       loupe
@@ -57,6 +58,11 @@
       snapshot
       xdg-user-dirs
       xdg-user-dirs-gtk
+
+      gnomeExtensions.kimpanel
+      gnomeExtensions.caffeine
+      gnomeExtensions.tray-icons-reloaded
+      gnomeExtensions.touch-x
     ];
   };
 }
