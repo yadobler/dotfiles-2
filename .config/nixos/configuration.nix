@@ -26,8 +26,8 @@
       CPU_MAX_PERF_ON_BAT = 80;
 
       #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 90;
-      STOP_CHARGE_THRESH_BAT0 = 99;
+      START_CHARGE_THRESH_BAT1 = 90;
+      STOP_CHARGE_THRESH_BAT1 = 99;
     };
   };
 
@@ -41,6 +41,7 @@
       "splash"
       "quiet"
     ];
+
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -57,10 +58,15 @@
   };
 
   # Filesystem
-  fileSystems."/home" = {
-    device = "/dev/nvme0n1p4";
-    fsType = "ext4";
+  fileSystems = {
+    "/home" = {
+      device = "/dev/nvme0n1p4";
+      fsType = "ext4";
+    };
   };
+
+  # SSD
+  services.fstrim.enable = lib.mkDefault true;
 
   # Networking
   networking = {
@@ -181,22 +187,9 @@
   };
   # services.getty.autologinUser = ${username};
 
-  # hibernation flashing fix?
-
   systemd = {
     # faster boot
     services.NetworkManager-wait-online.enable = false;
-
-    #   user.services."resume@" = {
-    #     description = "User resume actions";
-    #     after = [ "hibernate.target" ];
-    #     wantedBy = [ "suspend.target" ];
-    #     serviceConfig = {
-    #       Type = "simple";
-    #       ExecStartPost = "/usr/bin/env sleep 1";
-    #       User = "%I";
-    #     };
-    #   };
   };
 
   # hyprland cache
