@@ -29,7 +29,7 @@ in
     wget
     jq
     bc
-    binwalk
+    # binwalk
   ];
   programs = {
     foot = {
