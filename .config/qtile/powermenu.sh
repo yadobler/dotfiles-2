@@ -1,0 +1,1 @@
+/home/yukna/.config/rofi/scripts/powermenu_t2
