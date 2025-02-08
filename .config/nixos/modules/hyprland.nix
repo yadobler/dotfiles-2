@@ -5,7 +5,7 @@ let
     # hyprlandPlugins.hyprfocus
     # hyprlandPlugins.hycov
     hyprlandPlugins.hyprgrass
-    hyprlandPlugins.hyprspace
+    stable.hyprlandPlugins.hyprspace
     hyprlandPlugins.hyprexpo
   ];
 in
