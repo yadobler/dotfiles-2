@@ -3,6 +3,7 @@ let
   pluginScript = "/home/${username}/.config/scripts/hyprland-plugin-script_2.sh";
   pluginList = with pkgs; [
     # hyprlandPlugins.hyprfocus
+    # hyprlandPlugins.hycov
     hyprlandPlugins.hyprgrass
     hyprlandPlugins.hyprspace
     hyprlandPlugins.hyprexpo
@@ -38,7 +39,8 @@ in
       swappy
       wl-clipboard
       cliphist
-      wofi
+      # wofi
+      walker
       squeekboard
       playerctl
     ];
