@@ -9,6 +9,7 @@
   services.journald.extraConfig = "SystemMaxUse=1G";
 
   # Power mpowerManagement
+  services.upower.enable = true;
   services.logind.lidSwitch = "lock";
   services.tlp = {
     enable = true;

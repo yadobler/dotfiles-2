@@ -1,4 +1,4 @@
-{ username, pkgs, lib, ... }:
+{ username, pkgs, lib, inputs, system, ... }:
 let
   pluginScript = "/home/${username}/.config/scripts/hyprland-plugin-script_2.sh";
   pluginList = with pkgs; [
@@ -39,10 +39,9 @@ in
       swappy
       wl-clipboard
       cliphist
-      # wofi
-      walker
-      squeekboard
       playerctl
+      # inputs.ignis.packages.${system}.default
+      # wkeys
     ];
   };
 
