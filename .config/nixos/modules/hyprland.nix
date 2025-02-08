@@ -40,6 +40,7 @@ in
       wl-clipboard
       cliphist
       playerctl
+      wofi
       # inputs.ignis.packages.${system}.default
       # wkeys
     ];
