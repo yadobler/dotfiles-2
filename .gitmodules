@@ -4,6 +4,3 @@
 [submodule ".config/nixos/modules/binja"]
 	path = .config/nixos/modules/binja
     url = https://github.com/yadobler/binary_ninja_nixos.git
-[submodule ".config/zgenom"]
-	path = .config/zsh/zgenom
-	url = https://github.com/jandamm/zgenom.git
