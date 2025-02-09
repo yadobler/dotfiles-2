@@ -148,6 +148,7 @@ in
         "gcod"              = "git checkout develop";
 
         "nix-ls-installed"  = "nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-" ;
+        "deletepw"          = "cliphist list | head -n1 | cliphist delete";
       };
     };
   };
