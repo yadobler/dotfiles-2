@@ -1,4 +1,5 @@
 location=center
+single_click=true
 show=drun
 prompt=Search...
 filter_rate=100
@@ -9,5 +10,6 @@ orientation=vertical
 content_halign=fill
 insensitive=true
 allow_images=true
-image_size=40
-gtk_dark=true
+image_size=48
+gtk_dark=false
+matching=fuzzy

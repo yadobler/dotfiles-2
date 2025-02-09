@@ -1,37 +1,52 @@
 @import url('.config/wofi/colors.css');
-@define-color bg_base alpha (@background, 0.9);
 
-window {
-    border: 2px solid @color14;
-    border-radius: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    background-color: @bg_base;
+*{
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 1.04em;
+}
+
+window{
+    border-radius: 5px;
+    border: 2px;
+    border-color: @color2;
+    color: @foreground;
+    background-color: alpha (@background, 0.9);
+}
+#input {
+    margin: 0px;
+    margin-bottom: 10px;
+    border: none;
+    color: @foreground;
+    background-color: transparent;
 }
 
 #outer-box {
-    margin: 10px;
+    margin: 5px;
+    padding: 5px;
 }
-
 #inner-box {
-    display: block;
-    width: 100%;
+    margin: 5px;
+    padding: 5px;
 }
 
 #text {
+    color: @foreground;
+}
+#entry {
     margin: 10px;
-    font-size: 20px;
-    display: block;
+    padding: 5px;
+}
+#entry:selected {
+    background-color: @color8;
+}
+#text:selected {
+    color: @color5
+}
+
+#scroll {
 }
 
 #img {
-    height: 100px;
-}
-
-#entry {
-    display: block;
-}
-
-#entry:selected {
-    background-color: @color5;
+    border-radius: 10px;
+    margin: 10px
 }

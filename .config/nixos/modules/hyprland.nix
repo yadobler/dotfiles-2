@@ -41,8 +41,8 @@ in
       cliphist
       playerctl
       wofi
+      # stable.gbar
       # inputs.ignis.packages.${system}.default
-      # wkeys
     ];
   };
 
