@@ -8,4 +8,5 @@
 .config/zsh/oh-my-posh-config.json.bak
 .config/nixos/modules/nixvim-config
 .config/nixos/modules/binja
+.config/nixos/modules/wkeys
 

@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     inputs.nixvim.packages.${system}.default
     inputs.binja.packages.${system}.default
+    inputs.wkeys.packages.${system}.default
 
     wallust
     gh

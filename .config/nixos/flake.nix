@@ -11,6 +11,7 @@
     # Personal
     nixvim.url = "github:yadobler/nixvim-config";
     binja.url =  "github:yadobler/binary_ninja_nixos";
+    wkeys.url =  "github:yadobler/wkeys";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:

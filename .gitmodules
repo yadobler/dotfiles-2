@@ -4,3 +4,6 @@
 [submodule ".config/nixos/modules/binja"]
 	path = .config/nixos/modules/binja
 	url = https://github.com/yadobler/binary_ninja_nixos.git
+[submodule ".config/nixos/modules/wkeys"]
+	path = .config/nixos/modules/wkeys
+	url = https://github.com/yadobler/wkeys
