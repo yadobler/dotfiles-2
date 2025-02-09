@@ -8,10 +8,9 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
-    # Local
-    nixvim = {
-      url = "github:yadobler/nixvim-config";
-    };
+    # Personal
+    nixvim.url = "github:yadobler/nixvim-config";
+    binja.url =  "github:yadobler/binary_ninja_nixos";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, system, inputs, ... }:
 {
   imports = [
     ./modules/hyprland.nix
@@ -15,11 +15,6 @@
 
   ];
   
-  # system.userActivationScripts.postInstallPackages = ''
-  #   cd binary_ninja_nixos
-  #   nix-env -i -f default.nix
-  # '';
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -38,6 +33,9 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    inputs.nixvim.packages.${system}.default
+    inputs.binaryninja.packages.${system}.default
+
     wallust
     gh
     stow
