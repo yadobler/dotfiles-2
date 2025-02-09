@@ -146,6 +146,8 @@ in
         "gcob"              = "git checkout -b";
         "gcom"              = "git checkout master";
         "gcod"              = "git checkout develop";
+
+        "nix-ls-installed"  = "nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-" ;
       };
     };
   };
