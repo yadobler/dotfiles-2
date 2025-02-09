@@ -3,4 +3,4 @@
 	url = https://github.com/yadobler/nixvim-config.git
 [submodule ".config/nixos/modules/binja"]
 	path = .config/nixos/modules/binja
-    url = https://github.com/yadobler/binary_ninja_nixos.git
+	url = https://github.com/yadobler/binary_ninja_nixos.git
