@@ -4,7 +4,8 @@
 .config/zsh/.zshrc.zwc
 .config/zsh/.zsh_history
 .config/Thunar/accels.scm
-.config/nixos/modules/nixvim-config
 .config/fcitx5/conf/cached_layouts
 .config/zsh/oh-my-posh-config.json.bak
+# .config/nixos/modules/nixvim-config
+# .config/nixos/modules/binja
 

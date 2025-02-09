@@ -7,12 +7,18 @@
     ./modules/vscode.nix
     ./modules/nautilus.nix
 
-    #./modules/nvim
+    #./modules/nvim 
+    #./modules/binja
     #./modules/obs.nix
     #./modules/nemo.nix
     #./modules/thunar.nix
 
   ];
+  
+  # system.userActivationScripts.postInstallPackages = ''
+  #   cd binary_ninja_nixos
+  #   nix-env -i -f default.nix
+  # '';
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
