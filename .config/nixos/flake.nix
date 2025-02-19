@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, base16, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
     let
 
       system = "x86_64-linux";
