@@ -8,10 +8,12 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+
     # Personal
     nixvim.url = "github:yadobler/nixvim-config";
     binja.url =  "github:yadobler/binary_ninja_nixos";
-    wkeys.url =  "github:yadobler/wkeys";
+    wkeys.url =  "github:ptazithos/wkeys";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:

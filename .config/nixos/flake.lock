@@ -380,6 +380,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1735471104,
+        "narHash": "sha256-0q9NGQySwDQc7RhAV2ukfnu7Gxa5/ybJ2ANT8DQrQrs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "88195a94f390381c6afcdaa933c2f6ff93959cb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -456,7 +472,8 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
-        "wkeys": "wkeys"
+        "wkeys": "wkeys",
+        "zen-browser": "zen-browser"
       }
     },
     "systems": {
@@ -502,16 +519,34 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1739104112,
-        "narHash": "sha256-cFemX9vt9A7EYivfalTstvS+Ppm2WvP6y5/t9ZWls1A=",
-        "owner": "yadobler",
+        "lastModified": 1739149841,
+        "narHash": "sha256-JywvWnwPnkm1qsHPHJYenYsNLkdaPLsuBlHxebMXit8=",
+        "owner": "ptazithos",
         "repo": "wkeys",
-        "rev": "9718f9a834d69fc85a38f1329b900a705c0a8899",
+        "rev": "bc753aec3f7fcfd36ef2655a8c1b713febdb3da1",
         "type": "github"
       },
       "original": {
-        "owner": "yadobler",
+        "owner": "ptazithos",
         "repo": "wkeys",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1739667343,
+        "narHash": "sha256-fNEz+Yd0t9jXz27qKRMAEBradTwYBeBLOECx+ydG25s=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "8c7f6ca49f87b4e114f775a4dad956ceb6df4220",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

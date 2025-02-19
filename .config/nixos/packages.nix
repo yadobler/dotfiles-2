@@ -36,6 +36,7 @@
     inputs.nixvim.packages.${system}.default
     inputs.binja.packages.${system}.default
     inputs.wkeys.packages.${system}.default
+    # inputs.zen-browser.packages.${system}.twilight-official
 
     wallust
     gh
