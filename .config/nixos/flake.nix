@@ -36,7 +36,7 @@
         inherit specialArgs;
         modules = [
           base16.nixosModule { scheme = "${nixpkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml"; }
-          ./theme.nix
+          #./theme.nix
 
           ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ./configuration.nix
