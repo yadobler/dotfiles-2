@@ -92,14 +92,14 @@ in
             any-nix-shell fish --info-right | source
             direnv hook fish | source
             fish_vi_key_bindings
-            tide configure --auto --style=Rainbow --prompt_colors='16 colors' --show_time='24-hour format' --rainbow_prompt_separators=Slanted --powerline_prompt_heads=Slanted --powerline_prompt_tails=Flat --powerline_prompt_style='Two lines, character and frame' --prompt_connection=Solid --powerline_right_prompt_frame=No --prompt_connection_andor_frame_color=Dark --prompt_spacing=Sparse --icons='Many icons' --transient=Yes
+            tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_spacing=Sparse --icons='Many icons' --transient=Yes
       '';
 
       shellAbbrs  = {
         "vim"               = "nvim";
         "svim"              = "sudo -E nvim";
         "batt"              = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
-        "ip"                = "ip -color   = auto";
+        "ip"                = "ip -color = auto";
         "ls"                = "lsd --group-directories-first -N";
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
