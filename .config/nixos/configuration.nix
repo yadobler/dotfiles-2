@@ -49,7 +49,7 @@
         device = "nodev";
         efiSupport = true;
         gfxmodeEfi = "3000x2000";
-        font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
+        font = "${pkgs.nerd-fonts.jetbrains-mono}/share/fonts/truetype/NerdFonts/JetBrainsMono/JetBrainsMonoNerdFontMono-Medium.ttf:";
         fontSize = 64;
         timeoutStyle = "menu";
         configurationLimit = 10;

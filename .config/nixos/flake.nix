@@ -10,13 +10,13 @@
 
 
     # Personal
+    base16.url = "github:SenchoPens/base16.nix";
     nixvim.url = "github:yadobler/nixvim-config";
     binja.url =  "github:yadobler/binary_ninja_nixos";
     wkeys.url =  "github:ptazithos/wkeys";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, base16, ...} @inputs:
     let
 
       system = "x86_64-linux";
@@ -35,6 +35,9 @@
         inherit system;
         inherit specialArgs;
         modules = [
+          base16.nixosModule { scheme = "${nixpkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml"; }
+          ./theme.nix
+
           ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ./configuration.nix
           # ./detect-hp-spectre-x360.nix
