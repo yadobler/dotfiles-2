@@ -26,7 +26,7 @@
     bat = {
       enable = true;
       settings = {
-        theme = "cyberdream";
+        theme = "default";
       };
     };
   };
@@ -37,7 +37,8 @@
     inputs.binja.packages.${system}.default
     inputs.wkeys.packages.${system}.default
 
-    wallust
+    flavours 
+
     gh
     stow
     
