@@ -43,41 +43,6 @@ in
         url = {
           launch = "open ${"url"}";
         };
-
-        colors = {
-          # alpha=1 | 0
-          background=config.scheme.base05;
-          foreground=config.scheme.base00;
-
-          ## Normal/regular colors (color palette 0-7)
-          regular0=config.scheme.base01;  # black
-          regular1=config.scheme.base08;  # red
-          regular2=config.scheme.base0B;  # green
-          regular3=config.scheme.base0A;  # yellow
-          regular4=config.scheme.base0D;  # blue
-          regular5=config.scheme.base0E;  # magenta
-          regular6=config.scheme.base0C;  # cyan
-          regular7=config.scheme.base06;  # white
-
-          ## Bright colors (color palette 8-15)
-          bright0=config.scheme.base02;  # bright black
-          bright1=config.scheme.base08;  # bright red
-          bright2=config.scheme.base0B;  # bright green
-          bright3=config.scheme.base0A;  # bright yellow
-          bright4=config.scheme.base0D;  # bright blue
-          bright5=config.scheme.base0E;  # bright magenta
-          bright6=config.scheme.base0C;  # bright cyan
-          bright7=config.scheme.base07;  # bright white
-
-
-          ## Misc colors
-          "16"=config.scheme.base09;
-          "17"=config.scheme.base0F;
-          "18"=config.scheme.base01;
-          "19"=config.scheme.base02;
-          "20"=config.scheme.base04;
-          "21"=config.scheme.base06;
-        };
       };
     };
     

@@ -8,10 +8,7 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
-
-    base16 = {
-      url = "github:SenchoPens/base16.nix";
-    };
+    # Personal
     nixvim = {
       url = "github:yadobler/nixvim-config";
     };
@@ -23,9 +20,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, base16, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
     let
-
       system = "x86_64-linux";
       username = "yukna";
       specialArgs = { inherit inputs; inherit system; inherit username; };
@@ -42,8 +38,6 @@
         inherit system;
         inherit specialArgs;
         modules = [
-          base16.nixosModule
-          { scheme = "${inputs.tt-schemes}/base16/oxocarbon-dark.yaml"; }
           ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ./configuration.nix
           # ./detect-hp-spectre-x360.nix
