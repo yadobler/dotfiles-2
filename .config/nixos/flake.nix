@@ -9,22 +9,21 @@
     };
 
 
-    # Personal
+    base16 = {
+      url = "github:SenchoPens/base16.nix";
+    };
     nixvim = {
       url = "github:yadobler/nixvim-config";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     binja = {
       url =  "github:yadobler/binary_ninja_nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     wkeys = {
       url =  "github:ptazithos/wkeys";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, base16, ...} @inputs:
     let
 
       system = "x86_64-linux";
@@ -43,6 +42,8 @@
         inherit system;
         inherit specialArgs;
         modules = [
+          base16.nixosModule
+          { scheme = "${inputs.tt-schemes}/base16/oxocarbon-dark.yaml"; }
           ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ./configuration.nix
           # ./detect-hp-spectre-x360.nix

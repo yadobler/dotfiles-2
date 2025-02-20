@@ -1,4 +1,4 @@
-{ lib, pkgs, username, ... }:
+{ config, pkgs, username, ... }:
 let
   shell = "/var/run/current-system/sw/bin/fish";
   terminal = "/run/current-system/sw/bin/foot";
@@ -29,6 +29,7 @@ in
     wget
     jq
     bc
+    killall
     # binwalk
   ];
   programs = {
@@ -45,34 +46,37 @@ in
 
         colors = {
           # alpha=1 | 0
-          background="16181A";
-          foreground="FFFFFF";
+          background=config.scheme.base05;
+          foreground=config.scheme.base00;
 
           ## Normal/regular colors (color palette 0-7)
-          regular0="16181A";  # black
-          regular1="FF6E5E";  # red
-          regular2="5EFF6C";  # green
-          regular3="F1FF5E";  # yellow
-          regular4="5EA1FF";  # blue
-          regular5="BD5EFF";  # magenta
-          regular6="5EF1FF";  # cyan
-          regular7="FFFFFF";  # white
+          regular0=config.scheme.base01;  # black
+          regular1=config.scheme.base08;  # red
+          regular2=config.scheme.base0B;  # green
+          regular3=config.scheme.base0A;  # yellow
+          regular4=config.scheme.base0D;  # blue
+          regular5=config.scheme.base0E;  # magenta
+          regular6=config.scheme.base0C;  # cyan
+          regular7=config.scheme.base06;  # white
 
           ## Bright colors (color palette 8-15)
-          bright0="3C4048";  # bright black
-          bright1="FF6E5E";  # bright red
-          bright2="5EFF6C";  # bright green
-          bright3="F1FF5E";  # bright yellow
-          bright4="5EA1FF";  # bright blue
-          bright5="BD5EFF";  # bright magenta
-          bright6="5EF1FF";  # bright cyan
-          bright7="FFFFFF";  # bright white
+          bright0=config.scheme.base02;  # bright black
+          bright1=config.scheme.base08;  # bright red
+          bright2=config.scheme.base0B;  # bright green
+          bright3=config.scheme.base0A;  # bright yellow
+          bright4=config.scheme.base0D;  # bright blue
+          bright5=config.scheme.base0E;  # bright magenta
+          bright6=config.scheme.base0C;  # bright cyan
+          bright7=config.scheme.base07;  # bright white
 
 
           ## Misc colors
-          selection-foreground="16181A";
-          selection-background="FFFFFF";
-          urls="00a8ba";  
+          "16"=config.scheme.base09;
+          "17"=config.scheme.base0F;
+          "18"=config.scheme.base01;
+          "19"=config.scheme.base02;
+          "20"=config.scheme.base04;
+          "21"=config.scheme.base06;
         };
       };
     };
@@ -92,7 +96,7 @@ in
             any-nix-shell fish --info-right | source
             direnv hook fish | source
             fish_vi_key_bindings
-            tide configure --auto --style=Lean --prompt_colors='16 colors' --show_time='24-hour format' --lean_prompt_height='Two lines' --prompt_connection=Solid --prompt_spacing=Sparse --icons='Many icons' --transient=Yes
+            tide configure --auto --style=Classic --prompt_colors='16 colors' --show_time='24-hour format' --classic_prompt_separators=Vertical --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='Two lines, character and frame' --prompt_connection=Solid --powerline_right_prompt_frame=Yes --prompt_spacing=Compact --icons='Many icons' --transient=Yes
       '';
 
       shellAbbrs  = {
