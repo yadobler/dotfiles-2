@@ -2,7 +2,11 @@
 
 VOLUME=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $2}')
 notification_id="/tmp/VOLUME_NOTIFICATION_ID"
-[[ ! -a $notification_id ]] && echo 1 > $notification_id
+if [ ! -s $notification_id ]; then
+        # The file is empty.
+        echo 1 > $notification_id
+fi
+
 case $1 in 
     up)
         wpctl set-volume -l 1 @DEFAULT_SINK@ $2%+
