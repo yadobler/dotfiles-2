@@ -37,8 +37,6 @@
     inputs.binja.packages.${system}.default
     inputs.wkeys.packages.${system}.default
 
-    flavours 
-
     gh
     stow
     
