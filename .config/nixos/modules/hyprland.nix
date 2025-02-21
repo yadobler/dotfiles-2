@@ -73,7 +73,7 @@ in
     ];
   };
 
-  system.activationScripts.postInstallHyprland = lib.foldr (plugin: script: script + ''echo "hyprctl plugins load ${plugin}/lib/*.so" >> ${pluginScript}
+  system.userActivationScripts.postInstallHyprland = lib.foldr (plugin: script: script + ''echo "hyprctl plugins load ${plugin}/lib/*.so" >> ${pluginScript}
   '') ''
     rm ${pluginScript}
     echo "#!/usr/bin/env /bin/sh" > ${pluginScript}
