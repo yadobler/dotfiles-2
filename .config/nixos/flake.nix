@@ -8,6 +8,7 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+
     # Personal
     nixvim = {
       url = "github:yadobler/nixvim-config";
@@ -22,6 +23,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
     let
+
       system = "x86_64-linux";
       username = "yukna";
       specialArgs = { inherit inputs; inherit system; inherit username; };

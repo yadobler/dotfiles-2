@@ -1,10 +1,5 @@
 { pkgs, ...}:
-let 
-  colorscheme = "oxocarbon-dark";
-in
+  let colorscheme = "${pkgs.base16-schemes}/share/themes/oxocarbon-dark.yaml"; in
 {
-  environment.systemPackages = with pkgs; [
-    flavours
-  ];
-
+  environment.systemPackages = with pkgs; [ flavours ];
 }
