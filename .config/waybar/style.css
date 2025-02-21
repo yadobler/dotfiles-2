@@ -3,7 +3,6 @@
  */
 @import url('colors.css');
 @define-color bg_base alpha (@base00, 0.8);
-@define-color hover_col mix (@base02, @base05, 0.2);
 
 * {
     font-family: JetBrains Mono NFM;
@@ -18,12 +17,14 @@
 window#waybar{
     border-radius: 0px;
 }
+
+.waybar-top {
+    background-color: @bg_base;
+    border-bottom: 1px solid @base0A;
+}
+
 .waybar-bottom {
     border-top: 1px solid @color0A;
-    background-color: @bg_base;
-}
-.waybar-top {
-    border-bottom: 1px solid @base0A;
     background-color: @bg_base;
 }
 
@@ -31,29 +32,34 @@ tooltip {
     border: 1px solid @base0A;
 }
 
+#workspaces {
+    background-color: transparent;
+}
+
+
 #workspaces button {
-    margin: 0px 2px;
-    padding: 2px;
     font-size: 15px;
     border-radius: 5;
+    margin: 0px 2px;
+    padding: 2px;
+    border: 0px;
 }
 
 #workspaces button:hover {
-    border-color: @hover_col;
+    border: 1px solid @hover_col;
 }
 
 #workspaces button.active {
-    border-color: @base0D;
+    border: 1px solid @base0D;
 }
 
 #workspaces button.special {
-    border-color: @base09;
+    border: 1px solid @base09;
 }
 
 #workspaces button.urgent {
-    border-color: @base0A;
+    border: 1px solid @base0A;
 }
-
 
 #backlight,
 #battery,
@@ -68,7 +74,6 @@ tooltip {
 #custom-weather,
 #submap,
 #window,
-#workspaces,
 #idle_inhibitor,
 #network,
 #pulseaudio,
