@@ -7,6 +7,9 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
 
 
     # Personal
@@ -19,14 +22,20 @@
     wkeys = {
       url =  "github:ptazithos/wkeys";
     };
+    oxocarbon-dark = {
+      url = "github:nyoom-engineering/base16-oxocarbon";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, nix-colors, ...} @inputs:
     let
 
       system = "x86_64-linux";
       username = "yukna";
-      specialArgs = { inherit inputs; inherit system; inherit username; };
+
+      colorScheme = nix-colors.lib.schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon-dark + "/base16-oxocarbon-dark.yaml"));
+      specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 
       overlay-stable = final: prev: {
         stable = import inputs.nixpkgs-stable {

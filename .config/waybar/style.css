@@ -1,9 +1,9 @@
 /*
  * vim:ft=less
  */
-@import url('colors-waybar.css');
-@define-color bg_base alpha (@background, 0.8);
-@define-color hover_col mix (@color2, @color5, 0.2);
+@import url('colors.css');
+@define-color bg_base alpha (@base00, 0.8);
+@define-color hover_col mix (@base02, @base05, 0.2);
 
 * {
     font-family: JetBrains Mono NFM;
@@ -19,16 +19,16 @@ window#waybar{
     border-radius: 0px;
 }
 .waybar-bottom {
-    border-top: 1px solid @color14;
+    border-top: 1px solid @color0A;
     background-color: @bg_base;
 }
 .waybar-top {
-    border-bottom: 1px solid @color14;
+    border-bottom: 1px solid @base0A;
     background-color: @bg_base;
 }
 
 tooltip {
-    border: 1px solid @color2;
+    border: 1px solid @base0A;
 }
 
 #workspaces button {
@@ -43,15 +43,15 @@ tooltip {
 }
 
 #workspaces button.active {
-    border-color: @color2;
+    border-color: @base0D;
 }
 
 #workspaces button.special {
-    border-color: @color4;
+    border-color: @base09;
 }
 
 #workspaces button.urgent {
-    border-color: @color1;
+    border-color: @base0A;
 }
 
 
@@ -78,17 +78,17 @@ tooltip {
 }
 
 #submap.resize {
-    color: @color1;
+    color: @base0C;
 }
 
 #battery.charging {
-    color: @color2;
+    color: @base0D;
 }
 #battery.good:not(.charging) {
     color: @foreground;
 }
 #battery.warning:not(.charging) {
-    color: @color1;
+    color: @base0A;
 }
 @keyframes blink {
     to {
@@ -107,11 +107,11 @@ tooltip {
 }
 
 #temperature.critical {
-    color: @color2;
+    color: @base02;
 }
 
 #idle_inhibitor.actived {
-    color: @color1;
+    color: @base01;
 }
 
 #custom-kb,
