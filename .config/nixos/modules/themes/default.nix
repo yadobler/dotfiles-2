@@ -1,13 +1,13 @@
-{ pkgs, colorScheme, username, ... }:
+{ pkgs, colorScheme, lib, username, ... }:
 let
   colorFiles = {
-    hyprland_color = pkgs.writeText "hyprland/colors.conf" (builtins.readFile "hyprland.conf");
-    waybar_colors = pkgs.writeText "waybar/colors.css" (builtins.readFile "waybar.css");
-    dunstrc_colors = pkgs.writeText "/dunst/dunstrc" (builtins.readFile "dunstrc");
+    hyprland_color  =  pkgs.substituteAll ({ src = ./hyprland.conf; } // colorScheme.palette);
+    waybar_colors   =  pkgs.substituteAll ({ src = ./waybar.css; } // colorScheme.palette);
+    dunstrc_colors  =  pkgs.substituteAll ({ src = ./dunstrc; } // colorScheme.palette);
   };
 in
   {
-  system.userActivationScripts.changeColors = ''
+  system.activationScripts.changeColors = ''
     echo ${colorFiles.waybar_colors}
   '';
 }
