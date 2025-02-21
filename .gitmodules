@@ -7,6 +7,3 @@
 [submodule ".config/nixos/modules/wkeys"]
 	path = .config/nixos/modules/wkeys
 	url = https://github.com/yadobler/wkeys
-[submodule ".themes/FlatColor"]
-	path = .themes/FlatColor
-	url = https://github.com/jasperro/FlatColor
