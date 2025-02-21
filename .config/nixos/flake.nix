@@ -22,7 +22,7 @@
     wkeys = {
       url =  "github:ptazithos/wkeys";
     };
-    oxocarbon-dark = {
+    oxocarbon = {
       url = "github:nyoom-engineering/base16-oxocarbon";
       flake = false;
     };
@@ -34,7 +34,7 @@
       system = "x86_64-linux";
       username = "yukna";
 
-      colorScheme = nix-colors.lib.schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon-dark + "/base16-oxocarbon-dark.yaml"));
+      colorScheme = nix-colors.lib.schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
       specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 
       overlay-stable = final: prev: {

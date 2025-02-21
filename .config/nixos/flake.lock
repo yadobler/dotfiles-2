@@ -500,7 +500,7 @@
         "type": "github"
       }
     },
-    "oxocarbon-dark": {
+    "oxocarbon": {
       "flake": false,
       "locked": {
         "lastModified": 1678563546,
@@ -523,7 +523,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
-        "oxocarbon-dark": "oxocarbon-dark",
+        "oxocarbon": "oxocarbon",
         "wkeys": "wkeys"
       }
     },
