@@ -6,7 +6,7 @@
     ./modules/terminal.nix
     ./modules/vscode.nix
     ./modules/nautilus.nix
-    ./modules/theme.nix
+    ./modules/themes
 
     #./modules/nvim 
     #./modules/binja
