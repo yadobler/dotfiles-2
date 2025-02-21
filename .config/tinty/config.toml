@@ -1,0 +1,6 @@
+
+[[items]]
+path = "https://github.com/tinted-theming/base16-waybar"
+name = "base16-waybar"
+themes-dir = "colors"
+hook = "cp -f %f ~/.config/waybar/colors.css"
