@@ -31,6 +31,7 @@ in
     bc
     killall
     # binwalk
+    yazi
   ];
   programs = {
     foot = {
