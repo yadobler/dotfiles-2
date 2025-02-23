@@ -7,10 +7,6 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
-    nix-colors = {
-      url = "github:misterio77/nix-colors";
-    };
-
 
     # Personal
     nixvim = {
@@ -28,13 +24,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nix-colors, ...} @inputs:
+  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
     let
 
       system = "x86_64-linux";
       username = "yukna";
 
-      colorScheme = nix-colors.lib.schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
+      schemeFromYAML = import ./modules/themes/schemeFromYAML.nix;
+      colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
       specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 
       overlay-stable = final: prev: {
