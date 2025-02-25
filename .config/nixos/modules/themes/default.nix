@@ -25,8 +25,8 @@ let
   gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
 in
 {
-  system.userActivationScripts.colorConfigs.text = activationScript + ''
+  system.activationScripts.colorConfigs.text = activationScript + ''
     rm /home/${username}/.themes/generated 
-    ln -s -T ${gtk-theme}/share/themes/${colorScheme.slug}/ /home/${username}/.themes/generated 
+    ln -s "${gtk-theme}/share/themes/${colorScheme.slug}/" /home/${username}/.themes/generated 
   '';
 }
