@@ -1,21 +1,15 @@
-{pkgs, ... }:
+{username, ... }:
 {
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    virt-viewer
-  ];
+  programs.virt-manager.enable = true;
 
+  users.groups.libvirtd.members = [username];
+  
   virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        # ovmf.enable = true;
-        # ovmf.packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-    # spiceUSBRedirection.enable = true;
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
   };
-  # services.spice-vdagentd.enable = true;
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;  # enable copy and paste between host and guest
 }
