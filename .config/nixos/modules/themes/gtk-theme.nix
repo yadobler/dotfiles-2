@@ -35,7 +35,7 @@ in
       patchShebangs .
       mkdir -p $out/share/themes
       mkdir bin
-      sed -e 's/handle-horz-.*//' -e 's/handle-vert-.*//' -i ./src/gtk-2.0/assets.txt
+      # sed -e 's/handle-horz-.*//' -e 's/handle-vert-.*//' -i ./src/gtk-2.0/assets.txt
 
       cat > /build/gtk-colors << EOF
         BTN_BG=${scheme.palette.base02}
