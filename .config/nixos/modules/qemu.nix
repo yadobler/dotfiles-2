@@ -1,4 +1,4 @@
-{username, ... }:
+{ pkgs, username, ... }:
 {
   programs.dconf.enable = true;
   programs.virt-manager.enable = true;
@@ -6,7 +6,10 @@
   users.groups.libvirtd.members = [username];
   
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+    };
     spiceUSBRedirection.enable = true;
   };
 

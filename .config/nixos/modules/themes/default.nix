@@ -25,8 +25,10 @@ let
   gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
 in
 {
-  system.activationScripts.colorConfigs.text = activationScript + ''
+  system.activationScripts.colorConfigs.text = ''
+    echo $tty
+  '' + activationScript + ''
     rm /home/${username}/.themes/generated 
     ln -s "${gtk-theme}/share/themes/${colorScheme.slug}/" /home/${username}/.themes/generated 
-  '';
+    '';
 }
