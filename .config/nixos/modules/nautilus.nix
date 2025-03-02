@@ -1,9 +1,6 @@
 { pkgs, ... }: {
   programs = {
-    nautilus-open-any-terminal = {
-      enable = true;
-      terminal = "foot";
-    };
+    nautilus-open-any-terminal.enable = true;
     dconf.enable = true;
 
   };
