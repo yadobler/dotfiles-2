@@ -7,12 +7,14 @@ in
   {
   documentation.man.generateCaches = true;
   environment.systemPackages = with pkgs; [
-    fishPlugins.tide
     fishPlugins.puffer
     fishPlugins.sponge
-    fishPlugins.fzf
-    any-nix-shell
+    fishPlugins.colored-man-pages
+    fishPlugins.bass 
+    fishPlugins.fzf-fish
+    fishPlugins.tide
 
+    any-nix-shell
     ghostty
 
     file
@@ -21,11 +23,12 @@ in
     dust
     duf
     fzf
+    hexyl
     ripgrep
     bottom
     neofetch
     pstree
-    tree
+    chafa
     unzip
     p7zip
     wget
@@ -49,14 +52,6 @@ in
             end
       '';
 
-      interactiveShellInit = ''
-            any-nix-shell fish --info-right | source
-            direnv hook fish | source
-            fish_vi_key_bindings
-            tide configure --auto --style=Classic --prompt_colors='16 colors' --show_time='24-hour format' --classic_prompt_separators=Vertical --powerline_prompt_heads=Round --powerline_prompt_tails=Round --powerline_prompt_style='Two lines, character and frame' --prompt_connection=Solid --powerline_right_prompt_frame=Yes --prompt_spacing=Compact --icons='Many icons' --transient=Yes
-
-      '';
-
       shellAbbrs  = {
         "vim"               = "nvim";
         "svim"              = "sudo -E nvim";
@@ -66,6 +61,8 @@ in
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
+        "tree"              = "pstree";
+        "hexdump"           = "hexyl";
         "du"                = "dust -r";
         "df"                = "duf";
         "ps"                = "procs";
