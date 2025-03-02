@@ -1,7 +1,7 @@
 { config, pkgs, username, ... }:
 let
   shell = "/var/run/current-system/sw/bin/fish";
-  terminal = "/run/current-system/sw/bin/foot";
+  terminal = "ghostty";
   # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
   {
@@ -12,6 +12,8 @@ in
     fishPlugins.sponge
     fishPlugins.fzf
     any-nix-shell
+
+    ghostty
 
     file
     lsd
@@ -34,20 +36,9 @@ in
     yazi
   ];
   programs = {
-    foot = {
-      enable = true;
-      settings = {
-        main = {
-          font = "JetBrainsMono Nerd Font Mono:size=12";
-        };
-
-        url = {
-          launch = "open ${"url"}";
-        };
-      };
-    };
-    
     direnv.enable = true;
+    
+    nautilus-open-any-terminal.terminal = terminal;
 
     fish = {
       enable = true;
@@ -129,6 +120,6 @@ in
 
   system.userActivationScripts.postInstallTerminal = ''
       rm -rf /usr/bin/gnome-terminal
-      ln -s ${terminal} /usr/bin/gnome-terminal
+      ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
       '';
 }
