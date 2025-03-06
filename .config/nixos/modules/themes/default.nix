@@ -28,7 +28,10 @@ let
 in
   {
   system.activationScripts.colorConfigs.text = ''
-    echo $tty
+    if [ -z \"$__NIXOS_SET_ENVIRONMENT_DONE\" ]; then
+      echo __NIXOS_SET_ENVIRONMENT_DONE not set, skipping theme setup...
+      exit 0
+    fi
   '' + activationScript + ''
     '';
 

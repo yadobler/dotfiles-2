@@ -1,14 +1,8 @@
-# from https://github.com/Misterio77/nix-colors/blob/main/lib/contrib/gtk-theme.nix 
+# based off https://github.com/Misterio77/nix-colors/blob/main/lib/contrib/gtk-theme.nix 
 
 { pkgs }:
 { scheme }:
 
-let
-  rendersvg = pkgs.runCommand "rendersvg" { } ''
-    mkdir -p $out/bin
-    ln -s ${pkgs.resvg}/bin/resvg $out/bin/rendersvg
-    '';
-in
   pkgs.stdenv.mkDerivation {
     name = "generated-gtk-theme-${scheme.slug}";
     src = pkgs.fetchFromGitHub {

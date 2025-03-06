@@ -27,6 +27,7 @@ in
     ripgrep
     bottom
     neofetch
+    broot
     pstree
     chafa
     unzip
@@ -61,7 +62,7 @@ in
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
-        "tree"              = "pstree";
+        "tree"              = "broot";
         "hexdump"           = "hexyl";
         "du"                = "dust -r";
         "df"                = "duf";
