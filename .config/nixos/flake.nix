@@ -16,7 +16,7 @@
       url =  "github:yadobler/binary_ninja_nixos";
     };
     wkeys = {
-      url =  "github:ptazithos/wkeys";
+      url =  "github:yadobler/wkeys";
     };
     oxocarbon = {
       url = "github:nyoom-engineering/base16-oxocarbon";

@@ -28,8 +28,8 @@ let
 in
   {
   system.activationScripts.colorConfigs.text = ''
-    if [ -z \"$__NIXOS_SET_ENVIRONMENT_DONE\" ]; then
-      echo __NIXOS_SET_ENVIRONMENT_DONE not set, skipping theme setup...
+    if [ -z \"$SCRATCHPAD_NAME\" ]; then
+      echo SCRATCHPAD_NAME not set, skipping theme setup...
       exit 0
     else 
       echo setting up theme ${colorScheme.slug} ...
