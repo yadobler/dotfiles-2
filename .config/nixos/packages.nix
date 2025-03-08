@@ -64,7 +64,7 @@
     
     adwaita-icon-theme
     adwaita-qt
-    morewaita-icon-theme
+    # morewaita-icon-theme
     gnome-tweaks
 
     # jetbrains.idea-community
