@@ -1,68 +1,52 @@
-# based off https://github.com/Misterio77/nix-colors/blob/main/lib/contrib/gtk-theme.nix 
+# based off https://github.com/shaunsingh/nix-darwin-dotfiles/blob/8fd7c6b5e3fd77e570ad163bdb8a5b2f451c115a/overlays/derivations/phocus-oxocarbon.nix
 
 { pkgs }:
 { scheme }:
 
-pkgs.stdenv.mkDerivation {
-  pname = "whitesur-gtk-theme";
-  version = "2024-11-18";
+pkgs.stdenvNoCC.mkDerivation rec {
+  pname = "phocus-oxocarbon";
+  version = "0cf0eb35a927bffcb797db8a074ce240823d92de";
 
   src = pkgs.fetchFromGitHub {
-    owner = "vinceliuice";
-    repo = "whitesur-gtk-theme";
-    rev = "2024-11-18";
-    hash = "sha256-SSGb7EdJN8E4N8b98VO7oFTeOmhKEo/0qhso9410ihg=";
+    owner = "phocus";
+    repo = "gtk";
+    rev = version;
+    sha256 = "sha256-URuoDJVRQ05S+u7mkz1EN5HWquhTC4OqY8MqAbl0crk=";
   };
 
-  nativeBuildInputs = with pkgs; [
-    dialog
-    glib
-    jdupes
-    libxml2
-    sassc
-    util-linux
-  ];
-
-  buildInputs = with pkgs; [
-    gnome-themes-extra # adwaita engine for Gtk2
+  patches = [
+    patches/remove-npm.diff
+    patches/gradient.diff
+    patches/accent-substitute-all.diff
   ];
 
   postPatch = ''
-      find -name "*.sh" -print0 | while IFS= read -r -d ''' file; do
-      patchShebangs "$file"
-      done
-
-      # Do not provide `sudo`, as it is not needed in our use case of the install script
-      substituteInPlace libs/lib-core.sh --replace-fail '"$(which sudo)"' false
-      substituteInPlace install.sh --replace-fail 'full_sudo ' 'echo '
-      cd src
-
-      find . -name "*" ! -name "*.svg" ! -name "*.png" -type f -print0 | while IFS= read -r -d ''' file; do
-          sed -i 's/"#0860f2"/#${scheme.palette.base0A}/g' $file
-          sed -i 's/"#242424"/#${scheme.palette.base00}/g' $file
-          sed -i 's/"#2a2a2a"/#${scheme.palette.base01}/g' $file
-          sed -i 's/"#333333"/#${scheme.palette.base02}/g' $file
-          sed -i 's/"#3b3b3b"/#${scheme.palette.base0E}/g' $file
-          sed -i 's/"#5294e2"/#${scheme.palette.base0F}/g' $file
-          sed -i 's/"#565656"/#${scheme.palette.base03}/g' $file
-          sed -i 's/"#dedede"/#${scheme.palette.base05}/g' $file
-          sed -i 's/"#ffffff"/#${scheme.palette.base06}/g' $file
-      done
-
-
-      cd ..
-
-      # Provides a dummy home directory
-      substituteInPlace libs/lib-core.sh --replace-fail 'MY_HOME=$(getent passwd "''${MY_USERNAME}" | cut -d: -f6)' 'MY_HOME=/tmp'
-      '';
-
-  dontBuild = true;
-
-  installPhase = ''
-    runHook preInstall
-    mkdir -p $out/share/themes
-    ./install.sh  --dest $out/share/themes --silent-mode --libadwaita --color dark || true
-    jdupes --quiet --link-soft --recurse $out/share
-    runHook postInstall
+    substituteInPlace scss/gtk-3.0/_colors.scss \
+    --replace "@bg0@" "#{scheme.palette.base00}" \
+    --replace "@bg1@" "#{scheme.palette.base01}" \
+    --replace "@bg2@" "#{scheme.palette.base02}"\
+    --replace "@bg3@" "#{scheme.palette.base03}" \
+    --replace "@bg4@" "#{scheme.palette.base03}" \
+    --replace "@red@" "#{scheme.palette.base0C}" \
+    --replace "@lred@" "#{scheme.palette.base0C}" \
+    --replace "@orange@" "#{scheme.palette.base0A}" \
+    --replace "@lorange@" "#{scheme.palette.base0A}" \
+    --replace "@yellow@" "#{scheme.palette.base0B}" \
+    --replace "@lyellow@" "#{scheme.palette.base0B}" \
+    --replace "@green@" "#{scheme.palette.base0D}" \
+    --replace "@lgreen@" "#{scheme.palette.base0D}" \
+    --replace "@cyan@" "#{scheme.palette.base08}" \
+    --replace "@lcyan@" "#{scheme.palette.base08}" \
+    --replace "@blue@" "#{scheme.palette.base07}" \
+    --replace "@lblue@" "#{scheme.palette.base07}" \
+    --replace "@purple@" "#{scheme.palette.base0E}" \
+    --replace "@lpurple@" "#{scheme.palette.base0E}" \
+    --replace "@pink@" "#{scheme.palette.base0C}" \
+    --replace "@lpink@" "#{scheme.palette.base0C}" \
+    --replace "@primary@" "#{scheme.palette.base05}" \
+    --replace "@secondary@" "#{scheme.palette.base04}"
     '';
+
+  nativeBuildInputs = [ pkgs.sass ];
+  installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
 }
