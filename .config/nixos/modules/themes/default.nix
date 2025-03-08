@@ -23,8 +23,10 @@ let
   ) colorFilesAttrSet);
 
 
-  # gtkThemeFromScheme = import ./gtk-theme.nix { inherit pkgs; };
-  # gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
+  #gtkThemeFromScheme = import ./gtk-theme.nix { inherit pkgs; };
+  #gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
+  gtk-theme = pkgs.whitesur-gtk-theme;
+  gtk-icon = pkgs.whitesur-icon-theme;
 in
   {
   system.activationScripts.colorConfigs.text = ''
@@ -33,8 +35,8 @@ in
       exit 0
     else 
       echo setting up theme ${colorScheme.slug} ...
-      # rm /home/${username}/.themes/phocus 
-      # ln -s ${gtk-theme}/share/themes/* /home/${username}/.themes
+      ln -fs ${gtk-theme}/share/themes/* /home/${username}/.themes
+      ln -fs ${gtk-icon}/share/icons/* /home/${username}/.icons
     fi
   '' + activationScript + ''
     '';

@@ -1,54 +1,66 @@
-# based off https://github.com/shaunsingh/nix-darwin-dotfiles/blob/8fd7c6b5e3fd77e570ad163bdb8a5b2f451c115a/overlays/derivations/phocus-oxocarbon.nix
+# based off https://github.com/Misterio77/nix-colors/blob/main/lib/contrib/gtk-theme.nix 
 
 { pkgs }:
 { scheme }:
 
 pkgs.stdenv.mkDerivation rec {
-  pname = "phocus-oxocarbon";
-  version = "0cf0eb35a927bffcb797db8a074ce240823d92de";
+  pname = "Yaru-Colors";
+  version = "fb5d086";
 
   src = pkgs.fetchFromGitHub {
-    owner = "phocus";
-    repo = "gtk";
+    owner = "Jannomag";
+    repo = "Yaru-Colors";
     rev = version;
-    sha256 = "sha256-URuoDJVRQ05S+u7mkz1EN5HWquhTC4OqY8MqAbl0crk=";
+    hash = "sha256-sEATCqjMBn6LwgMQcL8pvEW4k6WAMjOpSbSO3ksQPEU=";
   };
 
-  patches = [
-    patches/remove-npm.diff
-    patches/gradient.diff
-    patches/accent-substitute-all.diff
+  nativeBuildInputs = with pkgs; [
+    sassc
+    jdupes
+    inkscape
+    optipng
+    python3
   ];
+  buildInputs = with pkgs; [
+    gtk3
+    gnome-themes-extra
+  ];
+  propagatedBuildInputs = with pkgs; [
+    humanity-icon-theme
+    hicolor-icon-theme
+  ];
+  propagatedUserEnvPkgs = [ pkgs.gtk-engine-murrine ];
+
+  dontDropIconThemeCache = true;
 
   postPatch = ''
-    substituteInPlace scss/gtk-3.0/_colors.scss \
-    --replace-fail "@bg0@" "#${scheme.palette.base00}" \
-    --replace-fail "@bg1@" "#${scheme.palette.base01}" \
-    --replace-fail "@bg2@" "#${scheme.palette.base02}" \
-    --replace-fail "@bg3@" "#${scheme.palette.base03}" \
-    --replace-fail "@bg4@" "#${scheme.palette.base03}" \
-    --replace-fail "@red@" "#${scheme.palette.base0C}" \
-    --replace-fail "@lred@" "#${scheme.palette.base0C}" \
-    --replace-fail "@orange@" "#${scheme.palette.base0A}" \
-    --replace-fail "@lorange@" "#${scheme.palette.base0A}" \
-    --replace-fail "@yellow@" "#${scheme.palette.base0B}" \
-    --replace-fail "@lyellow@" "#${scheme.palette.base0B}" \
-    --replace-fail "@green@" "#${scheme.palette.base0D}" \
-    --replace-fail "@lgreen@" "#${scheme.palette.base0D}" \
-    --replace-fail "@cyan@" "#${scheme.palette.base08}" \
-    --replace-fail "@lcyan@" "#${scheme.palette.base08}" \
-    --replace-fail "@blue@" "#${scheme.palette.base07}" \
-    --replace-fail "@lblue@" "#${scheme.palette.base07}" \
-    --replace-fail "@purple@" "#${scheme.palette.base0E}" \
-    --replace-fail "@lpurple@" "#${scheme.palette.base0E}" \
-    --replace-fail "@pink@" "#${scheme.palette.base0C}" \
-    --replace-fail "@lpink@" "#${scheme.palette.base0C}" \
-    --replace-fail "@primary@" "#${scheme.palette.base05}" \
-    --replace-fail "@secondary@" "#${scheme.palette.base04}"
+      patchShebangs .
+      patchShebangs src/*.sh
+
+      substituteInPlace src/theme-script.sh \
+        --replace-fail '/usr/bin/inkscape' '${pkgs.inkscape}/bin/inkscape' \
+        --replace-fail '/usr/bin/optipng' '${pkgs.inkscape}/bin/optipng' \
+        --replace-fail 'eea834' '${scheme.palette.base0A}' \
+        --replace-fail '8c5e11' '${scheme.palette.base0C}' \
+        --replace-fail 'c08625' '${scheme.palette.base07}' \
+        --replace-fail '412d0b' '${scheme.palette.base0E}' \
+        --replace-fail 'e9af4e' '${scheme.palette.base0D}' \
+        --replace-fail 'EEA834 EEAD34 EEB234 EEB734 EEBC34 EEC134 EEC634 EECB34 EED034 EED534' '${scheme.palette.base0B} ${scheme.palette.base0B} ${scheme.palette.base07} ${scheme.palette.base07} ${scheme.palette.base09} ${scheme.palette.base09} ${scheme.palette.base08} ${scheme.palette.base08} ${scheme.palette.base0F} ${scheme.palette.base0F}'
+      '';
+
+  dontBuild = true;
+
+  installPhase = ''
+    runHook preInstall
+
+    src/theme-script.sh Amber -a
+    mkdir -p $out/share/Themes
+    mkdir -p $out/share/Icons
+    cp ../Themes/* $out/share/Themes
+    cp ../Icons/* $out/share/Icons
+
+    jdupes --quiet --link-soft --recurse $out/share
+    runHook postInstall
     '';
-
-  nativeBuildInputs = [ pkgs.nodePackages.sass ];
-  installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
-
 
 }
