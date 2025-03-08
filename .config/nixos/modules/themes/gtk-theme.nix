@@ -3,7 +3,7 @@
 { pkgs }:
 { scheme }:
 
-pkgs.stdenvNoCC.mkDerivation rec {
+pkgs.stdenv.mkDerivation rec {
   pname = "phocus-oxocarbon";
   version = "0cf0eb35a927bffcb797db8a074ce240823d92de";
 
@@ -22,31 +22,33 @@ pkgs.stdenvNoCC.mkDerivation rec {
 
   postPatch = ''
     substituteInPlace scss/gtk-3.0/_colors.scss \
-    --replace "@bg0@" "#{scheme.palette.base00}" \
-    --replace "@bg1@" "#{scheme.palette.base01}" \
-    --replace "@bg2@" "#{scheme.palette.base02}"\
-    --replace "@bg3@" "#{scheme.palette.base03}" \
-    --replace "@bg4@" "#{scheme.palette.base03}" \
-    --replace "@red@" "#{scheme.palette.base0C}" \
-    --replace "@lred@" "#{scheme.palette.base0C}" \
-    --replace "@orange@" "#{scheme.palette.base0A}" \
-    --replace "@lorange@" "#{scheme.palette.base0A}" \
-    --replace "@yellow@" "#{scheme.palette.base0B}" \
-    --replace "@lyellow@" "#{scheme.palette.base0B}" \
-    --replace "@green@" "#{scheme.palette.base0D}" \
-    --replace "@lgreen@" "#{scheme.palette.base0D}" \
-    --replace "@cyan@" "#{scheme.palette.base08}" \
-    --replace "@lcyan@" "#{scheme.palette.base08}" \
-    --replace "@blue@" "#{scheme.palette.base07}" \
-    --replace "@lblue@" "#{scheme.palette.base07}" \
-    --replace "@purple@" "#{scheme.palette.base0E}" \
-    --replace "@lpurple@" "#{scheme.palette.base0E}" \
-    --replace "@pink@" "#{scheme.palette.base0C}" \
-    --replace "@lpink@" "#{scheme.palette.base0C}" \
-    --replace "@primary@" "#{scheme.palette.base05}" \
-    --replace "@secondary@" "#{scheme.palette.base04}"
+    --replace-fail "@bg0@" "#${scheme.palette.base00}" \
+    --replace-fail "@bg1@" "#${scheme.palette.base01}" \
+    --replace-fail "@bg2@" "#${scheme.palette.base02}" \
+    --replace-fail "@bg3@" "#${scheme.palette.base03}" \
+    --replace-fail "@bg4@" "#${scheme.palette.base03}" \
+    --replace-fail "@red@" "#${scheme.palette.base0C}" \
+    --replace-fail "@lred@" "#${scheme.palette.base0C}" \
+    --replace-fail "@orange@" "#${scheme.palette.base0A}" \
+    --replace-fail "@lorange@" "#${scheme.palette.base0A}" \
+    --replace-fail "@yellow@" "#${scheme.palette.base0B}" \
+    --replace-fail "@lyellow@" "#${scheme.palette.base0B}" \
+    --replace-fail "@green@" "#${scheme.palette.base0D}" \
+    --replace-fail "@lgreen@" "#${scheme.palette.base0D}" \
+    --replace-fail "@cyan@" "#${scheme.palette.base08}" \
+    --replace-fail "@lcyan@" "#${scheme.palette.base08}" \
+    --replace-fail "@blue@" "#${scheme.palette.base07}" \
+    --replace-fail "@lblue@" "#${scheme.palette.base07}" \
+    --replace-fail "@purple@" "#${scheme.palette.base0E}" \
+    --replace-fail "@lpurple@" "#${scheme.palette.base0E}" \
+    --replace-fail "@pink@" "#${scheme.palette.base0C}" \
+    --replace-fail "@lpink@" "#${scheme.palette.base0C}" \
+    --replace-fail "@primary@" "#${scheme.palette.base05}" \
+    --replace-fail "@secondary@" "#${scheme.palette.base04}"
     '';
 
-  nativeBuildInputs = [ pkgs.sass ];
+  nativeBuildInputs = [ pkgs.nodePackages.sass ];
   installFlags = [ "DESTDIR=$(out)" "PREFIX=" ];
+
+
 }

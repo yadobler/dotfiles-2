@@ -23,8 +23,8 @@ let
   ) colorFilesAttrSet);
 
 
-  gtkThemeFromScheme = import ./gtk-theme.nix { inherit pkgs; };
-  gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
+  # gtkThemeFromScheme = import ./gtk-theme.nix { inherit pkgs; };
+  # gtk-theme = gtkThemeFromScheme { scheme = colorScheme; };
 in
   {
   system.activationScripts.colorConfigs.text = ''
@@ -33,8 +33,8 @@ in
       exit 0
     else 
       echo setting up theme ${colorScheme.slug} ...
-      rm /home/${username}/.themes/WhiteSur* 
-      ln -s ${gtk-theme}/share/themes/* /home/${username}/.themes
+      # rm /home/${username}/.themes/phocus 
+      # ln -s ${gtk-theme}/share/themes/* /home/${username}/.themes
     fi
   '' + activationScript + ''
     '';
