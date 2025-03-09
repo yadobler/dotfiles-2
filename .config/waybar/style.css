@@ -1,6 +1,7 @@
 /*
  * vim:ft=less
  */
+
 @import url('colors.css');
 @define-color bg_base alpha (@base00, 0.8);
 
@@ -11,35 +12,25 @@
     margin: 0px;
     padding: 1px;
     color: @foreground;
-    background-color: transparent;
 }
 
-window#waybar{
+window#waybar {
     border-radius: 0px;
+    background-color: @bg_base; /* Only the Waybar itself */
 }
 
-.waybar-top {
-    background-color: @bg_base;
-    border-bottom: 1px solid @base0A;
-}
-
+.waybar-top,
 .waybar-bottom {
-    border-top: 1px solid @color0A;
     background-color: @bg_base;
-}
-
-tooltip {
-    border: 1px solid @base0A;
 }
 
 #workspaces {
     background-color: transparent;
 }
 
-
 #workspaces button {
     font-size: 15px;
-    border-radius: 5;
+    border-radius: 5px;
     margin: 0px 2px;
     padding: 2px;
     border: 0px;
@@ -80,55 +71,18 @@ tooltip {
 #temperature,
 #tray {
     padding: 0px 5px;
+    background-color: transparent; /* Only for these elements */
 }
 
-#submap.resize {
-    color: @base0C;
-}
-
-#battery.charging {
-    color: @base0D;
-}
-#battery.good:not(.charging) {
-    color: @foreground;
-}
-#battery.warning:not(.charging) {
-    color: @base0A;
-}
-@keyframes blink {
-    to {
-        color: #AA2244;
-    }
-}
-
-#battery.critical:not(.charging) {
-    color: @foreground;
+/* Tooltips and dropdowns should have a solid background */
+tooltip {
+    border: 1px solid @base0A;
     background-color: @bg_base;
-    animation-name: blink;
-    animation-duration: 0.2s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
 }
 
-#temperature.critical {
-    color: @base02;
+#tray menu {
+    background-color: @bg_base;
+    border: 1px solid @base0A;
 }
-
-#idle_inhibitor.actived {
-    color: @base01;
-}
-
-#custom-kb,
-#custom-launch_app,
-#custom-kill,
-#custom-notification,
-#custom-powermenu,
-#custom-sp {
-    font-size: 20px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 
 @import url('progressbar.css');

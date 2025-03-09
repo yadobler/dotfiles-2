@@ -46,7 +46,7 @@
             "interval": 600
         },
         "clock": {
-            "tooltip-format": "<tt><big>{calendar}\n\nToday: {:%d %B %Y}</big></tt>",
+            "tooltip-format": "<tt><span size='15pt'>{calendar}\n\nToday: {:%d %B %Y}</span></tt>",
             "calendar": {
                 "mode-mon-col"  : 3,
                 "weeks-pos"     : "right",
@@ -60,7 +60,7 @@
             "format": "{:%d %B %Y - %H:%M %p}"
         },
         "network": {
-            "format-wifi": "{signalStrength}% {icon}",
+            "format-wifi": "{signalStrength}% <span size='large'>{icon}</span>",
             "format-ethernet": "{ipaddr}/{cidr} 󰈁",
             "tooltip-format": "{essid} on {ifname} 󱂇",
             "format-linked": "{ifname} (No IP) 󰪎",
@@ -69,12 +69,15 @@
             "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
         },
         "pulseaudio": {
-            "format": "{volume}% {icon} {format_source}",
-            "format-muted": "<span foreground='#AA2244'><b></b></span> {format_source}",
-            "format-bluetooth": "{volume}% {icon}  {format_source}",
-            "format-bluetooth-muted": "<span foreground='#AA2244'><b> {icon}  {format_source}</b></span>",
-            "format-source": " {volume}% ",
-            "format-source-muted": "<span foreground='#AA2244'><b></b></span>",
+            "format": "{volume}% <span size='large'>{icon}</span> {format_source}",
+            "format-bluetooth": "{volume}% <span size='large'>{icon} </span> {format_source}",
+            
+            "format-muted": "<span foreground='#AA2244' size='large'><b></b></span> {format_source}",
+            "format-bluetooth-muted": "<span foreground='#AA2244'> <span size='large'><b> {icon} </span> {format_source}</b></span>",
+            
+            "format-source": " {volume}% <span size='large'></span>",
+            "format-source-muted": "<span foreground='#AA2244' span='large'><b></b></span>",
+
             "format-icons": {
                 "headphone": "",
                 "hands-free": "󱆏",
@@ -87,7 +90,7 @@
             "on-click": "pavucontrol"
         },
         "idle_inhibitor": {
-            "format": "{icon}",
+            "format": "<span size='16pt'>{icon}</span>",
             "format-icons": {
                 "activated": "<span foreground='#34AA44'><b></b></span>",
                 "deactivated": ""
@@ -96,11 +99,11 @@
         "temperature": {
             "thermal-zone": 8,
             "critical-threshold": 80,
-            "format": "{temperatureC}°C {icon}",
+            "format": "{temperatureC}°C <span size='large'>{icon}</span>",
             "format-icons": ["", "", ""]
         },
         "backlight": {
-            "format": "{percent}% {icon}",
+            "format": "{percent}% <span size='large'>{icon}</span>",
             "on-scroll-up": "light -A 2",
             "on-scroll-down": "light -U 2",
             "format-icons": ["", "", "", "", "", "", "", "", ""]
@@ -111,15 +114,15 @@
                 "warning": 30,
                 "critical": 15
             },
-            "format": "{capacity}% {icon}",
-            "format-charging": "{capacity}% {icon} ",
+            "format": "{capacity}% <span size='x-large'>{icon}</span>",
+            "format-charging": "{capacity}% <span size='x-large'>{icon}</span> <span size='x-large'></span>",
             "tooltip-format": "{capacity}% - {timeTo}",
             "format-icons": ["", "", "", "", ""]
         },
         "bluetooth": {
-            "format": "{status} ",
-            "format-disabled": "off ",
-            "format-connected": "{num_connections} ",
+            "format": "{status} <span size='x-large'></span>",
+            "format-disabled": "off <span size='x-large'></span>",
+            "format-connected": "{num_connections} <span size='x-large'></span>",
             "tooltip-format": "{controller_alias}\t{controller_address}",
             "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
             "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -127,13 +130,13 @@
         },
         "custom/kb": {
             "tooltip": false,
-            "format": "󰌌",
+            "format": "<span size='16pt'>󰌌</span>",
             "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
             "escape": true
         },
         "custom/sp": {
             "tooltip": false,
-            "format": "",
+            "format": "<span size='16pt'></span>",
             "on-click": "$HOME/.config/scripts/swap_scratchpad.sh",
             "escape": true
         },
@@ -172,7 +175,7 @@
         //modules
         "custom/launch_app": {
             "tooltip": false,
-            "format": "󰀻",
+            "format": "<span size='x-large'>󰀻</span>",
             "on-click": "sleep 0.5; $HOME/.config/scripts/icon_launcher.sh",
             "escape": true
         },
@@ -217,14 +220,14 @@
             "separate-outputs": true,
             "format": "{}",
             "rewrite": {
-                "^vim (.*)": "<big></big> $1",
-                "^nvim (.*)": "<big></big> $1",
-                "(.*) - Brave$": "<big>󰖟</big> $1"
+                "^vim (.*)": "<span size='x-large'></span> $1",
+                "^nvim (.*)": "<span size='x-large'></span> $1",
+                "(.*) - Brave$": "<span size='x-large'>󰖟</span> $1"
             }
         },
         "custom/kill": {
             "tooltip": false,
-            "format": "󰅗",
+            "format": "<span size='x-large'>󰅗</span>",
             "on-click": "sleep 0.5; hyprctl dispatch killactive",
             "escape": true
         },
@@ -237,10 +240,10 @@
             "tooltip": false,
             "format": "{icon}",
             "format-icons": {
-                "notification-false": "<span foreground='red'><sup></sup></span>",
-                "none-false": "",
+                "notification-false": "<span size='x-large'></span><span foreground='red'><sup></sup></span>",
+                "none-false": "<span size='x-large'></span>",
                 "notification-true": "<span foreground='red'><sup></sup></span>",
-                "none-true": "",
+                "none-true": "<span size='x-large'></span>",
             },
             "return-type": "json",
             "interval": 1,
@@ -251,7 +254,7 @@
         },
         "custom/powermenu": {
             "tooltip": false,
-            "format": "",
+            "format": "<span size='x-large'></span>",
             "on-click": "sleep 0.5; $HOME/.config/scripts/powermenu_launcher.sh",
             "escape": true
         }

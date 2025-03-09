@@ -9,12 +9,13 @@ let
     { name = "wofi"; src = ./templates/wofi.css; target = "wofi/colors.css"; }
     { name = "ghostty"; src = ./templates/ghostty.config; target = "ghostty/colors"; }
     { name = "fish"; src = ./templates/fish.theme; target = "fish/themes/base16.theme"; }
+    { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
   ];
 
   # Generate attribute set and symlink commands in one go
   colorFilesAttrSet = lib.listToAttrs (map (file: {
     name = file.target;
-    value = pkgs.substituteAll ({ src = file.src; } // colorScheme.palette);
+    value = pkgs.substituteAll ({ src = file.src; slug = colorScheme.slug; } // colorScheme.palette);
   }) colorFiles);
 
   # Generate activation script that symlinks files
