@@ -75,7 +75,6 @@
             "format-muted": "<span foreground='#AA2244' size='large'><b></b></span> {format_source}",
             "format-bluetooth-muted": "<span foreground='#AA2244'> <span size='large'><b> {icon} </span> {format_source}</b></span>",
             
-            "format-source": " {volume}% <span size='large'></span>",
             "format-source-muted": "<span foreground='#AA2244' span='large'><b></b></span>",
 
             "format-icons": {

@@ -1,4 +1,4 @@
-{ pkgs, system, inputs, ... }:
+{ pkgs, system, inputs, colorScheme, ... }:
 {
   imports = [
     ./modules/hyprland.nix
@@ -16,7 +16,7 @@
     #./modules/thunar.nix
 
   ];
-  
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -35,13 +35,16 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
-    inputs.nixvim.packages.${system}.default
+    (inputs.nixvim.packages.${system}.withColor {
+      colorScheme = {palette = lib.mapAttrs (_: v: "#" + v) colorScheme.palette; };
+    })
+    # inputs.nixvim.packages.${system}.default
     inputs.binja.packages.${system}.default
     inputs.wkeys.packages.${system}.default
 
     gh
     stow
-    
+
     imagemagick
     ffmpeg
     libnotify
@@ -61,7 +64,7 @@
     arduino
     scenebuilder
     obsidian
-    
+
     adwaita-icon-theme
     adwaita-qt
     # morewaita-icon-theme

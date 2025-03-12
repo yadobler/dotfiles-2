@@ -1,4 +1,4 @@
-{ pkgs, lib, username, colorScheme, nix-colors, ... }:
+{ pkgs, lib, username, colorScheme, ... }:
 # Bless chat gpt
 let
   # List of color configuration files
@@ -10,7 +10,6 @@ let
     { name = "ghostty"; src = ./templates/ghostty.config; target = "ghostty/colors"; }
     { name = "fish"; src = ./templates/fish.theme; target = "fish/themes/base16.theme"; }
     { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
-    { name = "nvim"; src = ./templates/nixvim.nix; target = "nixos/modules/themes/nixvim-base16.nix"; }
   ];
 
   # Generate attribute set and symlink commands in one go
