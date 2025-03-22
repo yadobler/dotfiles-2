@@ -28,8 +28,12 @@
     bat = {
       enable = true;
       settings = {
-        theme = "default";
+        theme = "base16";
       };
+      extraPackages = with pkgs.bat-extras; [
+        batman
+
+      ];
     };
   };
 

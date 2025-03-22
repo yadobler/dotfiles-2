@@ -6,10 +6,9 @@ let
 in
   {
   documentation.man.generateCaches = true;
-
-  environment.variables = {
-    "MANPAGER" = "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'";
-  };
+  
+  # environment.variables = {
+  # };
 
   environment.systemPackages = with pkgs; [
     fishPlugins.puffer
@@ -32,6 +31,7 @@ in
     bottom
     neofetch
     broot
+    tree
     pstree
     chafa
     unzip
@@ -66,11 +66,11 @@ in
         "la"                = "lsd --group-directories-first -lA";
         "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
-        "tree"              = "broot";
         "hexdump"           = "hexyl";
         "du"                = "dust -r";
         "df"                = "duf";
         "ps"                = "procs";
+        "man"               = "batman";
         "htop"              = "btm";
         "grep"              = "rg";
         "find"              = "fd";

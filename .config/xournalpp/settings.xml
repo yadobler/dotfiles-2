@@ -7,7 +7,7 @@
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="Portrait"/>
   <property name="lastSavePath" value="/home/yukna/Documents/documents/NuLife documents/Re_ REGISTRATION &amp; ONBOARDING DOCUMENTS [MDM MANJULA]/completed"/>
-  <property name="lastOpenPath" value="/home/yukna/Documents/documents/NuLife documents/Re_ REGISTRATION &amp; ONBOARDING DOCUMENTS [MDM MANJULA]"/>
+  <property name="lastOpenPath" value="/home/yukna/Documents/School/Internship/ISD"/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20"/>
   <property name="edgePanMaxMult" value="5"/>
@@ -188,7 +188,7 @@
     </data>
   </data>
   <data name="tools">
-    <attribute name="current" type="string" value="image"/>
+    <attribute name="current" type="string" value="selectPdfTextLinear"/>
     <data name="drawArrow">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
