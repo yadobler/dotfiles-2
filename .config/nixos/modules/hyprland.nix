@@ -60,8 +60,8 @@ in
 
   hardware.graphics = {
     enable = true;
-    package = pkgs.mesa.drivers;
-    package32 = pkgs.pkgsi686Linux.mesa.drivers;
+    package = pkgs.mesa;
+    package32 = pkgs.pkgsi686Linux.mesa;
   };
 
   xdg.portal = {
