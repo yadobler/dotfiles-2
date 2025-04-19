@@ -306,7 +306,7 @@
   # IMPORTANT: colors have to be defined in quotation marks.
   # Otherwise the "#" and following would be interpreted as a comment.
   background = "#@base01@"
-  foreground = "@base04@"
+  foreground = "#@base04@"
   frame_color = "#@base01@"
   timeout = 10
   # Icon for notifications with low urgency, uncomment to enable
@@ -314,7 +314,7 @@
 
 [urgency_normal]
   background = "#@base01@"
-  foreground = "@base04@"
+  foreground = "#@base04@"
   timeout = 10
   override_pause_level = 30
   # Icon for notifications with normal urgency, uncomment to enable
