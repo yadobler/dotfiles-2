@@ -30,10 +30,9 @@
       settings = {
         theme = "base16";
       };
-      extraPackages = with pkgs.bat-extras; [
-        batman
-
-      ];
+      # extraPackages = with pkgs.bat-extras; [
+      #
+      # ];
     };
   };
 

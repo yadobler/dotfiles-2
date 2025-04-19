@@ -70,7 +70,6 @@ in
         "du"                = "dust -r";
         "df"                = "duf";
         "ps"                = "procs";
-        "man"               = "batman";
         "htop"              = "btm";
         "grep"              = "rg";
         "find"              = "fd";
