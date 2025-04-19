@@ -2,56 +2,40 @@
  * vim:ft=less
  */
 
+/* Import base colors (defines @base00, @foreground, @base0D etc.) */
 @import url('colors.css');
-@define-color bg_base alpha (@base00, 0.8);
+
+/* Define reusable colors (or define in colors.css) */
+@define-color bg_base alpha(@base00, 0.8);
+@define-color hover_col alpha(@base0D, 0.6); /* Example hover color */
+@define-color critical_bg alpha(#ff0000, 0.5); /* Example critical background */
+@define-color warning_bg alpha(#ffa500, 0.5); /* Example warning background */
+@define-color muted_color #AA2244; /* Muted audio color */
+@define-color idle_active_color #34AA44; /* Idle inhibitor active color */
+@define-color notification_indicator_color red; /* Notification dot color */
 
 * {
     font-family: JetBrains Mono NFM;
-    font-size: 14px;
+    font-size: 14px; /* Default font size */
     border-radius: 0px;
     margin: 0px;
-    padding: 1px;
-    color: @foreground;
+    padding: 1px; /* Minimal padding */
+    color: @foreground; /* Default text color */
 }
 
 window#waybar {
     border-radius: 0px;
-    background-color: @bg_base; /* Only the Waybar itself */
+    background-color: @bg_base; /* Semi-transparent background for the whole bar */
 }
 
+/* Target specific bars by name if needed, otherwise rely on window#waybar */
 .waybar-top,
 .waybar-bottom {
-    background-color: @bg_base;
+    /* background-color: @bg_base; */ /* Already set on window#waybar */
 }
 
-#workspaces {
-    background-color: transparent;
-}
-
-#workspaces button {
-    font-size: 15px;
-    border-radius: 5px;
-    margin: 0px 2px;
-    padding: 2px;
-    border: 0px;
-}
-
-#workspaces button:hover {
-    border: 1px solid @hover_col;
-}
-
-#workspaces button.active {
-    border: 1px solid @base0D;
-}
-
-#workspaces button.special {
-    border: 1px solid @base09;
-}
-
-#workspaces button.urgent {
-    border: 1px solid @base0A;
-}
-
+/* General module styling: add padding */
+#workspaces,
 #backlight,
 #battery,
 #clock,
@@ -63,26 +47,189 @@ window#waybar {
 #custom-powermenu,
 #custom-sp,
 #custom-weather,
-#submap,
-#window,
+#hyprland-submap, /* Waybar usually uses module name with hyphen */
+#window, /* Waybar usually uses #window */
 #idle_inhibitor,
 #network,
 #pulseaudio,
 #temperature,
 #tray {
-    padding: 0px 5px;
-    background-color: transparent; /* Only for these elements */
+    padding: 0px 5px; /* Horizontal padding for modules */
+    background-color: transparent; /* Ensure modules don't have own background unless specified */
 }
 
-/* Tooltips and dropdowns should have a solid background */
-tooltip {
+/* --- Specific Module Styling --- */
+
+/* Workspaces */
+#workspaces {
+    background-color: transparent;
+    padding: 0px; /* Remove padding from container if buttons have margins */
+}
+
+#workspaces button {
+    font-size: 15px;
+    border-radius: 5px;
+    margin: 2px 3px; /* Margin around buttons */
+    padding: 2px 5px; /* Padding inside buttons */
+    border: 1px solid transparent; /* Default transparent border */
+    background-color: transparent;
+    color: @foreground;
+}
+
+#workspaces button:hover {
+    border: 1px solid @hover_col;
+    background-color: alpha(@hover_col, 0.3);
+}
+
+#workspaces button.active {
+    border: 1px solid @base0D;
+    background-color: alpha(@base0D, 0.3);
+}
+
+#workspaces button.special {
+    border: 1px solid @base09;
+    background-color: alpha(@base09, 0.3);
+}
+
+#workspaces button.urgent {
     border: 1px solid @base0A;
-    background-color: @bg_base;
+    background-color: alpha(@base0A, 0.3);
 }
 
+/* Hyprland Submap (e.g., resize mode) */
+#hyprland-submap {
+    font-style: italic;
+}
+
+/* Window Title Icons */
+#window > span { /* Target direct span for icons in window title rewrite */
+    font-size: x-large; /* Size for icons in window title rewrite */
+    margin-right: 4px; /* Space between icon and text */
+}
+
+/* Sizing for specific custom icons/modules */
+#custom-sp,
+#custom-kb,
+#idle_inhibitor {
+    font-size: 16pt;
+}
+
+#custom-launch_app,
+#custom-kill,
+#custom-powermenu {
+    font-size: x-large;
+}
+
+/* Sizing for icons within standard modules */
+#battery > span,
+#backlight > span,
+#pulseaudio > span,
+#network > span,
+#temperature > span {
+    font-size: large; /* Adjust as needed (large, x-large, specific pt/px) */
+    margin-left: 2px; /* Add tiny space before icon */
+}
+
+/* Battery Specific */
+#battery > span {
+    font-size: x-large;
+}
+#battery .charging-icon {
+    /* Maybe slightly different color or size? */
+    /* color: @some-other-color; */
+}
+#battery.warning {
+    background-color: @warning_bg;
+    color: @foreground; /* Ensure text is readable */
+}
+#battery.critical {
+    background-color: @critical_bg;
+    color: @foreground; /* Ensure text is readable */
+}
+#battery.charging {
+    /* Optional: Add visual cue for charging state, e.g., background color */
+    /* background-color: alpha(@base0B, 0.3); */
+}
+
+/* Backlight */
+/* (No specific state styles added, can add if needed) */
+
+/* Pulseaudio */
+#pulseaudio.muted {
+    /* Style the whole module when muted */
+    color: @muted_color;
+}
+#pulseaudio .muted-icon {
+    font-size: large; /* Ensure consistent size */
+    font-weight: bold; /* Make muted icon bold */
+}
+#pulseaudio .muted-source-icon {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Network */
+#network.disconnected {
+    color: @warning_bg; /* Or a specific color for disconnected */
+}
+#network.disabled {
+    color: @muted_color; /* Or a specific color for disabled */
+}
+
+/* Temperature */
+#temperature.critical {
+    background-color: @critical_bg;
+    color: @foreground;
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor.activated {
+    color: @idle_active_color;
+    font-weight: bold;
+}
+
+/* Custom Notification */
+#custom-notification > span { /* Target direct span children (icon) */
+    font-size: x-large;
+}
+
+#custom-notification .indicator {
+    color: transparent; /* Hide indicator by default */
+    font-size: small; /* Adjust size of the dot */
+    margin-left: -2px; /* Fine-tune position */
+    margin-bottom: 5px; /* Adjust vertical alignment */
+}
+
+/* Show indicator only if script adds .has-notification class to the #custom-notification module */
+#custom-notification.has-notification .indicator {
+    color: @notification_indicator_color;
+}
+
+/* Change icon color if paused (script needs to add .is-paused class to the #custom-notification module) */
+#custom-notification.is-paused > span { /* Target direct span children (icon) when paused */
+    /* Example: slightly dim the icon */
+    opacity: 0.7;
+}
+
+
+/* Tray */
 #tray menu {
     background-color: @bg_base;
     border: 1px solid @base0A;
 }
 
+/* Tooltips */
+tooltip {
+    border: 1px solid @base0A;
+    background-color: @bg_base;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+tooltip label {
+    font-size: 14px;
+    color: @foreground;
+}
+
+/* Import progress bar styles (if needed) */
 @import url('progressbar.css');
