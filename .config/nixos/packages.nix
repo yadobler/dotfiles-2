@@ -8,7 +8,7 @@
     ./modules/nautilus.nix
     ./modules/qemu.nix
     ./modules/themes
-    ./modules/spotify
+    ./modules/spotify.nix
 
     #./modules/nvim 
     #./modules/binja
