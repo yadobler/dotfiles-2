@@ -22,6 +22,9 @@
       url = "github:nyoom-engineering/base16-oxocarbon";
       flake = false;
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:

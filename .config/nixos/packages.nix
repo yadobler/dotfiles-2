@@ -8,6 +8,7 @@
     ./modules/nautilus.nix
     ./modules/qemu.nix
     ./modules/themes
+    ./modules/spotify
 
     #./modules/nvim 
     #./modules/binja
@@ -62,7 +63,6 @@
     xournalpp
     swayimg
     clapper
-    spotify
     neovide
     arduino
     scenebuilder
