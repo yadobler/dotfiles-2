@@ -17,7 +17,7 @@ in
       shuffle # shuffle+ (special characters are sanitized out of extension names)
     ];
     theme = {
-      name = "Dracula";
+      name = "Base16";
       src = ./themes/spicetify;
       injectCss = false;
     };
