@@ -134,6 +134,14 @@
   time.timeZone = "Asia/Singapore";
 
   # i18n and keyboard
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+        ids = ["*"];
+        settings.main.capslock = "overload(meta, esc)";
+    };
+  };
+
   i18n = {
     defaultLocale = "en_SG.UTF-8";
     inputMethod = {

@@ -225,7 +225,7 @@
         "custom/kill": {
             "tooltip": false,
             "format": "󰅗", // Size handled by CSS #custom-kill
-            "on-click": "hyprctl dispatch killactive", // Removed sleep
+            "on-click": "hyprland dispatch killactive", // Removed sleep
             "escape": true
         },
         "tray": {
