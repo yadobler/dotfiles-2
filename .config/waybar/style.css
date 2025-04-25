@@ -28,10 +28,11 @@ window#waybar {
     background-color: @bg_base; /* Semi-transparent background for the whole bar */
 }
 
-/* Target specific bars by name if needed, otherwise rely on window#waybar */
-.waybar-top,
+.waybar-top {
+    border-bottom: 1px solid @base07;
+}
 .waybar-bottom {
-    /* background-color: @bg_base; */ /* Already set on window#waybar */
+    border-top: 1px solid @base07;
 }
 
 /* General module styling: add padding */
