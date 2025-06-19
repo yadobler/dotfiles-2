@@ -1,14 +1,30 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    GTK_THEME "WhiteSur-Dark-solid"
+    im_platform "fcitx"
+    GTK_IM_MODULE "$im_platform"
+    QT_IM_MODULE "$im_platform"
+    SDL_IM_MODULE "$im_platform"
+    XMODIFIERS "'@im=$im_platform'"
+    MOZ_ENABLE_WAYLAND "1"
+    NIXOS_OZONE_WL "1"
+    GTK_USE_PORTAL "1"
+    NIXOS_XDG_OPEN_USE_PORTAL "1"
+    RANGER_LOAD_DEFAULT_RC "FALSE"
+    WLR_NO_HARDWARE_CURSORS "1"
+    WLR_RENDERER_ALLOW_SOFTWARE "1"
+    XCURSOR_SIZE "24"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    HYPRCURSOR_THEME "Banana # Niri respects this for the cursor"
+    HYPRCURSOR_SIZE "24"
+}
 
 // Input device configuration.
 input {
     keyboard {
         xkb {
             layout "us"
-            // options "grp:win_space_toggle,ctrl:nocaps,caps:escape"
             options "ctrl:nocaps,caps:escape"
         }
     }
@@ -135,9 +151,9 @@ layout {
 // See the binds section below for more spawn examples.
 spawn-at-startup "dunst"
 spawn-at-startup "hypridle"
-spawn-at-startup "swaybg" "-i" "~/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
+spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
 spawn-at-startup "waybar"
-spawn-at-startup "iio-hyprland"
+spawn-at-startup "iio-sensor-proxy"
 spawn-at-startup "lxqt-policykit-agent"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "light" "-N" "5"
@@ -145,9 +161,14 @@ spawn-at-startup "pulseaudio -D"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "rfkill" "block" "bluetooth"
 spawn-at-startup "~/.config/scripts/start_ime.sh"
-spawn-at-startup "pw-play" "~/.config/scripts/assets/oxp.wav"
+spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
 spawn-at-startup "telegram"
-spawn-at-startup "xdg-open" "~/.local/share/applications/whatsapp.desktop"
+spawn-at-startup "xdg-open" "/home/yukna/.local/share/applications/whatsapp.desktop"
+
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -161,38 +182,22 @@ prefer-no-csd
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// Animation settings.
-// The wiki explains how to configure individual animations:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
-animations {
-    // Uncomment to turn off all animations.
-    // off
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 30
+        delay-ms 100
+        max-speed 1500
+    }
 
-    // Slow down all animations by this factor. Values below 1 speed them up instead.
-    // slowdown 3.0
-}
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 100
+        max-speed 1500
+    }
 
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+    hot-corners {
+        // off
+    }
 }
 
 binds {
@@ -393,3 +398,4 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
 }
+

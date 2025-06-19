@@ -3,13 +3,13 @@
   programs = {
     niri.enable = true;
     dconf.enable = true;
-    iio-hyprland.enable = true;
     waybar.enable = true;
     xwayland.enable = true;
   };
 
   environment = { 
     systemPackages = with pkgs; [
+      iio-sensor-proxy
       banana-cursor
       pamixer
       pavucontrol
