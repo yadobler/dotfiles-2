@@ -8,6 +8,21 @@
   # limit journald log size
   services.journald.extraConfig = "SystemMaxUse=1G";
 
+  # swap caps to super-on-hold, escape
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            capslock = "overload(meta, esc)";
+          };
+        };
+      };
+    };
+  };
+
   # Power mpowerManagement
   services.upower.enable = true;
   services.logind.lidSwitch = "lock";

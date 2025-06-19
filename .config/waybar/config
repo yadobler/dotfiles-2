@@ -71,10 +71,11 @@
         "pulseaudio": {
             "format": "{volume}% <span size='large'>{icon}</span> {format_source}",
             "format-bluetooth": "{volume}% <span size='large'>{icon} </span> {format_source}",
-
+            
             "format-muted": "<span foreground='#AA2244' size='large'><b></b></span> {format_source}",
             "format-bluetooth-muted": "<span foreground='#AA2244'> <span size='large'><b> {icon} </span> {format_source}</b></span>",
-
+            
+            "format-source": " {volume}% <span size='large'></span>",
             "format-source-muted": "<span foreground='#AA2244' span='large'><b></b></span>",
 
             "format-icons": {
@@ -113,15 +114,15 @@
                 "warning": 30,
                 "critical": 15
             },
-            "format": "{capacity}% <span size='x-large'>{icon}</span>",
-            "format-charging": "{capacity}% <span size='x-large'>{icon}</span> <span size='x-large'></span>",
+            "format": "{capacity}% <span size='small'>{icon}</span>",
+            "format-charging": "{capacity}% <span size='small'>{icon}</span> <span size='small'></span>",
             "tooltip-format": "{capacity}% - {timeTo}",
             "format-icons": ["", "", "", "", ""]
         },
         "bluetooth": {
-            "format": "{status} <span size='x-large'></span>",
-            "format-disabled": "off <span size='x-large'></span>",
-            "format-connected": "{num_connections} <span size='x-large'></span>",
+            "format": "{status} <span size='small'></span>",
+            "format-disabled": "off <span size='small'></span>",
+            "format-connected": "{num_connections} <span size='small'></span>",
             "tooltip-format": "{controller_alias}\t{controller_address}",
             "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
             "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -174,7 +175,7 @@
         //modules
         "custom/launch_app": {
             "tooltip": false,
-            "format": "<span size='x-large'>󰀻</span>",
+            "format": "<span size='small'>󰀻</span>",
             "on-click": "sleep 0.5; $HOME/.config/scripts/icon_launcher.sh",
             "escape": true
         },
@@ -199,6 +200,7 @@
                 "brave-mail.google.com__mail_u_.-Default": "",
                 "brave-web.whatsapp.com__-Default": "",
                 "brave-to-do.live.com__tasks_today-Default": "",
+                "brave-keep.google.com__u_1_-Default": "󰛜",
                 "brave-ticktick.com__webapp_-Default": "",
                 "brave-browser": "󰖟",
                 "org.telegram.desktop": "",
@@ -218,14 +220,14 @@
             "separate-outputs": true,
             "format": "{}",
             "rewrite": {
-                "^vim (.*)": "<span size='x-large'></span> $1",
-                "^nvim (.*)": "<span size='x-large'></span> $1",
-                "(.*) - Brave$": "<span size='x-large'>󰖟</span> $1"
+                "^vim (.*)": "<span size='small'></span> $1",
+                "^nvim (.*)": "<span size='small'></span> $1",
+                "(.*) - Brave$": "<span size='small'>󰖟</span> $1"
             }
         },
         "custom/kill": {
             "tooltip": false,
-            "format": "<span size='x-large'>󰅗</span>",
+            "format": "<span size='small'>󰅗</span>",
             "on-click": "sleep 0.5; hyprctl dispatch killactive",
             "escape": true
         },
@@ -238,10 +240,10 @@
             "tooltip": false,
             "format": "{icon}",
             "format-icons": {
-                "notification-false": "<span size='x-large'></span><span foreground='red'><sup></sup></span>",
-                "none-false": "<span size='x-large'></span>",
+                "notification-false": "<span size='small'></span><span foreground='red'><sup></sup></span>",
+                "none-false": "<span size='small'></span>",
                 "notification-true": "<span foreground='red'><sup></sup></span>",
-                "none-true": "<span size='x-large'></span>",
+                "none-true": "<span size='small'></span>",
             },
             "return-type": "json",
             "interval": 1,
@@ -252,7 +254,7 @@
         },
         "custom/powermenu": {
             "tooltip": false,
-            "format": "<span size='x-large'></span>",
+            "format": "<span size='small'></span>",
             "on-click": "sleep 0.5; $HOME/.config/scripts/powermenu_launcher.sh",
             "escape": true
         }
