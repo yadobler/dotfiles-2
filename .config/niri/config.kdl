@@ -151,8 +151,7 @@ layout {
 // See the binds section below for more spawn examples.
 spawn-at-startup "dunst"
 spawn-at-startup "hypridle"
-spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
-spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i /home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m fill"
 spawn-at-startup "iio-sensor-proxy"
 spawn-at-startup "lxqt-policykit-agent"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
@@ -167,7 +166,6 @@ spawn-at-startup "xdg-open" "/home/yukna/.local/share/applications/whatsapp.desk
 
 hotkey-overlay {
     skip-at-startup
-    hide-not-bound
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -182,23 +180,6 @@ prefer-no-csd
 // The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-gestures {
-    dnd-edge-view-scroll {
-        trigger-width 30
-        delay-ms 100
-        max-speed 1500
-    }
-
-    dnd-edge-workspace-switch {
-        trigger-height 50
-        delay-ms 100
-        max-speed 1500
-    }
-
-    hot-corners {
-        // off
-    }
-}
 
 binds {
     // Most actions that you can bind here can also be invoked programmatically with

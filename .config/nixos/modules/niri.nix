@@ -14,10 +14,9 @@
       pamixer
       pavucontrol
       dunst
-      grim
-      slurp
       wf-recorder
       swappy
+      swaybg
       wl-clipboard
       cliphist
       playerctl

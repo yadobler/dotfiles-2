@@ -17,6 +17,8 @@ in
     fishPlugins.fzf-fish
     fishPlugins.tide
 
+    kitty
+
     any-nix-shell
 
     file
@@ -51,7 +53,7 @@ in
       enable = true;
       loginShellInit = ''
             if test (tty) = /dev/tty1
-              exec niri
+              exec niri-session
             end
       '';
 
