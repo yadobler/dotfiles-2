@@ -1,7 +1,7 @@
 { config, pkgs, username, ... }:
 let
   shell = "/var/run/current-system/sw/bin/fish";
-  terminal = "ghostty";
+  terminal = "kitty";
   # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
   {
@@ -10,7 +10,7 @@ in
   # environment.variables = {
   # };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [pkgs.${terminal}] ++ (with pkgs; [
     fishPlugins.puffer
     fishPlugins.sponge
     fishPlugins.bass 
@@ -18,7 +18,6 @@ in
     fishPlugins.tide
 
     any-nix-shell
-    ghostty
 
     file
     lsd
@@ -42,15 +41,14 @@ in
     killall
     # binwalk
     yazi
-  ];
+  ]);
+
   programs = {
     direnv.enable = true;
-    
     nautilus-open-any-terminal.terminal = terminal;
 
     fish = {
       enable = true;
-
       loginShellInit = ''
             if test (tty) = /dev/tty1
               exec niri
@@ -122,5 +120,5 @@ in
   system.userActivationScripts.postInstallTerminal = ''
       rm -rf /usr/bin/gnome-terminal
       ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
-      '';
+  '';
 }
