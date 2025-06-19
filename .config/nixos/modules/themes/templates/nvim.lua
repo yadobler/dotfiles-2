@@ -11,6 +11,8 @@
 --   by Chris Kempson (https://github.com/chriskempson); and its fork:
 -- - tinted-vim (https://github.com/tinted-theming/tinted-vim)
 --   by the Tinted Theming contributors.
+-- 
+-- Scheme used: @slug@
 
 -- Base16 colors.
 local gui00 = "#@base00@"

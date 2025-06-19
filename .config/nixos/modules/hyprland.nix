@@ -4,9 +4,12 @@ let
   pluginList = with pkgs; [
     # hyprlandPlugins.hyprfocus
     # hyprlandPlugins.hycov
+    # hyprlandPlugins.hyprbars
     hyprlandPlugins.hyprgrass
-    stable.hyprlandPlugins.hyprspace
-    hyprlandPlugins.hyprexpo
+    hyprlandPlugins.hyprtrails
+    hyprlandPlugins.hyprscrolling
+    # stable.hyprlandPlugins.hyprspace
+    # hyprlandPlugins.hyprexpo
   ];
 in
   {

@@ -16,10 +16,10 @@ in
       oneko
       shuffle # shuffle+ (special characters are sanitized out of extension names)
     ];
-    theme = {
-      name = "Base16";
-      src = ./themes/spicetify;
-      injectCss = false;
-    };
+    # theme = {
+    #   name = "Base16";
+    #   src = ./themes/spicetify;
+    #   injectCss = false;
+    # };
   };
 }
