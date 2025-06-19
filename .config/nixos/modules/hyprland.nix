@@ -6,7 +6,7 @@ let
     # hyprlandPlugins.hycov
     # hyprlandPlugins.hyprbars
     hyprlandPlugins.hyprgrass
-    hyprlandPlugins.hyprtrails
+    # hyprlandPlugins.hyprtrails
     hyprlandPlugins.hyprscrolling
     # stable.hyprlandPlugins.hyprspace
     # hyprlandPlugins.hyprexpo

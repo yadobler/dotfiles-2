@@ -28,6 +28,13 @@ window#waybar {
     background-color: @bg_base; /* Semi-transparent background for the whole bar */
 }
 
+.waybar-top {
+    border-bottom: 1px solid @base07;
+}
+.waybar-bottom {
+    border-top: 1px solid @base07;
+}
+
 /* General module styling: add padding */
 #workspaces,
 #backlight,
