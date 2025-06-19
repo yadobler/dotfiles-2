@@ -53,7 +53,7 @@ in
 
       loginShellInit = ''
             if test (tty) = /dev/tty1
-              exec Hyprland
+              exec niri
             end
       '';
 

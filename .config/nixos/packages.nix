@@ -2,14 +2,15 @@
 {
   imports = [
     ./modules/themes
-    ./modules/hyprland.nix
     ./modules/gnome_polkit.nix
     ./modules/terminal.nix
     ./modules/vscode.nix
     ./modules/nautilus.nix
     ./modules/qemu.nix
     ./modules/spotify.nix
+    ./modules/niri.nix
 
+    #./modules/hyprland.nix
     #./modules/nvim 
     #./modules/binja
     #./modules/obs.nix
