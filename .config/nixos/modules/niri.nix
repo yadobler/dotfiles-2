@@ -21,6 +21,7 @@
       wl-clipboard
       cliphist
       playerctl
+      wofi
     ];
   };
 
