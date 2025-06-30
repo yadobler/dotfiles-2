@@ -61,10 +61,8 @@ output "DP-3" {
 }
 
 // Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    gaps 16
+    gaps 8
     center-focused-column "never"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
@@ -90,58 +88,9 @@ layout {
     }
 
     border {
-        width 1
+        width 2
         active-color "#ffc87f"
         inactive-color "#505050"
-    }
-
-    // You can enable drop shadows for windows.
-    shadow {
-        // Uncomment the next line to enable shadows.
-        // on
-
-        // By default, the shadow draws only around its window, and not behind it.
-        // Uncomment this setting to make the shadow draw behind its window.
-        //
-        // Note that niri has no way of knowing about the CSD window corner
-        // radius. It has to assume that windows have square corners, leading to
-        // shadow artifacts inside the CSD rounded corners. This setting fixes
-        // those artifacts.
-        // 
-        // However, instead you may want to set prefer-no-csd and/or
-        // geometry-corner-radius. Then, niri will know the corner radius and
-        // draw the shadow correctly, without having to draw it behind the
-        // window. These will also remove client-side shadows if the window
-        // draws any.
-        // 
-        // draw-behind-window true
-
-        // You can change how shadows look. The values below are in logical
-        // pixels and match the CSS box-shadow properties.
-
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        color "#0007"
-    }
-
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
     }
 }
 
@@ -152,7 +101,6 @@ layout {
 
 spawn-at-startup "dunst"
 spawn-at-startup "hypridle"
-spawn-at-startup "swaybg" "-i /home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m fill"
 spawn-at-startup "iio-sensor-proxy"
 spawn-at-startup "lxqt-policykit-agent"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
@@ -162,8 +110,9 @@ spawn-at-startup "blueman-applet"
 spawn-at-startup "rfkill" "block" "bluetooth"
 spawn-at-startup "~/.config/scripts/start_ime.sh"
 spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
-spawn-at-startup "telegram"
-spawn-at-startup "xdg-open" "/home/yukna/.local/share/applications/whatsapp.desktop"
+spawn-at-startup "telegram-desktop"
+spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
+spawn-at-startup "swaybg" "-i /home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m fill"
 
 hotkey-overlay {
     skip-at-startup
@@ -183,9 +132,6 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 
 binds {
-    // Most actions that you can bind here can also be invoked programmatically with
-    // `niri msg action do-something`.
-
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
     
@@ -206,8 +152,8 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
-    Super+Alt+L { spawn "hyprlock"; }
+    Mod+Alt+P { power-off-monitors; }
+    Mod+Alt+L { spawn "hyprlock"; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return { spawn "ghostty"; }

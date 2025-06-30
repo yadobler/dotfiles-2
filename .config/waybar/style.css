@@ -48,7 +48,7 @@ window#waybar {
 #custom-powermenu,
 #custom-sp,
 #custom-weather,
-#hyprland-submap, /* Waybar usually uses module name with hyphen */
+#niri-submap, /* Waybar usually uses module name with hyphen */
 #window, /* Waybar usually uses #window */
 #idle_inhibitor,
 #network,
@@ -97,10 +97,6 @@ window#waybar {
     background-color: alpha(@base0A, 0.3);
 }
 
-/* Hyprland Submap (e.g., resize mode) */
-#hyprland-submap {
-    font-style: italic;
-}
 
 /* Window Title Icons */
 #window > span { /* Target direct span for icons in window title rewrite */

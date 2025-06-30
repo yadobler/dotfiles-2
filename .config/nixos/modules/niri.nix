@@ -5,6 +5,7 @@
     dconf.enable = true;
     waybar.enable = true;
     xwayland.enable = true;
+    hyprlock.enable = true;
   };
 
   environment = { 
@@ -21,6 +22,7 @@
       cliphist
       playerctl
       wofi
+      glib
     ];
   };
 

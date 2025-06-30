@@ -1,7 +1,6 @@
 [Desktop Entry]
 Name=Whatsapp
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-web.whatsapp.com__-Default "brave --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com"'
-Terminal=false
+Exec=brave --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://web.whatsapp.com
 Type=Application
 Icon=whatsapp
 StartupWMClass=crx_whatsapp
