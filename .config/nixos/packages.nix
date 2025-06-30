@@ -58,7 +58,7 @@
     texliveFull
     glow
 
-    stable.brave
+    brave
     telegram-desktop
     zathura
     xournalpp

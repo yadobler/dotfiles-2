@@ -1,7 +1,7 @@
 { config, pkgs, username, ... }:
 let
   shell = "/var/run/current-system/sw/bin/fish";
-  terminal = "kitty";
+  terminal = "ghostty";
   # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
   {
@@ -17,7 +17,7 @@ in
     fishPlugins.fzf-fish
     fishPlugins.tide
 
-    kitty
+    ghostty
 
     any-nix-shell
 

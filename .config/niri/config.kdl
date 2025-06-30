@@ -3,10 +3,10 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     GTK_THEME "WhiteSur-Dark-solid"
     im_platform "fcitx"
-    GTK_IM_MODULE "$im_platform"
-    QT_IM_MODULE "$im_platform"
-    SDL_IM_MODULE "$im_platform"
-    XMODIFIERS "'@im=$im_platform'"
+    GTK_IM_MODULE "fcitx"
+    QT_IM_MODULE "fcitx"
+    SDL_IM_MODULE "fcitx"
+    XMODIFIERS "'@im=fcitx'"
     MOZ_ENABLE_WAYLAND "1"
     NIXOS_OZONE_WL "1"
     GTK_USE_PORTAL "1"
@@ -149,6 +149,7 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
+
 spawn-at-startup "dunst"
 spawn-at-startup "hypridle"
 spawn-at-startup "swaybg" "-i /home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m fill"
@@ -209,7 +210,7 @@ binds {
     Super+Alt+L { spawn "hyprlock"; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "kitty"; }
+    Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "brave" "--gtk-version=4" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" "--enable-wayland-ime" "--enable-features=WaylandWindowDecorations";}
     Mod+E { spawn "nautilus"; }
     Mod+V { spawn "~/.config/scripts/paste_menu.sh"; }
