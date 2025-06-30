@@ -10,7 +10,6 @@
 
         //position
         "modules-left": [
-            "custom/sp",
             "battery",
             "backlight",
             "pulseaudio",
@@ -28,12 +27,6 @@
         ],
 
         // Modules for Bottom Bar
-        "custom/sp": {
-            "tooltip": false,
-            "format": "", // Size handled by CSS #custom-sp
-            "on-click": "$HOME/.config/scripts/swap_scratchpad.sh",
-            "escape": true
-        },
         "battery": {
             "states": {
                 "good": 90,
