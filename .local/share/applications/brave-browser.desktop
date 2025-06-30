@@ -11,4 +11,4 @@ Icon=brave-desktop
 Type=Application
 Categories=Network;WebBrowser;
 Actions=new-window;new-private-window;
-MimeType=x-scheme-handler/webcal;
+MimeType=x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;x-scheme-handler/webcal;
