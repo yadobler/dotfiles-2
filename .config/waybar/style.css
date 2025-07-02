@@ -6,12 +6,12 @@
 @import url('colors.css');
 
 /* Define reusable colors (or define in colors.css) */
-@define-color bg_base alpha(@base00, 0.8);
-@define-color hover_col alpha(@base0D, 0.6); /* Example hover color */
-@define-color critical_bg alpha(#ff0000, 0.5); /* Example critical background */
-@define-color warning_bg alpha(#ffa500, 0.5); /* Example warning background */
-@define-color muted_color #AA2244; /* Muted audio color */
-@define-color idle_active_color #34AA44; /* Idle inhibitor active color */
+@define-color bg_base alpha(@base00, 0.9);
+@define-color hover_col alpha(@base0D, 0.6);    /* Hover color */
+@define-color critical_bg alpha(#ff0000, 0.5);  /* Critical background */
+@define-color warning_bg alpha(#ffa500, 0.5);   /* Warning background */
+@define-color muted_color #AA2244;              /* Muted audio color */
+@define-color idle_active_color #34AA44;        /* Idle inhibitor active color */
 @define-color notification_indicator_color red; /* Notification dot color */
 
 * {
@@ -48,15 +48,14 @@ window#waybar {
 #custom-powermenu,
 #custom-sp,
 #custom-weather,
-#niri-submap, /* Waybar usually uses module name with hyphen */
-#window, /* Waybar usually uses #window */
+#window, 
 #idle_inhibitor,
 #network,
 #pulseaudio,
 #temperature,
 #tray {
-    padding: 0px 5px; /* Horizontal padding for modules */
-    background-color: transparent; /* Ensure modules don't have own background unless specified */
+    padding: 0px 5px;               /* Horizontal padding for modules */
+    background-color: transparent;  /* Ensure modules don't have own background unless specified */
 }
 
 /* --- Specific Module Styling --- */
@@ -70,9 +69,9 @@ window#waybar {
 #workspaces button {
     font-size: 15px;
     border-radius: 5px;
-    margin: 2px 3px; /* Margin around buttons */
-    padding: 2px 5px; /* Padding inside buttons */
-    border: 1px solid transparent; /* Default transparent border */
+    margin: 2px 1px;                /* Margin around buttons */
+    padding: 2px 5px;               /* Padding inside buttons */
+    border: 1px solid transparent;  /* Default transparent border */
     background-color: transparent;
     color: @foreground;
 }
@@ -98,12 +97,6 @@ window#waybar {
 }
 
 
-/* Window Title Icons */
-#window > span { /* Target direct span for icons in window title rewrite */
-    font-size: x-large; /* Size for icons in window title rewrite */
-    margin-right: 4px; /* Space between icon and text */
-}
-
 /* Sizing for specific custom icons/modules */
 #custom-sp,
 #custom-kb,
@@ -113,43 +106,24 @@ window#waybar {
 
 #custom-launch_app,
 #custom-kill,
+#custom-notification,
 #custom-powermenu {
     font-size: x-large;
 }
 
-/* Sizing for icons within standard modules */
-#battery > span,
-#backlight > span,
-#pulseaudio > span,
-#network > span,
-#temperature > span {
-    font-size: large; /* Adjust as needed (large, x-large, specific pt/px) */
-    margin-left: 2px; /* Add tiny space before icon */
-}
 
 /* Battery Specific */
-#battery > span {
-    font-size: x-large;
-}
-#battery .charging-icon {
-    /* Maybe slightly different color or size? */
-    /* color: @some-other-color; */
-}
 #battery.warning {
     background-color: @warning_bg;
-    color: @foreground; /* Ensure text is readable */
+    color: @foreground; 
 }
 #battery.critical {
     background-color: @critical_bg;
-    color: @foreground; /* Ensure text is readable */
+    color: @foreground; 
 }
 #battery.charging {
-    /* Optional: Add visual cue for charging state, e.g., background color */
-    /* background-color: alpha(@base0B, 0.3); */
+    background-color: alpha(@base0B, 0.3);
 }
-
-/* Backlight */
-/* (No specific state styles added, can add if needed) */
 
 /* Pulseaudio */
 #pulseaudio.muted {
@@ -197,14 +171,11 @@ window#waybar {
     margin-bottom: 5px; /* Adjust vertical alignment */
 }
 
-/* Show indicator only if script adds .has-notification class to the #custom-notification module */
 #custom-notification.has-notification .indicator {
     color: @notification_indicator_color;
 }
 
-/* Change icon color if paused (script needs to add .is-paused class to the #custom-notification module) */
 #custom-notification.is-paused > span { /* Target direct span children (icon) when paused */
-    /* Example: slightly dim the icon */
     opacity: 0.7;
 }
 
@@ -228,5 +199,4 @@ tooltip label {
     color: @foreground;
 }
 
-/* Import progress bar styles (if needed) */
 @import url('progressbar.css');
