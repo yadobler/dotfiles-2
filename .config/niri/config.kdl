@@ -43,7 +43,8 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="50%"
+    warp-mouse-to-focus 
 }
 
 // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.

@@ -36,7 +36,7 @@ window#waybar {
 }
 
 /* General module styling: add padding */
-#workspaces,
+#custom-workspaces,
 #backlight,
 #battery,
 #clock,
@@ -60,13 +60,13 @@ window#waybar {
 
 /* --- Specific Module Styling --- */
 
-/* Workspaces */
-#workspaces {
+/* custom-workspaces */
+#custom-workspaces {
     background-color: transparent;
     padding: 0px; /* Remove padding from container if buttons have margins */
 }
 
-#workspaces button {
+#custom-workspaces button {
     font-size: 15px;
     border-radius: 5px;
     margin: 2px 1px;                /* Margin around buttons */
@@ -76,22 +76,22 @@ window#waybar {
     color: @foreground;
 }
 
-#workspaces button:hover {
+#custom-workspaces button:hover {
     border: 1px solid @hover_col;
     background-color: alpha(@hover_col, 0.3);
 }
 
-#workspaces button.active {
+#custom-workspaces button.active {
     border: 1px solid @base0D;
     background-color: alpha(@base0D, 0.3);
 }
 
-#workspaces button.special {
+#custom-workspaces button.special {
     border: 1px solid @base09;
     background-color: alpha(@base09, 0.3);
 }
 
-#workspaces button.urgent {
+#custom-workspaces button.urgent {
     border: 1px solid @base0A;
     background-color: alpha(@base0A, 0.3);
 }

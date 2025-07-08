@@ -1,7 +1,7 @@
 // vim:ft=js
 [
+    //General - Bottom Bar
     {
-        //General - Bottom Bar
         "layer": "top",
         "position": "bottom",
         "height": 40,
@@ -126,8 +126,9 @@
             "escape": true
         }
     },
+    
+    //General - Top Bar
     {
-        //General - Top Bar
         "layer": "top",
         "position": "top",
         "height": 30,
@@ -137,7 +138,8 @@
         //position
         "modules-left": [
             "custom/launch_app",
-            "niri/workspaces",
+            // "niri/workspaces",
+            "custom/workspaces",
         ],
         "modules-center":[
             "niri/window"
@@ -156,13 +158,24 @@
             "on-click": "$HOME/.config/scripts/icon_launcher.sh", 
             "escape": true
         },
-        "niri/workspaces": {
-            "format": "{value}", 
-            "format-icons":{ 
-                "active": "",
-                "default": "",
-            }		
+        "custom/workspaces": {
+            "format": " {} ",
+            "exec": "~/.config/waybar/custom_modules/workspace_indicator.sh",
+            "exec-if": "which niri", // Only run the module if niri is installed
+            "all-outputs": false,    // Set to true to see workspaces on all monitors
+            "on-scroll-up": "niri msg action foucs-workspace-up",
+            "on-scroll-down": "niri msg action focus-workspace-down",
+            "smooth-scrolling-threshold":5.0,
+            "return-type": "json",
+            "interval": 1, 
         },
+        // "niri/workspaces": {
+        //     "format": "{value}", 
+        //     "format-icons":{ 
+        //         "active": "",
+        //         "default": "",
+        //     }		
+        // },
         "niri/window": {
             "max-length": 100,
             "separate-outputs": true,
