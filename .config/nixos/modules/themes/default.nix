@@ -17,7 +17,7 @@ let
   # Generate attribute set and symlink commands in one go
   colorFilesAttrSet = lib.listToAttrs (map (file: {
     name = file.target;
-    value = pkgs.substituteAll ({ src = file.src; slug = colorScheme.slug; } // colorScheme.palette);
+    value = pkgs.replaceVars file.src ({slug = colorScheme.slug; } // colorScheme.palette);
   }) colorFiles);
 
   # Generate activation script that symlinks files
