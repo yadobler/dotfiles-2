@@ -36,6 +36,12 @@ Name=m17n_vi_telex
 # Layout
 Layout=
 
+[Groups/0/Items/5]
+# Name
+Name=keyboard-kr
+# Layout
+Layout=
+
 [GroupOrder]
 0=Default
 

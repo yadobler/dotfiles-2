@@ -16,7 +16,7 @@ environment {
     WLR_RENDERER_ALLOW_SOFTWARE "1"
     XCURSOR_SIZE "24"
     _JAVA_AWT_WM_NONREPARENTING "1"
-    HYPRCURSOR_THEME "Banana # Niri respects this for the cursor"
+    HYPRCURSOR_THEME "Banana"
     HYPRCURSOR_SIZE "24"
 }
 
@@ -159,7 +159,7 @@ spawn-at-startup "~/.config/scripts/start_ime.sh"
 spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
 spawn-at-startup "telegram-desktop"
 spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
-spawn-at-startup "swaybg" "-i /home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m fill"
+spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
 
 hotkey-overlay {
     skip-at-startup
