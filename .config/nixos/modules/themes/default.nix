@@ -11,13 +11,13 @@ let
     { name = "fish"; src = ./templates/fish.theme; target = "fish/themes/base16.theme"; }
     { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
     { name = "bat"; src = ./templates/bat.tmTheme; target = "bat/themes/base16.tmTheme"; }
-    { name = "spicetify"; src = ./templates/spicetify.ini; target = "spicetify/Themes/Base16/"; }
+    { name = "spicetify"; src = ./templates/spicetify.ini; target = "spicetify/Themes/Base16/color.ini"; }
   ];
 
   # Generate attribute set and symlink commands in one go
   colorFilesAttrSet = lib.listToAttrs (map (file: {
     name = file.target;
-    value = pkgs.replaceVars file.src ({slug = colorScheme.slug; } // colorScheme.palette);
+    value = pkgs.replaceVars file.src ({ slug = colorScheme.slug; } // colorScheme.palette);
   }) colorFiles);
 
   # Generate activation script that symlinks files
