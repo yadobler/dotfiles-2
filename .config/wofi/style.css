@@ -6,7 +6,7 @@
 }
 
 window{
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px;
     border-color: @color7;
     color: @foreground;
@@ -55,3 +55,7 @@ window{
     background-color: transparent;
     margin-right: 10px
 }
+
+/** 
+vim:ft=rasi 
+**/

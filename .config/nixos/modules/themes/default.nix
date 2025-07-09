@@ -7,6 +7,7 @@ let
     { name = "waybar"; src = ./templates/waybar.css; target = "waybar/colors.css"; }
     { name = "dunst"; src = ./templates/dunstrc; target = "dunst/dunstrc"; }
     { name = "wofi"; src = ./templates/wofi.css; target = "wofi/colors.css"; }
+    # { name = "rofi"; src = ./templates/colors.rasi; target = "rofi/colors.rasi"; }
     { name = "ghostty"; src = ./templates/ghostty.config; target = "ghostty/colors"; }
     { name = "fish"; src = ./templates/fish.theme; target = "fish/themes/base16.theme"; }
     { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
