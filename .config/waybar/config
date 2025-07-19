@@ -95,11 +95,11 @@
             "smooth-scrolling-threshold": 10,
             "on-scroll-up": "playerctl next",
             "on-scroll-down": "playerctl previous",
-            "exec" : "~/.config/waybar/custom_modules/mediaplayer.sh",
+            "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.sh",
             "tooltip": true 
         },
         "custom/weather": {
-            "exec": "~/.config/waybar/custom_modules/get_weather.sh Singapore",
+            "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
             "return-type": "json",
             "format": "{}", 
             "tooltip": true,
@@ -122,7 +122,7 @@
         "custom/kb": {
             "tooltip": false,
             "format": "󰌌", 
-            "on-click": "~/.config/waybar/custom_modules/open_kb.sh", 
+            "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh", 
             "escape": true
         }
     },
@@ -155,12 +155,12 @@
         "custom/launch_app": {
             "tooltip": false,
             "format": "󰀻", 
-            "on-click": "~/.config/scripts/icon_launcher.sh", 
+            "on-click": "$HOME/.config/scripts/icon_launcher.sh", 
             "escape": true
         },
         "custom/workspaces": {
             "format": " {} ",
-            "exec": "~/.config/waybar/custom_modules/workspace_indicator.sh",
+            "exec": "$HOME/.config/waybar/custom_modules/workspace_indicator.sh",
             "exec-if": "which niri", // Only run the module if niri is installed
             "all-outputs": false,    // Set to true to see workspaces on all monitors
             "on-scroll-up": "niri msg action foucs-workspace-up",
@@ -209,7 +209,7 @@
             },
             "return-type": "json",
             "interval": 2, 
-            "exec": "~/.config/scripts/notification_check.sh", 
+            "exec": "$HOME/.config/scripts/notification_check.sh", 
             "on-click": "dunstctl set-paused toggle", 
             "escape": true,
             "max-length": 2 
@@ -217,7 +217,7 @@
         "custom/powermenu": {
             "tooltip": false,
             "format": "", 
-            "on-click": "~/.config/scripts/powermenu_launcher.sh", 
+            "on-click": "$HOME/.config/scripts/powermenu_launcher.sh", 
             "escape": true
         }
     }
