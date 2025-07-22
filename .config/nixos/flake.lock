@@ -403,15 +403,16 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1744539672,
-        "narHash": "sha256-RE49h8S50krmrgiC1+S6PY6X5BnEQVZM/7EHvwHIlpg=",
+        "lastModified": 1753173222,
+        "narHash": "sha256-DBnoit3exBs3IPKeAYtDL4gyWBOrXSdpHHPSZJC5oYM=",
         "owner": "yadobler",
         "repo": "nixvim-config",
-        "rev": "7ede9afc5d8b705c9a93af4bac20aa048847dea9",
+        "rev": "00784f0ef7287b63515431938faed9d94f2befb4",
         "type": "github"
       },
       "original": {
         "owner": "yadobler",
+        "ref": "minimal",
         "repo": "nixvim-config",
         "type": "github"
       }

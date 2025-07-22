@@ -10,7 +10,7 @@
 
     # Personal
     nixvim = {
-      url = "github:yadobler/nixvim-config";
+      url = "github:yadobler/nixvim-config/minimal";
     };
     binja = {
       url =  "github:yadobler/binary_ninja_nixos";
