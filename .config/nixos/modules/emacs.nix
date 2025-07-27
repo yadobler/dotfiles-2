@@ -7,6 +7,7 @@
     package = pkgs.emacs29.pkgs.withPackages (epkgs: 
       with epkgs; [
         pretty-sha-path
+        evil
 
         (treesit-grammars.with-grammars (grammars: 
           with grammars; [ 
