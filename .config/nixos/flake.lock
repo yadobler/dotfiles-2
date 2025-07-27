@@ -403,11 +403,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1753173222,
-        "narHash": "sha256-DBnoit3exBs3IPKeAYtDL4gyWBOrXSdpHHPSZJC5oYM=",
+        "lastModified": 1753613836,
+        "narHash": "sha256-UDTfXM4z5UzXN56zsIzCOTSO1rCxJrTdGVahjE5mUIg=",
         "owner": "yadobler",
         "repo": "nixvim-config",
-        "rev": "00784f0ef7287b63515431938faed9d94f2befb4",
+        "rev": "ba76e8e81f00e93ed7ba807fbde84af43617d236",
         "type": "github"
       },
       "original": {
