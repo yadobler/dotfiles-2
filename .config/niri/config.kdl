@@ -75,6 +75,7 @@ window-rule {
 layout {
     gaps 8
     center-focused-column "never"
+    background-color "transparent"
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
@@ -163,6 +164,12 @@ spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantis
 
 hotkey-overlay {
     skip-at-startup
+}
+
+// Put swaybg inside the overview backdrop.
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

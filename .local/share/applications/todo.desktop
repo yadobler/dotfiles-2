@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=todo (TickTick)
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-ticktick.com__webapp_-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://ticktick.com/webapp/"'
+Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://ticktick.com/webapp/
 Terminal=false
 Type=Application
 Icon=ticktick

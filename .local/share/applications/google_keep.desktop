@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Keep
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh brave-keep.google.com__u_1_-Default "brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://keep.google.com/u/1/#reminders"'
+Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://keep.google.com/u/1/#reminders
 Terminal=false
 Type=Application
 Icon=google-keep

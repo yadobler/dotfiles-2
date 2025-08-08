@@ -3,7 +3,7 @@ Type=Application
 Name=Spotify
 GenericName=Music Player
 Icon=spotify-client
-Exec=bash -c '$HOME/.config/scripts/launch_one_instance.sh spotify-client "spotify --ozone-platform-hint=auto --enable-wayland-ime --wayland-text-input-version=3"'
+Exec=spotify --ozone-platform-hint=auto --enable-wayland-ime --wayland-text-input-version=3
 Terminal=false
 MimeType=x-scheme-handler/spotify;
 Categories=Audio;Music;Player;AudioVideo;
