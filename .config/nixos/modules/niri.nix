@@ -4,12 +4,13 @@
     niri.enable = true;
     dconf.enable = true;
     waybar.enable = true;
-    xwayland.enable = true;
+    # xwayland.enable = true;
     hyprlock.enable = true;
   };
 
   environment = { 
     systemPackages = with pkgs; [
+      xwayland-satellite
       iio-sensor-proxy
       banana-cursor
       pamixer
