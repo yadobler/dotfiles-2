@@ -14,8 +14,7 @@ jq -nc --argjson windows "$WINDOWS_JSON" --argjson workspaces "$WORKSPACES_JSON"
     $windows |
     map(select(.workspace_id == $focused_ws_id)) |
     map(.app_id |
-        if contains("brave") or contains("firefox") then "󰖟"
-        elif contains("ghostty") or contains("kitty") or contains("alacritty") then ""
+        if contains("ghostty") or contains("kitty") or contains("alacritty") then ""
         elif contains("thunar") or contains("nautilus") then "<span foreground=\"light yellow\"></span>"
         elif contains("telegram") then "<span foreground=\"light blue\"></span>"
         elif contains("brave-web.whatsapp.com__-Default") then "<span foreground=\"green\"></span>"
@@ -23,6 +22,7 @@ jq -nc --argjson windows "$WINDOWS_JSON" --argjson workspaces "$WORKSPACES_JSON"
         elif contains("brave-mail.google.com") then ""
         elif contains("brave-to-do.live.com") then ""
         elif contains("spotify") or contains("spt") or contains("Spotify Premium") then "<span foreground=\"green\"></span>"
+        elif contains("brave") or contains("firefox") then "󰖟"
         else "" # Default window icon
         end
     ) | 

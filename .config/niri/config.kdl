@@ -115,17 +115,17 @@ animations {
         spring damping-ratio=0.6 stiffness=100 epsilon=0.0001
     }
     window-close {
-        duration-ms 500
+        duration-ms 750
         curve "linear"
         // https://gitlab.com/sharkler/sharkler-dots/-/blob/main/.config/niri/config.kdl
         custom-shader r"
         vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
             float progress = niri_clamped_progress * niri_clamped_progress;
             vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
-            coords.y -= progress * 1440.0;
-            float random = (niri_random_seed - 0.5) / 2.0;
+            coords.x += progress * 3000.0;
+            float random = (niri_random_seed - 0.5) / 1.0;
             random = sign(random) - random;
-            float max_angle = 0.5 * random;
+            float max_angle = 2.0 * random;
             float angle = progress * max_angle;
             mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
             coords = rotate * coords;
@@ -160,7 +160,8 @@ spawn-at-startup "~/.config/scripts/start_ime.sh"
 spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
 spawn-at-startup "Telegram"
 spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
-spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
+// spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
+spawn-at-startup "swaybg" "-i" "/home/yukna/Pictures/wallpaper.jpg" "-m" "fill"
 
 hotkey-overlay {
     skip-at-startup
