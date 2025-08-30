@@ -68,6 +68,7 @@
     arduino
     scenebuilder
     obsidian
+    anki
 
     adwaita-icon-theme
     adwaita-qt
