@@ -5,9 +5,9 @@ center_on_focus = false
 log_level = "WARN"
 
 [appearance]
-icon_size = 128
-max_width = 800
-min_width = 600
+icon_size = 64
+max_width = 400
+min_width = 300
 system_theme = "dark" # auto or light
 workspace_format = "{output}-{idx}" # {output}, {idx}, {name}
 

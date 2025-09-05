@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    inputs.niri-session-manager.nixosModules.niri-session-manager
   ];
 
   programs = {
@@ -39,13 +38,6 @@
         gcr
         dconf
       ];
-    };
-    niri-session-manager = {
-      enable = true;
-      settings = {
-        save-interval = 30;  # Save every 30 minutes
-        max-backup-count = 3;  # Keep 3 most recent backups
-      };
     };
   };
 

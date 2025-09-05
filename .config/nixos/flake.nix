@@ -25,9 +25,6 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
-    niri-session-manager = {
-      url = "github:MTeaHead/niri-session-manager";
-    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:

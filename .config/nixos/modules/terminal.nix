@@ -116,8 +116,9 @@ in
         "grep"              = "rg";
         "find"              = "fd";
         "imgcat"            = "img2sixel";
-
-        "wal_update"        = "~/.config/scripts/wallust_update.sh";
+        
+        "rebuild-os"        = "sudo nixos-rebuild switch --keep-going";
+        # "wal_update"        = "~/.config/scripts/wallust_update.sh";
         "steam_update_apps" = "sed 's/Exec = steam /Exec = gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
         "valgrind"          = "~/.config/scripts/colorgrind";
         "footserver"        = "foot --server &; disown";
