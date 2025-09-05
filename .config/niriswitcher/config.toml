@@ -6,10 +6,10 @@ log_level = "WARN"
 
 [appearance]
 icon_size = 64
-max_width = 400
+max_width = 600
 min_width = 300
 system_theme = "dark" # auto or light
-workspace_format = "{output}-{idx}" # {output}, {idx}, {name}
+workspace_format = "{output}-{name}-{idx}" # {output}, {idx}, {name}
 
 [workspace]
 mru_sort_in_workspace = false
