@@ -160,7 +160,6 @@ spawn-at-startup "~/.config/scripts/start_ime.sh"
 spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
 spawn-at-startup "Telegram"
 spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
-// spawn-at-startup "swaybg" "-i" "/home/yukna/Documents/Projects/wallpaper_quantiser/wallpaper_base16.png" "-m" "fill"
 spawn-at-startup "swaybg" "-i" "/home/yukna/Pictures/wallpaper.jpg" "-m" "fill"
 
 hotkey-overlay {

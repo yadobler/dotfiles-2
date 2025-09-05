@@ -22,7 +22,6 @@
       playerctl
       wofi
       glib
-      hyprpanel
     ];
   };
 
