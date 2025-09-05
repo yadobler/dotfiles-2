@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
+  imports = [
+    inputs.niri-session-manager.nixosModules.niri-session-manager
+  ];
+
   programs = {
     niri.enable = true;
     dconf.enable = true;
     hyprlock.enable = true;
-    # waybar.enable = true;
+    waybar.enable = true;
     # xwayland.enable = true;
   };
 
@@ -23,6 +27,7 @@
       wofi
       glib
       niriswitcher
+      dunst
     ];
   };
 
@@ -34,6 +39,13 @@
         gcr
         dconf
       ];
+    };
+    niri-session-manager = {
+      enable = true;
+      settings = {
+        save-interval = 30;  # Save every 30 minutes
+        max-backup-count = 3;  # Keep 3 most recent backups
+      };
     };
   };
 
