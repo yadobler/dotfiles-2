@@ -13,6 +13,7 @@ let
     { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
     { name = "bat"; src = ./templates/bat.tmTheme; target = "bat/themes/base16.tmTheme"; }
     { name = "spicetify"; src = ./templates/spicetify.ini; target = "spicetify/Themes/Base16/color.ini"; }
+    { name = "niriswitcher"; src = ./templates/niriswitcher.css; target = "niriswitcher/style-dark.css"; }
   ];
 
   # Generate attribute set and symlink commands in one go
