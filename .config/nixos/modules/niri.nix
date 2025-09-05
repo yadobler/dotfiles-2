@@ -22,6 +22,7 @@
       playerctl
       wofi
       glib
+      niriswitcher
     ];
   };
 
