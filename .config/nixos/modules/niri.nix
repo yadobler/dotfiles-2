@@ -1,11 +1,11 @@
-{ username, pkgs, lib, inputs, system, ... }:
+{ pkgs, ... }:
 {
   programs = {
     niri.enable = true;
     dconf.enable = true;
-    waybar.enable = true;
-    # xwayland.enable = true;
     hyprlock.enable = true;
+    # waybar.enable = true;
+    # xwayland.enable = true;
   };
 
   environment = { 
@@ -15,15 +15,14 @@
       banana-cursor
       pamixer
       pavucontrol
-      dunst
       wf-recorder
-      swappy
       swaybg
       wl-clipboard
       cliphist
       playerctl
       wofi
       glib
+      hyprpanel
     ];
   };
 

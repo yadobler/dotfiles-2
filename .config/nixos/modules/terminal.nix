@@ -1,16 +1,58 @@
-{ config, pkgs, username, ... }:
+{ colorScheme, pkgs, username, ... }:
 let
   shell = "/var/run/current-system/sw/bin/fish";
-  terminal = "ghostty";
+  terminal = "foot";
   # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
   {
   documentation.man.generateCaches = true;
   
+  programs.foot = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      main = {
+        font = "JetBrainsMono Nerd Font Mono:size=12";
+        pad = "10x10";
+        notify="notify-send -a \${app-id} -i \${app-id} \${title} \${body}";
+      };
+
+      url.launch = "xdg-open \${url}";
+      colors = {
+        "foreground" = colorScheme.palette.base05;
+        "background" = colorScheme.palette.base00;
+        "regular0" = colorScheme.palette.base00; # black
+        "regular1" = colorScheme.palette.base08; # red
+        "regular2" = colorScheme.palette.base0B; # green
+        "regular3" = colorScheme.palette.base0A; # yellow
+        "regular4" = colorScheme.palette.base0D; # blue
+        "regular5" = colorScheme.palette.base0E; # magenta
+        "regular6" = colorScheme.palette.base0C; # cyan
+        "regular7" = colorScheme.palette.base05; # white
+        "bright0" = colorScheme.palette.base02; # bright black
+        "bright1" = colorScheme.palette.base08; # bright red
+        "bright2" = colorScheme.palette.base0B; # bright green
+        "bright3" = colorScheme.palette.base0A; # bright yellow
+        "bright4" = colorScheme.palette.base0D; # bright blue
+        "bright5" = colorScheme.palette.base0E; # bright magenta
+        "bright6" = colorScheme.palette.base0C; # bright cyan
+        "bright7" = colorScheme.palette.base07; # bright white
+        "16" = colorScheme.palette.base09;
+        "17" = colorScheme.palette.base0F;
+        "18" = colorScheme.palette.base01;
+        "19" = colorScheme.palette.base02;
+        "20" = colorScheme.palette.base04;
+        "21" = colorScheme.palette.base06;
+      };
+    };
+  };
+
   # environment.variables = {
   # };
 
-  environment.systemPackages = [pkgs.${terminal}] ++ (with pkgs; [
+  environment.systemPackages = [
+    # pkgs.${terminal}
+  ] ++ (with pkgs; [
     fishPlugins.puffer
     fishPlugins.sponge
     fishPlugins.bass 
@@ -119,8 +161,8 @@ in
   users.users.${username}.shell = shell;
   users.defaultUserShell = shell;
 
-  system.userActivationScripts.postInstallTerminal = ''
-      rm -rf /usr/bin/gnome-terminal
-      ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
-  '';
+    # system.userActivationScripts.postInstallTerminal = ''
+    #     rm -rf /usr/bin/gnome-terminal
+    #     ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
+    # '';
 }

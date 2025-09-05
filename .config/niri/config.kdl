@@ -147,7 +147,7 @@ animations {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-at-startup "dunst"
+spawn-at-startup "hyprlock"
 spawn-at-startup "hypridle"
 spawn-at-startup "iio-sensor-proxy"
 spawn-at-startup "lxqt-policykit-agent"
@@ -224,11 +224,11 @@ binds {
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "~/.config/scripts/brightness.sh" "up" "5"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "~/.config/scripts/brightness.sh" "down" "5"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "~/.config/scripts/volume.sh" "up" "5"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "~/.config/scripts/volume.sh" "down" "5"; }
-    XF86AudioMute        allow-when-locked=true { spawn "~/.config/scripts/volume.sh" "mute"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "light" "-A" "5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "light" "-U" "5"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "--limit" "1" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
     XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
