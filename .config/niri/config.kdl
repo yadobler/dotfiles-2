@@ -170,9 +170,9 @@ animations {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-spawn-at-startup "hyprlock"
 spawn-at-startup "hypridle"
 spawn-at-startup "niriswitcher"
+spawn-at-startup "dunst"
 spawn-at-startup "iio-sensor-proxy"
 spawn-at-startup "lxqt-policykit-agent"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"

@@ -40,6 +40,7 @@
       ];
     };
   };
+  # security.pam.services.hyprlock.enableGnomeKeyring = true;
 
 
   hardware.graphics = {

@@ -193,7 +193,7 @@
       "dialout"
     ];
   };
-  services.getty.autologinUser = "${username}";
+  #  services.getty.autologinUser = "${username}";
 
   systemd = {
     # faster boot
