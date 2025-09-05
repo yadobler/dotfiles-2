@@ -1,249 +1,264 @@
-// vim:ft=json
+// vim:ft=js
 [
     {
-    //General
-    "layer": "top",
-    "position": "bottom",
-    "height": 40,
-    "spacing": 1,
-    "name": "waybar-bottom",
+        //General - Bottom Bar
+        "layer": "top",
+        "position": "bottom",
+        "height": 40,
+        "spacing": 1,
+        "name": "waybar-bottom", // Used as CSS class .waybar-bottom
 
-    //position
-    "modules-left": [
-        "custom/sp",
-        "battery", 
-        "backlight", 
-        "pulseaudio", 
-        "network", 
-        "temperature", 
-        "idle_inhibitor"
-    ],
-    "modules-center":[
-        "custom/media"
-    ],
-    "modules-right": [
-        "custom/weather",
-        "clock",
-        "custom/kb",
-    ],
-    "custom/media": {
-        "escape": false,
-        "return-type": "json",
-        "max-length": 40,
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl stop",
-        "smooth-scrolling-threshold": 10, 
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous",
-        "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.sh",
-        "tooltip": true,
-    },
-    "custom/weather": {
-        "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
-        "return-type": "json",
-        "format": "{}",
-        "tooltip": true,
-        "interval": 600
-    },
-    "clock": {
-        "tooltip-format": "<tt><big>{calendar}\n\nToday: {:%d %B %Y}</big></tt>",
+        //position
+        "modules-left": [
+            "custom/sp",
+            "battery",
+            "backlight",
+            "pulseaudio",
+            "network",
+            "temperature",
+            "idle_inhibitor"
+        ],
+        "modules-center":[
+            "custom/media"
+        ],
+        "modules-right": [
+            "custom/weather",
+            "clock",
+            "custom/kb"
+        ],
+
+        // Modules for Bottom Bar
+        "custom/sp": {
+            "tooltip": false,
+            "format": "", // Size handled by CSS #custom-sp
+            "on-click": "$HOME/.config/scripts/swap_scratchpad.sh",
+            "escape": true
+        },
+        "battery": {
+            "states": {
+                "good": 90,
+                "warning": 30,
+                "critical": 15
+            },
+            // Add classes via module state for CSS styling
+            "format": "{capacity}% <span>{icon}</span>",
+            "format-charging": "{capacity}% <span>{icon}</span> ",
+            "tooltip-format": "{capacity}% - {timeTo}",
+            "format-icons": ["", "", "", "", ""]
+            // CSS classes used: #battery, .charging, .warning, .critical (states)
+        },
+        "backlight": {
+            "format": "{percent}% <span>{icon}</span>", // Target span for icon styling
+            "on-scroll-up": "light -A 2",
+            "on-scroll-down": "light -U 2",
+            "format-icons": ["", "", "", "", "", "", "", "", ""]
+            // CSS classes used: #backlight
+        },
+        "pulseaudio": {
+             // Add classes via module state for CSS styling
+            "format": "{volume}% <span>{icon}</span> {format_source}",
+            "format-bluetooth": "{volume}% <span>{icon} </span> {format_source}",
+            "format-muted": " {format_source}",
+            "format-bluetooth-muted": " {icon}  {format_source}",
+            "format-source-muted": "",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "󱆏",
+                "headset": "󰋎",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "on-click": "pavucontrol"
+            // CSS classes used: #pulseaudio, .muted (state)
+        },
+        "network": {
+            "format-wifi": "{signalStrength}% <span>{icon}</span>", // Target span for icon styling
+            "format-ethernet": "{ipaddr}/{cidr} <span>󰈁</span>", // Target span for icon styling
+            "tooltip-format": "{essid} on {ifname} 󱂇",
+            "format-linked": "{ifname} (No IP) <span>󰪎</span>", // Target span for icon styling
+            "format-disconnected": "Disconnected <span>⚠</span>", // Target span for icon styling
+            "format-alt": "{ifname}: {ipaddr}/{cidr}",
+            "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
+            // CSS classes used: #network, .disconnected, .disabled (states)
+        },
+        "temperature": {
+            "thermal-zone": 8,
+            "critical-threshold": 80,
+            "format": "{temperatureC}°C <span>{icon}</span>", // Target span for icon styling
+            "format-icons": ["", "", ""]
+            // CSS classes used: #temperature, .critical (state)
+        },
+         "idle_inhibitor": {
+            "format": "{icon}", // Icon itself selected based on state
+            "format-icons": {
+                 "activated": "", // Style via CSS .activated state on #idle_inhibitor
+                 "deactivated": "" // Default state
+            }
+            // CSS classes used: #idle_inhibitor, .activated (state)
+        },
+        "custom/media": {
+            "escape": false,
+            "return-type": "json",
+            "max-length": 40,
+            "on-click": "playerctl play-pause",
+            "on-click-right": "playerctl stop",
+            "smooth-scrolling-threshold": 10,
+            "on-scroll-up": "playerctl next",
+            "on-scroll-down": "playerctl previous",
+            "exec" : "$HOME/.config/waybar/custom_modules/mediaplayer.sh",
+            "tooltip": true // Styling primarily depends on the script's output
+        },
+        "custom/weather": {
+            "exec": "$HOME/.config/waybar/custom_modules/get_weather.sh Singapore",
+            "return-type": "json",
+            "format": "{}", // Content comes entirely from script
+            "tooltip": true,
+            "interval": 600 // Styling primarily depends on the script's output
+        },
+        "clock": {
+            // Simplified tooltip format, relying on CSS for basic tooltip style
+            // Complex calendar formatting might still need Pango or specific CSS targeting if possible
+             "tooltip-format": "{calendar}\n\nToday: {:%d %B %Y}",
             "calendar": {
-                "mode-mon-col"  : 3,
-                "weeks-pos"     : "right",
+                "mode-mon-col"   : 3,
+                "weeks-pos"       : "right",
+                // Keep Pango here for detailed calendar coloring, as CSS targeting can be tricky
                 "format": {
-                    "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                    "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                    "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                    "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                    "days":    "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks":   "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                    "today":   "<span color='#ff6699'><b><u>{}</u></b></span>"
                 }
             },
-        "format": "{:%d %B %Y - %H:%M %p}"
-    },
-    "network": {
-        "format-wifi": "{signalStrength}% {icon}",
-        "format-ethernet": "{ipaddr}/{cidr} 󰈁",
-        "tooltip-format": "{essid} on {ifname} 󱂇",
-        "format-linked": "{ifname} (No IP) 󰪎",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"]
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-muted": "<span foreground='#AA2244'><b> </b></span> {format_source}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": "<span foreground='#AA2244'><b> {icon}  {format_source}</b></span>",
-        "format-source": " {volume}% ",
-        "format-source-muted": "<span foreground='#AA2244'><b></b></span>",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "󱆏 ",
-            "headset": "󰋎 ",
-            "phone": " ",
-            "portable": " ",
-            "car": " ",
-            "default": [" ", " ", " "]
+            "format": "{:%d %B %Y - %H:%M %p}" // Main clock format
         },
-        "on-click": "pavucontrol"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "<span foreground='#34AA44'><b></b></span>",
-            "deactivated": ""
+        "custom/kb": {
+            "tooltip": false,
+            "format": "󰌌", // Size handled by CSS #custom-kb
+            "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh", // Removed sleep
+            "escape": true
         }
+        // Removed wlr/taskbar definition
+        // Removed bluetooth definition
     },
-    "temperature": {
-        "thermal-zone": 8,
-        "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
-        "format": "{percent}% {icon}",
-        "on-scroll-up": "light -A 2",
-        "on-scroll-down": "light -U 2",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            "good": 90,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% {icon} ",
-        "tooltip-format": "{capacity}% - {timeTo}",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "bluetooth": {
-        "format": "{status} ",
-        "format-disabled": "off ",
-        "format-connected": "{num_connections} ",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueman-manager"
-    },
-    "custom/kb": {
-        "tooltip": false,
-        "format": "󰌌",
-        "on-click": "$HOME/.config/waybar/custom_modules/open_kb.sh",
-        "escape": true
-    },
-    "custom/sp": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "$HOME/.config/scripts/swap_scratchpad.sh",
-        "escape": true
-    },
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 13,
-        "all-outputs": true,
-        "tooltip": false,
-        "on-click": "activate",
-        "on-click-right": "close"
-    }
-},
-{
-    //General
-    "layer": "top",
-    "position": "top",
-    "height": 30,
-    "spacing": 1,
-    "name": "waybar-top",
+    {
+        //General - Top Bar
+        "layer": "top",
+        "position": "top",
+        "height": 30,
+        "spacing": 1,
+        "name": "waybar-top", // Used as CSS class .waybar-top
 
-    //position
-    "modules-left": [
-        "custom/launch_app",
-        "hyprland/workspaces", 
-        "hyprland/submap"
-    ],
-    "modules-center":[
-        "hyprland/window"
-    ],
-    "modules-right": [
-        "tray",
-        "custom/notification",
-        "custom/powermenu"
-    ],
+        //position
+        "modules-left": [
+            "custom/launch_app",
+            "hyprland/workspaces",
+            "hyprland/submap"
+        ],
+        "modules-center":[
+            "hyprland/window"
+        ],
+        "modules-right": [
+            "custom/kill",
+            "tray",
+            "custom/notification",
+            "custom/powermenu"
+        ],
 
-    //modules
-    "custom/launch_app": {
-        "tooltip": false,
-        "format": "󰀻",
-        "on-click": "sleep 0.5; $HOME/.config/scripts/icon_launcher.sh",
-        "escape": true
-    },
-    "hyprland/workspaces": {
-        "show-special": true,
-        "format": "{name} {icon}[ {windows}  ]",
-        "sort-by": "id",
-        "format-icons":{
-            "special": "",
-            "active": ":    ",
-            "default": ":    "
+        // Modules for Top Bar
+        "custom/launch_app": {
+            "tooltip": false,
+            "format": "󰀻", // Size handled by CSS #custom-launch_app
+            "on-click": "$HOME/.config/scripts/icon_launcher.sh", // Removed sleep
+            "escape": true
         },
-        "format-window-separator": " ",
-        "window-rewrite-default": "",
-        "window-rewrite": {
-            "^[ ]*$": "",
-            "foot": "",
-            "thunar": "",
-            "brave-calendar.google.com__calendar_u_1_r-Default":"",
-            "brave-mail.google.com__mail_u_.-Default": "",
-            "brave-web.whatsapp.com__-Default": "",
-            "brave-to-do.live.com__tasks_today-Default": "",
-            "brave-keep.google.com__u_1_-Default": "󰛜",
-            "brave-ticktick.com__webapp_-Default": "",
-            "brave-browser": "󰖟",
-            "org.telegram.desktop": "",
-            "brave-open.spotify.com__-Default": "",
-            "spt": "",
-            "^Spotify Premium$": "",
-            "Spotify": ""
+        "hyprland/workspaces": {
+            "show-special": true,
+            "format": "{name} [{windows}]", // Base format
+            "sort-by": "id",
+             "format-icons":{ // Icons are content
+                 "special": "",
+                 "active": ":",
+                 "default": ":"
+             },
+            "format-window-separator": " ",
+            "window-rewrite-default": "",
+            "window-rewrite": { // Icons are content
+                "^[ ]*$": "",
+                "foot": "",
+                "ghostty": "",
+                "thunar": "",
+                "nautilus": "",
+                "brave-calendar.google.com__calendar_u_1_r-Default":"",
+                "brave-mail.google.com__mail_u_.-Default": "",
+                "brave-web.whatsapp.com__-Default": "",
+                "brave-to-do.live.com__tasks_today-Default": "",
+                "brave-ticktick.com__webapp_-Default": "",
+                "brave-browser": "󰖟",
+                "org.telegram.desktop": "",
+                "brave-open.spotify.com__-Default": "",
+                "spt": "",
+                "^[ ]*$Spotify Premium$": "", // Adjusted regex slightly
+                "Spotify": ""
+            },
+            "on-scroll-up": "hyprctl dispatch workspace e+1",
+            "on-scroll-down": "hyprctl dispatch workspace e-1"
+            // CSS classes used: #workspaces button, .active, .special, .urgent, :hover
         },
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1"
-    },
-    "hyprland/submap": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "hyprland/window": {
-        "max-length": 100,
-        "separate-outputs": true,
-        "format": "{}",
-        "rewrite": {
-            "vim (.*)": "  $1",
-            "(.*) - Brave": "󰖟  $1"
+        "hyprland/submap": {
+            "format": "{}" // Style (italic) handled by CSS #hyprland-submap
+        },
+        "hyprland/window": {
+            "max-length": 100,
+            "separate-outputs": true,
+            "format": "{}",
+            "rewrite": {
+                // Add class 'icon' to allow CSS sizing
+                  "^vim (.*)": "<span></span> $1",
+                  "^nvim (.*)": "<span></span> $1",
+                  "(.*) - Brave$": "<span>󰖟</span> $1"
+            }
+            // CSS classes used: #window (or #hyprland-window?), .icon
+        },
+        "custom/kill": {
+            "tooltip": false,
+            "format": "󰅗", // Size handled by CSS #custom-kill
+            "on-click": "hyprland dispatch killactive", // Removed sleep
+            "escape": true
+        },
+        "tray": {
+            "icon-size": 14,
+            "spacing": 10,
+            "show-passive-items": true
+             // CSS classes used: #tray menu
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "{icon}", // Icon selected based on state below
+            "format-icons": {
+                // Use simpler icons, rely on CSS for indicator dot, color/visibility
+                // Assumes script output adds 'has-notification' and 'is-paused' classes to the module JSON
+                "notification-false": "<span></span><span class='indicator'><sup></sup></span>", // Has messages, not paused
+                "none-false": "<span></span>", // No messages, not paused
+                "notification-true": "<span></span><span class='indicator'><sup></sup></span>", // Has messages, paused
+                "none-true": "<span></span>" // No messages, paused
+            },
+            "return-type": "json",
+            "interval": 1, // NOTE: Interval=1 is very frequent. Review notification_check.sh efficiency.
+            "exec": "$HOME/.config/scripts/notification_check.sh", // Ensure this script outputs JSON with "text", "tooltip", "class": ["state1", "state2"]
+            "on-click": "dunstctl set-paused toggle", // Removed sleep
+            "escape": true,
+            "max-length": 2 // Arbitrary, likely overridden by format icon?
+            // CSS classes needed from script: .has-notification, .is-paused (example names)
+            // CSS classes used: #custom-notification, .indicator (we'll target the spans directly)
+        },
+        "custom/powermenu": {
+            "tooltip": false,
+            "format": "", // Size handled by CSS #custom-powermenu
+            "on-click": "$HOME/.config/scripts/powermenu_launcher.sh", // Removed sleep
+            "escape": true
         }
-    },
-    "tray": {
-        "icon-size": 14,
-        "spacing": 10,
-        "show-passive-items": true
-    },
-    "custom/notification": {
-        "tooltip": false,
-        "format": "{icon} ",
-        "format-icons": {
-            "notification-false": "<span foreground='red'><sup></sup></span>",
-            "none-false": "",
-            "notification-true": "<span foreground='red'><sup></sup></span>",
-            "none-true": "",
-        },
-        "return-type": "json",
-        "interval": 1,
-        "exec": "$HOME/.config/scripts/notification_check.sh",
-        "on-click": "sleep 0.5; dunstctl set-paused toggle",
-        "escape": true,
-        "max-length": 5
-    },
-    "custom/powermenu": {
-        "tooltip": false,
-        "format": "",
-        "on-click": "sleep 0.5; $HOME/.config/scripts/powermenu_launcher.sh",
-        "escape": true
     }
-}]
+]

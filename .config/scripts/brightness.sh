@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 case $1 in 
     up)
         light -A $2
@@ -10,7 +10,11 @@ case $1 in
 esac
 
 notification_id="/tmp/BRIGHTNESS_NOTIFICATION_ID"
-[[ ! -a $notification_id ]] && echo 1 > $notification_id
+if [ ! -s $notification_id ]; then
+        # The file is empty.
+        echo 1 > $notification_id
+fi
+
 light_val=$(light | awk '{print int($1)}')
 light_val_ICON="notification-display-brightness-medium"
 if [ $light_val -le 40 ]; then light_val_ICON="notification-display-brightness-low"; fi

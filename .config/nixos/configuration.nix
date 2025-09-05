@@ -1,47 +1,30 @@
-{
-  lib,
-  config,
-  pkgs,
-  inputs,
-  system,
-  ...
-}:
+{ lib, pkgs, username, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
   ];
 
-  # import standalone drv
-  environment.systemPackages = [ inputs.nixvim.packages.${system}.default ];
-
-  # To add additional postInstallScripts:
-  # (1) add this to the submodule:
-  #
-  #     options.<MODULE>.postInstallScript = lib.mkOption {
-  #       type = lib.types.lines;
-  #       default = "";
-  #       description = "Post-install script for module 1";
-  #     };
-  #     config = {
-  #       <MODULE>.postInstallScript = ''
-  #          < INSERT Post-install COMMANDS HERE >
-  #         '';
-  #      < REST OF CONFIG GOES HERE >
-  #     };
-  #
-  # (2) Update below to add config.<MODULE>.postInstallScript
-  #
-  system.activationScripts.postInstall = lib.concatStringsSep "\n" [
-    ''#!/usr/bin/env bash''
-    config.terminal.postInstallScript
-    config.hyprland.postInstallScript
-  ];
-
   # limit journald log size
   services.journald.extraConfig = "SystemMaxUse=1G";
 
+  # swap caps to super-on-hold, escape
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            capslock = "overload(meta, esc)";
+          };
+        };
+      };
+    };
+  };
+
   # Power mpowerManagement
+  services.upower.enable = true;
   services.logind.lidSwitch = "lock";
   services.tlp = {
     enable = true;
@@ -58,8 +41,8 @@
       CPU_MAX_PERF_ON_BAT = 80;
 
       #Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 90;
-      STOP_CHARGE_THRESH_BAT0 = 99;
+      START_CHARGE_THRESH_BAT1 = 90;
+      STOP_CHARGE_THRESH_BAT1 = 99;
     };
   };
 
@@ -73,6 +56,7 @@
       "splash"
       "quiet"
     ];
+
     loader = {
       efi.canTouchEfiVariables = true;
       grub = {
@@ -82,16 +66,22 @@
         gfxmodeEfi = "3000x2000";
         font = "${pkgs.unifont}/share/fonts/opentype/unifont.otf";
         fontSize = 64;
+        timeoutStyle = "menu";
         configurationLimit = 10;
       };
     };
   };
 
   # Filesystem
-  fileSystems."/home" = {
-    device = "/dev/nvme0n1p4";
-    fsType = "ext4";
+  fileSystems = {
+    "/home" = {
+      device = "/dev/nvme0n1p4";
+      fsType = "ext4";
+    };
   };
+
+  # SSD
+  services.fstrim.enable = lib.mkDefault true;
 
   # Networking
   networking = {
@@ -119,23 +109,38 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
-    wireplumber.extraConfig = {
-      "monitor.bluez.properties" = {
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.enable-msbc" = true;
-        "bluez5.enable-hw-volume" = true;
-        "bluez5.roles" = [
-          "hsp_hs"
-          "hsp_ag"
-          "hfp_hf"
-          "hfp_ag"
-        ];
-      };
+    wireplumber = {
+      enable = true;
+      extraConfig = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [
+            "hsp_hs"
+            "hsp_ag"
+            "hfp_hf"
+            "hfp_ag"
+          ];
+        };
+      }; 
     };
   };
 
+  # Orientation Sensor
+  hardware.sensor.iio.enable = true;
+
   # Set your time zone.
   time.timeZone = "Asia/Singapore";
+
+  # i18n and keyboard
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+        ids = ["*"];
+        settings.main.capslock = "overload(meta, esc)";
+    };
+  };
 
   i18n = {
     defaultLocale = "en_SG.UTF-8";
@@ -191,10 +196,10 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yukna = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Yadobler";
-    home = "/home/yukna";
+    home = "/home/${username}";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -203,37 +208,23 @@
       "dialout"
     ];
   };
-  # services.getty.autologinUser = "yukna";
-
-  # hibernation flashing fix?
+  # services.getty.autologinUser = ${username};
 
   systemd = {
-    user.services."resume@" = {
-      description = "User resume actions";
-      after = [ "hibernate.target" ];
-      wantedBy = [ "suspend.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStartPost = "/usr/bin/env sleep 1";
-        User = "%I";
-      };
-    };
-
     # faster boot
     services.NetworkManager-wait-online.enable = false;
   };
 
-  # Experiemtnal features
+  # hyprland cache
   nix = {
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
-      auto-optimise-store = true;
     };
+
+    # auto delete old boot images
     gc = {
       automatic = true;
       dates = "monthly";
@@ -243,6 +234,6 @@
 
   system = {
     autoUpgrade.enable = false;
-    stateVersion = "24.05"; # Did you read the comment?
+    stateVersion = "24.05"; # very first version used in this system
   };
 }

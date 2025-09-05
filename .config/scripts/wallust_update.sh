@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env /bin/sh
 wallpaper=$1
 wallpaper_cropped=~/Pictures/Wallpaper/cropped-image.jpg
 rm -f $wallpaper_cropped

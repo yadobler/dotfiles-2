@@ -1,9 +1,9 @@
-[submodule "/home/yukna/.config/ranger/plugins/ranger_devicons"]
-	path = /home/yukna/.config/ranger/plugins/ranger_devicons
-	url = https://github.com/alexanderjeurissen/ranger_devicons
-[submodule ".config/zsh/zgenom"]
-	path = .config/zsh/zgenom
-	url = https://github.com/jandamm/zgenom.git
 [submodule ".config/nixos/modules/nixvim-config"]
 	path = .config/nixos/modules/nixvim-config
 	url = https://github.com/yadobler/nixvim-config.git
+[submodule ".config/nixos/modules/binja"]
+	path = .config/nixos/modules/binja
+	url = https://github.com/yadobler/binary_ninja_nixos.git
+[submodule ".config/nixos/modules/wkeys"]
+	path = .config/nixos/modules/wkeys
+	url = https://github.com/yadobler/wkeys

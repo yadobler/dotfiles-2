@@ -1,57 +1,58 @@
 {
-    description = "An example NixOS configuration";
-    inputs = {
-        nixpkgs-stable = {
-            url = "github:NixOS/nixpkgs/nixos-24.05";
-        };
-        nixpkgs = {
-            url = "github:NixOS/nixpkgs/nixos-unstable";
-        };
-        hyprland = {
-            url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        hyprland-plugins = {
-            url = "github:hyprwm/hyprland-plugins";
-            inputs.hyprland.follows = "hyprland";
-        };
-        Hyprspace = {
-            url = "github:KZDKM/Hyprspace";
-            inputs.hyprland.follows = "hyprland";
-        };
-        hyprgrass = {
-            url = "github:horriblename/hyprgrass";
-            inputs.hyprland.follows = "hyprland"; # IMPORTANT
-        };
-        iio-hyprland = {
-            url = "github:JeanSchoeller/iio-hyprland";
-        };
-
-        # Local
-        nixvim = {
-            url = "./modules/nvim";
-        };
+  description = "An example NixOS configuration";
+  inputs = {
+    nixpkgs-stable = {
+      url = "github:NixOS/nixpkgs/nixos-24.11";
+    };
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
-    outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
-        let
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; inherit system; };
-            overlay-stable = final: prev: {
-                stable = import inputs.nixpkgs-stable {
-                    inherit system;
-                    config.allowUnfree = true;
-                };
-            };
-        in {
-            nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
-                inherit system;
-                inherit specialArgs;
-                modules = [
-                    ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-                        ./configuration.nix
-                        # ./detect-hp-spectre-x360.nix
-                ];
-            };
+    # Personal
+    nixvim = {
+      url = "github:yadobler/nixvim-config";
+    };
+    binja = {
+      url =  "github:yadobler/binary_ninja_nixos";
+    };
+    wkeys = {
+      url =  "github:yadobler/wkeys";
+    };
+    oxocarbon = {
+      url = "github:nyoom-engineering/base16-oxocarbon";
+      flake = false;
+    };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+    };
+  };
+
+  outputs = { self, nixpkgs, nixpkgs-stable, ...} @inputs:
+    let
+
+      system = "x86_64-linux";
+      username = "yukna";
+
+      schemeFromYAML = import ./modules/themes/schemeFromYAML.nix;
+      colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
+      specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
+
+      overlay-stable = final: prev: {
+        stable = import inputs.nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
         };
+      };
+
+    in {
+      nixosConfigurations.vellinator = nixpkgs.lib.nixosSystem {
+        inherit system;
+        inherit specialArgs;
+        modules = [
+          ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          ./configuration.nix
+          # ./detect-hp-spectre-x360.nix
+        ];
+      };
+    };
 }

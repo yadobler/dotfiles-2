@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 
 disable_animations() {
     hyprctl --batch "\

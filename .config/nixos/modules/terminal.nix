@@ -1,95 +1,126 @@
-{ lib, pkgs, ... }:
+{ config, pkgs, username, ... }:
 let
-  terminal = pkgs.foot;
-  binary_name = "foot";
-  shell = pkgs.zsh;
+  shell = "/var/run/current-system/sw/bin/fish";
+  terminal = "ghostty";
+  # alias "bw_unlock"="[[ \$(bw status | jq '.status') == 'unlocked' ]] || export BW_SESSION=\$(bw unlock \$(zenity --password) --raw)"
 in
-{
-  options.terminal.postInstallScript = lib.mkOption {
-    type = lib.types.lines;
-    default = "";
-    description = "Post-install set gnome-terminal to ${binary_name} for gnome-based apps";
-  };
+  {
+  documentation.man.generateCaches = true;
+  
+  # environment.variables = {
+  # };
 
-  config = {
-    programs = {
-      zsh = {
-        enable = true;
-        syntaxHighlighting = {
-          enable = true;
-        };
-        autosuggestions = {
-          enable = true;
-        };
-        enableLsColors = true;
-        enableCompletion = true;
-        enableBashCompletion = true;
-        setOptions = [
-          "auto_list"
-          "complete_in_word"
-          "menu_complete"
-          "extended_glob"
-          "glob"
-          "append_history"
-          "share_history"
-          "nobeep"
-          "longlistjobs"
-          "notify"
-        ];
-        shellAliases = {
-          vim = "nvim";
-            "svim" = "sudo -E nvim";
-            "batt" = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
-            "ip" = "ip -color=auto";
-            "ls" = "lsd --group-directories-first";
-            "la" = "ls -lA";
-            "ll" = "la -hN";
-            "cat" = "bat";
-            "du" = "dust";
-            "ps" = "procs";
-            "htop" = "btm";
-            "grep" = "rg";
-            "find" = "fd";
-            "jobs" = "jobs -p";
+  environment.systemPackages = with pkgs; [
+    fishPlugins.puffer
+    fishPlugins.sponge
+    fishPlugins.bass 
+    fishPlugins.fzf-fish
+    fishPlugins.tide
 
-            "wal_update" = "~/.config/scripts/wallust_update.sh";
-            "steam_update_apps" = "sed 's/Exec=steam /Exec=gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
-            "valgrind" = "~/.config/scripts/colorgrind";
-            "footserver" = "foot --server &; disown";
-            "cd.." = "cd ..";
-            ":q" = "exit";
+    any-nix-shell
+    ghostty
 
-            "gaf" = "git add -f";
-            "gau" = "git add -u";
-            "gcm" = "git commit -m";
-            "gc" = "git commit -m";
-            "gm" = "git merge";
-            "gm-noff" = "git merge --no-ff";
-            "gp" = "git push";
-            "gpo" = "git push -u origin $(git branch --show-current)";
-            "gptags" = "git push --tags";
-            "gpull" = "git pull";
-            "gs" = "git status";
-            "gl" = "git log";
-            "gswitch" = "git switch";
-            "gswitchc" = "git switch -c";
-            "gsm" = "git submodule";
-            "gtag" = "git tag";
-        };
-      };
-    };
+    file
+    lsd
+    fd
+    dust
+    duf
+    fzf
+    hexyl
+    ripgrep
+    bottom
+    neofetch
+    broot
+    tree
+    pstree
+    chafa
+    unzip
+    p7zip
+    wget
+    jq
+    bc
+    killall
+    # binwalk
+    yazi
+  ];
+  programs = {
+    direnv.enable = true;
     
-    users.users.yukna.shell = shell;
-    environment.systemPackages = [
-      terminal
+    nautilus-open-any-terminal.terminal = terminal;
 
-    ];
+    fish = {
+      enable = true;
 
-    terminal.postInstallScript = ''
-      rm -rf /usr/bin/gnome-terminal
-      ln -s ${terminal}/bin/${binary_name} /usr/bin/gnome-terminal
+      loginShellInit = ''
+            if test (tty) = /dev/tty1
+              exec Hyprland
+            end
       '';
 
+      shellAbbrs  = {
+        "vim"               = "nvim";
+        "svim"              = "sudo -E nvim";
+        "batt"              = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
+        "ip"                = "ip -color = auto";
+        "ls"                = "lsd --group-directories-first -N";
+        "la"                = "lsd --group-directories-first -lA";
+        "ll"                = "lsd --group-directories-first -lAhN";
+        "cat"               = "bat";
+        "hexdump"           = "hexyl";
+        "du"                = "dust -r";
+        "df"                = "duf";
+        "ps"                = "procs";
+        "htop"              = "btm";
+        "grep"              = "rg";
+        "find"              = "fd";
+        "imgcat"            = "img2sixel";
 
+        "wal_update"        = "~/.config/scripts/wallust_update.sh";
+        "steam_update_apps" = "sed 's/Exec = steam /Exec = gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
+        "valgrind"          = "~/.config/scripts/colorgrind";
+        "footserver"        = "foot --server &; disown";
+        "cd.."              = "cd ..";
+        ":q"                = "exit";
+
+        "ga"                = "git add";
+        "gaf"               = "git add -f";
+        "gau"               = "git add -u";
+        "gcm"               = "git commit -m";
+        "gc"                = "git commit";
+        "gm"                = "git merge";
+        "gmnoff"            = "git merge --no-ff";
+        "gp"                = "git push";
+        "gpo"               = "git push -u origin $(git branch --show-current)";
+        "gptags"            = "git push --tags";
+        "gpull"             = "git pull";
+        "gs"                = "git status";
+        "gd"                = "git diff";
+        "gdc"               = "git diff --cached";
+        "gl"                = "git log";
+        "glg"               = "git log --color --graph --pretty --oneline";
+        "glgb"              = "git log --all --graph --decorate --oneline --simplify-by-decoration";
+
+        "gswitch"           = "git switch";
+        "gswitchc"          = "git switch -c";
+        "gsm"               = "git submodule";
+
+        "gtag"              = "git tag";
+        "gco"               = "git checkout";
+        "gcob"              = "git checkout -b";
+        "gcom"              = "git checkout master";
+        "gcod"              = "git checkout develop";
+
+        "nix-ls-installed"  = "nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-" ;
+        "deletepw"          = "cliphist list | head -n1 | cliphist delete";
+      };
+    };
   };
+
+  users.users.${username}.shell = shell;
+  users.defaultUserShell = shell;
+
+  system.userActivationScripts.postInstallTerminal = ''
+      rm -rf /usr/bin/gnome-terminal
+      ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
+      '';
 }

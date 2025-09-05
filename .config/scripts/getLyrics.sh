@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 TRACKID=$(playerctl metadata --format "{{mpris:trackid}}" | awk -F/ '{ print $NF}')
 FETCHURL="https://lyrix.vercel.app/getLyrics/$TRACKID"
 

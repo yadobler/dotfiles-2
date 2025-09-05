@@ -1,3 +1,2 @@
-#! /usr/bin/env zsh
-cliphist list | wofi -i -G --dmenu --prompt "Clipboard History" --cache /dev/null | cliphist decode | wl-copy
-
+#!/usr/bin/env /bin/sh
+cliphist list | wofi -i --dmenu --prompt "Clipboard History" --cache /dev/null | cliphist decode | wl-copy

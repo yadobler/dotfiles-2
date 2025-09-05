@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/usr/bin/env /bin/sh
 
 lisgd \
     -d /dev/input/by-path/pci-0000:00:15.1-platform-i2c_designware.3-event \
