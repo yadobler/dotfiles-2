@@ -14,7 +14,7 @@ in
       main = {
         font = "JetBrainsMono Nerd Font Mono:size=12";
         pad = "10x10";
-        notify="notify-send -a \${app-id} -i \${app-id} \${title} \${body}";
+        notify=true; 
       };
 
       url.launch = "xdg-open \${url}";
