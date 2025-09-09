@@ -87,7 +87,6 @@ layout {
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
-        proportion 0.33333
         proportion 0.5
         proportion 0.66667
         proportion 1.0
@@ -95,14 +94,13 @@ layout {
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
     preset-window-heights { 
-        proportion 0.33333
         proportion 0.5
         proportion 0.66667
         proportion 1.0
     }
 
     default-column-width { 
-        proportion 0.5; 
+        proportion 0.66667
     }
 
     focus-ring {
@@ -264,8 +262,12 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
     XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
     XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
+    Ctrl+XF86AudioPrev   allow-when-locked=true { spawn "playerctl" "position" "1-"; }
+    Ctrl+XF86AudioNext   allow-when-locked=true { spawn "playerctl" "position" "1+"; }
+    
     XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }
 
 
