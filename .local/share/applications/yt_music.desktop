@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Whatsapp
+Name=youtube-music
 Exec=brave --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://music.youtube.com/
 Type=Application
 Icon=youtube-music
