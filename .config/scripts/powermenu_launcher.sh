@@ -2,24 +2,24 @@
 
 show_powermenu() {
     choice=$(printf "󰤄 Hibernate\n⏼ Shutdown\n Reboot\n Lock" | wofi --style $HOME/.config/wofi/style.css --dmenu -i --height 320 -O default)
+    # pw-play ~/.config/scripts/assets/winxpshutdown.wav &
     case ${choice:2} in
         Hibernate)
-            pw-play ~/.config/scripts/assets/winxpshutdown.wav &
             hyprlock &
             disown
             sleep 2
+            niri msg output eDP-1 off
             systemctl hibernate
             ;;
         Shutdown)
-            pw-play ~/.config/scripts/assets/winxpshutdown.wav &
+            sleep 2
             shutdown now
             ;;
         Reboot)
-            pw-play ~/.config/scripts/assets/winxpshutdown.wav &
+            sleep 2
             systemctl reboot
             ;;
         Lock)
-            pw-play ~/.config/scripts/assets/winxpshutdown.wav &
             hyprlock &
             disown
             ;;
@@ -28,5 +28,5 @@ show_powermenu() {
     esac
 }
 
-pidof wofi && kill $(pidof wofi) || show_powermenu
+pidof wofi && kill "$(pidof wofi)" || show_powermenu
 

@@ -170,6 +170,7 @@ animations {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
+// spawn-at-startup "hyprlock"
 spawn-at-startup "hypridle"
 spawn-at-startup "niriswitcher"
 spawn-at-startup "dunst"
@@ -181,10 +182,13 @@ spawn-at-startup "pulseaudio -D"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "rfkill" "block" "bluetooth"
 spawn-at-startup "~/.config/scripts/start_ime.sh"
-spawn-at-startup "pw-play" "/home/yukna/.config/scripts/assets/oxp.wav"
+
 spawn-at-startup "Telegram"
 spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
 spawn-at-startup "swaybg" "-i" "/home/yukna/Pictures/wallpaper.jpg" "-m" "fill"
+spawn-at-startup "waybar" // differ startup so that scripts can be loaded
+// spawn-at-startup "pw-play" "~/.config/scripts/assets/oxp.wav"
+// spawn-sh-at-startup "pw-play ~/.config/scripts/assets/oxp.wav"
 
 hotkey-overlay {
     skip-at-startup
