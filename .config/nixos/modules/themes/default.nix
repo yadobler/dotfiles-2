@@ -34,7 +34,7 @@ let
   gtk-icon = pkgs.whitesur-icon-theme;
 in
   {
-  system.activationScripts.colorConfigs.text = ''
+    system.activationScripts.colorConfigs.text = ''
     # Only run this during a rebuild, not on a normal boot
     if [[ -n "$NIXOS_ACTION" ]]; then
       echo "Applying theme ${colorScheme.slug} during nixos-rebuild $NIXOS_ACTION..."
@@ -43,4 +43,5 @@ in
       ${activationScript}
     fi
   '';
+
 }
