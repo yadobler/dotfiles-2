@@ -35,15 +35,12 @@ let
 in
   {
   system.activationScripts.colorConfigs.text = ''
-    if [ -z \"$SCRATCHPAD_NAME\" ]; then
-      echo SCRATCHPAD_NAME not set, skipping theme setup...
-      exit 0
-    else 
-      echo setting up theme ${colorScheme.slug} ...
+    # Only run this during a rebuild, not on a normal boot
+    if [[ -n "$NIXOS_ACTION" ]]; then
+      echo "Applying theme ${colorScheme.slug} during nixos-rebuild $NIXOS_ACTION..."
       ln -fs ${gtk-theme}/share/themes/* /home/${username}/.themes
       ln -fs ${gtk-icon}/share/icons/* /home/${username}/.icons
+      ${activationScript}
     fi
-  '' + activationScript + ''
-    '';
-
+  '';
 }
