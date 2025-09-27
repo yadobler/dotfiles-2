@@ -14,7 +14,7 @@ in
       main = {
         font = "JetBrainsMono Nerd Font Mono:size=12";
         pad = "10x10";
-        notify= "yes"; 
+        notify= true; 
       };
       bell.urgent = true;
 
