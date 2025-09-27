@@ -51,7 +51,7 @@
         modules = [
           ({ config, pkgs, system, inputs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ./configuration.nix
-          # ./detect-hp-spectre-x360.nix
+          ./ipu6ep_camera.nix
         ];
       };
     };
