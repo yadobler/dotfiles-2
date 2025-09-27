@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=NUSmail
+Exec=brave --gtk-version=4 --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime --enable-features=WaylandWindowDecorations --profile-directory=Default --app=https://outlook.com/u.nus.edu
+Terminal=false
+Type=Application
+Icon=outlook
+StartupWMClass=crx_nusmail
+Comment=NUSMail
+Categories=Network;Email;
