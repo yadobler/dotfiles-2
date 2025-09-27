@@ -16,6 +16,7 @@ in
         pad = "10x10";
         notify= "yes"; 
       };
+      bell.urgent = true;
 
       url.launch = "xdg-open \${url}";
       colors = {
