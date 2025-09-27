@@ -156,7 +156,7 @@ in
 
         "nix-ls-installed"  = "nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-" ;
         "deletepw"          = "cliphist list | head -n1 | cliphist delete";
-        "hyprlock-restart"  = "hyprlock --display=wayland-1 && exit";
+        "hyprlock-restart"  = "hyprlock --display wayland-1 && exit";
 
       };
     };
