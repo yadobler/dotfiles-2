@@ -202,6 +202,9 @@ application/x-Idea-idea_workspace=jetbrains-idea-ce.desktop
 application/java-archive=userapp-java -jar-KD0QT2.desktop
 application/x-zerosize=nvim.desktop
 x-scheme-handler/tonsite=org.telegram.desktop.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-R8S8C3.desktop
+message/rfc822=userapp-Thunderbird-R8S8C3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-R8S8C3.desktop
 
 [Added Associations]
 image/jpeg=swayimg.desktop;
@@ -212,3 +215,5 @@ application/zip=org.gnome.FileRoller.desktop;
 application/x-zerosize=nvim.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 text/plain=neovide.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-R8S8C3.desktop;userapp-Evolution-KNEKD3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-R8S8C3.desktop;
