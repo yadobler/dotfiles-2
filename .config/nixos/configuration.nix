@@ -191,6 +191,7 @@
       "video"
       "bluetooth"
       "dialout"
+      "docker"
     ];
   };
   #  services.getty.autologinUser = "${username}";
@@ -199,6 +200,9 @@
     # faster boot
     services.NetworkManager-wait-online.enable = false;
   };
+
+  # docker
+  virtualisation.docker.enable = true;
 
   # hyprland cache
   nix = {
