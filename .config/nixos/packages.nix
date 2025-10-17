@@ -59,6 +59,7 @@
     glow
 
     brave
+    google-chrome
     telegram-desktop
     zathura
     xournalpp
