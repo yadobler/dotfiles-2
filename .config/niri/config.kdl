@@ -105,7 +105,7 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#ee5496"
+        active-color "#d8a657" // base0A
     }
 
     border {
@@ -113,11 +113,11 @@ layout {
     }
 
     insert-hint {
-        color "#08bdba60"
+        color "#fbf1c760" // base07
     }
 
     tab-indicator {
-        active-color "#08bdba"
+        active-color "#fbf1c7" //base07
         inactive-color "#000000A0"
         width 10
         gap 10
