@@ -22,6 +22,10 @@
       url = "github:nyoom-engineering/base16-oxocarbon";
       flake = false;
     };
+    tinted-theming = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
@@ -34,7 +38,9 @@
       username = "yukna";
 
       schemeFromYAML = import ./modules/themes/schemeFromYAML.nix;
-      colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
+      # colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
+      colorSchemeName = "gruvbox-material-dark-hard";
+      colorScheme = schemeFromYAML colorSchemeName (builtins.readFile (inputs.tinted-theming + "base16/" + colorSchemeName + ".yaml"));
       specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 
       overlay-stable = final: prev: {
