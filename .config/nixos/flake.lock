@@ -491,6 +491,7 @@
         "nixvim": "nixvim",
         "oxocarbon": "oxocarbon",
         "spicetify-nix": "spicetify-nix",
+        "tinted-theming": "tinted-theming",
         "wkeys": "wkeys"
       }
     },
@@ -540,6 +541,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tinted-theming": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763914658,
+        "narHash": "sha256-Hju0WtMf3iForxtOwXqGp3Ynipo0EYx1AqMKLPp9BJw=",
+        "owner": "tinted-theming",
+        "repo": "schemes",
+        "rev": "0f6be815d258e435c9b137befe5ef4ff24bea32c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "schemes",
         "type": "github"
       }
     },
