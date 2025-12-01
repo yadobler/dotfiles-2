@@ -361,6 +361,8 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Ctrl+F { expand-column-to-available-width; }
+    // Mod+Shift+F { maximize-window-to-edges; }
+    // Mod+Ctrl+F { fullscreen-window; }
 
     Mod+C { center-column; }
 
