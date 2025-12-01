@@ -6,7 +6,7 @@ let
 in
   {
   documentation.man.generateCaches = true;
-  
+
   programs.foot = {
     enable = true;
     enableFishIntegration = true;
@@ -54,39 +54,41 @@ in
   environment.systemPackages = [
     # pkgs.${terminal}
   ] ++ (with pkgs; [
-    fishPlugins.puffer
-    fishPlugins.sponge
-    fishPlugins.bass 
-    fishPlugins.fzf-fish
-    fishPlugins.tide
+      fishPlugins.puffer
+      fishPlugins.sponge
+      fishPlugins.bass 
+      fishPlugins.fzf-fish
+      fishPlugins.tide
 
-    ghostty
+      ghostty
 
-    any-nix-shell
+      any-nix-shell
 
-    file
-    lsd
-    fd
-    dust
-    duf
-    fzf
-    hexyl
-    ripgrep
-    bottom
-    neofetch
-    broot
-    tree
-    pstree
-    chafa
-    unzip
-    p7zip
-    wget
-    jq
-    bc
-    killall
-    # binwalk
-    yazi
-  ]);
+      file
+      # lsd
+      eza
+
+      fd
+      dust
+      duf
+      fzf
+      hexyl
+      ripgrep
+      bottom
+      neofetch
+      broot
+      # tree
+      pstree
+      chafa
+      unzip
+      p7zip
+      wget
+      jq
+      bc
+      killall
+      # binwalk
+      yazi
+    ]);
 
   programs = {
     direnv.enable = true;
@@ -105,9 +107,13 @@ in
         "svim"              = "sudo -E nvim";
         "batt"              = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
         "ip"                = "ip -color = auto";
-        "ls"                = "lsd --group-directories-first -N";
-        "la"                = "lsd --group-directories-first -lA";
-        "ll"                = "lsd --group-directories-first -lAhN";
+        "ls"                = "eza --group-directories-first --icons=always";
+        "la"                = "eza --group-directories-first -la";
+        "l1"                = "eza --group-directories-first -1";
+        "tree"              = "eza -T";
+        # "ls"                = "lsd --group-directories-first -N";
+        # "la"                = "lsd --group-directories-first -lA";
+        # "ll"                = "lsd --group-directories-first -lAhN";
         "cat"               = "bat";
         "hexdump"           = "hexyl";
         "du"                = "dust -r";
@@ -117,7 +123,7 @@ in
         "grep"              = "rg";
         "find"              = "fd";
         "imgcat"            = "img2sixel";
-        
+
         "rebuild-os"        = "sudo nixos-rebuild switch --keep-going";
         # "wal_update"        = "~/.config/scripts/wallust_update.sh";
         "steam_update_apps" = "sed 's/Exec = steam /Exec = gamemoderun steam /g' -i ~/.local/share/applicationsCC/*";
@@ -165,8 +171,8 @@ in
   users.users.${username}.shell = shell;
   users.defaultUserShell = shell;
 
-    # system.userActivationScripts.postInstallTerminal = ''
-    #     rm -rf /usr/bin/gnome-terminal
-    #     ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
-    # '';
+  # system.userActivationScripts.postInstallTerminal = ''
+  #     rm -rf /usr/bin/gnome-terminal
+  #     ln -s /run/current-system/sw/bin/${terminal} /usr/bin/gnome-terminal
+  # '';
 }
