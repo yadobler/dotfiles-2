@@ -10,7 +10,7 @@
 
   # Power mpowerManagement
   services.upower.enable = true;
-  services.logind.lidSwitch = "lock";
+  services.logind.settings.Login.HandleLidSwitch = "lock";
   services.tlp = {
     enable = true;
     settings = {
@@ -135,12 +135,12 @@
       fcitx5 = {
         waylandFrontend = false;
         addons = with pkgs; [
-          fcitx5-with-addons
+          qt6Packages.fcitx5-with-addons
+          kdePackages.fcitx5-chinese-addons
           fcitx5-gtk
           fcitx5-m17n
           fcitx5-table-extra
           fcitx5-material-color
-          libsForQt5.fcitx5-chinese-addons
         ];
       };
     };

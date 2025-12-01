@@ -26,7 +26,7 @@
   programs = {
     git.enable = true;
     light.enable = true;
-    file-roller.enable = true;
+    # file-roller.enable = true;
     bat = {
       enable = true;
       settings = {
@@ -77,6 +77,7 @@
     gnome-tweaks
 
     # jetbrains.idea-community
+    file-roller
 
   ];
 
