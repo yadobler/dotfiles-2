@@ -10,6 +10,7 @@ let
     # { name = "rofi"; src = ./templates/colors.rasi; target = "rofi/colors.rasi"; }
     { name = "ghostty"; src = ./templates/ghostty.config; target = "ghostty/colors"; }
     { name = "fish"; src = ./templates/fish.theme; target = "fish/themes/base16.theme"; }
+    { name = "eza"; src = ./templates/eza.yml; target = "eza/theme.yml"; }
     { name = "nvim"; src = ./templates/nvim.lua; target = "nvim/themes/base16.lua"; }
     { name = "bat"; src = ./templates/bat.tmTheme; target = "bat/themes/base16.tmTheme"; }
     { name = "spicetify"; src = ./templates/spicetify.ini; target = "spicetify/Themes/Base16/color.ini"; }
