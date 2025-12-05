@@ -108,6 +108,7 @@ in
         "batt"              = "upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep -e state -e percentage -e time\ to\ empty";
         "ip"                = "ip -color = auto";
         "ls"                = "eza --group-directories-first --icons=always";
+        "ll"                = "eza --group-directories-first -l";
         "la"                = "eza --group-directories-first -la";
         "l1"                = "eza --group-directories-first -1";
         "tree"              = "eza -T";
