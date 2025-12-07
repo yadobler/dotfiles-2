@@ -10,7 +10,8 @@
 
     # Personal
     nixvim = {
-      url = "github:yadobler/nixvim-config/minimal";
+      # url = "github:yadobler/nixvim-config/minimal";
+      url = "github:yadobler/nixvim-config";
     };
     binja = {
       url =  "github:yadobler/binary_ninja_nixos";
@@ -36,10 +37,10 @@
 
       system = "x86_64-linux";
       username = "yukna";
+      colorSchemeName = "oxocarbon-dark";
 
       schemeFromYAML = import ./modules/themes/schemeFromYAML.nix;
       # colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
-      colorSchemeName = "oxocarbon-dark";
       colorScheme = schemeFromYAML colorSchemeName (builtins.readFile (inputs.tinted-theming + "/base16/" + colorSchemeName + ".yaml"));
       specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 

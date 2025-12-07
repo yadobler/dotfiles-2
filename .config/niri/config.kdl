@@ -1,3 +1,4 @@
+include "colors.kdl"
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
@@ -105,20 +106,14 @@ layout {
 
     focus-ring {
         width 2
-        active-color "#d8a657" // base0A
     }
 
     border {
         off
     }
 
-    insert-hint {
-        color "#08bdba60" // base07
-    }
 
     tab-indicator {
-        active-color "#08bdba" //base07
-        inactive-color "#000000A0"
         width 10
         gap 10
         corner-radius 10
@@ -183,6 +178,7 @@ spawn-at-startup "~/.config/scripts/start_ime.sh"
 
 spawn-at-startup "Telegram"
 spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/whatsapp.desktop"
+spawn-at-startup "gio" "launch" "/home/yukna/.local/share/applications/nusmail.desktop"
 spawn-at-startup "swaybg" "-i" "/home/yukna/Pictures/wallpaper.jpg" "-m" "fill"
 spawn-at-startup "waybar" // differ startup so that scripts can be loaded
 // spawn-at-startup "pw-play" "~/.config/scripts/assets/oxp.wav"
@@ -294,11 +290,11 @@ binds {
     Mod+Shift+End  { move-column-to-last; }
 
     Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
+    Mod+D              { focus-workspace-up; }
     Mod+Shift+U         { move-column-to-workspace-down; }
-    Mod+Shift+I         { move-column-to-workspace-up; }
+    Mod+Shift+D         { move-column-to-workspace-up; }
     Mod+Ctrl+U         { move-workspace-down; }
-    Mod+Ctrl+I         { move-workspace-up; }
+    Mod+Ctrl+D         { move-workspace-up; }
 
 
     // You can bind mouse wheel scroll ticks using the following syntax.
@@ -359,10 +355,10 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
 
     Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
-    Mod+Ctrl+F { expand-column-to-available-width; }
-    // Mod+Shift+F { maximize-window-to-edges; }
-    // Mod+Ctrl+F { fullscreen-window; }
+    // Mod+Shift+F { fullscreen-window; }
+    // Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+F { maximize-window-to-edges; }
+    Mod+Ctrl+F { fullscreen-window; }
 
     Mod+C { center-column; }
 

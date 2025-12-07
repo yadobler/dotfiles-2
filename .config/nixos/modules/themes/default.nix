@@ -4,6 +4,7 @@ let
   # List of color configuration files
   colorFiles = [
     { name = "hyprland"; src = ./templates/hyprland.conf; target = "hypr/colors.conf"; }
+    { name = "niri"; src = ./templates/niri.kdl; target = "niri/colors.kdl"; }
     { name = "waybar"; src = ./templates/waybar.css; target = "waybar/colors.css"; }
     { name = "dunst"; src = ./templates/dunstrc; target = "dunst/dunstrc"; }
     { name = "wofi"; src = ./templates/wofi.css; target = "wofi/colors.css"; }
