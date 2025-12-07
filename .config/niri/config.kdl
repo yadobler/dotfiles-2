@@ -32,7 +32,7 @@ input {
         tap
         natural-scroll
         middle-emulation
-        scroll-factor vertical=5.0 horizontal=1.0
+        scroll-factor vertical=3.0 horizontal=1.0
     }
 
     touch {
