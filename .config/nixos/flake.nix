@@ -39,7 +39,7 @@
 
       schemeFromYAML = import ./modules/themes/schemeFromYAML.nix;
       # colorScheme = schemeFromYAML "oxocarbon-dark" (builtins.readFile (inputs.oxocarbon + "/base16-oxocarbon-dark.yaml"));
-      colorSchemeName = "gruvbox-material-dark-hard";
+      colorSchemeName = "oxocarbon-dark";
       colorScheme = schemeFromYAML colorSchemeName (builtins.readFile (inputs.tinted-theming + "/base16/" + colorSchemeName + ".yaml"));
       specialArgs = { inherit inputs; inherit system; inherit username; inherit colorScheme; };
 

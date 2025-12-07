@@ -113,11 +113,11 @@ layout {
     }
 
     insert-hint {
-        color "#fbf1c760" // base07
+        color "#08bdba60" // base07
     }
 
     tab-indicator {
-        active-color "#fbf1c7" //base07
+        active-color "#08bdba" //base07
         inactive-color "#000000A0"
         width 10
         gap 10
