@@ -17,3 +17,5 @@
 	tool = nvimdiff
 [mergetool]
 	keepBackup = false
+[init]
+	defaultBranch = main
