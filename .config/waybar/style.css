@@ -50,7 +50,6 @@ window#waybar {
 #custom-weather,
 #window, 
 #idle_inhibitor,
-#network,
 #pulseaudio,
 #temperature,
 #tray {
@@ -145,6 +144,14 @@ window#waybar {
 }
 #network.disabled {
     color: @muted_color; /* Or a specific color for disabled */
+}
+#network-vpn {
+    color: @warning_bg; 
+    padding-left: 5px;
+}
+#network-vpn.disconnected {
+    background-color: transparent;
+    color: transparent;
 }
 
 /* Temperature */
