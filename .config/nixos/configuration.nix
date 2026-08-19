@@ -73,6 +73,9 @@
     hostName = "vellinator"; # Define your hostname.
     networkmanager = {
       enable = true;
+      plugins = with pkgs; [ 
+        networkmanager-openconnect 
+      ];
     };
   };
   programs.nm-applet.enable = true;
