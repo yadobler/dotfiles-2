@@ -74,7 +74,7 @@
             
         },
         "network#vpn": {
-            "interface": "ppp0",
+            "interface": "tun0",
             "format": " <span color='#ff9900'>VPN <span size='large'></span></span> ",
             "format-disconnected": "", 
             "tooltip-format": "{ifname} connected: {ipaddr}/{cidr}",
