@@ -32,7 +32,19 @@
   };
 
   # Bootloader
-  swapDevices = [ { device = "/dev/disk/by-partlabel/swap"; } ];
+  swapDevices = [ 
+    { 
+      device = "/dev/disk/by-partlabel/swap";
+      # Setting a low priority means this only gets used if the file fills up,
+      # keeping it empty for the hibernation image.
+      priority = 10; 
+    }
+    {
+      device = "/var/lib/swapfile";
+      size = 16384; # 16 GB in megabytes
+      priority = 100; # Higher priority forces the OS to use this file first
+    }
+  ];
   boot = {
     resumeDevice = "/dev/disk/by-partlabel/swap";
     kernelParams = [
