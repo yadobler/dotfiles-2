@@ -35,14 +35,12 @@
   swapDevices = [ 
     { 
       device = "/dev/disk/by-partlabel/swap";
-      # Setting a low priority means this only gets used if the file fills up,
-      # keeping it empty for the hibernation image.
-      priority = 10; 
+      priority = 100; # Primary swap & target for hibernation
     }
     {
       device = "/var/lib/swapfile";
-      size = 16384; # 16 GB in megabytes
-      priority = 100; # Higher priority forces the OS to use this file first
+      size = 16384; 
+      priority = 10; # Emergency overflow to keep the partition roomy
     }
   ];
   boot = {
